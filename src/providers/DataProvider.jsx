@@ -1,7 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { initCacheManager } from '../utils/cacheManager.js';
+
+// Lazy load DevTools to avoid including it in production bundles or causing resolution issues
+const ReactQueryDevtools = React.lazy(() =>
+  import('@tanstack/react-query-devtools').then((d) => ({
+    default: d.ReactQueryDevtools,
+  }))
+);
 
 // Create a client
 const queryClient = new QueryClient({
@@ -26,7 +32,11 @@ const DataProvider = ({ children }) => {
     <QueryClientProvider client={queryClient}>
       {children}
       {/* Enable React Query DevTools in development */}
-      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+      {import.meta.env.DEV && (
+        <Suspense fallback={null}>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Suspense>
+      )}
     </QueryClientProvider>
   );
 };
