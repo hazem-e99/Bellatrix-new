@@ -16,23 +16,15 @@ const About = () => {
   const dispatch = useDispatch();
   const aboutData = useSelector(selectAboutItem);
   const aboutStatus = useSelector(selectAboutStatus);
-  
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   const [cardsPerScreen, setCardsPerScreen] = useState(3);
   const [slideOffset, setSlideOffset] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
-
-  // Fetch about data on component mount
-  useEffect(() => {
-    if (!aboutData) {
-      dispatch(fetchAbout());
-    }
-  }, [dispatch, aboutData]);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const openContactModal = () => setIsContactModalOpen(true);
   const closeContactModal = () => setIsContactModalOpen(false);
-
-  // Use data from Redux store or fallback to default values
+  
   const values = aboutData?.values?.items || [
     {
       title: 'Innovation',
@@ -241,4 +233,4 @@ const About = () => {
   );
 };
 
-export default About; 
+export default About;

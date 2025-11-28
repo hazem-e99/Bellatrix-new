@@ -58,11 +58,7 @@ const IndustryStats = ({ data }) => {
           {finalStats.map((stat, index) => (
             <article key={index} className="text-center">
               <div
-                className="text-4xl md:text-5xl font-bold mb-2 theme-stats-value"
-                style={{
-                  color: "var(--color-brand-accent)",
-                  transition: "color 0.6s ease",
-                }}
+                className="text-4xl md:text-5xl font-bold mb-2 theme-stats-value text-[var(--color-brand-accent)] transition-colors duration-600 ease-in-out"
               >
                 {stat.value}
               </div>

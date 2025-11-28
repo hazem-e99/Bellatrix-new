@@ -11,8 +11,7 @@ const FeaturesSection = ({ data }) => {
   ) {
     return (
       <section
-        className="py-20 relative overflow-hidden theme-bg-primary"
-        style={{ backgroundColor: "var(--color-brand-dark-navy)" }}
+        className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
       >
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center">
@@ -28,8 +27,7 @@ const FeaturesSection = ({ data }) => {
 
   return (
     <section
-      className="py-20 relative overflow-hidden theme-bg-primary"
-      style={{ backgroundColor: "var(--color-brand-dark-navy)" }}
+      className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
     >
       <SEO
         title="Retail Features | Oracle NetSuite E-commerce & POS Capabilities"
@@ -68,11 +66,7 @@ const FeaturesSection = ({ data }) => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Retail{" "}
             <span
-              className="theme-highlight-text"
-              style={{
-                color: "var(--color-cyan-400)",
-                transition: "color 0.6s ease",
-              }}
+              className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
             >
               Features
             </span>
@@ -91,12 +85,7 @@ const FeaturesSection = ({ data }) => {
             >
               <div className="flex items-start space-x-4">
                 <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 theme-feature-icon"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, var(--color-brand-accent), var(--color-brand-variant))",
-                    transition: "background 0.6s ease",
-                  }}
+                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 theme-feature-icon bg-gradient-to-br from-[var(--color-brand-accent)] to-[var(--color-brand-variant)] transition-all duration-600 ease-in-out"
                 >
                   <svg
                     className="w-6 h-6 text-white"
@@ -131,11 +120,7 @@ const FeaturesSection = ({ data }) => {
                     {(feature.benefits || []).map((benefit, i) => (
                       <div key={i} className="flex items-center space-x-2">
                         <div
-                          className="w-1.5 h-1.5 rounded-full theme-feature-dot"
-                          style={{
-                            backgroundColor: "var(--color-cyan-400)",
-                            transition: "background-color 0.6s ease",
-                          }}
+                          className="w-1.5 h-1.5 rounded-full theme-feature-dot bg-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
                         ></div>
                         <span className="text-sm text-gray-300">
                           {typeof benefit === "string"

@@ -5,6 +5,16 @@
 @import "./styles/theme-colors.css";
 @import "./styles/animations.css";
 
+/* Prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  position: relative;
+}
+
 /* Custom White Color Classes with Opacity */
 @layer utilities {
   .text-white-100 {

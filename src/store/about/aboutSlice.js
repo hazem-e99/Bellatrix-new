@@ -23,7 +23,7 @@ export const fetchAbout = createAsyncThunk(
       return { skip: true };
     }
     try {
-      const response = await api.get("/api/about", { signal });
+      const response = await api.get("/about", { signal });
       const data = response.data?.data || response.data || {};
       return { data, fetchedAt: Date.now() };
     } catch (error) {
@@ -38,7 +38,7 @@ export const createAbout = createAsyncThunk(
     const token = getAuthTokenFromState(getState());
     if (!token) return rejectWithValue({ message: "Authentication required" });
     try {
-      const response = await api.post("/api/about", payload, {
+      const response = await api.post("/about", payload, {
         headers: { Authorization: `Bearer ${token}` },
         signal,
       });
@@ -58,7 +58,7 @@ export const updateAbout = createAsyncThunk(
     const token = getAuthTokenFromState(getState());
     if (!token) return rejectWithValue({ message: "Authentication required" });
     try {
-      const response = await api.patch("/api/about", payload, {
+      const response = await api.patch("/about", payload, {
         headers: { Authorization: `Bearer ${token}` },
         signal,
       });
@@ -78,7 +78,7 @@ export const deleteAbout = createAsyncThunk(
     const token = getAuthTokenFromState(getState());
     if (!token) return rejectWithValue({ message: "Authentication required" });
     try {
-      await api.delete("/api/about", {
+      await api.delete("/about", {
         headers: { Authorization: `Bearer ${token}` },
         signal,
       });

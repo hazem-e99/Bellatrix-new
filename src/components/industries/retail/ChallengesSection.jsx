@@ -33,8 +33,7 @@ const ChallengesSection = ({ data, activeChallenge, setActiveChallenge }) => {
 
   return (
     <section
-      className="py-20 relative overflow-hidden theme-bg-primary"
-      style={{ backgroundColor: "var(--color-brand-dark-navy)" }}
+      className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
     >
       <SEO
         title="Retail Challenges | Oracle NetSuite Solutions for Modern Retail"
@@ -73,11 +72,7 @@ const ChallengesSection = ({ data, activeChallenge, setActiveChallenge }) => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Retail{" "}
             <span
-              className="theme-highlight-text"
-              style={{
-                color: "var(--color-cyan-400)",
-                transition: "color 0.6s ease",
-              }}
+              className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
             >
               Challenges
             </span>
@@ -95,12 +90,7 @@ const ChallengesSection = ({ data, activeChallenge, setActiveChallenge }) => {
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/10">
               <div className="mb-6">
                 <div
-                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-4 theme-icon-gradient"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, var(--color-brand-accent), var(--color-brand-variant))",
-                    transition: "background 0.6s ease",
-                  }}
+                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-4 theme-icon-gradient bg-gradient-to-br from-[var(--color-brand-accent)] to-[var(--color-brand-variant)] transition-all duration-600 ease-in-out"
                 >
                   <svg
                     className="w-8 h-8 text-white"
@@ -127,23 +117,11 @@ const ChallengesSection = ({ data, activeChallenge, setActiveChallenge }) => {
                     : finalChallenges[safeActiveChallenge]?.description?.description || 'Challenge Description'}
                 </p>
                 <div
-                  className="rounded-lg p-4 theme-impact-box"
-                  style={{
-                    backgroundColor: "var(--color-brand-deep)/0.2",
-                    borderWidth: "1px",
-                    borderStyle: "solid",
-                    borderColor: "var(--color-brand-accent)/0.3",
-                    transition:
-                      "background-color 0.6s ease, border-color 0.6s ease",
-                  }}
+                  className="rounded-lg p-4 theme-impact-box bg-[var(--color-brand-deep)]/20 border border-[var(--color-brand-accent)]/30 transition-colors duration-600 ease-in-out"
                 >
                   <div className="flex items-center space-x-2">
                     <svg
-                      className="w-5 h-5 theme-icon-color"
-                      style={{
-                        color: "var(--color-brand-accent)",
-                        transition: "color 0.6s ease",
-                      }}
+                      className="w-5 h-5 theme-icon-color text-[var(--color-brand-accent)] transition-colors duration-600 ease-in-out"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -156,11 +134,7 @@ const ChallengesSection = ({ data, activeChallenge, setActiveChallenge }) => {
                       />
                     </svg>
                     <span
-                      className="font-semibold theme-impact-text"
-                      style={{
-                        color: "var(--color-brand-variant)",
-                        transition: "color 0.6s ease",
-                      }}
+                      className="font-semibold theme-impact-text text-[var(--color-brand-variant)] transition-colors duration-600 ease-in-out"
                     >
                       Impact: {finalChallenges[safeActiveChallenge]?.impact || 'High'}
                     </span>
@@ -175,14 +149,11 @@ const ChallengesSection = ({ data, activeChallenge, setActiveChallenge }) => {
                 <button
                   key={index}
                   onClick={() => setActiveChallenge(index)}
-                  className="w-3 h-3 rounded-full transition-all duration-300 theme-nav-dot"
-                  style={{
-                    backgroundColor:
-                      activeChallenge === index
-                        ? "var(--color-brand-accent)"
-                        : "var(--color-gray-500)",
-                    transition: "background-color 0.6s ease",
-                  }}
+                  className={`w-3 h-3 rounded-full transition-colors duration-600 ease-in-out theme-nav-dot ${
+                    activeChallenge === index
+                      ? "bg-[var(--color-brand-accent)]"
+                      : "bg-[var(--color-gray-500)]"
+                  }`}
                 />
               ))}
             </div>

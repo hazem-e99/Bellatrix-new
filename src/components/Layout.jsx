@@ -40,7 +40,7 @@ const Layout = () => {
   }, [homeData, error]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-[100dvh] flex flex-col">
       {/* Fixed Navbar */}
       <Navbar 
         services={navbarData.services}

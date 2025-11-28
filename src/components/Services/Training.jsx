@@ -278,7 +278,7 @@ const Training = () => {
         }}
       />
 
-      <div className="custom-scrollbar" style={{ backgroundColor: "#001038" }}>
+      <div className="custom-scrollbar bg-[#001038]">
         {/* Hero Section with Video */}
         <TrainingHeroSection
           heroContent={data.heroContent}
@@ -295,10 +295,7 @@ const Training = () => {
 
         {/* Key Training Modules Section */}
         <div
-          className="py-12 relative overflow-hidden animate-background-glow"
-          style={{
-            backgroundColor: "#001038",
-          }}
+          className="py-12 relative overflow-hidden animate-background-glow bg-[#001038]"
         >
           {/* Creative Advanced Background Effects */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">

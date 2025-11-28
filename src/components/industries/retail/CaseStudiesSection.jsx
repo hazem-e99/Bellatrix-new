@@ -11,8 +11,7 @@ const CaseStudiesSection = ({ data }) => {
   ) {
     return (
       <section
-        className="py-20 relative overflow-hidden theme-bg-primary"
-        style={{ backgroundColor: "var(--color-brand-dark-navy)" }}
+        className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
       >
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center">
@@ -28,8 +27,7 @@ const CaseStudiesSection = ({ data }) => {
 
   return (
     <section
-      className="py-20 relative overflow-hidden theme-bg-primary"
-      style={{ backgroundColor: "var(--color-brand-dark-navy)" }}
+      className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
     >
       <SEO
         title="Retail Success Stories | Oracle NetSuite E-commerce Case Studies"
@@ -68,11 +66,7 @@ const CaseStudiesSection = ({ data }) => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Success{" "}
             <span
-              className="theme-highlight-text"
-              style={{
-                color: "var(--color-cyan-400)",
-                transition: "color 0.6s ease",
-              }}
+              className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
             >
               Stories
             </span>
@@ -103,11 +97,7 @@ const CaseStudiesSection = ({ data }) => {
                       : study.company?.name || study.company?.title || 'Company Name'}
                   </h3>
                   <p
-                    className="theme-accent-text"
-                    style={{
-                      color: "var(--color-cyan-300)",
-                      transition: "color 0.6s ease",
-                    }}
+                    className="theme-accent-text text-[var(--color-cyan-300)] transition-colors duration-600 ease-in-out"
                   >
                     {typeof study.industry === 'string'
                       ? study.industry
@@ -141,11 +131,7 @@ const CaseStudiesSection = ({ data }) => {
                     {study.results.map((result, i) => (
                       <div key={i} className="flex items-center space-x-2">
                         <svg
-                          className="w-4 h-4 theme-check-icon"
-                          style={{
-                            color: "var(--color-cyan-400)",
-                            transition: "color 0.6s ease",
-                          }}
+                          className="w-4 h-4 theme-check-icon text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"

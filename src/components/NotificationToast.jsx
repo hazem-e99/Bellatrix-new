@@ -47,7 +47,7 @@ export const NotificationToast = ({ message, type, onClose, duration = 5000 }) =
 
   return (
     <div
-      className={`fixed top-4 right-4 z-50 max-w-sm w-full bg-white rounded-lg shadow-lg border ${getToastStyles()} animate-slide-in`}
+      className={`fixed top-4 right-4 z-50 w-full max-w-[calc(100vw-2rem)] sm:max-w-sm bg-white rounded-lg shadow-lg border ${getToastStyles()} animate-slide-in`}
     >
       <div className="p-4">
         <div className="flex items-start">

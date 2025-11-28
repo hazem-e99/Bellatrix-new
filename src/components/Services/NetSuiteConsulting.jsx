@@ -55,16 +55,7 @@ const NetSuiteConsulting = ({ data: propsData = null }) => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div
-        className="py-12 relative overflow-hidden animate-background-glow"
-        style={{
-          backgroundColor: "var(--color-brand-dark-navy)",
-          padding: "200px 0 100px",
-          width: "100%",
-          color: "white",
-          fontSize: "15px",
-          lineHeight: "24px",
-          fontFamily: '"Gotham A", "Gotham B"',
-        }}
+        className="relative overflow-hidden animate-background-glow py-20 md:py-32 lg:py-48 bg-[var(--color-brand-dark-navy)] w-full text-white font-[Gotham_A,Gotham_B]"
       >
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -103,42 +94,21 @@ const NetSuiteConsulting = ({ data: propsData = null }) => {
           </div>
         </div>
 
-        <div
-          style={{
-            maxWidth: "1220px",
-            margin: "0 auto",
-            padding: "0 7.5px",
-          }}
-          className="relative z-10"
-        >
-          <div style={{ padding: "40px 15px 20px" }}>
+        <div className="relative z-10 container mx-auto px-6 max-w-6xl">
+          <div className="py-10 md:py-0 text-center">
             <h1
-              style={{
-                fontWeight: "700",
-                fontSize: "50px",
-                lineHeight: "50px",
-                textAlign: "center",
-                letterSpacing: "-1px",
-                margin: "0 0 13px",
-              }}
-              className="text-white animate-slide-up"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white animate-slide-up mb-4 tracking-tight"
             >
               {data.hero.title}
             </h1>
 
             <p
-              style={{
-                fontSize: "20px",
-                lineHeight: "30px",
-                textAlign: "center",
-                margin: 0,
-              }}
-              className="text-gray-300 animate-fade-in"
+              className="text-lg md:text-xl text-gray-300 animate-fade-in leading-relaxed max-w-3xl mx-auto mb-8"
             >
               {data.hero.description}
             </p>
 
-            <div style={{ textAlign: "center" }}>
+            <div className="text-center">
               <a
                 href="#request-info"
                 className="group relative inline-block min-w-[180px] min-h-[56px] font-bold text-sm uppercase leading-5 rounded-md px-4 py-4 mt-8 mb-0 no-underline transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white border-2 border-blue-500 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/25"
@@ -241,8 +211,7 @@ const NetSuiteConsulting = ({ data: propsData = null }) => {
 
       {/* Industry Expertise Section */}
       <section
-        className="py-20 relative overflow-hidden"
-        style={{ backgroundColor: "#001038" }}
+        className="py-20 relative overflow-hidden bg-[#001038]"
       >
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
@@ -454,8 +423,7 @@ const NetSuiteConsulting = ({ data: propsData = null }) => {
 
       {/* Benefits Section */}
       <section
-        className="py-20 relative overflow-hidden"
-        style={{ backgroundColor: "#001038" }}
+        className="py-20 relative overflow-hidden bg-[#001038]"
       >
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">

@@ -194,19 +194,11 @@ const LandingAdminPanel = () => {
   };
 
   const ErrorDisplay = ({ resourceName, error }) => (
-    <div
-      style={{
-        color: "red",
-        margin: "8px 0",
-        padding: "8px",
-        border: "1px solid red",
-        borderRadius: "4px",
-      }}
-    >
+    <div className="text-red-600 my-2 p-2 border border-red-600 rounded">
       <strong>{resourceName} Error:</strong> {error}
       <button
         onClick={() => handleRetry(resourceName)}
-        style={{ marginLeft: "8px", padding: "4px 8px" }}
+        className="ml-2 px-2 py-1 bg-red-100 hover:bg-red-200 rounded text-sm"
       >
         Retry
       </button>
@@ -215,37 +207,37 @@ const LandingAdminPanel = () => {
 
   if (showLoginForm && !isAuthenticated) {
     return (
-      <div style={{ padding: 24, maxWidth: 400, margin: "0 auto" }}>
-        <h2>Admin Login</h2>
+      <div className="p-6 max-w-md mx-auto">
+        <h2 className="text-2xl font-bold mb-4">Admin Login</h2>
         <form onSubmit={handleLogin}>
-          <div style={{ marginBottom: 16 }}>
-            <label>Email:</label>
+          <div className="mb-4">
+            <label className="block mb-1">Email:</label>
             <input
               type="email"
               value={loginForm.email}
               onChange={(e) =>
                 setLoginForm((prev) => ({ ...prev, email: e.target.value }))
               }
-              style={{ width: "100%", padding: 8, marginTop: 4 }}
+              className="w-full p-2 border border-gray-300 rounded mt-1"
               required
             />
           </div>
-          <div style={{ marginBottom: 16 }}>
-            <label>Password:</label>
+          <div className="mb-4">
+            <label className="block mb-1">Password:</label>
             <input
               type="password"
               value={loginForm.password}
               onChange={(e) =>
                 setLoginForm((prev) => ({ ...prev, password: e.target.value }))
               }
-              style={{ width: "100%", padding: 8, marginTop: 4 }}
+              className="w-full p-2 border border-gray-300 rounded mt-1"
               required
             />
           </div>
           <button
             type="submit"
             disabled={isAnyLoading}
-            style={{ padding: "8px 16px" }}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
           >
             {isAnyLoading ? "Logging in..." : "Login"}
           </button>
@@ -258,45 +250,35 @@ const LandingAdminPanel = () => {
   }
 
   return (
-    <div style={{ padding: 24 }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 32,
-        }}
-      >
-        <h1>Landing Page Admin Panel</h1>
+    <div className="p-6">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Landing Page Admin Panel</h1>
         <div>
           {currentUser && (
-            <span>Welcome, {currentUser.email || currentUser.username}</span>
+            <span className="text-gray-700">Welcome, {currentUser.email || currentUser.username}</span>
           )}
           {isAnyLoading && (
-            <div style={{ color: "blue", marginLeft: 16 }}>Loading...</div>
+            <div className="text-blue-600 ml-4 inline-block">Loading...</div>
           )}
         </div>
       </div>
 
       {/* File Upload Section */}
       {isAuthenticated && (
-        <div
-          style={{
-            marginBottom: 32,
-            padding: 16,
-            border: "1px solid #ddd",
-            borderRadius: 8,
-          }}
-        >
-          <h3>File Upload</h3>
-          <form onSubmit={handleFileUpload}>
+        <div className="mb-8 p-4 border border-gray-200 rounded-lg">
+          <h3 className="text-xl font-semibold mb-2">File Upload</h3>
+          <form onSubmit={handleFileUpload} className="flex items-center">
             <input
               type="file"
               accept="image/*"
               onChange={(e) => setSelectedFile(e.target.files[0])}
-              style={{ marginRight: 8 }}
+              className="mr-2"
             />
-            <button type="submit" disabled={!selectedFile || isAnyLoading}>
+            <button 
+              type="submit" 
+              disabled={!selectedFile || isAnyLoading}
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+            >
               Upload Image
             </button>
           </form>
@@ -307,28 +289,22 @@ const LandingAdminPanel = () => {
       )}
 
       {/* Hero Section */}
-      <div style={{ marginBottom: 32 }}>
-        <h2>Hero Section</h2>
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-2">Hero Section</h2>
         {allErrors.hero && (
           <ErrorDisplay resourceName="hero" error={allErrors.hero} />
         )}
-        <div style={{ padding: 16, border: "1px solid #eee", borderRadius: 8 }}>
-          <h4>Current Hero Data:</h4>
-          <pre
-            style={{
-              background: "#f5f5f5",
-              padding: 12,
-              borderRadius: 4,
-              overflow: "auto",
-            }}
-          >
+        <div className="p-4 border border-gray-200 rounded-lg">
+          <h4 className="font-semibold mb-2">Current Hero Data:</h4>
+          <pre className="bg-gray-100 p-3 rounded overflow-auto max-h-60 text-sm">
             {JSON.stringify(heroItem, null, 2)}
           </pre>
-          <div style={{ marginTop: 12 }}>
+          <div className="mt-3 space-x-2">
             <button
               onClick={() =>
                 dispatch(createHero({ payload: { title: "New Hero" } }))
               }
+              className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Create Hero
             </button>
@@ -336,13 +312,13 @@ const LandingAdminPanel = () => {
               onClick={() =>
                 dispatch(updateHero({ payload: { title: "Updated Hero" } }))
               }
-              style={{ marginLeft: 8 }}
+              className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
             >
               Update Hero
             </button>
             <button
               onClick={() => dispatch(deleteHero())}
-              style={{ marginLeft: 8 }}
+              className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
             >
               Delete Hero
             </button>
@@ -351,47 +327,35 @@ const LandingAdminPanel = () => {
       </div>
 
       {/* Services Section */}
-      <div style={{ marginBottom: 32 }}>
-        <h2>Services ({servicesItems.length})</h2>
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-2">Services ({servicesItems.length})</h2>
         {allErrors.services && (
           <ErrorDisplay resourceName="services" error={allErrors.services} />
         )}
-        <div style={{ padding: 16, border: "1px solid #eee", borderRadius: 8 }}>
-          <h4>Services List:</h4>
-          <div
-            style={{
-              maxHeight: 200,
-              overflow: "auto",
-              background: "#f5f5f5",
-              padding: 12,
-              borderRadius: 4,
-            }}
-          >
+        <div className="p-4 border border-gray-200 rounded-lg">
+          <h4 className="font-semibold mb-2">Services List:</h4>
+          <div className="max-h-52 overflow-auto bg-gray-100 p-3 rounded">
             {servicesItems.map((service, index) => (
               <div
                 key={service.id || index}
-                style={{
-                  marginBottom: 8,
-                  padding: 8,
-                  background: "white",
-                  borderRadius: 4,
-                }}
+                className="mb-2 p-2 bg-white rounded shadow-sm"
               >
-                <strong>
+                <strong className="block">
                   {service.name || service.title || `Service ${index + 1}`}
                 </strong>
-                <div style={{ fontSize: "0.9em", color: "#666" }}>
+                <div className="text-sm text-gray-600">
                   {service.description || service.subtitle || "No description"}
                 </div>
               </div>
             ))}
-            {servicesItems.length === 0 && <div>No services found</div>}
+            {servicesItems.length === 0 && <div className="text-gray-500">No services found</div>}
           </div>
-          <div style={{ marginTop: 12 }}>
+          <div className="mt-3">
             <button
               onClick={() =>
                 dispatch(createService({ payload: { name: "New Service" } }))
               }
+              className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Create Service
             </button>
@@ -400,48 +364,35 @@ const LandingAdminPanel = () => {
       </div>
 
       {/* Testimonials Section */}
-      <div style={{ marginBottom: 32 }}>
-        <h2>Testimonials ({testimonialsItems.length})</h2>
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-2">Testimonials ({testimonialsItems.length})</h2>
         {allErrors.testimonials && (
           <ErrorDisplay
             resourceName="testimonials"
             error={allErrors.testimonials}
           />
         )}
-        <div style={{ padding: 16, border: "1px solid #eee", borderRadius: 8 }}>
-          <h4>Testimonials List:</h4>
-          <div
-            style={{
-              maxHeight: 200,
-              overflow: "auto",
-              background: "#f5f5f5",
-              padding: 12,
-              borderRadius: 4,
-            }}
-          >
+        <div className="p-4 border border-gray-200 rounded-lg">
+          <h4 className="font-semibold mb-2">Testimonials List:</h4>
+          <div className="max-h-52 overflow-auto bg-gray-100 p-3 rounded">
             {testimonialsItems.map((testimonial, index) => (
               <div
                 key={testimonial.id || index}
-                style={{
-                  marginBottom: 8,
-                  padding: 8,
-                  background: "white",
-                  borderRadius: 4,
-                }}
+                className="mb-2 p-2 bg-white rounded shadow-sm"
               >
-                <strong>
+                <strong className="block">
                   {testimonial.author ||
                     testimonial.name ||
                     `Testimonial ${index + 1}`}
                 </strong>
-                <div style={{ fontSize: "0.9em", color: "#666" }}>
+                <div className="text-sm text-gray-600">
                   {testimonial.content || testimonial.text || "No content"}
                 </div>
               </div>
             ))}
-            {testimonialsItems.length === 0 && <div>No testimonials found</div>}
+            {testimonialsItems.length === 0 && <div className="text-gray-500">No testimonials found</div>}
           </div>
-          <div style={{ marginTop: 12 }}>
+          <div className="mt-3">
             <button
               onClick={() =>
                 dispatch(
@@ -453,6 +404,7 @@ const LandingAdminPanel = () => {
                   })
                 )
               }
+              className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Create Testimonial
             </button>
@@ -461,50 +413,38 @@ const LandingAdminPanel = () => {
       </div>
 
       {/* Industries Section */}
-      <div style={{ marginBottom: 32 }}>
-        <h2>Industries ({industriesItems.length})</h2>
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-2">Industries ({industriesItems.length})</h2>
         {allErrors.industries && (
           <ErrorDisplay
             resourceName="industries"
             error={allErrors.industries}
           />
         )}
-        <div style={{ padding: 16, border: "1px solid #eee", borderRadius: 8 }}>
-          <h4>Industries List:</h4>
-          <div
-            style={{
-              maxHeight: 200,
-              overflow: "auto",
-              background: "#f5f5f5",
-              padding: 12,
-              borderRadius: 4,
-            }}
-          >
+        <div className="p-4 border border-gray-200 rounded-lg">
+          <h4 className="font-semibold mb-2">Industries List:</h4>
+          <div className="max-h-52 overflow-auto bg-gray-100 p-3 rounded">
             {industriesItems.map((industry, index) => (
               <div
                 key={industry.id || index}
-                style={{
-                  marginBottom: 8,
-                  padding: 8,
-                  background: "white",
-                  borderRadius: 4,
-                }}
+                className="mb-2 p-2 bg-white rounded shadow-sm"
               >
-                <strong>
+                <strong className="block">
                   {industry.name || industry.title || `Industry ${index + 1}`}
                 </strong>
-                <div style={{ fontSize: "0.9em", color: "#666" }}>
+                <div className="text-sm text-gray-600">
                   {industry.description || "No description"}
                 </div>
               </div>
             ))}
-            {industriesItems.length === 0 && <div>No industries found</div>}
+            {industriesItems.length === 0 && <div className="text-gray-500">No industries found</div>}
           </div>
-          <div style={{ marginTop: 12 }}>
+          <div className="mt-3">
             <button
               onClick={() =>
                 dispatch(createIndustry({ payload: { name: "New Industry" } }))
               }
+              className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Create Industry
             </button>
@@ -514,28 +454,16 @@ const LandingAdminPanel = () => {
 
       {/* Stale Resources Warning */}
       {staleResources.length > 0 && (
-        <div
-          style={{
-            marginTop: 32,
-            padding: 16,
-            background: "#fff3cd",
-            border: "1px solid #ffeaa7",
-            borderRadius: 8,
-          }}
-        >
-          <h3>Stale Data Detected</h3>
-          <p>The following resources have stale data:</p>
-          <ul>
+        <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <h3 className="text-lg font-semibold text-yellow-800">Stale Data Detected</h3>
+          <p className="text-yellow-700">The following resources have stale data:</p>
+          <ul className="list-disc list-inside mt-2">
             {staleResources.map((resource) => (
-              <li key={resource}>
+              <li key={resource} className="text-yellow-800">
                 {resource}
                 <button
                   onClick={() => handleRetry(resource)}
-                  style={{
-                    marginLeft: 8,
-                    padding: "2px 6px",
-                    fontSize: "0.8em",
-                  }}
+                  className="ml-2 px-2 py-0.5 bg-yellow-200 hover:bg-yellow-300 rounded text-xs text-yellow-900"
                 >
                   Refresh
                 </button>
@@ -546,15 +474,8 @@ const LandingAdminPanel = () => {
       )}
 
       {/* Global Actions */}
-      <div
-        style={{
-          marginTop: 32,
-          padding: 16,
-          background: "#f8f9fa",
-          borderRadius: 8,
-        }}
-      >
-        <h3>Global Actions</h3>
+      <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+        <h3 className="text-lg font-semibold mb-3">Global Actions</h3>
         <button
           onClick={() => {
             dispatch(fetchHero({ force: true }));
@@ -563,12 +484,13 @@ const LandingAdminPanel = () => {
             dispatch(fetchIndustries({ force: true }));
           }}
           disabled={isAnyLoading}
+          className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 disabled:opacity-50"
         >
           Refresh All Data
         </button>
         <button
           onClick={() => setShowLoginForm(true)}
-          style={{ marginLeft: 8 }}
+          className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
         >
           Show Login
         </button>

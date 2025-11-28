@@ -56,11 +56,7 @@ const SolutionsSection = ({ data, activeSolution, setActiveSolution }) => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
             NetSuite{" "}
             <span
-              className="theme-primary-text"
-              style={{
-                color: "var(--color-brand-accent)",
-                transition: "color 0.6s ease",
-              }}
+              className="theme-primary-text text-[var(--color-brand-accent)] transition-colors duration-600 ease-in-out"
             >
               Solutions
             </span>
