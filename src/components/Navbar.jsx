@@ -486,6 +486,7 @@ const Navbar = () => {
               {/* Mobile Home Link */}
               <Link
                 to="/"
+                onClick={() => setMobileMenuOpen(false)}
                 className={`block px-4 py-3 text-base font-medium rounded-xl hover:bg-white/10 border border-white/10 transition-colors duration-300 ${
                   navbarTheme === "light"
                     ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)]"
@@ -528,15 +529,14 @@ const Navbar = () => {
                             <Link
                               key={page.id}
                               to={page.slug ? `/${page.slug}` : `/${page.id}`}
-
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setOpenDropdown(null);
+                              }}
                               className="block px-4 py-3 text-sm text-white/70 rounded-lg hover:bg-white/5 hover:text-white border border-white/5 backdrop-blur-sm transition-all duration-300"
-
                             >
-
                               {page.title}
-
                             </Link>
-
                           ))}
 
                         </motion.div>
@@ -560,23 +560,15 @@ const Navbar = () => {
 
 
               <Link
-
                 to="/about"
-
+                onClick={() => setMobileMenuOpen(false)}
                 className={`block px-4 py-3 text-base font-medium rounded-xl hover:bg-white/10 border border-white/10 transition-colors duration-300 ${
-
                   navbarTheme === "light"
-
                     ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)]"
-
                     : "text-[var(--color-text-light)]/90 hover:text-[var(--color-text-light)]"
-
                 }`}
-
               >
-
                 About
-
               </Link>
 
 
