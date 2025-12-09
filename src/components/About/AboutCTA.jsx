@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CTAButton from "../CTAButton";
 
 const AboutCTA = ({
   title,
@@ -51,12 +52,20 @@ const AboutCTA = ({
   }, []);
 
   // PRIORITIZE props data over default data for real-time preview
+  // Handle ctaButton which can be an object {text, link, variant} or a string
+  const buttonText = typeof ctaButton === 'object' && ctaButton?.text 
+    ? ctaButton.text 
+    : (typeof ctaButton === 'string' ? ctaButton : null);
+  const buttonLink = typeof ctaButton === 'object' && ctaButton?.link 
+    ? ctaButton.link 
+    : null;
+
   const finalData = {
     title: title || data?.title || defaultData?.title || "Ready to Build Something Great?",
     subtitle: subtitle || data?.subtitle || defaultData?.subtitle || "Let's collaborate to transform your business",
     description: description || data?.description || defaultData?.description || "Contact us today",
-    buttonText: ctaButton || data?.buttonText || defaultData?.buttonText || "Start Consultation",
-    buttonLink: data?.buttonLink || defaultData?.buttonLink || null,
+    buttonText: buttonText || data?.buttonText || defaultData?.buttonText || "Start Consultation",
+    buttonLink: buttonLink || data?.buttonLink || defaultData?.buttonLink || null,
     features: features.length > 0 ? features : (data?.features || defaultData?.features || []),
   };
 
@@ -90,9 +99,18 @@ const AboutCTA = ({
             </div>
           )}
 
-          <button className="bg-[linear-gradient(90deg,var(--color-primary),var(--color-primary-dark))] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+          <CTAButton
+            variant="primary"
+            size="lg"
+            className="rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            modalConfig={{
+              title: finalData.title || "Get Started",
+              subtitle: finalData.subtitle || "Let's discuss your project requirements",
+              icon: ""
+            }}
+          >
             {finalData.buttonText}
-          </button>
+          </CTAButton>
         </div>
       </div>
     </section>
