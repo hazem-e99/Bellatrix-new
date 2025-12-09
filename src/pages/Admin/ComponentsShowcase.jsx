@@ -148,27 +148,9 @@ const ComponentsShowcase = () => {
     return colors[category] || "from-gray-500 to-slate-600";
   };
 
-  // Get category icon
+  // Get category icon - icons removed
   const getCategoryIcon = (category) => {
-    const icons = {
-      hero: "🦸",
-      content: "📄",
-      features: "⭐",
-      benefits: "✅",
-      pricing: "💰",
-      process: "🔄",
-      team: "👥",
-      testimonials: "💬",
-      "social-proof": "🏆",
-      faq: "❓",
-      cta: "🎯",
-      stats: "📊",
-      timeline: "📅",
-      "case-studies": "📁",
-      challenges: "⚡",
-      solutions: "💡",
-    };
-    return icons[category] || "📦";
+    return "";
   };
 
   if (loading) {
@@ -351,7 +333,7 @@ const ComponentsShowcase = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-20"
           >
-            <div className="text-6xl mb-4">🔍</div>
+            <MagnifyingGlassIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">
               No components found
             </h3>
@@ -423,14 +405,14 @@ const ComponentCard = ({
           {/* Page Type */}
           {component.pageType && (
             <div className="inline-flex items-center gap-1 px-2 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-lg mb-4">
-              📁 {component.pageType}
+              {component.pageType}
             </div>
           )}
 
           {/* Default Data Indicator */}
           {component.defaultData && (
             <div className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-300 text-xs rounded-lg mb-4 ml-2">
-              ✅ Has Default Data
+              Has Default Data
             </div>
           )}
 
