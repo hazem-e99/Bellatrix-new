@@ -1408,7 +1408,7 @@ const EnhancedPageBuilder = () => {
 
       setSlugError(
 
-        "Slug must only contain lowercase letters, numbers, and dashes."
+        "Slug must only contain lowercase letters, numbers, and dashes - يجب أن يحتوي الـ Slug على أحرف إنجليزية صغيرة وأرقام وشرطات فقط"
 
       );
 
@@ -1440,7 +1440,7 @@ const EnhancedPageBuilder = () => {
 
         setSlugError(
 
-          "This slug is already in use. Please choose a different one."
+          "This slug is already in use. Please choose a different one - الـ Slug مستخدم من قبل، يرجى اختيار آخر"
 
         );
 
@@ -1450,7 +1450,7 @@ const EnhancedPageBuilder = () => {
 
       console.error("Error checking slug availability:", error);
 
-      setSlugError("Unable to verify slug availability. Please try again.");
+      setSlugError("Unable to verify slug availability. Please try again - تعذر التحقق من الـ Slug، حاول مرة أخرى");
 
       setSlugAvailable(false);
 
@@ -1524,7 +1524,7 @@ const EnhancedPageBuilder = () => {
 
         showToast(
 
-          "Slug must only contain lowercase letters, numbers, and dashes.",
+          "Slug must only contain lowercase letters, numbers, and dashes - يجب أن يحتوي الـ Slug على أحرف صغيرة وأرقام وشرطات فقط",
 
           "error"
 
@@ -7850,53 +7850,75 @@ const EnhancedPageBuilder = () => {
 
       console.log(" Checking required fields for publish status:", status);
 
-      if (
+      if (status === "published") {
 
-        status === "published" &&
+        const missingFields = [];
 
-        (!createPageDTO.name ||
+        
 
-          !createPageDTO.name.trim() ||
+        if (!createPageDTO.name || !createPageDTO.name.trim()) {
 
-          !createPageDTO.categoryId ||
+          missingFields.push("Page Name (اسم الصفحة)");
 
-          !createPageDTO.metaTitle ||
+        }
 
-          !createPageDTO.metaTitle.trim() ||
+        
 
-          !createPageDTO.metaDescription ||
+        if (!createPageDTO.categoryId) {
 
-          !createPageDTO.metaDescription.trim())
+          missingFields.push("Category (الفئة)");
 
-      ) {
+        }
 
-        console.error(" Required fields missing for publish:", {
+        
 
-          hasName: !!createPageDTO.name?.trim(),
+        if (!createPageDTO.metaTitle || !createPageDTO.metaTitle.trim()) {
 
-          hasCategoryId: !!createPageDTO.categoryId,
+          missingFields.push("SEO Meta Title (عنوان الميتا)");
 
-          hasMetaTitle: !!createPageDTO.metaTitle?.trim(),
+        }
 
-          hasMetaDescription: !!createPageDTO.metaDescription?.trim(),
+        
 
-        });
+        if (!createPageDTO.metaDescription || !createPageDTO.metaDescription.trim()) {
 
-        showToast(
+          missingFields.push("SEO Meta Description (وصف الميتا)");
 
-          "Please fill in all required page data before publishing.",
+        }
 
-          "error"
+        
 
-        );
+        if (missingFields.length > 0) {
 
-        setLoading(false);
+          console.error(" Required fields missing for publish:", {
 
-        setIsPublishing(false);
+            hasName: !!createPageDTO.name?.trim(),
 
-        isSavingRef.current = false;
+            hasCategoryId: !!createPageDTO.categoryId,
 
-        return;
+            hasMetaTitle: !!createPageDTO.metaTitle?.trim(),
+
+            hasMetaDescription: !!createPageDTO.metaDescription?.trim(),
+
+            missingFields: missingFields,
+
+          });
+
+          
+
+          const errorMessage = `Cannot publish. Missing required fields: ${missingFields.join(", ")}`;
+
+          showToast(errorMessage, "error");
+
+          setLoading(false);
+
+          setIsPublishing(false);
+
+          isSavingRef.current = false;
+
+          return;
+
+        }
 
       }
 
@@ -7930,7 +7952,7 @@ const EnhancedPageBuilder = () => {
 
       if (!createPageDTO.name || !createPageDTO.name.trim()) {
 
-        return validateAndReturn("Page name is required");
+        return validateAndReturn("Page name is required - اسم الصفحة مطلوب");
 
       }
 
@@ -7942,7 +7964,7 @@ const EnhancedPageBuilder = () => {
 
       if (!createPageDTO.categoryId) {
 
-        return validateAndReturn("Please select a category");
+        return validateAndReturn("Please select a category - يرجى اختيار فئة");
 
       }
 
@@ -7956,7 +7978,7 @@ const EnhancedPageBuilder = () => {
 
       if (!createPageDTO.metaTitle || !createPageDTO.metaTitle.trim()) {
 
-        return validateAndReturn("SEO Meta Title is required.");
+        return validateAndReturn("SEO Meta Title is required - عنوان الميتا مطلوب");
 
       }
 
@@ -7976,7 +7998,7 @@ const EnhancedPageBuilder = () => {
 
       ) {
 
-        return validateAndReturn("SEO Meta Description is required.");
+        return validateAndReturn("SEO Meta Description is required - وصف الميتا مطلوب");
 
       }
 
@@ -7988,11 +8010,17 @@ const EnhancedPageBuilder = () => {
 
       console.log(" Validating slug format:", createPageDTO.slug);
 
+      if (!createPageDTO.slug || createPageDTO.slug.trim() === "") {
+
+        return validateAndReturn("Page slug is required - الـ Slug مطلوب");
+
+      }
+
       if (!/^[a-z0-9-]+$/.test(createPageDTO.slug)) {
 
         return validateAndReturn(
 
-          "Generated slug contains invalid characters. Please check the page name."
+          "Slug contains invalid characters. Only lowercase letters, numbers, and dashes allowed - الـ Slug يحتوي على أحرف غير صحيحة"
 
         );
 
@@ -8031,7 +8059,7 @@ const EnhancedPageBuilder = () => {
           if (!comp.componentType?.trim()) {
             console.error(` Component ${i + 1} missing componentType`);
             return validateAndReturn(
-              "Component " + (i + 1) + " is missing component type"
+              `Component #${i + 1} is missing component type - المكون ${i + 1} يفتقد نوع المكون`
             );
           }
 
@@ -8039,19 +8067,23 @@ const EnhancedPageBuilder = () => {
           if (!comp.componentName?.trim()) {
             console.error(` Component ${i + 1} missing componentName`);
             return validateAndReturn(
-              "Component " + (i + 1) + " is missing component name"
+              `Component #${i + 1} (${comp.componentType}) is missing component name - المكون ${i + 1} يفتقد اسم المكون`
             );
           }
 
-          // Check content
-          if (!comp.content || typeof comp.content !== "object") {
+          // Check content - only validate if component has content requirement
+          if (comp.content === undefined || comp.content === null) {
+            console.warn(` Component ${i + 1} has undefined/null content, using empty object`);
+            // Don't error out, just use empty content
+            comp.content = {};
+          } else if (typeof comp.content !== "object") {
             console.error(` Component ${i + 1} has invalid content:`, {
               hasContent: !!comp.content,
               contentType: typeof comp.content,
               content: comp.content,
             });
             return validateAndReturn(
-              "Component " + (i + 1) + " has invalid content"
+              `Component #${i + 1} (${comp.componentName}) has invalid content format - محتوى المكون ${i + 1} غير صحيح`
             );
           }
 
@@ -8060,9 +8092,7 @@ const EnhancedPageBuilder = () => {
           if (orderIndexes.has(orderIndex)) {
             console.error(` Duplicate orderIndex ${orderIndex} found in component ${i + 1}`);
             return validateAndReturn(
-              "Duplicate order index found: " +
-                orderIndex +
-                ". Each component must have a unique order index."
+              `Duplicate order index found (${orderIndex}). Each component must have a unique order - فهرس الترتيب مكرر`
             );
           }
           orderIndexes.add(orderIndex);
@@ -8088,10 +8118,10 @@ const EnhancedPageBuilder = () => {
 
       // Show appropriate success message based on status
       if (status === "published") {
-        showToast("Page published successfully", "success");
+        showToast("Page published successfully! - تم نشر الصفحة بنجاح", "success");
       } else {
         showToast(
-          'Page "' + createPageDTO.name + '" saved as draft successfully!',
+          `Page "${createPageDTO.name}" saved as draft successfully! - تم حفظ الصفحة كمسودة`,
           "success"
         );
       }
@@ -8107,7 +8137,41 @@ const EnhancedPageBuilder = () => {
         response: error.response?.data,
         status: error.response?.status,
       });
-      showToast(error.message || "Failed to save page", "error");
+      
+      // Better error message extraction
+      let errorMessage = "Failed to save page - فشل حفظ الصفحة";
+      
+      if (error.response?.data) {
+        // Handle different API error formats
+        if (typeof error.response.data === 'string') {
+          errorMessage = error.response.data;
+        } else if (error.response.data.message) {
+          errorMessage = error.response.data.message;
+        } else if (error.response.data.title) {
+          errorMessage = error.response.data.title;
+        } else if (error.response.data.errors) {
+          // ASP.NET validation errors format
+          const errorDetails = Object.entries(error.response.data.errors)
+            .map(([field, messages]) => `${field}: ${Array.isArray(messages) ? messages.join(", ") : messages}`)
+            .join("; ");
+          errorMessage = `Validation failed - فشل التحقق: ${errorDetails}`;
+        }
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+
+      // Check for specific error types
+      if (error.response?.status === 409 || errorMessage.toLowerCase().includes('duplicate') || errorMessage.includes('slug')) {
+        errorMessage = "This page slug already exists. Please use a different name - الـ Slug موجود مسبقاً، استخدم اسم مختلف";
+      } else if (error.response?.status === 400) {
+        errorMessage = `Invalid request - طلب غير صحيح: ${errorMessage}`;
+      } else if (error.response?.status === 500) {
+        errorMessage = "Server error occurred. Please try again - حدث خطأ في الخادم، يرجى المحاولة مرة أخرى";
+      } else if (!error.response && error.message.includes('Network')) {
+        errorMessage = "Network error. Please check your connection - خطأ في الاتصال، تحقق من الشبكة";
+      }
+      
+      showToast(errorMessage, "error");
     } finally {
       // Reset loading states and save lock
       setLoading(false);
@@ -8625,6 +8689,8 @@ const EnhancedPageBuilder = () => {
             message={toast.message}
 
             type={toast.type}
+
+            isVisible={true}
 
             onClose={() => setToast(null)}
 
