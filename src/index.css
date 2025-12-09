@@ -15,6 +15,26 @@ body {
   position: relative;
 }
 
+/* Force dark color scheme on admin/dashboard pages - prevents system theme from affecting form elements */
+.admin-layout,
+.admin-layout *,
+[data-dashboard="true"],
+[data-dashboard="true"] * {
+  color-scheme: dark !important;
+}
+
+/* Force form elements to use dark theme */
+.admin-layout input,
+.admin-layout textarea,
+.admin-layout select,
+[data-dashboard="true"] input,
+[data-dashboard="true"] textarea,
+[data-dashboard="true"] select {
+  color-scheme: dark !important;
+  background-color: inherit;
+  color: inherit;
+}
+
 /* Custom White Color Classes with Opacity */
 @layer utilities {
   .text-white-100 {

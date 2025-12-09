@@ -8,7 +8,7 @@ const CTAButton = ({
   size = 'md',
   className = '',
   modalConfig = {},
-  href,
+  href, // Now ignored - all CTAs open contact modal
   onClick,
   disabled = false,
   icon,
@@ -42,6 +42,7 @@ const CTAButton = ({
   `.trim();
 
   const handleClick = (e) => {
+    e.preventDefault(); // Always prevent default navigation
     if (disabled) return;
     
     // If there's a custom onClick, call it first
@@ -49,30 +50,13 @@ const CTAButton = ({
       onClick(e);
     }
     
-    // If it's not prevented by the custom onClick and no href, open the modal
-    if (!e.defaultPrevented && !href) {
-      e.preventDefault();
+    // Always open the contact modal
+    if (!e.defaultPrevented) {
       openCTAModal(modalConfig);
     }
   };
 
-  // If href is provided, render as link
-  if (href) {
-    return (
-      <a
-        href={href}
-        className={baseClasses}
-        onClick={handleClick}
-        disabled={disabled}
-        {...props}
-      >
-        {icon && <span className="mr-2">{icon}</span>}
-        {children}
-      </a>
-    );
-  }
-
-  // Render as button
+  // Always render as button (ignore href, always open modal)
   return (
     <button
       className={baseClasses}
@@ -87,3 +71,4 @@ const CTAButton = ({
 };
 
 export default CTAButton;
+

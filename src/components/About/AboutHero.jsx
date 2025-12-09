@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import CTAButton from "../CTAButton";
 
 const AboutHero = ({ data }) => {
   const [defaultData, setDefaultData] = useState(null);
@@ -96,18 +97,17 @@ const AboutHero = ({ data }) => {
           <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
             {heroData.description}
           </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() =>
-              document
-                .getElementById("about-section")
-                .scrollIntoView({ behavior: "smooth" })
-            }
+          <CTAButton
+            variant="primary"
+            size="lg"
             className="theme-cta-button text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 bg-[linear-gradient(90deg,var(--color-primary),var(--color-cyan-600))]"
+            modalConfig={{
+              title: "Discover Our Story",
+              subtitle: "Learn more about how we can help your business",
+            }}
           >
             Discover Our Story
-          </motion.button>
+          </CTAButton>
         </motion.div>
       </div>
       {/* Scroll Indicator */}

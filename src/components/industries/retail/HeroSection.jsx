@@ -1,7 +1,8 @@
 import React from "react";
 import SEO from "../../SEO";
+import CTAButton from "../../CTAButton";
 
-const HeroSection = ({ data: propsData, openContactModal }) => {
+const HeroSection = ({ data: propsData }) => {
   // PRIORITIZE props data over default data for real-time preview
   const data = propsData || {
     title: "Retail Solutions",
@@ -89,19 +90,19 @@ const HeroSection = ({ data: propsData, openContactModal }) => {
             {data.description}
           </p>
 
-          {/* CTA Button */}
+          {/* CTA Button - now uses CTAButton to open contact modal */}
           <div className="text-center">
-            <a
-              href="#request-info"
-              onClick={(e) => {
-                e.preventDefault();
-                openContactModal();
+            <CTAButton
+              variant="primary"
+              size="lg"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 shadow-lg hover:shadow-xl"
+              modalConfig={{
+                title: data.title || "Retail Solutions",
+                subtitle: data.description || "Let's discuss your retail needs",
               }}
-              className="theme-cta-button inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              <span className="relative z-10 flex items-center justify-center">
+              icon={
                 <svg
-                  className="w-5 h-5 mr-2 transition-transform group-hover:translate-x-1"
+                  className="w-5 h-5 transition-transform group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -113,9 +114,10 @@ const HeroSection = ({ data: propsData, openContactModal }) => {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                {data.ctaText || "Request Info"}
-              </span>
-            </a>
+              }
+            >
+              {data.ctaText || "Request Info"}
+            </CTAButton>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactForm from "../ContactForm";
 import Modal from "../Modal";
+import CTAButton from "../CTAButton";
 import { usePageData } from "../../hooks/useJsonServerData.jsx";
 
 const NetSuiteConsulting = ({ data: propsData = null }) => {
@@ -109,13 +110,17 @@ const NetSuiteConsulting = ({ data: propsData = null }) => {
             </p>
 
             <div className="text-center">
-              <a
-                href="#request-info"
-                className="group relative inline-block min-w-[180px] min-h-[56px] font-bold text-sm uppercase leading-5 rounded-md px-4 py-4 mt-8 mb-0 no-underline transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white border-2 border-blue-500 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/25"
-              >
-                <span className="relative z-10 flex items-center justify-center">
+              <CTAButton
+                variant="primary"
+                size="lg"
+                className="group relative inline-block min-w-[180px] font-bold text-sm uppercase leading-5 rounded-md px-4 py-4 mt-8 mb-0 transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white border-2 border-blue-500 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/25"
+                modalConfig={{
+                  title: data.hero.title || "NetSuite Consulting",
+                  subtitle: data.hero.description || "Let's discuss your consulting needs",
+                }}
+                icon={
                   <svg
-                    className="w-5 h-5 mr-2 transition-transform group-hover:translate-x-1"
+                    className="w-5 h-5 transition-transform group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -127,10 +132,10 @@ const NetSuiteConsulting = ({ data: propsData = null }) => {
                       d={data.hero.ctaIcon}
                     />
                   </svg>
-                  {data.hero.ctaText}
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-700/20 to-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
-              </a>
+                }
+              >
+                {data.hero.ctaText}
+              </CTAButton>
             </div>
           </div>
         </div>
@@ -409,12 +414,17 @@ const NetSuiteConsulting = ({ data: propsData = null }) => {
               </div>
 
               <div className="mt-6">
-                <button
-                  onClick={openContactModal}
+                <CTAButton
+                  variant="primary"
+                  size="lg"
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                  modalConfig={{
+                    title: "Start Your Consulting Journey",
+                    subtitle: "Let's discuss your NetSuite consulting needs",
+                  }}
                 >
                   Start Your Consulting Journey
-                </button>
+                </CTAButton>
               </div>
             </div>
           </div>
@@ -494,12 +504,17 @@ const NetSuiteConsulting = ({ data: propsData = null }) => {
                 ))}
               </div>
 
-              <button
-                onClick={openContactModal}
+              <CTAButton
+                variant="primary"
+                size="lg"
                 className="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300"
+                modalConfig={{
+                  title: data.cta.title || "Get Started",
+                  subtitle: data.cta.description || "Let's discuss your consulting needs",
+                }}
               >
                 {data.cta.buttonText}
-              </button>
+              </CTAButton>
             </div>
           </div>
         </div>

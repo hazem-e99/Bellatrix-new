@@ -290,7 +290,7 @@ const FooterSettings = () => {
    */
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex items-center justify-center" data-dashboard="true">
         <div className="text-center">
           <ArrowPathIcon className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
           <p className="text-gray-400 text-lg">Loading footer settings...</p>
@@ -303,7 +303,7 @@ const FooterSettings = () => {
    * Main render
    */
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-8" data-dashboard="true">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <motion.div
