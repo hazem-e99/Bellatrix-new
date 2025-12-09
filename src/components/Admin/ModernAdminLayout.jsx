@@ -237,7 +237,7 @@ const ModernAdminLayout = () => {
               <PowerIcon className="mr-3 h-5 w-5" />
               <span>Logout</span>
             </button>
-            <div className="flex items-center space-x-3 text-sm text-[var(--color-text-secondary)]">
+            <div className="flex items-center space-x-3 text-sm text-gray-400">
               <div className="h-2 w-2 bg-[var(--tw-green-400)] rounded-full animate-pulse"></div>
               <span>All systems operational</span>
             </div>

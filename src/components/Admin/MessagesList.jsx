@@ -43,11 +43,11 @@ const MessagesList = ({ messages, onMarkStatus, onDelete }) => {
     return (
       <Card className="bg-white/10 border border-white/20 shadow">
         <CardContent className="p-12 text-center">
-          <EnvelopeIcon className="h-16 w-16 text-gray-500 mx-auto mb-4" />
+          <EnvelopeIcon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-400 mb-2">
             No messages found
           </h3>
-          <p className="text-gray-500">
+          <p className="text-gray-400">
             There are no messages matching your current filters.
           </p>
         </CardContent>

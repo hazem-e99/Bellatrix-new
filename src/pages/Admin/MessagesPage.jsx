@@ -260,7 +260,7 @@ const MessagesPage = () => {
                 value={searchTerm}
                 onChange={handleSearchChange}
                 icon={<MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />}
-                className="bg-white/5 border-white/20 text-white placeholder-gray-400"
+                className="bg-white/5 border-white/20 text-white placeholder:text-gray-400"
               />
             </div>
 

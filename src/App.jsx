@@ -19,6 +19,7 @@ import EnhancedPageBuilder from "./components/Admin/EnhancedPageBuilder";
 import TemplatesManagement from "./components/Admin/TemplatesManagement";
 import SettingsManagement from "./components/Admin/SettingsManagement";
 import MessagesPage from "./pages/Admin/MessagesPage";
+import ComponentsShowcase from "./pages/Admin/ComponentsShowcase";
 import DynamicPageRenderer from "./components/DynamicPageRenderer/index";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./hooks/useAuth.jsx";
@@ -96,6 +97,7 @@ function App() {
               />
               <Route path="messages" element={<MessagesPage />} />
               <Route path="settings" element={<SettingsManagement />} />
+              <Route path="components-showcase" element={<ComponentsShowcase />} />
             </Route>
 
             {/* Legacy Admin Routes (keep for compatibility) - Also Protected */}
