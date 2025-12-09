@@ -134,7 +134,7 @@ const ModernAdminLayout = () => {
 
   return (
     <div
-      className="admin-layout flex min-h-screen"
+      className="admin-layout dark flex min-h-screen"
       data-dashboard="true"
       style={{ backgroundColor: "var(--color-brand-dark-navy)" }}
     >

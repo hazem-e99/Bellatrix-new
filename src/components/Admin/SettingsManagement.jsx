@@ -293,7 +293,7 @@ const SettingsManagement = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white p-8" style={{ backgroundColor: "#001038" }}>
+    <div className="min-h-screen text-white p-8" style={{ backgroundColor: "#001038" }} data-dashboard="true">
       <div className="max-w-7xl mx-auto space-y-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

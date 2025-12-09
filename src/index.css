@@ -16,23 +16,67 @@ body {
 }
 
 /* Force dark color scheme on admin/dashboard pages - prevents system theme from affecting form elements */
+/* This overrides Windows light/dark mode preferences */
+
+/* Apply to root when admin-layout or data-dashboard is present */
+:root:has(.admin-layout),
+:root:has([data-dashboard="true"]) {
+  color-scheme: dark only !important;
+}
+
 .admin-layout,
 .admin-layout *,
 [data-dashboard="true"],
 [data-dashboard="true"] * {
-  color-scheme: dark !important;
+  color-scheme: dark only !important;
 }
 
-/* Force form elements to use dark theme */
+/* Force ALL form elements and cards in admin to use dark theme colors explicitly */
 .admin-layout input,
 .admin-layout textarea,
 .admin-layout select,
+.admin-layout button,
 [data-dashboard="true"] input,
 [data-dashboard="true"] textarea,
-[data-dashboard="true"] select {
-  color-scheme: dark !important;
-  background-color: inherit;
-  color: inherit;
+[data-dashboard="true"] select,
+[data-dashboard="true"] button {
+  color-scheme: dark only !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Override any system light mode styles on inputs */
+.admin-layout input:not([type="checkbox"]):not([type="radio"]),
+.admin-layout textarea,
+[data-dashboard="true"] input:not([type="checkbox"]):not([type="radio"]),
+[data-dashboard="true"] textarea {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Placeholder text color */
+.admin-layout input::placeholder,
+.admin-layout textarea::placeholder,
+[data-dashboard="true"] input::placeholder,
+[data-dashboard="true"] textarea::placeholder {
+  color: rgba(156, 163, 175, 1) !important;
+  opacity: 1 !important;
+}
+
+/* Autofill styles - prevent browser from making it white */
+.admin-layout input:-webkit-autofill,
+.admin-layout input:-webkit-autofill:hover,
+.admin-layout input:-webkit-autofill:focus,
+.admin-layout textarea:-webkit-autofill,
+[data-dashboard="true"] input:-webkit-autofill,
+[data-dashboard="true"] input:-webkit-autofill:hover,
+[data-dashboard="true"] input:-webkit-autofill:focus,
+[data-dashboard="true"] textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(30, 41, 59, 1) inset !important;
+  -webkit-text-fill-color: white !important;
+  caret-color: white !important;
 }
 
 /* Custom White Color Classes with Opacity */
