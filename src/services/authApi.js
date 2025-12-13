@@ -86,6 +86,16 @@ export const authService = {
     });
     return response.data;
   },
+
+  // Change Password (for authenticated users)
+  changePassword: async (passwordData) => {
+    const response = await authApi.post('/api/Authentication/Change-Password', {
+      currentPassword: passwordData.currentPassword,
+      newPassword: passwordData.newPassword,
+      confirmPassword: passwordData.confirmPassword,
+    });
+    return response.data;
+  },
 };
 
 export default authApi;

@@ -196,12 +196,14 @@ const Verification = () => {
               </div>
               <div className="ml-3">
                 <h3 className="text-sm font-medium text-blue-800">
-                  Check Your Email
+                  Check Your Emails
                 </h3>
-                <div className="mt-2 text-sm text-blue-700">
+                <div className="mt-2 text-sm text-blue-700 space-y-2">
                   <p>
-                    We've sent a verification code to <strong>{formData.email || 'your email'}</strong>. 
-                    Please check your inbox and enter the code above.
+                    📧 Enter the <strong>verification code</strong> from the first email.
+                  </p>
+                  <p>
+                    🔐 Keep the <strong>temporary password</strong> from the second email - you'll need it to log in!
                   </p>
                 </div>
               </div>

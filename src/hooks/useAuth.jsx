@@ -155,16 +155,23 @@ export const AuthProvider = ({ children }) => {
   const verify = async (verificationData) => {
     try {
       setLoading(true);
+      console.log('Verification: Sending data:', verificationData);
+      console.log('Verification: Email:', verificationData.email);
+      console.log('Verification: Code:', verificationData.code);
       const response = await authService.verify(verificationData);
+      console.log('Verification: API Response:', response);
       
       if (response.success) {
         toast.success('Email verified successfully!');
         return { success: true, message: response.message };
       } else {
+        console.warn('Verification: Failed with message:', response.message);
         toast.error(response.message || 'Verification failed');
         return { success: false, message: response.message || 'Verification failed' };
       }
     } catch (error) {
+      console.error('Verification: Error:', error);
+      console.error('Verification: Error Response:', error.response?.data);
       const errorMessage = error.response?.data?.message || 'Verification failed. Please try again.';
       toast.error(errorMessage);
       return { success: false, message: errorMessage };
@@ -177,16 +184,21 @@ export const AuthProvider = ({ children }) => {
   const forgotPassword = async (email) => {
     try {
       setLoading(true);
+      console.log('ForgotPassword: Sending request for email:', email);
       const response = await authService.forgotPassword(email);
+      console.log('ForgotPassword: API Response:', response);
       
       if (response.success) {
         toast.success('Password reset instructions sent to your email!');
         return { success: true, message: response.message };
       } else {
+        console.warn('ForgotPassword: API returned success=false:', response);
         toast.error(response.message || 'Failed to send reset instructions');
         return { success: false, message: response.message || 'Failed to send reset instructions' };
       }
     } catch (error) {
+      console.error('ForgotPassword: API Error:', error);
+      console.error('ForgotPassword: Error Response:', error.response?.data);
       const errorMessage = error.response?.data?.message || 'Failed to send reset instructions. Please try again.';
       toast.error(errorMessage);
       return { success: false, message: errorMessage };
@@ -217,6 +229,28 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Change Password function (for authenticated users)
+  const changePassword = async (passwordData) => {
+    try {
+      setLoading(true);
+      const response = await authService.changePassword(passwordData);
+      
+      if (response.success) {
+        toast.success('Password changed successfully!');
+        return { success: true, message: response.message };
+      } else {
+        toast.error(response.message || 'Password change failed');
+        return { success: false, message: response.message || 'Password change failed' };
+      }
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Password change failed. Please try again.';
+      toast.error(errorMessage);
+      return { success: false, message: errorMessage };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Logout function
   const logout = () => {
     // Use centralized token manager to clear all auth data
@@ -238,6 +272,7 @@ export const AuthProvider = ({ children }) => {
     verify,
     forgotPassword,
     resetPassword,
+    changePassword,
     logout,
   };
 

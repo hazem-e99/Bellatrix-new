@@ -27,6 +27,7 @@ import { CTAModalProvider } from "./contexts/CTAModalContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AuthRoutes from "./routes/AuthRoutes";
 import AuthDashboard from "./components/Admin/AuthDashboard";
+import ChangePassword from "./pages/auth/ChangePassword";
 import { toastConfig } from "./config/toast";
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
               />
               <Route path="messages" element={<MessagesPage />} />
               <Route path="settings" element={<SettingsManagement />} />
+              <Route path="change-password" element={<ChangePassword />} />
               <Route path="components-showcase" element={<ComponentsShowcase />} />
             </Route>
 

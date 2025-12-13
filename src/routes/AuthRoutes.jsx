@@ -4,6 +4,7 @@ import Register from '../pages/auth/Register';
 import Verification from '../pages/auth/Verification';
 import ForgotPassword from '../pages/auth/ForgotPassword';
 import ResetPassword from '../pages/auth/ResetPassword';
+import ChangePassword from '../pages/auth/ChangePassword';
 
 const AuthRoutes = () => {
   return (
@@ -13,9 +14,11 @@ const AuthRoutes = () => {
       <Route path="/verification" element={<Verification />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/change-password" element={<ChangePassword />} />
       <Route path="/" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 };
 
 export default AuthRoutes;
+

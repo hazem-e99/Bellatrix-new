@@ -79,6 +79,20 @@ body {
   caret-color: white !important;
 }
 
+/* Auth form exception - light inputs for auth pages */
+.auth-form-input,
+.auth-form-input:focus,
+.auth-form-input:-webkit-autofill,
+.auth-form-input:-webkit-autofill:hover,
+.auth-form-input:-webkit-autofill:focus {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  caret-color: #111827 !important;
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  border-color: #d1d5db !important;
+}
+
 /* Custom White Color Classes with Opacity */
 @layer utilities {
   .text-white-100 {

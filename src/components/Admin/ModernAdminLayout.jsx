@@ -15,6 +15,7 @@ import {
   MoonIcon,
   PowerIcon,
   ChatBubbleLeftRightIcon,
+  KeyIcon,
 } from "@heroicons/react/24/outline";
 import {
   HomeIcon as HomeIconSolid,
@@ -225,19 +226,26 @@ const ModernAdminLayout = () => {
             })}
           </nav>
 
-          {/* Bottom section with Logout */}
-          <div className="border-t border-[var(--color-white-10)] p-4 space-y-3">
+          {/* Bottom section with Change Password and Logout */}
+          <div className="border-t border-[var(--color-white-10)] p-4 space-y-2">
+            <button
+              onClick={() => navigate('/admin/change-password')}
+              className="w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 text-blue-400 hover:bg-blue-500/10 hover:text-blue-300 group"
+            >
+              <KeyIcon className="mr-3 h-5 w-5" />
+              <span>Change Password</span>
+            </button>
             <button
               onClick={() => {
                 logout();
                 navigate('/auth/login');
               }}
-              className="w-full flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-all duration-200 text-red-400 hover:bg-red-500/10 hover:text-red-300 group"
+              className="w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 text-red-400 hover:bg-red-500/10 hover:text-red-300 group"
             >
               <PowerIcon className="mr-3 h-5 w-5" />
               <span>Logout</span>
             </button>
-            <div className="flex items-center space-x-3 text-sm text-gray-400">
+            <div className="flex items-center space-x-3 text-sm text-gray-400 pt-2">
               <div className="h-2 w-2 bg-[var(--tw-green-400)] rounded-full animate-pulse"></div>
               <span>All systems operational</span>
             </div>
