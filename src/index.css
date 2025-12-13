@@ -5,6 +5,65 @@
 @import "./styles/theme-colors.css";
 @import "./styles/animations.css";
 
+/* ==================================================
+   GLOBAL CTA BUTTON STYLES - Primary Theme
+   ================================================== */
+
+/* Primary CTA Buttons - Dark Navy Theme */
+.theme-cta-button,
+.cta-button,
+button.btn-primary,
+a.btn-primary,
+.btn-cta {
+  background-color: #001248 !important;
+  color: #ffffff !important;
+  border-color: #001248 !important;
+}
+
+.theme-cta-button:hover,
+.cta-button:hover,
+button.btn-primary:hover,
+a.btn-primary:hover,
+.btn-cta:hover {
+  background-color: #000a2e !important;
+  color: #ffffff !important;
+  border-color: #000a2e !important;
+}
+
+/* Buttons with gradient backgrounds - override to solid dark navy */
+button[class*="bg-gradient"],
+a[class*="bg-gradient"],
+.btn[class*="bg-gradient"] {
+  background: #001248 !important;
+  background-image: none !important;
+}
+
+button[class*="bg-gradient"]:hover,
+a[class*="bg-gradient"]:hover,
+.btn[class*="bg-gradient"]:hover {
+  background: #000a2e !important;
+  background-image: none !important;
+}
+
+/* Blue buttons override - make them dark navy */
+button.bg-blue-600,
+button.bg-blue-500,
+a.bg-blue-600,
+a.bg-blue-500,
+.bg-blue-600,
+.bg-blue-500 {
+  background-color: #001248 !important;
+}
+
+button.bg-blue-600:hover,
+button.bg-blue-500:hover,
+a.bg-blue-600:hover,
+a.bg-blue-500:hover,
+.hover\:bg-blue-700:hover,
+.hover\:bg-blue-600:hover {
+  background-color: #000a2e !important;
+}
+
 /* Prevent horizontal scroll */
 html, body {
   overflow-x: hidden;

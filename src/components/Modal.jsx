@@ -2,56 +2,66 @@ import React from "react";
 
 const Modal = ({ isOpen, onClose, icon, title, subtitle, children }) => {
   if (!isOpen) return null;
+  
   return (
     <div
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-2 sm:p-4 md:p-6"
+      className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4 md:p-6"
       onClick={onClose}
     >
       <div
-        className="bg-[var(--color-white)] rounded-2xl sm:rounded-3xl w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl relative shadow-2xl border-0 overflow-hidden animate-fade-in-up max-h-[90vh] overflow-y-auto custom-scrollbar"
+        className="w-full max-w-md relative shadow-2xl overflow-hidden animate-fade-in-up rounded-2xl"
         onClick={(e) => e.stopPropagation()}
+        style={{ backgroundColor: '#001248' }}
       >
-        {/* Header */}
-        <div className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] rounded-t-2xl sm:rounded-t-3xl p-3 sm:p-4 md:p-5 text-[var(--color-white)] relative flex items-center gap-2 sm:gap-3">
-          {icon && (
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-[var(--color-white)]/10 flex items-center justify-center shadow">
-              <div className="text-[var(--color-white)] text-xl sm:text-2xl">
-                {icon}
-              </div>
-            </div>
-          )}
-          <div className="flex-1">
-            <h3 className="text-lg sm:text-xl font-bold mb-1 leading-tight">
-              {title}
-            </h3>
-            {subtitle && (
-              <p className="text-[var(--color-text-light)] text-xs sm:text-sm">
-                {subtitle}
-              </p>
-            )}
-          </div>
-          <button
-            onClick={onClose}
-            className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 text-[var(--color-white)]/80 hover:text-[var(--color-white)] transition-colors p-1 sm:p-2 hover:bg-[var(--color-white)]/10 rounded-full"
-            aria-label="Close"
-          >
-            <svg
-              className="w-5 h-5 sm:w-6 sm:h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 right-0 w-24 h-24 bg-blue-400/5 rounded-full blur-xl"></div>
         </div>
+
+        {/* Header */}
+        <div className="relative p-3 border-b border-white/10">
+          <div className="flex items-start gap-3">
+            {icon && (
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg flex-shrink-0">
+                <span className="text-white text-lg">{icon}</span>
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <h3 className="text-lg font-bold text-white leading-tight">
+                {title}
+              </h3>
+              {subtitle && (
+                <p className="text-white/70 text-xs">
+                  {subtitle}
+                </p>
+              )}
+            </div>
+            <button
+              onClick={onClose}
+              className="text-white/60 hover:text-white transition-all duration-300 p-2 hover:bg-white/10 rounded-full flex-shrink-0"
+              aria-label="Close"
+            >
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
         {/* Content */}
-        <div className="p-3 sm:p-4 md:p-5 lg:p-6 bg-[var(--color-white)] rounded-b-2xl sm:rounded-b-3xl">
+        <div className="relative p-3">
           {children}
         </div>
       </div>
@@ -59,36 +69,42 @@ const Modal = ({ isOpen, onClose, icon, title, subtitle, children }) => {
       {/* Custom Scrollbar Styles */}
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {
-          width: 8px;
+          width: 6px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: var(--color-gray-100);
+          background: rgba(255, 255, 255, 0.05);
           border-radius: 10px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: linear-gradient(
-            180deg,
-            var(--color-primary),
-            var(--color-primary-dark)
-          );
+          background: linear-gradient(180deg, #22d3ee, #3b82f6);
           border-radius: 10px;
-          border: 2px solid var(--color-gray-100);
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(
-            180deg,
-            var(--color-hover),
-            var(--color-primary-dark)
-          );
+          background: linear-gradient(180deg, #67e8f9, #60a5fa);
         }
 
         /* Firefox scrollbar */
         .custom-scrollbar {
           scrollbar-width: thin;
-          scrollbar-color: var(--color-primary) var(--color-gray-100);
+          scrollbar-color: #22d3ee rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.3s ease-out forwards;
         }
       `}</style>
     </div>

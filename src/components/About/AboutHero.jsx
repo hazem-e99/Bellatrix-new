@@ -1,8 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import CTAButton from "../CTAButton";
 
 const AboutHero = ({ data }) => {
+  const sectionRef = useRef(null);
+
+  // Scroll to next section function
+  const scrollToNextSection = () => {
+    if (sectionRef.current) {
+      // Find the next sibling element (next section)
+      const nextSection = sectionRef.current.nextElementSibling;
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
   const [defaultData, setDefaultData] = useState(null);
 
   useEffect(() => {
@@ -50,7 +61,7 @@ const AboutHero = ({ data }) => {
 
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20">
+    <section ref={sectionRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20">
       {/* Background Video */}
       <video
         autoPlay
@@ -97,17 +108,25 @@ const AboutHero = ({ data }) => {
           <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
             {heroData.description}
           </p>
-          <CTAButton
-            variant="primary"
-            size="lg"
-            className="theme-cta-button text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 bg-[linear-gradient(90deg,var(--color-primary),var(--color-cyan-600))]"
-            modalConfig={{
-              title: "Discover Our Story",
-              subtitle: "Learn more about how we can help your business",
-            }}
+          <button
+            onClick={scrollToNextSection}
+            className="theme-cta-button text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 bg-[linear-gradient(90deg,var(--color-primary),var(--color-cyan-600))] hover:scale-105 transform cursor-pointer inline-flex items-center gap-2"
           >
             Discover Our Story
-          </CTAButton>
+            <svg 
+              className="w-5 h-5 animate-bounce" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+              />
+            </svg>
+          </button>
         </motion.div>
       </div>
       {/* Scroll Indicator */}
