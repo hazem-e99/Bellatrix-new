@@ -448,7 +448,7 @@ const Navbar = () => {
               {/* Premium Contact button */}
               <button
                 onClick={openContactModal}
-                className="relative ml-2 px-6 py-3 bg-gradient-to-r from-[var(--tw-blue-200)] to-[var(--tw-blue-900)] text-[var(--color-text-primary)] text-sm font-medium rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/40 transition-all duration-300 transform hover:scale-105 border border-[var(--color-white)]/10 backdrop-blur-sm group overflow-hidden cursor-pointer"
+                className="relative ml-2 px-6 py-3 flex items-center justify-center bg-gradient-to-r from-[var(--tw-blue-200)] to-[var(--tw-blue-900)] text-white text-sm font-medium rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/40 transition-all duration-300 transform hover:scale-105 border border-[var(--color-white)]/10 backdrop-blur-sm group overflow-hidden cursor-pointer"
               >
                 <span className="relative z-10">Contact</span>
               </button>

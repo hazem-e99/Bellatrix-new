@@ -100,7 +100,7 @@ const PricingSection = ({ data = {} }) => {
                   <h3 className="text-2xl font-bold text-[var(--color-text-inverse)] mb-2">
                     {plan.name || "Plan"}
                   </h3>
-                  <p className="text-[var(--color-text-light)] mb-6">
+                  <p className="text-white/80 mb-6">
                     {plan.description || "Plan description"}
                   </p>
                   <div className="mb-6">
@@ -113,7 +113,7 @@ const PricingSection = ({ data = {} }) => {
                     >
                       {plan.price || "$0"}
                     </span>
-                    <span className="text-[var(--color-text-light)] ml-2">
+                    <span className="text-white/70 ml-2">
                       {plan.period || ""}
                     </span>
                   </div>
@@ -152,7 +152,7 @@ const PricingSection = ({ data = {} }) => {
                             d="M5 13l4 4L19 7"
                           />
                         </svg>
-                        <span className="text-[var(--color-text-light)]">
+                        <span className="text-white/90">
                           {feature}
                         </span>
                       </li>
