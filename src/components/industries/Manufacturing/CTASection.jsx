@@ -136,7 +136,7 @@ const CTASection = ({
 
   return (
 
-    <section className="bg-gray-50 py-20 light-section">
+    <section className="py-20 bg-[var(--color-brand-dark-navy)]">
 
       <SEO
 
@@ -158,13 +158,13 @@ const CTASection = ({
 
       <div className="container mx-auto px-6">
 
-        <div className="bg-gradient-to-r from-gray-100 to-gray-200 rounded-3xl p-12 text-gray-800 text-center border border-gray-300">
+        <div className="bg-gradient-to-r from-[var(--color-primary)]/20 to-[var(--color-primary)]/10 rounded-3xl p-12 text-white text-center border border-white/10">
 
           <div className="max-w-4xl mx-auto">
 
             <header>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
 
                 {mergedData.title}
 
@@ -172,7 +172,7 @@ const CTASection = ({
 
               {mergedData.subtitle && (
 
-                <h3 className="text-xl md:text-2xl text-gray-800 mb-4 leading-relaxed">
+                <h3 className="text-xl md:text-2xl text-white/90 mb-4 leading-relaxed">
 
                   {typeof mergedData.subtitle === 'string'
 
@@ -184,7 +184,7 @@ const CTASection = ({
 
               )}
 
-              <p className="text-xl mb-8 leading-relaxed text-gray-700">
+              <p className="text-xl mb-8 leading-relaxed text-white/80">
 
                 {mergedData.description}
 
@@ -200,11 +200,11 @@ const CTASection = ({
 
                 <div key={index} className="text-center">
 
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md border border-gray-200">
+                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md border border-white/20">
 
                     <svg
 
-                      className="w-8 h-8 text-gray-600"
+                      className="w-8 h-8 text-[var(--color-primary)]"
 
                       fill="none"
 
@@ -230,13 +230,13 @@ const CTASection = ({
 
                   </div>
 
-                  <h4 className="text-xl font-bold mb-2 text-gray-800">
+                  <h4 className="text-xl font-bold mb-2 text-white">
 
                     {feature.title}
 
                   </h4>
 
-                  <p className="text-gray-600">
+                  <p className="text-white/70">
 
                     {typeof feature.description === 'string'
 

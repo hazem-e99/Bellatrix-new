@@ -242,19 +242,19 @@ const Manufacturing = () => {
         />
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-gray-900/80 to-cyan-900/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-brand-dark-navy)]/95 via-[var(--color-brand-dark-navy)]/90 to-[var(--color-brand-dark-navy)]/95"></div>
 
         {/* Floating Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
             animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
             transition={{ duration: 6, repeat: Infinity }}
-            className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-xl"
+            className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-white/5 to-white/10 rounded-full blur-xl"
           />
           <motion.div
             animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
             transition={{ duration: 8, repeat: Infinity }}
-            className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-lg"
+            className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-white/5 to-white/10 rounded-full blur-lg"
           />
         </div>
 
@@ -265,13 +265,13 @@ const Manufacturing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
               Manufacturing Excellence
             </h1>
-            <h2 className="text-2xl md:text-3xl text-blue-200 mb-6 font-semibold">
+            <h2 className="text-2xl md:text-3xl text-white/80 mb-6 font-semibold">
               Powered by NetSuite
             </h2>
-            <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/70 mb-8 leading-relaxed max-w-4xl mx-auto">
               Transform your manufacturing operations with integrated ERP
               solutions that streamline production, optimize inventory, and
               ensure quality compliance across your entire value chain.
@@ -698,14 +698,14 @@ const Manufacturing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gray-50 py-20 light-section">
+      <section className="py-20 bg-[var(--color-brand-dark-navy)]">
         <div className="container mx-auto px-6">
-          <div className="bg-gradient-to-r from-gray-100 to-gray-200 rounded-3xl p-12 text-gray-800 text-center border border-gray-300">
+          <div className="bg-gradient-to-r from-[var(--color-primary)]/20 to-[var(--color-primary)]/10 rounded-3xl p-12 text-white text-center border border-white/10">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
                 Ready to Transform Your Manufacturing Operations?
               </h2>
-              <p className="text-xl mb-8 leading-relaxed text-gray-700">
+              <p className="text-xl mb-8 leading-relaxed text-white/80">
                 Join hundreds of manufacturing companies that have streamlined
                 their operations and improved efficiency with NetSuite. Get
                 started with a free consultation today.
@@ -713,9 +713,9 @@ const Manufacturing = () => {
 
               <div className="grid md:grid-cols-3 gap-8 mb-12">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md border border-gray-200">
+                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md border border-white/20">
                     <svg
-                      className="w-8 h-8 text-gray-600"
+                      className="w-8 h-8 text-[var(--color-primary)]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -728,17 +728,17 @@ const Manufacturing = () => {
                       />
                     </svg>
                   </div>
-                  <h4 className="text-xl font-bold mb-2 text-gray-800">
+                  <h4 className="text-xl font-bold mb-2 text-white">
                     Free Assessment
                   </h4>
-                  <p className="text-gray-600">
+                  <p className="text-white/70">
                     Comprehensive evaluation of your manufacturing processes
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md border border-gray-200">
+                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md border border-white/20">
                     <svg
-                      className="w-8 h-8 text-gray-600"
+                      className="w-8 h-8 text-[var(--color-primary)]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -751,17 +751,17 @@ const Manufacturing = () => {
                       />
                     </svg>
                   </div>
-                  <h4 className="text-xl font-bold mb-2 text-gray-800">
+                  <h4 className="text-xl font-bold mb-2 text-white">
                     Rapid Implementation
                   </h4>
-                  <p className="text-gray-600">
+                  <p className="text-white/70">
                     Get up and running faster with our proven methodology
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md border border-gray-200">
+                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md border border-white/20">
                     <svg
-                      className="w-8 h-8 text-gray-600"
+                      className="w-8 h-8 text-[var(--color-primary)]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -774,10 +774,10 @@ const Manufacturing = () => {
                       />
                     </svg>
                   </div>
-                  <h4 className="text-xl font-bold mb-2 text-gray-800">
+                  <h4 className="text-xl font-bold mb-2 text-white">
                     Ongoing Support
                   </h4>
-                  <p className="text-gray-600">
+                  <p className="text-white/70">
                     Continuous optimization and support for your success
                   </p>
                 </div>
@@ -787,7 +787,7 @@ const Manufacturing = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={openContactModal}
-                className="bg-gray-800 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gray-900"
+                className="bg-[var(--color-primary)] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[var(--color-primary-dark)]"
               >
                 Schedule Manufacturing Demo
               </motion.button>

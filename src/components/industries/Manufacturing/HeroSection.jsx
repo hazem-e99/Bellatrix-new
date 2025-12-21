@@ -54,19 +54,19 @@ const HeroSection = (props) => {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-gray-900/80 to-cyan-900/90"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-brand-dark-navy)]/95 via-[var(--color-brand-dark-navy)]/90 to-[var(--color-brand-dark-navy)]/95"></div>
 
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
           transition={{ duration: 6, repeat: Infinity }}
-          className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-xl"
+          className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-white/5 to-white/10 rounded-full blur-xl"
         />
         <motion.div
           animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
-          className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-full blur-lg"
+          className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-white/5 to-white/10 rounded-full blur-lg"
         />
       </div>
 
@@ -77,13 +77,13 @@ const HeroSection = (props) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
             {finalData.title}
           </h1>
-          <h2 className="text-2xl md:text-3xl text-blue-200 mb-6 font-semibold">
+          <h2 className="text-2xl md:text-3xl text-white/80 mb-6 font-semibold">
             {finalData.subtitle}
           </h2>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed max-w-4xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/70 mb-8 leading-relaxed max-w-4xl mx-auto">
             {finalData.description}
           </p>
 

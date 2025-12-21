@@ -91,7 +91,7 @@ const PayrollCTA = ({
       />
       <section className="py-20 relative overflow-hidden">
         {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)] via-[var(--color-primary-dark)] to-[var(--color-accent)]"></div>
+        <div className="absolute inset-0 bg-[var(--color-brand-dark-navy)]"></div>
 
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
