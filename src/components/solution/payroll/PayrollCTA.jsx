@@ -89,20 +89,7 @@ const PayrollCTA = ({
         )}... Professional ERP payroll solutions and support.`}
         ogImage="/images/netsuite-payroll-cta.jpg"
       />
-      <section className="py-20 relative overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-[var(--color-brand-dark-navy)]"></div>
-
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(255,255,255,0.15)_1px,_transparent_0)] bg-[length:20px_20px]"></div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full blur-lg animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-[var(--color-accent-light)]/15 rounded-full blur-md animate-pulse delay-500"></div>
-
+      <section className="py-20 bg-[var(--color-brand-dark-navy)] relative overflow-hidden">
         <div className="container mx-auto px-6 max-w-4xl relative z-10">
           <header className="text-center">
             {/* Main Title - Fixed HTML rendering */}
@@ -185,9 +172,6 @@ const PayrollCTA = ({
             </div>
           </header>
         </div>
-
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[var(--color-primary-dark)]/50 to-transparent"></div>
       </section>
     </>
   );
