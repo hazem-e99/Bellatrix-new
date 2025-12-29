@@ -17,6 +17,7 @@ const SectionsStep = ({
   onUpdateComponent,
   onRemoveComponent,
   onDuplicateComponent,
+  onReorderComponents,
   componentSchemas = {},
   showNewInputModal,
   setShowNewInputModal,
@@ -137,6 +138,7 @@ const SectionsStep = ({
         availableComponents={availableComponents}
         onUpdateComponent={onUpdateComponent}
         onRemoveComponent={onRemoveComponent}
+        onReorderComponents={onReorderComponents}
         componentSchemas={componentSchemas}
         getAboutComponentSchema={getAboutComponentSchema}
         getGeneralComponentSchema={getGeneralComponentSchema}

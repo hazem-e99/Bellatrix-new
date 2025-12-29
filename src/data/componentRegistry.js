@@ -1592,6 +1592,254 @@ export const componentRegistry = {
 
   // ===========================================
 
+  // CUSTOMIZATION PAGE COMPONENTS
+
+  // ===========================================
+
+  CustomizationPage: {
+
+    CustomizationHero: {
+
+      componentType: "CustomizationHero",
+
+      componentName: "Customization Hero",
+
+      category: "hero",
+
+      icon: "",
+
+      filePath: "src/components/Services/Customization/HeroSection.jsx",
+
+      description: "Hero section for Customization services page",
+
+      dataStructure: {
+
+        title: "string",
+
+        subtitle: "string",
+
+      },
+
+      defaultData: {
+
+        title: "NetSuite Customization Services",
+
+        subtitle: "Tailored Solutions for Your Business",
+
+      },
+
+    },
+
+    CustomizationServicesSection: {
+
+      componentType: "CustomizationServicesSection",
+
+      componentName: "Customization Services",
+
+      category: "services",
+
+      icon: "",
+
+      filePath: "src/components/Services/Customization/ServicesSection.jsx",
+
+      description: "Services section showcasing customization offerings",
+
+      dataStructure: {
+
+        title: "string",
+
+        items: "array", // array of { title, description, icon }
+
+      },
+
+      defaultData: {
+
+        title: "Our Customization Services",
+
+        items: [
+
+          {
+
+            title: "Custom Fields & Forms",
+
+            description: "Create custom fields and forms to capture your specific business data.",
+
+            icon: "",
+
+          },
+
+          {
+
+            title: "Custom Scripts",
+
+            description: "Develop custom scripts to automate your business processes.",
+
+            icon: "",
+
+          },
+
+          {
+
+            title: "Custom Workflows",
+
+            description: "Design custom workflows to streamline your operations.",
+
+            icon: "",
+
+          },
+
+          {
+
+            title: "Custom Reports",
+
+            description: "Build custom reports and dashboards for better insights.",
+
+            icon: "",
+
+          },
+
+          {
+
+            title: "SuiteScript Development",
+
+            description: "Expert SuiteScript development for complex customizations.",
+
+            icon: "",
+
+          },
+
+          {
+
+            title: "SuiteFlow Automation",
+
+            description: "Automate business processes with SuiteFlow workflows.",
+
+            icon: "",
+
+          },
+
+        ],
+
+      },
+
+    },
+
+    CustomizationProcessSection: {
+
+      componentType: "CustomizationProcessSection",
+
+      componentName: "Customization Process",
+
+      category: "process",
+
+      icon: "",
+
+      filePath: "src/components/Services/Customization/ProcessSection.jsx",
+
+      description: "Step-by-step customization process section",
+
+      dataStructure: {
+
+        title: "string",
+
+        steps: "array", // array of { title, description }
+
+      },
+
+      defaultData: {
+
+        title: "Our Customization Process",
+
+        steps: [
+
+          {
+
+            title: "Discovery",
+
+            description: "We analyze your business requirements and identify customization opportunities.",
+
+          },
+
+          {
+
+            title: "Design",
+
+            description: "Our team designs custom solutions tailored to your specific needs.",
+
+          },
+
+          {
+
+            title: "Development",
+
+            description: "We develop and test customizations in a sandbox environment.",
+
+          },
+
+          {
+
+            title: "Deployment",
+
+            description: "Customizations are deployed to production with minimal disruption.",
+
+          },
+
+          {
+
+            title: "Support",
+
+            description: "Ongoing support and maintenance for your custom solutions.",
+
+          },
+
+        ],
+
+      },
+
+    },
+
+    CustomizationCTASection: {
+
+      componentType: "CustomizationCTASection",
+
+      componentName: "Customization CTA",
+
+      category: "cta",
+
+      icon: "",
+
+      filePath: "src/components/Services/Customization/CtaSection.jsx",
+
+      description: "Call-to-action section for customization services",
+
+      dataStructure: {
+
+        title: "string",
+
+        subtitle: "string",
+
+        buttonText: "string",
+
+      },
+
+      defaultData: {
+
+        title: "Ready to Customize Your NetSuite?",
+
+        subtitle: "Get started with a free consultation",
+
+        buttonText: "Contact Us Today",
+
+      },
+
+    },
+
+  },
+
+
+
+  // ===========================================
+
   // COMMON/SHARED COMPONENTS
 
   // ===========================================

@@ -7801,6 +7801,34 @@ const EnhancedPageBuilder = () => {
 
 
 
+  // Reorder components with a new array (used by drag and drop)
+
+  const reorderComponents = (newComponentsArray) => {
+
+    // Ensure orderIndex values are sequential
+
+    const reorderedComponents = newComponentsArray.map((component, index) => ({
+
+      ...component,
+
+      orderIndex: index + 1,
+
+    }));
+
+
+
+    setPageData((prev) => ({
+
+      ...prev,
+
+      components: reorderedComponents,
+
+    }));
+
+  };
+
+
+
   const handleSave = async (status = "draft") => {
 
     // Prevent multiple simultaneous API calls
@@ -8282,6 +8310,7 @@ const EnhancedPageBuilder = () => {
             onRemoveComponent={removeComponent}
             onDuplicateComponent={duplicateComponent}
             onMoveComponent={moveComponent}
+            onReorderComponents={reorderComponents}
             componentSchemas={componentSchemas}
             showNewInputModal={showNewInputModal}
             setShowNewInputModal={setShowNewInputModal}

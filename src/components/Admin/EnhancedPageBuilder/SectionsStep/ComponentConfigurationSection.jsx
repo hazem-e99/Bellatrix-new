@@ -4,19 +4,100 @@ import {
   TrashIcon, 
   ChevronLeftIcon, 
   ChevronRightIcon,
-  CheckCircleIcon 
+  CheckCircleIcon,
+  Bars3Icon 
 } from "@heroicons/react/24/outline";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  horizontalListSortingStrategy,
+  useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 import Button from "../../../UI/Button";
 import Card, { CardContent, CardHeader, CardTitle } from "../../../UI/Card";
 import { ComponentToggles } from "../../../UI/FancyToggle";
 import ComponentFormRenderer from "./ComponentFormRenderer";
 
+// Sortable Component Tab Item
+const SortableComponentTab = ({ 
+  id, 
+  index, 
+  comp, 
+  isActive, 
+  isCompleted, 
+  componentIcon, 
+  onClick 
+}) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    zIndex: isDragging ? 100 : 1,
+    opacity: isDragging ? 0.8 : 1,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`
+        flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200
+        min-w-fit whitespace-nowrap cursor-grab active:cursor-grabbing
+        ${isDragging ? 'shadow-lg scale-105' : ''}
+        ${isActive 
+          ? 'bg-blue-500/30 border-2 border-blue-400 text-white' 
+          : isCompleted
+            ? 'bg-green-500/20 border border-green-400/50 text-green-300'
+            : 'bg-white/5 border border-white/20 text-gray-400 hover:bg-white/10 hover:text-white'
+        }
+      `}
+      {...attributes}
+      {...listeners}
+    >
+      <Bars3Icon className="h-3 w-3 text-gray-500" />
+      {isCompleted && !isActive ? (
+        <CheckCircleIcon className="h-4 w-4 text-green-400" />
+      ) : (
+        <span className="text-sm">{componentIcon}</span>
+      )}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(index);
+        }}
+        className="text-xs font-medium"
+      >
+        {comp.componentName || comp.componentType || `Component ${index + 1}`}
+      </button>
+    </div>
+  );
+};
+
 const ComponentConfigurationSection = ({
   components,
   availableComponents,
   onUpdateComponent,
   onRemoveComponent,
+  onReorderComponents,
   componentSchemas,
   getAboutComponentSchema,
   getGeneralComponentSchema,
@@ -28,6 +109,59 @@ const ComponentConfigurationSection = ({
   
   // Track completed components for progress indicator
   const [completedComponents, setCompletedComponents] = useState(new Set());
+
+  // Drag and drop sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  // Handle drag end for reordering
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (active.id !== over?.id) {
+      const oldIndex = components.findIndex((_, i) => `component-${i}` === active.id);
+      const newIndex = components.findIndex((_, i) => `component-${i}` === over.id);
+
+      if (oldIndex !== -1 && newIndex !== -1) {
+        // Create new order
+        const newComponents = arrayMove(components, oldIndex, newIndex);
+        
+        // Update orderIndex for all components
+        const updatedComponents = newComponents.map((comp, idx) => ({
+          ...comp,
+          orderIndex: idx + 1,
+        }));
+
+        // Call the reorder callback
+        if (onReorderComponents) {
+          onReorderComponents(updatedComponents);
+        }
+
+        // Adjust current index if needed
+        if (currentComponentIndex === oldIndex) {
+          setCurrentComponentIndex(newIndex);
+        } else if (
+          currentComponentIndex > oldIndex && 
+          currentComponentIndex <= newIndex
+        ) {
+          setCurrentComponentIndex(currentComponentIndex - 1);
+        } else if (
+          currentComponentIndex < oldIndex && 
+          currentComponentIndex >= newIndex
+        ) {
+          setCurrentComponentIndex(currentComponentIndex + 1);
+        }
+      }
+    }
+  };
 
   const handleComponentUpdate = (index, field, value) => {
     if (field === "orderIndex") {
@@ -121,41 +255,45 @@ const ComponentConfigurationSection = ({
           </div>
         </div>
         
-        {/* Progress Steps Indicator */}
-        <div className="mt-4 flex items-center gap-2 overflow-x-auto pb-2">
-          {components.map((comp, index) => {
-            const isActive = index === currentComponentIndex;
-            const isCompleted = completedComponents.has(index);
-            const componentIcon = availableComponents.find(
-              (c) => c.componentType === comp.componentType
-            )?.icon || "📦";
-            
-            return (
-              <button
-                key={index}
-                onClick={() => handleGoToComponent(index)}
-                className={`
-                  flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200
-                  min-w-fit whitespace-nowrap
-                  ${isActive 
-                    ? 'bg-blue-500/30 border-2 border-blue-400 text-white' 
-                    : isCompleted
-                      ? 'bg-green-500/20 border border-green-400/50 text-green-300'
-                      : 'bg-white/5 border border-white/20 text-gray-400 hover:bg-white/10 hover:text-white'
-                  }
-                `}
-              >
-                {isCompleted && !isActive ? (
-                  <CheckCircleIcon className="h-4 w-4 text-green-400" />
-                ) : (
-                  <span className="text-sm">{componentIcon}</span>
-                )}
-                <span className="text-xs font-medium">
-                  {comp.componentName || comp.componentType || `Component ${index + 1}`}
-                </span>
-              </button>
-            );
-          })}
+        {/* Progress Steps Indicator with Drag & Drop */}
+        <div className="mt-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Bars3Icon className="h-4 w-4 text-gray-400" />
+            <span className="text-xs text-gray-400">Drag to reorder components</span>
+          </div>
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={components.map((_, index) => `component-${index}`)}
+              strategy={horizontalListSortingStrategy}
+            >
+              <div className="flex items-center gap-2 overflow-x-auto pb-2">
+                {components.map((comp, index) => {
+                  const isActive = index === currentComponentIndex;
+                  const isCompleted = completedComponents.has(index);
+                  const componentIcon = availableComponents.find(
+                    (c) => c.componentType === comp.componentType
+                  )?.icon || "📦";
+                  
+                  return (
+                    <SortableComponentTab
+                      key={`component-${index}`}
+                      id={`component-${index}`}
+                      index={index}
+                      comp={comp}
+                      isActive={isActive}
+                      isCompleted={isCompleted}
+                      componentIcon={componentIcon}
+                      onClick={handleGoToComponent}
+                    />
+                  );
+                })}
+              </div>
+            </SortableContext>
+          </DndContext>
         </div>
       </CardHeader>
       

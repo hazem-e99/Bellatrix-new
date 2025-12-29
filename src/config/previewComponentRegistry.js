@@ -70,6 +70,12 @@ import RetailFeatures from "../components/industries/retail/FeaturesSection";
 import RetailCaseStudies from "../components/industries/retail/CaseStudiesSection";
 import RetailCTA from "../components/industries/retail/CTASection";
 
+// Customization Components
+import CustomizationHeroSection from "../components/Services/Customization/HeroSection";
+import CustomizationServicesSection from "../components/Services/Customization/ServicesSection";
+import CustomizationProcessSection from "../components/Services/Customization/ProcessSection";
+import CustomizationCtaSection from "../components/Services/Customization/CtaSection";
+
 // Common/Shared Components
 import CTAButton from "../components/CTAButton";
 
@@ -169,6 +175,16 @@ export const componentRegistry = {
   RetailFeaturesSection: RetailFeatures,
   RetailCaseStudies: RetailCaseStudies,
   RetailCTASection: RetailCTA,
+
+  // ===========================================
+  // CUSTOMIZATION COMPONENTS
+  // ===========================================
+  CustomizationHero: CustomizationHeroSection,
+  CustomizationHeroSection: CustomizationHeroSection,
+  CustomizationServicesSection: CustomizationServicesSection,
+  CustomizationProcessSection: CustomizationProcessSection,
+  CustomizationCTASection: CustomizationCtaSection,
+  CustomizationCtaSection: CustomizationCtaSection,
 
   // ===========================================
   // COMMON/SHARED COMPONENTS

@@ -80,6 +80,14 @@ export const idToPathMap = {
   RetailCTASection: "industries/retail/CTASection",
 
   // ===========================================
+  // CUSTOMIZATION COMPONENTS
+  // ===========================================
+  CustomizationHero: "Services/Customization/HeroSection",
+  CustomizationServicesSection: "Services/Customization/ServicesSection",
+  CustomizationProcessSection: "Services/Customization/ProcessSection",
+  CustomizationCTASection: "Services/Customization/CtaSection",
+
+  // ===========================================
   // COMMON/SHARED COMPONENTS
   // ===========================================
   // ...existing code...
@@ -189,6 +197,18 @@ export const loadComponent = async (componentPath) => {
         import("./industries/retail/HeroSection"),
       "industries/retail/SolutionsSection": () =>
         import("./industries/retail/SolutionsSection"),
+
+      // ===========================================
+      // CUSTOMIZATION COMPONENTS
+      // ===========================================
+      "Services/Customization/HeroSection": () =>
+        import("./Services/Customization/HeroSection"),
+      "Services/Customization/ServicesSection": () =>
+        import("./Services/Customization/ServicesSection"),
+      "Services/Customization/ProcessSection": () =>
+        import("./Services/Customization/ProcessSection"),
+      "Services/Customization/CtaSection": () =>
+        import("./Services/Customization/CtaSection"),
 
       // ===========================================
       // COMMON/SHARED COMPONENTS
