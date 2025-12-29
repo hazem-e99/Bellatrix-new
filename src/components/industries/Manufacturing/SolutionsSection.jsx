@@ -8,6 +8,7 @@ const SolutionsSection = (props) => {
   const title = props?.title || props?.data?.title;
   const subtitle = props?.subtitle || props?.data?.subtitle;
   const description = props?.description || props?.data?.description;
+  const image = props?.image || props?.data?.image;
   const solutions =
     props?.solutions ||
     props?.items ||
@@ -17,9 +18,12 @@ const SolutionsSection = (props) => {
 
   // Internal state management for pagination
   const [activeSolution, setActiveSolution] = useState(0);
-  
+
   // Ensure activeSolution is within bounds
-  const safeActiveSolution = Math.max(0, Math.min(activeSolution, solutions.length - 1));
+  const safeActiveSolution = Math.max(
+    0,
+    Math.min(activeSolution, solutions.length - 1)
+  );
 
   // Default data as fallback ONLY if no form data is provided
   const defaultData = {
@@ -53,6 +57,9 @@ const SolutionsSection = (props) => {
   const finalTitle = title || defaultData.title;
   const finalSubtitle = subtitle || defaultData.subtitle;
   const finalDescription = description || defaultData.description;
+  const finalImage =
+    image ||
+    "https://i.pinimg.com/1200x/19/e6/91/19e6918482b92f0f7e31e68d376bf711.jpg";
   const finalSolutions =
     solutions.length > 0 ? solutions : defaultData.solutions;
 
@@ -113,7 +120,7 @@ const SolutionsSection = (props) => {
             <div className="max-w-2xl w-full">
               <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-lg">
                 <img
-                  src="https://i.pinimg.com/1200x/19/e6/91/19e6918482b92f0f7e31e68d376bf711.jpg"
+                  src={finalImage}
                   alt="NetSuite Manufacturing Solutions"
                   className="w-full h-96 object-cover rounded-xl"
                 />
@@ -127,18 +134,18 @@ const SolutionsSection = (props) => {
               {(() => {
                 const currentSolution = finalSolutions[safeActiveSolution];
                 const title = currentSolution?.title;
-                return typeof title === 'string' 
-                  ? title 
-                  : title?.title || 'Solution Title';
+                return typeof title === "string"
+                  ? title
+                  : title?.title || "Solution Title";
               })()}
             </h3>
             <p className="text-gray-600 leading-relaxed text-lg">
               {(() => {
                 const currentSolution = finalSolutions[safeActiveSolution];
                 const description = currentSolution?.description;
-                return typeof description === 'string'
+                return typeof description === "string"
                   ? description
-                  : description?.description || 'Solution Description';
+                  : description?.description || "Solution Description";
               })()}
             </p>
 
@@ -149,7 +156,7 @@ const SolutionsSection = (props) => {
               {(() => {
                 const currentSolution = finalSolutions[safeActiveSolution];
                 const features = currentSolution?.features;
-                
+
                 // Ensure features is an array
                 if (!Array.isArray(features)) {
                   return (
@@ -158,12 +165,14 @@ const SolutionsSection = (props) => {
                     </div>
                   );
                 }
-                
+
                 return features.map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                     <span className="text-gray-600">
-                      {typeof feature === 'string' ? feature : feature?.name || feature?.title || 'Feature'}
+                      {typeof feature === "string"
+                        ? feature
+                        : feature?.name || feature?.title || "Feature"}
                     </span>
                   </div>
                 ));
@@ -186,12 +195,13 @@ const SolutionsSection = (props) => {
                   />
                 </svg>
                 <span className="text-blue-700 font-semibold">
-                  Result: {(() => {
+                  Result:{" "}
+                  {(() => {
                     const currentSolution = finalSolutions[safeActiveSolution];
                     const benefits = currentSolution?.benefits;
-                    return typeof benefits === 'string'
+                    return typeof benefits === "string"
                       ? benefits
-                      : benefits?.benefits || 'Improved Results';
+                      : benefits?.benefits || "Improved Results";
                   })()}
                 </span>
               </div>

@@ -1849,6 +1849,10 @@ const ComponentPreview = ({
                   benefits: "99.5% quality achievement rate",
                 },
               ],
+
+            image:
+              componentData.image ||
+              "https://i.pinimg.com/1200x/19/e6/91/19e6918482b92f0f7e31e68d376bf711.jpg",
           };
 
           console.log(
@@ -1868,6 +1872,14 @@ const ComponentPreview = ({
           );
 
           const transformedData = {
+            title: componentData.title || "Manufacturing Challenges",
+
+            subtitle: componentData.subtitle || "Common pain points we solve",
+
+            description:
+              componentData.description ||
+              "We understand the unique challenges manufacturers face and provide targeted solutions.",
+
             challenges: componentData.challenges ||
               componentData.items || [
                 {
@@ -1877,6 +1889,7 @@ const ComponentPreview = ({
                     "Difficulty in coordinating multiple production lines and resources",
 
                   icon: "",
+                  impact: "High",
                 },
 
                 {
@@ -1886,12 +1899,13 @@ const ComponentPreview = ({
                     "Challenges in tracking inventory across multiple locations",
 
                   icon: "",
+                  impact: "High",
                 },
               ],
 
-            title: componentData.title || "Manufacturing Challenges",
-
-            subtitle: componentData.subtitle || "Common pain points we solve",
+            image:
+              componentData.image ||
+              "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
           };
 
           console.log(
@@ -1911,6 +1925,14 @@ const ComponentPreview = ({
           );
 
           const transformedData = {
+            title: componentData.title || "Manufacturing Industry Statistics",
+
+            subtitle: componentData.subtitle || "Key industry metrics",
+
+            description:
+              componentData.description ||
+              "Key metrics that demonstrate our manufacturing excellence",
+
             stats: componentData.stats ||
               componentData.items || [
                 {
@@ -1937,10 +1959,6 @@ const ComponentPreview = ({
                   description: "Data accuracy improvement",
                 },
               ],
-
-            title: componentData.title || "Manufacturing Industry Statistics",
-
-            subtitle: componentData.subtitle || "Key industry metrics",
           };
 
           console.log(
@@ -1992,6 +2010,10 @@ const ComponentPreview = ({
 
             title: componentData.title || "Implementation Process",
 
+            subtitle:
+              componentData.subtitle ||
+              "A proven methodology for manufacturing implementations",
+
             description: componentData.description || "Our proven methodology",
           };
 
@@ -2012,71 +2034,69 @@ const ComponentPreview = ({
           );
 
           const transformedData = {
-            data: {
-              items: componentData.items ||
-                componentData.caseStudies || [
-                  {
-                    title: "Automotive Parts Manufacturer",
+            title: componentData.title || "Manufacturing Success Stories",
 
-                    company: "ABC Motors",
+            description:
+              componentData.description ||
+              "See how we've helped manufacturing companies transform their operations with NetSuite solutions.",
 
-                    industry: "Automotive",
+            items: componentData.items ||
+              componentData.caseStudies || [
+                {
+                  title: "Automotive Parts Manufacturer",
 
-                    challenge: "Complex multi-location inventory management",
+                  company: "ABC Motors",
 
-                    solution: "NetSuite Advanced Manufacturing with WMS",
+                  industry: "Automotive",
 
-                    results: "40% reduction in inventory carrying costs",
+                  challenge: "Complex multi-location inventory management",
 
-                    timeline: "6 months",
+                  solution: "NetSuite Advanced Manufacturing with WMS",
 
-                    image: "/images/case-study-1.jpg",
-                  },
+                  results: ["40% reduction in inventory carrying costs"],
 
-                  {
-                    title: "Electronics Manufacturer",
+                  timeline: "6 months",
 
-                    company: "TechCorp",
+                  image: "/images/case-study-1.jpg",
+                },
 
-                    industry: "Electronics",
+                {
+                  title: "Electronics Manufacturer",
 
-                    challenge: "Manual production planning and scheduling",
+                  company: "TechCorp",
 
-                    solution:
-                      "NetSuite Manufacturing Edition with custom workflows",
+                  industry: "Electronics",
 
-                    results: "60% improvement in on-time delivery",
+                  challenge: "Manual production planning and scheduling",
 
-                    timeline: "4 months",
+                  solution:
+                    "NetSuite Manufacturing Edition with custom workflows",
 
-                    image: "/images/case-study-2.jpg",
-                  },
+                  results: ["60% improvement in on-time delivery"],
 
-                  {
-                    title: "Food & Beverage Producer",
+                  timeline: "4 months",
 
-                    company: "FreshFoods Inc",
+                  image: "/images/case-study-2.jpg",
+                },
 
-                    industry: "Food & Beverage",
+                {
+                  title: "Food & Beverage Producer",
 
-                    challenge: "Quality control and compliance tracking",
+                  company: "FreshFoods Inc",
 
-                    solution: "NetSuite Quality Management Suite",
+                  industry: "Food & Beverage",
 
-                    results: "99.5% quality achievement rate",
+                  challenge: "Quality control and compliance tracking",
 
-                    timeline: "3 months",
+                  solution: "NetSuite Quality Management Suite",
 
-                    image: "/images/case-study-3.jpg",
-                  },
-                ],
+                  results: ["99.5% quality achievement rate"],
 
-              title: componentData.title || "Manufacturing Success Stories",
+                  timeline: "3 months",
 
-              description:
-                componentData.description ||
-                "See how we've helped manufacturing companies transform their operations with NetSuite solutions.",
-            },
+                  image: "/images/case-study-3.jpg",
+                },
+              ],
           };
 
           console.log(
@@ -2093,9 +2113,9 @@ const ComponentPreview = ({
 
               inputDescription: componentData.description,
 
-              outputTitle: transformedData.data.title,
+              outputTitle: transformedData.title,
 
-              outputDescription: transformedData.data.description,
+              outputDescription: transformedData.description,
             }
           );
 

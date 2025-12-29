@@ -1001,6 +1001,12 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/HeroSection.jsx",
 
       description: "Manufacturing industry hero section",
+
+      hasEnhancedSchema: true,
+
+      schema: "ManufacturingHeroSection",
+
+      defaultData: "ManufacturingHeroSection",
     },
 
     ManufacturingIndustryStats: {
@@ -1015,6 +1021,12 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/IndustryStats.jsx",
 
       description: "Manufacturing industry statistics",
+
+      hasEnhancedSchema: true,
+
+      schema: "ManufacturingIndustryStats",
+
+      defaultData: "ManufacturingIndustryStats",
     },
 
     ManufacturingCTASection: {
@@ -1027,6 +1039,12 @@ export const componentRegistry = {
       icon: "",
 
       filePath: "src/components/industries/Manufacturing/CTASection.jsx",
+
+      hasEnhancedSchema: true,
+
+      schema: "ManufacturingCTASection",
+
+      defaultData: "ManufacturingCTASection",
 
       description: "Manufacturing CTA section",
     },
@@ -1044,12 +1062,22 @@ export const componentRegistry = {
 
       description: "Manufacturing industry challenges",
 
+      hasEnhancedSchema: true,
+
+      schema: "ManufacturingChallengesSection",
+
+      defaultData: "ManufacturingChallengesSection",
+
       dataStructure: {
         title: "string",
 
+        subtitle: "string",
+
         description: "string",
 
-        challenges: "array", // title, description, icon
+        challenges: "array",
+
+        image: "string",
       },
     },
 
@@ -1066,12 +1094,22 @@ export const componentRegistry = {
 
       description: "Manufacturing industry solutions",
 
+      hasEnhancedSchema: true,
+
+      schema: "ManufacturingSolutionsSection",
+
+      defaultData: "ManufacturingSolutionsSection",
+
       dataStructure: {
         title: "string",
 
+        subtitle: "string",
+
         description: "string",
 
-        solutions: "array", // title, description, icon
+        solutions: "array",
+
+        image: "string",
       },
     },
 
@@ -1088,12 +1126,18 @@ export const componentRegistry = {
 
       description: "Manufacturing case studies",
 
+      hasEnhancedSchema: true,
+
+      schema: "ManufacturingCaseStudies",
+
+      defaultData: "ManufacturingCaseStudies",
+
       dataStructure: {
         title: "string",
 
         description: "string",
 
-        caseStudies: "array", // title, description, company, results
+        items: "array",
       },
     },
 
@@ -1111,12 +1155,20 @@ export const componentRegistry = {
 
       description: "Manufacturing implementation process",
 
+      hasEnhancedSchema: true,
+
+      schema: "ManufacturingImplementationProcess",
+
+      defaultData: "ManufacturingImplementationProcess",
+
       dataStructure: {
         title: "string",
 
+        subtitle: "string",
+
         description: "string",
 
-        steps: "array", // title, description, step
+        steps: "array",
       },
     },
 
