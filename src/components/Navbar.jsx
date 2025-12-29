@@ -353,68 +353,135 @@ const Navbar = () => {
                   Loading...
                 </span>
               ) : Array.isArray(categories) && categories.length > 0 ? (
-                categories.map((cat) => (
-                  <div
-                    className="relative"
-                    key={cat.id}
-                    onMouseEnter={() => handleMenuEnter(cat.id)}
-                    onMouseLeave={handleMenuLeave}
-                  >
-                    <button
-                      className={`flex items-center px-5 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${
-                        openDropdown === cat.id
-                          ? navbarTheme === "light"
-                            ? "text-[var(--color-text-dark)] border-blue-400/20 shadow"
-                            : "text-[var(--color-text-light)] border-blue-400/30 shadow"
-                          : navbarTheme === "light"
-                          ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
-                          : "text-[var(--color-text-light)]/90 hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
-                      }`}
-                      onClick={() => toggleDropdown(cat.id)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          toggleDropdown(cat.id);
-                        }
-                      }}
-                      aria-expanded={openDropdown === cat.id}
-                      aria-haspopup="true"
+                <>
+                  {/* First 4 Categories */}
+                  {categories.slice(0, 4).map((cat) => (
+                    <div
+                      className="relative"
+                      key={cat.id}
+                      onMouseEnter={() => handleMenuEnter(cat.id)}
+                      onMouseLeave={handleMenuLeave}
                     >
-                      <span>{cat.name}</span>
-                      {cat.pages && cat.pages.length > 0 && (
-                        <ChevronDownIcon className="ml-1 h-4 w-4" />
-                      )}
-                    </button>
-                    <AnimatePresence>
-                      {openDropdown === cat.id &&
-                        cat.pages &&
-                        cat.pages.length > 0 && (
+                      <button
+                        className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${
+                          openDropdown === cat.id
+                            ? navbarTheme === "light"
+                              ? "text-[var(--color-text-dark)] border-blue-400/20 shadow"
+                              : "text-[var(--color-text-light)] border-blue-400/30 shadow"
+                            : navbarTheme === "light"
+                            ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
+                            : "text-[var(--color-text-light)]/90 hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
+                        }`}
+                        onClick={() => toggleDropdown(cat.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            toggleDropdown(cat.id);
+                          }
+                        }}
+                        aria-expanded={openDropdown === cat.id}
+                        aria-haspopup="true"
+                      >
+                        <span className="truncate max-w-[100px] xl:max-w-none">{cat.name}</span>
+                        {cat.pages && cat.pages.length > 0 && (
+                          <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
+                        )}
+                      </button>
+                      <AnimatePresence>
+                        {openDropdown === cat.id &&
+                          cat.pages &&
+                          cat.pages.length > 0 && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              className="absolute left-0 mt-2 w-56 bg-white/70 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg z-50 py-2"
+                              onMouseEnter={() => handleMenuEnter(cat.id)}
+                              onMouseLeave={handleMenuLeave}
+                            >
+                              {cat.pages
+                                ?.filter((page) => page.isPublished === true)
+                                .map((page) => (
+                                  <Link
+                                    key={page.id}
+                                    to={
+                                      page.slug ? `/${page.slug}` : `/${page.id}`
+                                    }
+                                    className="block px-5 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-base font-medium"
+                                  >
+                                    {page.title}
+                                  </Link>
+                                ))}
+                            </motion.div>
+                          )}
+                      </AnimatePresence>
+                    </div>
+                  ))}
+
+                  {/* More Dropdown for remaining categories */}
+                  {categories.length > 4 && (
+                    <div
+                      className="relative"
+                      onMouseEnter={() => handleMenuEnter('more')}
+                      onMouseLeave={handleMenuLeave}
+                    >
+                      <button
+                        className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${
+                          openDropdown === 'more'
+                            ? navbarTheme === "light"
+                              ? "text-[var(--color-text-dark)] border-blue-400/20 shadow"
+                              : "text-[var(--color-text-light)] border-blue-400/30 shadow"
+                            : navbarTheme === "light"
+                            ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
+                            : "text-[var(--color-text-light)]/90 hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
+                        }`}
+                        onClick={() => toggleDropdown('more')}
+                      >
+                        <span>More</span>
+                        <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
+                      </button>
+                      <AnimatePresence>
+                        {openDropdown === 'more' && (
                           <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
-                            className="absolute left-0 mt-2 w-56 bg-white/70 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg z-50 py-2"
-                            onMouseEnter={() => handleMenuEnter(cat.id)}
+                            className="absolute right-0 mt-2 w-72 bg-white/80 backdrop-blur-xl border border-gray-200 rounded-xl shadow-lg z-50 py-2 overflow-hidden"
+                            onMouseEnter={() => handleMenuEnter('more')}
                             onMouseLeave={handleMenuLeave}
                           >
-                            {cat.pages
-                              ?.filter((page) => page.isPublished === true) //  يعرض بس الصفحات المنشورة
-                              .map((page) => (
-                                <Link
-                                  key={page.id}
-                                  to={
-                                    page.slug ? `/${page.slug}` : `/${page.id}`
-                                  }
-                                  className="block px-5 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-base font-medium"
-                                >
-                                  {page.title}
-                                </Link>
+                            <div className="max-h-[70vh] overflow-y-auto px-1 custom-scrollbar">
+                              {categories.slice(4).map((cat) => (
+                                <div key={cat.id} className="mb-2 last:mb-0">
+                                  <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                    {cat.name}
+                                  </div>
+                                  {cat.pages && cat.pages.length > 0 ? (
+                                    cat.pages
+                                      .filter((page) => page.isPublished === true)
+                                      .map((page) => (
+                                        <Link
+                                          key={page.id}
+                                          to={page.slug ? `/${page.slug}` : `/${page.id}`}
+                                          className="block px-5 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-sm font-medium ml-2"
+                                        >
+                                          {page.title}
+                                        </Link>
+                                      ))
+                                  ) : (
+                                    <span className="block px-5 py-2 text-gray-400 text-sm italic ml-2">
+                                      No pages
+                                    </span>
+                                  )}
+                                </div>
                               ))}
+                            </div>
                           </motion.div>
                         )}
-                    </AnimatePresence>
-                  </div>
-                ))
+                      </AnimatePresence>
+                    </div>
+                  )}
+                </>
               ) : (
                 <span style={{ display: "none" }} />
               )}
