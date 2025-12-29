@@ -3,8 +3,18 @@ import React, { useState, useEffect } from "react";
 import SEO from "../../SEO";
 import CTAButton from "../../CTAButton";
 
-const ProcessSection = ({ data = {} }) => {
+const ProcessSection = (props) => {
   const [defaultData, setDefaultData] = useState(null);
+
+  // Extract direct props from Page Builder
+  const {
+    title: propTitle,
+    subtitle: propSubtitle,
+    image: propImage,
+    steps: propSteps,
+    ctaButton: propCtaButton,
+    data: propsData,
+  } = props;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,22 +37,20 @@ const ProcessSection = ({ data = {} }) => {
     fetchData();
   }, []);
 
-  // PRIORITIZE props data over default data for real-time preview
-  const displayData = data && Object.keys(data).length > 0
-    ? data
-    : defaultData || {
-        title: "Our Implementation Process",
-        subtitle: "A proven methodology for seamless business transformation",
-        image: "/Videos/implementation/implementProcess.jpg",
-        steps: [],
-        ctaButton: "Start Your Journey",
-      };
+  // PRIORITIZE direct props > data prop > defaultData
+  const displayData = {
+    title: propTitle || propsData?.title || defaultData?.title || "Our Implementation Process",
+    subtitle: propSubtitle || propsData?.subtitle || defaultData?.subtitle || "A proven methodology for seamless business transformation",
+    image: propImage || propsData?.image || defaultData?.image || "/Videos/implementation/implementProcess.jpg",
+    steps: propSteps || propsData?.steps || defaultData?.steps || [],
+    ctaButton: propCtaButton || propsData?.ctaButton || defaultData?.ctaButton || "Start Your Journey",
+  };
 
   // Debug logging for real-time updates
   console.log(" [ImplementationProcessSection] Component received data:", {
-    hasPropsData: !!(data && Object.keys(data).length > 0),
-    propsData: data,
-    hasDefaultData: !!defaultData,
+    directProps: { propTitle, propSubtitle, propImage },
+    propsData,
+    defaultData,
     finalData: displayData,
     timestamp: new Date().toISOString()
   });

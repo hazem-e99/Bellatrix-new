@@ -575,32 +575,6 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
-
-            link: {
-              type: "string",
-
-              label: "Button Link",
-
-              placeholder: "/contact",
-
-              formField: "text",
-            },
-
-            variant: {
-              type: "string",
-
-              label: "Button Style",
-
-              formField: "select",
-
-              options: [
-                { value: "primary", label: "Primary Button" },
-
-                { value: "secondary", label: "Secondary Button" },
-
-                { value: "outline", label: "Outline Button" },
-              ],
-            },
           },
 
           formField: "object",
@@ -680,7 +654,7 @@ export const generalComponentSchemas = {
 
       description: "",
 
-      ctaButton: { text: "Get Started Today", link: null, variant: "primary" },
+      ctaButton: { text: "Get Started Today" },
 
       features: [
         {
@@ -779,32 +753,6 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
-
-            link: {
-              type: "string",
-
-              label: "Button Link",
-
-              placeholder: "/contact",
-
-              formField: "text",
-            },
-
-            variant: {
-              type: "string",
-
-              label: "Button Variant",
-
-              formField: "select",
-
-              options: [
-                { value: "primary", label: "Primary" },
-
-                { value: "secondary", label: "Secondary" },
-
-                { value: "outline", label: "Outline" },
-              ],
-            },
           },
 
           formField: "object",
@@ -843,7 +791,7 @@ export const generalComponentSchemas = {
 
       description: "Component description - please configure this component",
 
-      ctaButton: { text: "Get Started", link: "/contact", variant: "primary" },
+      ctaButton: { text: "Get Started" },
 
       theme: 1,
 
@@ -962,32 +910,6 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
-
-            link: {
-              type: "string",
-
-              label: "Button Link",
-
-              placeholder: "/contact",
-
-              formField: "text",
-            },
-
-            variant: {
-              type: "string",
-
-              label: "Button Style",
-
-              formField: "select",
-
-              options: [
-                { value: "primary", label: "Primary Button" },
-
-                { value: "secondary", label: "Secondary Button" },
-
-                { value: "outline", label: "Outline Button" },
-              ],
-            },
           },
 
           formField: "object",
@@ -1032,10 +954,6 @@ export const generalComponentSchemas = {
 
       ctaButton: {
         text: "Schedule Demoee",
-
-        link: "/retail/demo",
-
-        variant: "primary",
       },
     },
   },
@@ -1688,14 +1606,6 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
-
-            link: {
-              type: "string",
-
-              label: "Button Link",
-
-              formField: "text",
-            },
           },
         },
       },
@@ -1720,8 +1630,6 @@ export const generalComponentSchemas = {
 
       ctaButton: {
         text: "Get Started",
-
-        link: "/contact",
       },
     },
   },
@@ -2325,14 +2233,6 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
-
-            link: {
-              type: "string",
-
-              label: "Button Link",
-
-              formField: "text",
-            },
           },
         },
       },
@@ -2347,8 +2247,6 @@ export const generalComponentSchemas = {
 
       ctaButton: {
         text: "Get Started",
-
-        link: "/contact",
       },
     },
   },
@@ -2602,16 +2500,6 @@ export const generalComponentSchemas = {
 
           formField: "text",
         },
-
-        ctaLink: {
-          type: "string",
-
-          label: "CTA Button Link (Optional)",
-
-          placeholder: "/contact",
-
-          formField: "text",
-        },
       },
     },
 
@@ -2627,8 +2515,6 @@ export const generalComponentSchemas = {
         "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
 
       ctaText: "Schedule Manufacturing Demo",
-
-      ctaLink: "/contact",
     },
   },
 
@@ -3137,32 +3023,6 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
-
-            link: {
-              type: "string",
-
-              label: "Button Link",
-
-              placeholder: "/contact",
-
-              formField: "text",
-            },
-
-            variant: {
-              type: "string",
-
-              label: "Button Style",
-
-              formField: "select",
-
-              options: [
-                { value: "primary", label: "Primary Button" },
-
-                { value: "secondary", label: "Secondary Button" },
-
-                { value: "outline", label: "Outline Button" },
-              ],
-            },
           },
 
           formField: "object",
@@ -3182,32 +3042,6 @@ export const generalComponentSchemas = {
               placeholder: "Download Manufacturing Guide",
 
               formField: "text",
-            },
-
-            link: {
-              type: "string",
-
-              label: "Button Link",
-
-              placeholder: "/resources/manufacturing-guide",
-
-              formField: "text",
-            },
-
-            variant: {
-              type: "string",
-
-              label: "Button Style",
-
-              formField: "select",
-
-              options: [
-                { value: "primary", label: "Primary Button" },
-
-                { value: "secondary", label: "Secondary Button" },
-
-                { value: "outline", label: "Outline Button" },
-              ],
             },
           },
 
@@ -3264,10 +3098,6 @@ export const generalComponentSchemas = {
 
       ctaButton: {
         text: "Schedule Manufacturing Consultation",
-
-        link: "/contact",
-
-        variant: "primary",
       },
 
       secondaryButton: {
@@ -3845,16 +3675,6 @@ export const generalComponentSchemas = {
 
           formField: "text",
         },
-
-        ctaLink: {
-          type: "string",
-
-          label: "CTA Button Link (Optional)",
-
-          placeholder: "/contact",
-
-          formField: "text",
-        },
       },
     },
 
@@ -3870,8 +3690,6 @@ export const generalComponentSchemas = {
         "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
 
       ctaText: "Schedule Retail Demo",
-
-      ctaLink: "/contact",
     },
   },
 
@@ -4186,16 +4004,6 @@ export const generalComponentSchemas = {
               label: "Button Text",
 
               placeholder: "View All Services",
-
-              formField: "text",
-            },
-
-            link: {
-              type: "string",
-
-              label: "Button Link",
-
-              placeholder: "/services",
 
               formField: "text",
             },
@@ -5803,16 +5611,6 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
-
-            variant: {
-              type: "string",
-
-              label: "Button Style",
-
-              formField: "select",
-
-              options: ["primary", "secondary", "outline", "ghost"],
-            },
           },
 
           formField: "object",
@@ -5832,8 +5630,6 @@ export const generalComponentSchemas = {
         text: "Start Implementation",
 
         icon: "M13 7l5 5m0 0l-5 5m5-5H6",
-
-        variant: "primary",
       },
     },
   },

@@ -328,12 +328,10 @@ const ComponentPreview = ({
               componentData.description ||
               "Contact us today to discuss how we can help you optimize your operations and drive growth.",
 
-            ctaButton: componentData.ctaButton || {
-              text: "Start Consultation",
-
-              link: "/contact",
-
-              variant: "primary",
+            ctaButton: {
+              text: componentData.ctaButton?.text || "Start Consultation",
+              link: null, // Force modal opening
+              variant: componentData.ctaButton?.variant || "primary",
             },
 
             features: componentData.features || [
@@ -386,10 +384,10 @@ const ComponentPreview = ({
 
             description: componentData.description || "",
 
-            ctaButton: componentData.ctaButton || {
-              text: "Get Started",
-
-              link: "/contact",
+            ctaButton: {
+              text: componentData.ctaButton?.text || "Get Started",
+              link: null, // Force modal opening
+              variant: componentData.ctaButton?.variant || "primary",
             },
 
             backgroundImage:
@@ -819,10 +817,10 @@ const ComponentPreview = ({
 
               trustedBy: componentData.trustedBy || [],
 
-              ctaButton: componentData.ctaButton || {
-                text: "Get Started",
-
-                link: "/contact",
+              ctaButton: {
+                text: componentData.ctaButton?.text || "Get Started",
+                link: null, // Force modal opening
+                variant: componentData.ctaButton?.variant || "primary",
               },
 
               data: componentData,
@@ -1170,10 +1168,10 @@ const ComponentPreview = ({
 
             subtitle: componentData.subtitle || "Let's discuss your HR needs",
 
-            ctaButton: componentData.ctaButton || {
-              text: "Get Started",
-
-              link: "/contact",
+            ctaButton: {
+              text: componentData.ctaButton?.text || "Get Started",
+              link: null, // Force modal opening
+              variant: componentData.ctaButton?.variant || "primary",
             },
           };
 
@@ -1287,17 +1285,24 @@ const ComponentPreview = ({
         case "ImplementationHeroSection": {
           console.log(
             " [ImplementationHeroSection TRANSFORM] Input data:",
-
             componentData
           );
 
           const transformedImplementationHeroData = {
-            data: componentData || {},
+            data: {
+              backgroundVideo: componentData.backgroundVideo || "/Videos/HomeHeroSectionV.mp4",
+              titleParts: componentData.titleParts || componentData.title?.split(" ") || ["Implementation", "Services"],
+              description: componentData.description || "We don't just implement solutions—we craft digital experiences that transform the way you do business",
+              ctaButton: {
+                text: componentData.ctaButton?.text || componentData.ctaText || "Start Implementation",
+                link: null,
+                variant: "primary",
+              },
+            },
           };
 
           console.log(
             " [ImplementationHeroSection TRANSFORM] Output data:",
-
             transformedImplementationHeroData
           );
 
@@ -1455,12 +1460,15 @@ const ComponentPreview = ({
 
             backgroundVideo: componentData.backgroundVideo || "",
 
-            ctaButton: componentData.ctaButton || {
-              text: "Learn More",
+            ctaButton: {
+              text:
+                componentData.ctaText ||
+                componentData.ctaButton?.text ||
+                "Learn More",
 
-              link: "/manufacturing",
+              link: null,
 
-              variant: "primary",
+              variant: componentData.ctaButton?.variant || "primary",
             },
 
             data: componentData,
@@ -1513,31 +1521,19 @@ const ComponentPreview = ({
         case "ImplementationProcessSection": {
           console.log(
             " [ImplementationProcessSection TRANSFORM] Input data:",
-
             componentData
           );
 
           const transformedData = {
-            data: {
-              title: componentData.title || "Implementation Process",
-
-              subtitle:
-                componentData.subtitle ||
-                "A proven methodology for seamless business transformation",
-
-              image:
-                componentData.image ||
-                "/Videos/implementation/implementProcess.jpg",
-
-              steps: componentData.steps || [],
-
-              ctaButton: componentData.ctaButton || "Start Your Journey",
-            },
+            title: componentData.title || "Implementation Process",
+            subtitle: componentData.subtitle || "A proven methodology for seamless business transformation",
+            image: componentData.image || "/Videos/implementation/implementProcess.jpg",
+            steps: componentData.steps || [],
+            ctaButton: componentData.ctaButton || "Start Your Journey",
           };
 
           console.log(
             " [ImplementationProcessSection TRANSFORM] Output data:",
-
             transformedData
           );
 
@@ -1600,29 +1596,23 @@ const ComponentPreview = ({
           })();
 
           const transformedData = {
-            data: {
-              title:
-                componentData.title ||
-                componentData.data?.title ||
-                "Why Choose Bellatrix for Implementation?",
-
-              subtitle:
-                componentData.subtitle ||
-                componentData.data?.subtitle ||
-                "We bring years of expertise, proven methodologies, and cutting-edge solutions to ensure your implementation success",
-
-              image:
-                componentData.image ||
-                componentData.data?.image ||
-                "/Videos/implementation/whyChoese.jpg",
-
-              features: normalizedFeatures,
-            },
+            title:
+              componentData.title ||
+              componentData.data?.title ||
+              "Why Choose Bellatrix for Implementation?",
+            subtitle:
+              componentData.subtitle ||
+              componentData.data?.subtitle ||
+              "We bring years of expertise, proven methodologies, and cutting-edge solutions to ensure your implementation success",
+            image:
+              componentData.image ||
+              componentData.data?.image ||
+              "/Videos/implementation/whyChoese.jpg",
+            features: normalizedFeatures,
           };
 
           console.log(
             " [ImplementationWhyChooseSection TRANSFORM] Output data:",
-
             transformedData
           );
 
@@ -1632,57 +1622,39 @@ const ComponentPreview = ({
         case "ImplementationPricingSection": {
           console.log(
             " [ImplementationPricingSection TRANSFORM] Input data:",
-
             componentData
           );
 
           // Normalize plans and ensure each plan.features is an array
-
           const rawPlans = componentData.plans || [];
-
           const normalizedPlans = Array.isArray(rawPlans)
             ? rawPlans.map((p) => {
                 const plan = { ...(p || {}) };
-
                 let features = plan.features;
-
                 // If features is a comma/semicolon/newline separated string, split it
-
                 if (typeof features === "string") {
                   features = features
-
-                    .split(/[;,\n]+/) // split on comma, semicolon, or newline
-
+                    .split(/[;,\n]+/)
                     .map((s) => s.trim())
-
                     .filter(Boolean);
                 }
-
                 // Ensure features is an array
-
                 if (!Array.isArray(features)) {
                   features = [];
                 }
-
-                return {
-                  ...plan,
-
-                  features,
-                };
+                return { ...plan, features };
               })
             : [];
 
           const transformedData = {
-            data: {
-              title: componentData.title || "Implementation Pricing",
-
-              plans: normalizedPlans,
-            },
+            title: componentData.title || "Implementation Pricing",
+            subtitle: componentData.subtitle || "Choose the perfect implementation plan that fits your business needs and budget",
+            plans: normalizedPlans,
+            additionalInfo: componentData.additionalInfo || {},
           };
 
           console.log(
             " [ImplementationPricingSection TRANSFORM] Output data:",
-
             transformedData
           );
 
@@ -1758,27 +1730,23 @@ const ComponentPreview = ({
         case "ImplementationCtaSection": {
           console.log(
             " [ImplementationCtaSection TRANSFORM] Input data:",
-
             componentData
           );
 
           const transformedData = {
-            data: {
-              title: componentData.title || "Ready to Start Implementation?",
-
-              subtitle: componentData.subtitle || "Let's discuss your needs",
-
-              ctaButton: componentData.ctaButton || {
-                text: "Get Started",
-
-                link: "/contact",
-              },
+            title: componentData.title || "Ready to Start Implementation?",
+            subtitle: componentData.subtitle || "Let's discuss your needs",
+            description: componentData.description || "",
+            ctaButton: {
+              text: componentData.ctaButton?.text || "Get Started",
+              link: null, // Force modal opening
+              variant: "primary",
             },
+            features: componentData.features || [],
           };
 
           console.log(
             " [ImplementationCtaSection TRANSFORM] Output data:",
-
             transformedData
           );
 
@@ -2142,12 +2110,12 @@ const ComponentPreview = ({
               componentData.description ||
               "Contact our manufacturing specialists to learn how NetSuite can optimize your operations",
 
-            ctaButton: componentData.ctaButton || {
-              text: "Get Started",
+            ctaButton: {
+              text: componentData.ctaButton?.text || "Get Started",
 
-              link: "/contact",
+              link: null,
 
-              variant: "primary",
+              variant: componentData.ctaButton?.variant || "primary",
             },
 
             features: componentData.features || [
@@ -2489,32 +2457,26 @@ const ComponentPreview = ({
         case "RetailCTASection": {
           console.log(
             " [RetailCTASection TRANSFORM] Input data:",
-
             componentData
           );
 
           const transformedData = {
             title: componentData.title || "Ready to Transform Retail?",
-
             subtitle:
               componentData.subtitle || "Let's discuss your retail needs",
-
             description:
               componentData.description ||
               "Join hundreds of retail companies that have unified their commerce operations and improved customer experience with NetSuite. Get started with a free consultation today.",
-
             features: componentData.features || [],
-
-            ctaButton: componentData.ctaButton || {
-              text: "Get Started",
-
-              link: "/contact",
+            ctaButton: {
+              text: componentData.ctaButton?.text || "Get Started",
+              link: null, // Force modal opening
+              variant: componentData.ctaButton?.variant || "primary",
             },
           };
 
           console.log(
             " [RetailCTASection TRANSFORM] Output data:",
-
             transformedData
           );
 

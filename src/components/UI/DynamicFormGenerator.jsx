@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import {
 
@@ -16,12 +16,101 @@ import {
 
   CloudArrowUpIcon,
 
+  CheckIcon,
+
 } from "@heroicons/react/24/outline";
 
 import Button from "../UI/Button";
 
 import MediaPicker from "../UI/MediaPicker";
 
+
+/**
+ * Custom Styled Select Component
+ */
+const StyledSelect = ({ value, onChange, options, placeholder, label }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const selectedOption = options?.find((opt) => {
+    const optValue = typeof opt === "object" ? opt.value : opt;
+    return optValue === value;
+  });
+
+  const selectedLabel = selectedOption
+    ? typeof selectedOption === "object"
+      ? selectedOption.label
+      : selectedOption
+    : placeholder || `Select ${label}`;
+
+  return (
+    <div ref={selectRef} className="relative">
+      {/* Selected Value Button */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full px-4 py-3 bg-slate-800/80 border border-slate-600/50 rounded-xl text-left text-white 
+                   hover:bg-slate-700/80 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 
+                   focus:border-blue-500 transition-all duration-200 flex items-center justify-between group"
+      >
+        <span className={value ? "text-white" : "text-slate-400"}>
+          {selectedLabel}
+        </span>
+        <ChevronDownIcon 
+          className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} 
+        />
+      </button>
+
+      {/* Dropdown Options */}
+      {isOpen && (
+        <div className="absolute z-50 w-full mt-2 bg-slate-800 border border-slate-600/50 rounded-xl shadow-2xl 
+                        overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent">
+            {options?.map((option, index) => {
+              const optValue = typeof option === "object" ? option.value : option;
+              const optLabel = typeof option === "object" ? option.label : option;
+              const isSelected = optValue === value;
+
+              return (
+                <button
+                  key={optValue}
+                  type="button"
+                  onClick={() => {
+                    onChange(optValue);
+                    setIsOpen(false);
+                  }}
+                  className={`w-full px-4 py-3 text-left flex items-center justify-between transition-all duration-150
+                    ${isSelected 
+                      ? "bg-blue-600/30 text-blue-300 border-l-4 border-blue-500" 
+                      : "text-slate-300 hover:bg-slate-700/80 hover:text-white border-l-4 border-transparent"
+                    }
+                    ${index !== options.length - 1 ? "border-b border-slate-700/50" : ""}
+                  `}
+                >
+                  <span className="font-medium">{optLabel}</span>
+                  {isSelected && (
+                    <CheckIcon className="w-5 h-5 text-blue-400" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 
 /**
@@ -672,43 +761,13 @@ const DynamicFormGenerator = ({
 
             </label>
 
-            <select
-
+            <StyledSelect
               value={value || ""}
-
-              onChange={(e) => onChange(e.target.value)}
-
-              className={inputClasses}
-
-              required={isRequired}
-
-            >
-
-              <option value="">Select {fieldSchema.label}</option>
-
-              {fieldSchema.options?.map((option) => {
-
-                const optionValue =
-
-                  typeof option === "object" ? option.value : option;
-
-                const optionLabel =
-
-                  typeof option === "object" ? option.label : option;
-
-                return (
-
-                  <option key={optionValue} value={optionValue}>
-
-                    {optionLabel}
-
-                  </option>
-
-                );
-
-              })}
-
-            </select>
+              onChange={onChange}
+              options={fieldSchema.options}
+              placeholder={`Select ${fieldSchema.label}`}
+              label={fieldSchema.label}
+            />
 
           </div>
 
@@ -1094,43 +1153,13 @@ const DynamicFormGenerator = ({
 
             </label>
 
-            <select
-
+            <StyledSelect
               value={value || ""}
-
-              onChange={(e) => handleChange(fullPath, e.target.value)}
-
-              className={inputClasses}
-
-            >
-
-              <option value="">Select {fieldSchema.label}</option>
-
-              {fieldSchema.options?.map((option) => {
-
-                // Handle both string and object option formats
-
-                const optionValue =
-
-                  typeof option === "object" ? option.value : option;
-
-                const optionLabel =
-
-                  typeof option === "object" ? option.label : option;
-
-                return (
-
-                  <option key={optionValue} value={optionValue}>
-
-                    {optionLabel}
-
-                  </option>
-
-                );
-
-              })}
-
-            </select>
+              onChange={(val) => handleChange(fullPath, val)}
+              options={fieldSchema.options}
+              placeholder={`Select ${fieldSchema.label}`}
+              label={fieldSchema.label}
+            />
 
           </div>
 

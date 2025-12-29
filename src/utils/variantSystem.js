@@ -9,7 +9,7 @@
  * @returns {string} - Valid variant or 'primary' as fallback
  */
 export const validateVariant = (variant) => {
-  const validVariants = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
+  const validVariants = ['primary', 'secondary', 'outline', 'success', 'warning', 'danger', 'info'];
   
   if (!variant || typeof variant !== 'string') {
     console.warn(' [VARIANT] Invalid variant type:', typeof variant, variant);
@@ -37,6 +37,7 @@ export const getVariantClasses = (variant) => {
   const classes = {
     primary: 'bg-[#001248] hover:bg-[#000a2e] text-white border-[#001248]',
     secondary: 'bg-gray-600 hover:bg-gray-700 text-white border-gray-600',
+    outline: 'bg-transparent hover:bg-[#001248] text-[#001248] hover:text-white border-2 border-[#001248]',
     success: 'bg-green-600 hover:bg-green-700 text-white border-green-600',
     warning: 'bg-yellow-600 hover:bg-yellow-700 text-white border-yellow-600',
     danger: 'bg-red-600 hover:bg-red-700 text-white border-red-600',
@@ -57,6 +58,7 @@ export const getVariantDisplayName = (variant) => {
   const displayNames = {
     primary: 'Primary (Dark Navy)',
     secondary: 'Secondary (Gray)',
+    outline: 'Outline (Transparent)',
     success: 'Success (Green)',
     warning: 'Warning (Yellow)',
     danger: 'Danger (Red)',
@@ -74,6 +76,7 @@ export const getAvailableVariants = () => {
   return [
     { value: 'primary', label: 'Primary (Dark Navy)' },
     { value: 'secondary', label: 'Secondary (Gray)' },
+    { value: 'outline', label: 'Outline (Transparent)' },
     { value: 'success', label: 'Success (Green)' },
     { value: 'warning', label: 'Warning (Yellow)' },
     { value: 'danger', label: 'Danger (Red)' },
@@ -95,6 +98,11 @@ export const variantOptions = [
     value: 'secondary', 
     label: 'Secondary (Gray)', 
     classes: 'bg-gray-600 hover:bg-gray-700 text-white border-gray-600' 
+  },
+  { 
+    value: 'outline', 
+    label: 'Outline (Transparent)', 
+    classes: 'bg-transparent hover:bg-[#001248] text-[#001248] hover:text-white border-2 border-[#001248]' 
   },
   { 
     value: 'success', 
