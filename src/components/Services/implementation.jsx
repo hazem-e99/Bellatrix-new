@@ -152,7 +152,7 @@ const Implementation = ({ data: propsData = null }) => {
                 modalConfig={{
                   title: "NetSuite Implementation Request",
                   subtitle: "Let's discuss your implementation needs",
-                  icon: ""
+                  icon: "",
                 }}
               >
                 {data.heroSection.ctaButton.text}
@@ -341,7 +341,7 @@ const Implementation = ({ data: propsData = null }) => {
                   modalConfig={{
                     title: "Start Your Implementation Journey",
                     subtitle: "Let's discuss your implementation process",
-                    icon: ""
+                    icon: "",
                   }}
                 >
                   {data.processSection.ctaButton}
@@ -353,9 +353,7 @@ const Implementation = ({ data: propsData = null }) => {
       </div>
 
       {/* Why Choose Bellatrix Section */}
-      <div
-        className="py-12 relative overflow-hidden animate-background-glow bg-[#001038]"
-      >
+      <div className="py-12 relative overflow-hidden animate-background-glow bg-[#001038]">
         {/* Ultra Creative Decorative Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* ... (keep all the existing background SVG elements) ... */}
@@ -558,9 +556,7 @@ const Implementation = ({ data: propsData = null }) => {
       </div>
 
       {/* Ready for Implementation CTA Section */}
-      <div
-        className="relative py-16 overflow-hidden bg-[#001038]"
-      >
+      <div className="relative py-16 overflow-hidden bg-[#001038]">
         {/* Simple Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full">
@@ -606,8 +602,9 @@ const Implementation = ({ data: propsData = null }) => {
                 className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
                 modalConfig={{
                   title: "NetSuite Implementation Consultation",
-                  subtitle: "Let's discuss your implementation needs and timeline",
-                  icon: ""
+                  subtitle:
+                    "Let's discuss your implementation needs and timeline",
+                  icon: "",
                 }}
               >
                 {data.ctaSection.ctaButton}

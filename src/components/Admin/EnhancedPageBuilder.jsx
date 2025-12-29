@@ -8170,19 +8170,97 @@ const EnhancedPageBuilder = () => {
         orderIndexes: createPageDTO.components?.map((c) => c.orderIndex) || [],
       });
 
-      console.log(" About to call pagesAPI.createPage...");
-      // Make the API call to create page with components
-      const response = await pagesAPI.createPage(createPageDTO);
-      console.log(" Page created successfully! Response:", response);
-
-      // Show appropriate success message based on status
-      if (status === "published") {
-        showToast("Page published successfully! - تم نشر الصفحة بنجاح", "success");
+      // Check if we're updating an existing page or creating a new one
+      const isExistingPage = pageData.id && !isNaN(parseInt(pageData.id));
+      
+      let response;
+      
+      if (isExistingPage) {
+        console.log(" About to call pagesAPI.updatePage for existing page ID:", pageData.id);
+        
+        // First update the page metadata
+        const updatePageData = {
+          id: pageData.id,
+          name: createPageDTO.name,
+          categoryId: createPageDTO.categoryId,
+          slug: createPageDTO.slug,
+          metaTitle: createPageDTO.metaTitle,
+          metaDescription: createPageDTO.metaDescription,
+          isHomepage: createPageDTO.isHomepage || false,
+          isPublished: status === "published",
+        };
+        
+        response = await pagesAPI.updatePage(pageData.id, updatePageData);
+        console.log(" Page metadata updated successfully:", response);
+        
+        // Then update each component individually
+        if (createPageDTO.components && createPageDTO.components.length > 0) {
+          console.log(" Updating components for existing page...");
+          
+          for (const component of createPageDTO.components) {
+            if (component.id) {
+              // Update existing component
+              const updateData = {
+                id: component.id,
+                pageId: pageData.id,
+                componentType: component.componentType,
+                componentName: component.componentName,
+                contentJson: typeof component.content === 'string' 
+                  ? component.content 
+                  : JSON.stringify(component.content || {}),
+                orderIndex: component.orderIndex,
+                isVisible: component.isVisible !== undefined ? component.isVisible : true,
+                theme: component.theme !== undefined ? component.theme : 1,
+              };
+              
+              await pagesAPI.updatePageComponent(component.id, updateData);
+              console.log(` Updated component ${component.id}`);
+            } else {
+              // Create new component for existing page
+              const createData = {
+                componentType: component.componentType,
+                componentName: component.componentName,
+                contentJson: typeof component.content === 'string' 
+                  ? component.content 
+                  : JSON.stringify(component.content || {}),
+                orderIndex: component.orderIndex,
+                isVisible: component.isVisible !== undefined ? component.isVisible : true,
+                theme: component.theme !== undefined ? component.theme : 1,
+              };
+              
+              await pagesAPI.createPageComponent(pageData.id, createData);
+              console.log(` Created new component for existing page`);
+            }
+          }
+        }
+        
+        console.log(" Page and components updated successfully!");
       } else {
-        showToast(
-          `Page "${createPageDTO.name}" saved as draft successfully! - تم حفظ الصفحة كمسودة`,
-          "success"
-        );
+        console.log(" About to call pagesAPI.createPage for new page...");
+        // Make the API call to create page with components
+        response = await pagesAPI.createPage(createPageDTO);
+        console.log(" Page created successfully! Response:", response);
+      }
+
+      // Show appropriate success message based on status and action
+      if (isExistingPage) {
+        if (status === "published") {
+          showToast("Page updated and published successfully! - تم تحديث ونشر الصفحة بنجاح", "success");
+        } else {
+          showToast(
+            `Page "${createPageDTO.name}" updated successfully! - تم تحديث الصفحة بنجاح`,
+            "success"
+          );
+        }
+      } else {
+        if (status === "published") {
+          showToast("Page published successfully! - تم نشر الصفحة بنجاح", "success");
+        } else {
+          showToast(
+            `Page "${createPageDTO.name}" saved as draft successfully! - تم حفظ الصفحة كمسودة`,
+            "success"
+          );
+        }
       }
 
       // Navigate to pages management after a brief delay

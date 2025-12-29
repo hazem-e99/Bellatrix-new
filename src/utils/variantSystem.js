@@ -9,20 +9,30 @@
  * @returns {string} - Valid variant or 'primary' as fallback
  */
 export const validateVariant = (variant) => {
-  const validVariants = ['primary', 'secondary', 'outline', 'success', 'warning', 'danger', 'info'];
-  
-  if (!variant || typeof variant !== 'string') {
-    console.warn(' [VARIANT] Invalid variant type:', typeof variant, variant);
-    return 'primary';
+  const validVariants = [
+    "primary",
+    "secondary",
+    "outline",
+    "success",
+    "warning",
+    "danger",
+    "info",
+  ];
+
+  if (!variant || typeof variant !== "string") {
+    console.warn(" [VARIANT] Invalid variant type:", typeof variant, variant);
+    return "primary";
   }
-  
+
   const normalizedVariant = variant.toLowerCase().trim();
-  
+
   if (!validVariants.includes(normalizedVariant)) {
-    console.warn(` [VARIANT] Invalid variant "${variant}" found, defaulting to "primary"`);
-    return 'primary';
+    console.warn(
+      ` [VARIANT] Invalid variant "${variant}" found, defaulting to "primary"`
+    );
+    return "primary";
   }
-  
+
   return normalizedVariant;
 };
 
@@ -33,17 +43,18 @@ export const validateVariant = (variant) => {
  */
 export const getVariantClasses = (variant) => {
   const validatedVariant = validateVariant(variant);
-  
+
   const classes = {
-    primary: 'bg-[#001248] hover:bg-[#000a2e] text-white border-[#001248]',
-    secondary: 'bg-gray-600 hover:bg-gray-700 text-white border-gray-600',
-    outline: 'bg-transparent hover:bg-[#001248] text-[#001248] hover:text-white border-2 border-[#001248]',
-    success: 'bg-green-600 hover:bg-green-700 text-white border-green-600',
-    warning: 'bg-yellow-600 hover:bg-yellow-700 text-white border-yellow-600',
-    danger: 'bg-red-600 hover:bg-red-700 text-white border-red-600',
-    info: 'bg-cyan-600 hover:bg-cyan-700 text-white border-cyan-600'
+    primary: "bg-[#001248] hover:bg-[#000a2e] text-white border-[#001248]",
+    secondary: "bg-gray-600 hover:bg-gray-700 text-white border-gray-600",
+    outline:
+      "bg-transparent hover:bg-[#001248] text-[#001248] hover:text-white border-2 border-[#001248]",
+    success: "bg-green-600 hover:bg-green-700 text-white border-green-600",
+    warning: "bg-yellow-600 hover:bg-yellow-700 text-white border-yellow-600",
+    danger: "bg-red-600 hover:bg-red-700 text-white border-red-600",
+    info: "bg-cyan-600 hover:bg-cyan-700 text-white border-cyan-600",
   };
-  
+
   return classes[validatedVariant] || classes.primary;
 };
 
@@ -54,17 +65,17 @@ export const getVariantClasses = (variant) => {
  */
 export const getVariantDisplayName = (variant) => {
   const validatedVariant = validateVariant(variant);
-  
+
   const displayNames = {
-    primary: 'Primary (Dark Navy)',
-    secondary: 'Secondary (Gray)',
-    outline: 'Outline (Transparent)',
-    success: 'Success (Green)',
-    warning: 'Warning (Yellow)',
-    danger: 'Danger (Red)',
-    info: 'Info (Cyan)'
+    primary: "Primary (Dark Navy)",
+    secondary: "Secondary (Gray)",
+    outline: "Outline (Transparent)",
+    success: "Success (Green)",
+    warning: "Warning (Yellow)",
+    danger: "Danger (Red)",
+    info: "Info (Cyan)",
   };
-  
+
   return displayNames[validatedVariant] || displayNames.primary;
 };
 
@@ -74,13 +85,13 @@ export const getVariantDisplayName = (variant) => {
  */
 export const getAvailableVariants = () => {
   return [
-    { value: 'primary', label: 'Primary (Dark Navy)' },
-    { value: 'secondary', label: 'Secondary (Gray)' },
-    { value: 'outline', label: 'Outline (Transparent)' },
-    { value: 'success', label: 'Success (Green)' },
-    { value: 'warning', label: 'Warning (Yellow)' },
-    { value: 'danger', label: 'Danger (Red)' },
-    { value: 'info', label: 'Info (Cyan)' }
+    { value: "primary", label: "Primary (Dark Navy)" },
+    { value: "secondary", label: "Secondary (Gray)" },
+    { value: "outline", label: "Outline (Transparent)" },
+    { value: "success", label: "Success (Green)" },
+    { value: "warning", label: "Warning (Yellow)" },
+    { value: "danger", label: "Danger (Red)" },
+    { value: "info", label: "Info (Cyan)" },
   ];
 };
 
@@ -89,41 +100,42 @@ export const getAvailableVariants = () => {
  * @returns {Array} - Array of variant objects with value, label, and classes
  */
 export const variantOptions = [
-  { 
-    value: 'primary', 
-    label: 'Primary (Dark Navy)', 
-    classes: 'bg-[#001248] hover:bg-[#000a2e] text-white border-[#001248]' 
+  {
+    value: "primary",
+    label: "Primary (Dark Navy)",
+    classes: "bg-[#001248] hover:bg-[#000a2e] text-white border-[#001248]",
   },
-  { 
-    value: 'secondary', 
-    label: 'Secondary (Gray)', 
-    classes: 'bg-gray-600 hover:bg-gray-700 text-white border-gray-600' 
+  {
+    value: "secondary",
+    label: "Secondary (Gray)",
+    classes: "bg-gray-600 hover:bg-gray-700 text-white border-gray-600",
   },
-  { 
-    value: 'outline', 
-    label: 'Outline (Transparent)', 
-    classes: 'bg-transparent hover:bg-[#001248] text-[#001248] hover:text-white border-2 border-[#001248]' 
+  {
+    value: "outline",
+    label: "Outline (Transparent)",
+    classes:
+      "bg-transparent hover:bg-[#001248] text-[#001248] hover:text-white border-2 border-[#001248]",
   },
-  { 
-    value: 'success', 
-    label: 'Success (Green)', 
-    classes: 'bg-green-600 hover:bg-green-700 text-white border-green-600' 
+  {
+    value: "success",
+    label: "Success (Green)",
+    classes: "bg-green-600 hover:bg-green-700 text-white border-green-600",
   },
-  { 
-    value: 'warning', 
-    label: 'Warning (Yellow)', 
-    classes: 'bg-yellow-600 hover:bg-yellow-700 text-white border-yellow-600' 
+  {
+    value: "warning",
+    label: "Warning (Yellow)",
+    classes: "bg-yellow-600 hover:bg-yellow-700 text-white border-yellow-600",
   },
-  { 
-    value: 'danger', 
-    label: 'Danger (Red)', 
-    classes: 'bg-red-600 hover:bg-red-700 text-white border-red-600' 
+  {
+    value: "danger",
+    label: "Danger (Red)",
+    classes: "bg-red-600 hover:bg-red-700 text-white border-red-600",
   },
-  { 
-    value: 'info', 
-    label: 'Info (Cyan)', 
-    classes: 'bg-cyan-600 hover:bg-cyan-700 text-white border-cyan-600' 
-  }
+  {
+    value: "info",
+    label: "Info (Cyan)",
+    classes: "bg-cyan-600 hover:bg-cyan-700 text-white border-cyan-600",
+  },
 ];
 
 /**
@@ -132,24 +144,26 @@ export const variantOptions = [
  * @returns {Object} - Fixed CTA button data
  */
 export const fixCTAVariant = (ctaData) => {
-  if (!ctaData || typeof ctaData !== 'object') {
-    console.warn(' [VARIANT FIX] Invalid CTA data:', ctaData);
-    return { variant: 'primary' };
+  if (!ctaData || typeof ctaData !== "object") {
+    console.warn(" [VARIANT FIX] Invalid CTA data:", ctaData);
+    return { variant: "primary" };
   }
-  
+
   const fixedData = { ...ctaData };
-  
+
   if (fixedData.variant) {
     const originalVariant = fixedData.variant;
     fixedData.variant = validateVariant(fixedData.variant);
-    
+
     if (originalVariant !== fixedData.variant) {
-      console.warn(` [VARIANT FIX] Fixed variant "${originalVariant}" → "${fixedData.variant}"`);
+      console.warn(
+        ` [VARIANT FIX] Fixed variant "${originalVariant}" → "${fixedData.variant}"`
+      );
     }
   } else {
-    fixedData.variant = 'primary';
+    fixedData.variant = "primary";
   }
-  
+
   return fixedData;
 };
 
@@ -159,17 +173,17 @@ export const fixCTAVariant = (ctaData) => {
  * @returns {Object} - Data with fixed CTA variants
  */
 export const fixAllCTAVariants = (data) => {
-  if (!data || typeof data !== 'object') {
+  if (!data || typeof data !== "object") {
     return data;
   }
-  
+
   const fixedData = { ...data };
-  
+
   if (fixedData.ctaButton) {
     fixedData.ctaButton = fixCTAVariant(fixedData.ctaButton);
   }
-  
-  if (fixedData.cta && typeof fixedData.cta === 'object') {
+
+  if (fixedData.cta && typeof fixedData.cta === "object") {
     if (fixedData.cta.ctaButton) {
       fixedData.cta.ctaButton = fixCTAVariant(fixedData.cta.ctaButton);
     }
@@ -177,17 +191,19 @@ export const fixAllCTAVariants = (data) => {
       fixedData.cta.variant = validateVariant(fixedData.cta.variant);
     }
   }
-  
-  if (fixedData.hero && typeof fixedData.hero === 'object') {
+
+  if (fixedData.hero && typeof fixedData.hero === "object") {
     if (fixedData.hero.ctaButton) {
       fixedData.hero.ctaButton = fixCTAVariant(fixedData.hero.ctaButton);
     }
   }
-  
+
   if (fixedData.data && fixedData.data.hero && fixedData.data.hero.ctaButton) {
-    fixedData.data.hero.ctaButton = fixCTAVariant(fixedData.data.hero.ctaButton);
+    fixedData.data.hero.ctaButton = fixCTAVariant(
+      fixedData.data.hero.ctaButton
+    );
   }
-  
+
   return fixedData;
 };
 
@@ -198,38 +214,38 @@ export const fixAllCTAVariants = (data) => {
 export const getRoutesByCategory = () => {
   return {
     main: [
-      { value: '/', label: 'Home' },
-      { value: '/about', label: 'About' },
-      { value: null, label: 'Contact (Modal)' },
-      { value: '/services', label: 'Services' },
-      { value: '/industries', label: 'Industries' }
+      { value: "/", label: "Home" },
+      { value: "/about", label: "About" },
+      { value: null, label: "Contact (Modal)" },
+      { value: "/services", label: "Services" },
+      { value: "/industries", label: "Industries" },
     ],
     solutions: [
-      { value: '/payroll', label: 'Payroll Solutions' },
-      { value: '/hr', label: 'HR Solutions' },
-      { value: '/accounting', label: 'Accounting Solutions' }
+      { value: "/payroll", label: "Payroll Solutions" },
+      { value: "/hr", label: "HR Solutions" },
+      { value: "/accounting", label: "Accounting Solutions" },
     ],
     services: [
-      { value: '/services/implementation', label: 'Implementation' },
-      { value: '/services/integration', label: 'Integration' },
-      { value: '/services/customization', label: 'Customization' },
-      { value: '/services/training', label: 'Training' }
+      { value: "/services/implementation", label: "Implementation" },
+      { value: "/services/integration", label: "Integration" },
+      { value: "/services/customization", label: "Customization" },
+      { value: "/services/training", label: "Training" },
     ],
     industries: [
-      { value: '/industries/manufacturing', label: 'Manufacturing' },
-      { value: '/industries/retail', label: 'Retail' },
-      { value: '/industries/healthcare', label: 'Healthcare' }
+      { value: "/industries/manufacturing", label: "Manufacturing" },
+      { value: "/industries/retail", label: "Retail" },
+      { value: "/industries/healthcare", label: "Healthcare" },
     ],
     business: [
-      { value: '/pricing', label: 'Pricing' },
-      { value: '/demo', label: 'Request Demo' },
-      { value: '/quote', label: 'Get Quote' }
+      { value: "/pricing", label: "Pricing" },
+      { value: "/demo", label: "Request Demo" },
+      { value: "/quote", label: "Get Quote" },
     ],
     content: [
-      { value: '/blog', label: 'Blog' },
-      { value: '/resources', label: 'Resources' },
-      { value: '/support', label: 'Support' }
-    ]
+      { value: "/blog", label: "Blog" },
+      { value: "/resources", label: "Resources" },
+      { value: "/support", label: "Support" },
+    ],
   };
 };
 
@@ -239,52 +255,52 @@ export const getRoutesByCategory = () => {
  * @returns {Object} - Validation result with type and info
  */
 export const validateUrl = (url) => {
-  if (!url || typeof url !== 'string') {
+  if (!url || typeof url !== "string") {
     return {
       isValid: false,
-      type: 'invalid',
-      info: 'Invalid URL format'
+      type: "invalid",
+      info: "Invalid URL format",
     };
   }
 
   const trimmedUrl = url.trim();
-  
-  if (trimmedUrl.startsWith('/')) {
+
+  if (trimmedUrl.startsWith("/")) {
     return {
       isValid: true,
-      type: 'internal',
-      info: 'Internal route'
+      type: "internal",
+      info: "Internal route",
     };
   }
-  
-  if (trimmedUrl.startsWith('http://') || trimmedUrl.startsWith('https://')) {
+
+  if (trimmedUrl.startsWith("http://") || trimmedUrl.startsWith("https://")) {
     return {
       isValid: true,
-      type: 'external',
-      info: 'External URL'
+      type: "external",
+      info: "External URL",
     };
   }
-  
-  if (trimmedUrl.startsWith('mailto:')) {
+
+  if (trimmedUrl.startsWith("mailto:")) {
     return {
       isValid: true,
-      type: 'email',
-      info: 'Email link'
+      type: "email",
+      info: "Email link",
     };
   }
-  
-  if (trimmedUrl.startsWith('tel:')) {
+
+  if (trimmedUrl.startsWith("tel:")) {
     return {
       isValid: true,
-      type: 'tel',
-      info: 'Phone link'
+      type: "tel",
+      info: "Phone link",
     };
   }
-  
+
   return {
     isValid: false,
-    type: 'relative',
-    info: 'Invalid URL format'
+    type: "relative",
+    info: "Invalid URL format",
   };
 };
 
@@ -297,5 +313,5 @@ export default {
   fixCTAVariant,
   fixAllCTAVariants,
   getRoutesByCategory,
-  validateUrl
+  validateUrl,
 };

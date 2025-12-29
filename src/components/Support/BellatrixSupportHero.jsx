@@ -115,7 +115,7 @@ const BellatrixSupportHero = () => {
                 modalConfig={{
                   title: "NetSuite Support Request",
                   subtitle: "Let's discuss your support needs",
-                  icon: ""
+                  icon: "",
                 }}
               >
                 Talk to an Expert

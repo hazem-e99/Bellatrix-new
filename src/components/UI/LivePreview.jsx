@@ -1290,11 +1290,21 @@ const ComponentPreview = ({
 
           const transformedImplementationHeroData = {
             data: {
-              backgroundVideo: componentData.backgroundVideo || "/Videos/HomeHeroSectionV.mp4",
-              titleParts: componentData.titleParts || componentData.title?.split(" ") || ["Implementation", "Services"],
-              description: componentData.description || "We don't just implement solutions—we craft digital experiences that transform the way you do business",
+              backgroundVideo:
+                componentData.backgroundVideo || "/Videos/HomeHeroSectionV.mp4",
+              titleParts: componentData.titleParts ||
+                componentData.title?.split(" ") || [
+                  "Implementation",
+                  "Services",
+                ],
+              description:
+                componentData.description ||
+                "We don't just implement solutions—we craft digital experiences that transform the way you do business",
               ctaButton: {
-                text: componentData.ctaButton?.text || componentData.ctaText || "Start Implementation",
+                text:
+                  componentData.ctaButton?.text ||
+                  componentData.ctaText ||
+                  "Start Implementation",
                 link: null,
                 variant: "primary",
               },
@@ -1526,8 +1536,12 @@ const ComponentPreview = ({
 
           const transformedData = {
             title: componentData.title || "Implementation Process",
-            subtitle: componentData.subtitle || "A proven methodology for seamless business transformation",
-            image: componentData.image || "/Videos/implementation/implementProcess.jpg",
+            subtitle:
+              componentData.subtitle ||
+              "A proven methodology for seamless business transformation",
+            image:
+              componentData.image ||
+              "/Videos/implementation/implementProcess.jpg",
             steps: componentData.steps || [],
             ctaButton: componentData.ctaButton || "Start Your Journey",
           };
@@ -1648,7 +1662,9 @@ const ComponentPreview = ({
 
           const transformedData = {
             title: componentData.title || "Implementation Pricing",
-            subtitle: componentData.subtitle || "Choose the perfect implementation plan that fits your business needs and budget",
+            subtitle:
+              componentData.subtitle ||
+              "Choose the perfect implementation plan that fits your business needs and budget",
             plans: normalizedPlans,
             additionalInfo: componentData.additionalInfo || {},
           };

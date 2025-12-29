@@ -42,13 +42,24 @@ const PricingSection = (props) => {
 
   // PRIORITIZE direct props > data prop > defaultData
   const displayData = {
-    title: propTitle || propsData?.title || defaultData?.title || "Implementation Pricing",
-    subtitle: propSubtitle || propsData?.subtitle || defaultData?.subtitle || "Choose the perfect implementation plan that fits your business needs and budget",
+    title:
+      propTitle ||
+      propsData?.title ||
+      defaultData?.title ||
+      "Implementation Pricing",
+    subtitle:
+      propSubtitle ||
+      propsData?.subtitle ||
+      defaultData?.subtitle ||
+      "Choose the perfect implementation plan that fits your business needs and budget",
     plans: propPlans || propsData?.plans || defaultData?.plans || [],
-    additionalInfo: propAdditionalInfo || propsData?.additionalInfo || defaultData?.additionalInfo || {
-      note: "All plans include free consultation and project scoping",
-      contactText: "Need a custom solution? Contact our team for personalized pricing",
-    },
+    additionalInfo: propAdditionalInfo ||
+      propsData?.additionalInfo ||
+      defaultData?.additionalInfo || {
+        note: "All plans include free consultation and project scoping",
+        contactText:
+          "Need a custom solution? Contact our team for personalized pricing",
+      },
   };
 
   // Debug logging for real-time updates
@@ -146,7 +157,7 @@ const PricingSection = (props) => {
                   modalConfig={{
                     title: `${plan.name} Implementation Plan`,
                     subtitle: `Interested in the ${plan.name} plan? Let's discuss your implementation needs and create a customized roadmap`,
-                    icon: ""
+                    icon: "",
                   }}
                 >
                   {plan.ctaText}

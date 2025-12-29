@@ -39,11 +39,27 @@ const ProcessSection = (props) => {
 
   // PRIORITIZE direct props > data prop > defaultData
   const displayData = {
-    title: propTitle || propsData?.title || defaultData?.title || "Our Implementation Process",
-    subtitle: propSubtitle || propsData?.subtitle || defaultData?.subtitle || "A proven methodology for seamless business transformation",
-    image: propImage || propsData?.image || defaultData?.image || "/Videos/implementation/implementProcess.jpg",
+    title:
+      propTitle ||
+      propsData?.title ||
+      defaultData?.title ||
+      "Our Implementation Process",
+    subtitle:
+      propSubtitle ||
+      propsData?.subtitle ||
+      defaultData?.subtitle ||
+      "A proven methodology for seamless business transformation",
+    image:
+      propImage ||
+      propsData?.image ||
+      defaultData?.image ||
+      "/Videos/implementation/implementProcess.jpg",
     steps: propSteps || propsData?.steps || defaultData?.steps || [],
-    ctaButton: propCtaButton || propsData?.ctaButton || defaultData?.ctaButton || "Start Your Journey",
+    ctaButton:
+      propCtaButton ||
+      propsData?.ctaButton ||
+      defaultData?.ctaButton ||
+      "Start Your Journey",
   };
 
   // Debug logging for real-time updates
@@ -52,7 +68,7 @@ const ProcessSection = (props) => {
     propsData,
     defaultData,
     finalData: displayData,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 
   return (
@@ -234,8 +250,9 @@ const ProcessSection = (props) => {
                   className="w-full rounded-lg shadow-lg hover:shadow-xl"
                   modalConfig={{
                     title: "Start Your Implementation Journey",
-                    subtitle: "Let's discuss your NetSuite implementation needs and create a customized roadmap for your success",
-                    icon: ""
+                    subtitle:
+                      "Let's discuss your NetSuite implementation needs and create a customized roadmap for your success",
+                    icon: "",
                   }}
                 >
                   {displayData.ctaButton}
