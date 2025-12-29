@@ -6,7 +6,6 @@ import {
 
   SortableContext,
 
-  verticalListSortingStrategy,
 
 } from "@dnd-kit/sortable";
 
@@ -74,15 +73,10 @@ import { getGeneralComponentSchema } from "../../data/generalComponentSchemas";
 
 import {
 
-  generateDynamicSchema,
-
-  // ...existing code...
 
 } from "../../utils/dynamicSchemaGenerator";
 
 import pagesAPI from "../../lib/pagesAPI";
-
-import api from "../../lib/api";
 
 import {
 
@@ -816,7 +810,7 @@ const EnhancedPageBuilder = () => {
 
             const category = categorizeComponent(componentType, path);
 
-            const icon = getComponentIcon(componentType, category);
+            getComponentIcon(componentType, category);
 
 
 
@@ -7383,7 +7377,7 @@ const EnhancedPageBuilder = () => {
 
           : defaultData[component.componentType] || {};
 
-      } catch (parseError) {
+      } catch {
 
         const defaultData = generateDefaultDataFromJSON();
 

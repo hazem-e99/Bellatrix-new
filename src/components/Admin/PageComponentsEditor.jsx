@@ -68,21 +68,10 @@ import {
 
   verticalListSortingStrategy,
 
+
 } from "@dnd-kit/sortable";
 
-import { useSortable } from "@dnd-kit/sortable";
-
 import { CSS } from "@dnd-kit/utilities";
-
-import {
-
-  parseJsonToFormFields,
-
-  generateFormFieldsFromJson,
-
-  updateJsonFromFormFields,
-
-} from "../../utils/jsonFormUtils";
 
 import { categorizeComponent, getComponentIcon } from "../../utils/componentHelpers";
 

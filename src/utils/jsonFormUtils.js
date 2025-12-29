@@ -33,7 +33,7 @@ const getMediaType = (key) => {
   return 'all'; // For generic 'media', 'url', 'src', 'file', 'asset'
 };
 
-export const generateFormFieldsFromJson = (jsonData, onChange) => {
+export const generateFormFieldsFromJson = (jsonData) => {
   const fields = [];
   
   const renderField = (key, value, path = "") => {
