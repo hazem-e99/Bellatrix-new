@@ -447,147 +447,98 @@ const Services = ({
                   >
 
                     <article>
-
-                      <div
-
-                        className={`w-14 h-14 bg-gradient-to-br ${
-
-                          index === 0
-
-                            ? "from-blue-400 to-blue-600"
-
-                            : index === 1
-
-                            ? "from-blue-500 to-blue-700"
-
-                            : index === 2
-
-                            ? "from-blue-600 to-blue-800"
-
-                            : index === 3
-
-                            ? "from-blue-800 to-blue-900"
-
-                            : "from-blue-700 to-blue-900"
-
-                        } rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-
-                      >
-
-                        <div className="text-white">
-
-                          {iconMap[service.icon] || (
-
-                            <SettingsOutlined fontSize="large" />
-
-                          )}
-
+                      {/* Show image if available, otherwise show icon */}
+                      {service.image ? (
+                        <div className="w-full h-32 mb-3 rounded-lg overflow-hidden">
+                          <img 
+                            src={service.image} 
+                            alt={service.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          />
                         </div>
-
-                      </div>
-
+                      ) : (
+                        <div
+                          className={`w-14 h-14 bg-gradient-to-br ${
+                            index === 0
+                              ? "from-blue-400 to-blue-600"
+                              : index === 1
+                              ? "from-blue-500 to-blue-700"
+                              : index === 2
+                              ? "from-blue-600 to-blue-800"
+                              : index === 3
+                              ? "from-blue-800 to-blue-900"
+                              : "from-blue-700 to-blue-900"
+                          } rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                        >
+                          <div className="text-white">
+                            {iconMap[service.icon] || (
+                              <SettingsOutlined fontSize="large" />
+                            )}
+                          </div>
+                        </div>
+                      )}
                       <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-
                         {service.title}
-
                       </h3>
-
                       <p className="text-sm text-gray-600 mb-2">
-
                         {service.description}
-
                       </p>
-
                       <div className="mt-3">
-
                         <span className="text-s text-blue-600 font-medium">
-
                           Click to learn more
-
                         </span>
-
                       </div>
-
                     </article>
-
                   </Link>
-
                 ) : (
-
                   <div
-
                     key={service.title}
-
                     onClick={() => openServiceModal(service)}
-
                     className="text-center p-5 bg-white rounded-xl border-2 border-blue-100 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer group transform hover:scale-105"
-
                   >
-
                     <article>
-
-                      <div
-
-                        className={`w-14 h-14 bg-gradient-to-br ${
-
-                          index === 0
-
-                            ? "from-blue-400 to-blue-600"
-
-                            : index === 1
-
-                            ? "from-blue-500 to-blue-700"
-
-                            : index === 2
-
-                            ? "from-blue-600 to-blue-800"
-
-                            : index === 3
-
-                            ? "from-blue-800 to-blue-900"
-
-                            : "from-blue-700 to-blue-900"
-
-                        } rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-
-                      >
-
-                        <div className="text-white">
-
-                          {iconMap[service.icon] || (
-
-                            <SettingsOutlined fontSize="large" />
-
-                          )}
-
+                      {/* Show image if available, otherwise show icon */}
+                      {service.image ? (
+                        <div className="w-full h-32 mb-3 rounded-lg overflow-hidden">
+                          <img 
+                            src={service.image} 
+                            alt={service.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          />
                         </div>
-
-                      </div>
-
+                      ) : (
+                        <div
+                          className={`w-14 h-14 bg-gradient-to-br ${
+                            index === 0
+                              ? "from-blue-400 to-blue-600"
+                              : index === 1
+                              ? "from-blue-500 to-blue-700"
+                              : index === 2
+                              ? "from-blue-600 to-blue-800"
+                              : index === 3
+                              ? "from-blue-800 to-blue-900"
+                              : "from-blue-700 to-blue-900"
+                          } rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                        >
+                          <div className="text-white">
+                            {iconMap[service.icon] || (
+                              <SettingsOutlined fontSize="large" />
+                            )}
+                          </div>
+                        </div>
+                      )}
                       <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-
                         {service.title}
-
                       </h3>
-
                       <p className="text-sm text-gray-600 mb-2">
-
                         {service.description}
-
                       </p>
-
                       <div className="mt-3">
-
                         <span className="text-s text-blue-600 font-medium">
-
                           Click to learn more
-
                         </span>
-
                       </div>
-
                     </article>
-
                   </div>
 
                 )

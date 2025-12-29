@@ -113,8 +113,27 @@ const ComponentFormRenderer = ({
               const currentData = component.contentJson
                 ? JSON.parse(component.contentJson)
                 : {};
-              const updated = { ...currentData, [field]: value };
-              onUpdate(index, "contentJson", JSON.stringify(updated, null, 2));
+              
+              // Handle nested paths like "slides.0.image" or "ctaButton.text"
+              const pathParts = field.split(".");
+              if (pathParts.length === 1) {
+                // Simple field
+                const updated = { ...currentData, [field]: value };
+                onUpdate(index, "contentJson", JSON.stringify(updated, null, 2));
+              } else {
+                // Nested path - update deep object
+                const updated = JSON.parse(JSON.stringify(currentData)); // Deep clone
+                let current = updated;
+                for (let i = 0; i < pathParts.length - 1; i++) {
+                  const key = pathParts[i];
+                  if (!current[key]) {
+                    current[key] = isNaN(pathParts[i + 1]) ? {} : [];
+                  }
+                  current = current[key];
+                }
+                current[pathParts[pathParts.length - 1]] = value;
+                onUpdate(index, "contentJson", JSON.stringify(updated, null, 2));
+              }
             }}
             componentType={component.componentType}
           />
