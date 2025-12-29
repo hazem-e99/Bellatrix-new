@@ -413,6 +413,107 @@
 }
 
 /* ==================================================
+   ADMIN DASHBOARD THEME ISOLATION
+   Prevents user theme changes from affecting admin area
+   ================================================== */
+[data-dashboard="true"],
+.admin-layout {
+  /* Reset to default blue theme colors regardless of user theme */
+  --color-primary: #2563eb !important; /* blue-600 */
+  --color-primary-light: #3b82f6 !important; /* blue-500 */
+  --color-primary-dark: #1d4ed8 !important; /* blue-700 */
+  --color-primary-bg: #eff6ff !important; /* blue-50 */
+
+  /* Blue palette for admin */
+  --tw-blue-50: #eff6ff !important;
+  --tw-blue-100: #dbeafe !important;
+  --tw-blue-200: #bfdbfe !important;
+  --tw-blue-300: #93c5fd !important;
+  --tw-blue-400: #60a5fa !important;
+  --tw-blue-500: #3b82f6 !important;
+  --tw-blue-600: #2563eb !important;
+  --tw-blue-700: #1d4ed8 !important;
+  --tw-blue-800: #1e40af !important;
+  --tw-blue-900: #1e3a8a !important;
+
+  --color-blue-50: #eff6ff !important;
+  --color-blue-100: #dbeafe !important;
+  --color-blue-200: #bfdbfe !important;
+  --color-blue-300: #93c5fd !important;
+  --color-blue-400: #60a5fa !important;
+  --color-blue-500: #3b82f6 !important;
+  --color-blue-600: #2563eb !important;
+  --color-blue-700: #1d4ed8 !important;
+  --color-blue-800: #1e40af !important;
+  --color-blue-900: #1e3a8a !important;
+
+  /* Brand colors for admin */
+  --color-brand-dark: #001038 !important;
+  --color-brand-midnight: #191970 !important;
+  --color-brand-navy: #001245 !important;
+  --color-brand-deep: #000e30 !important;
+  --color-brand-variant: #001248 !important;
+  --color-brand-accent: #001458 !important;
+  --color-brand-dark-navy: #001038 !important;
+  --color-brand-primary: #001038 !important;
+  --color-brand-secondary: #191970 !important;
+
+  /* Text colors for admin */
+  --color-text-inverse: #ffffff !important;
+  --color-ww-100: rgba(255, 255, 255, 0.7) !important;
+  --color-text-muted: #6b7280 !important;
+  --color-text-light: #9ca3af !important;
+
+  /* White overlays for admin */
+  --color-white-5: rgba(255, 255, 255, 0.05) !important;
+  --color-white-10: rgba(255, 255, 255, 0.1) !important;
+  --color-white-20: rgba(255, 255, 255, 0.2) !important;
+  --color-white-30: rgba(255, 255, 255, 0.3) !important;
+
+  /* Interactive states for admin */
+  --color-hover: #1d4ed8 !important;
+  --color-focus: #3b82f6 !important;
+  --color-active: #1e40af !important;
+
+  /* Shadow colors for admin */
+  --color-shadow: #3b82f6 !important;
+  --shadow-blue-500: #3b82f6 !important;
+
+  /* Status colors for admin */
+  --tw-green-400: #4ade80 !important;
+  --tw-green-500: #22c55e !important;
+  --tw-green-600: #16a34a !important;
+  --tw-green-700: #15803d !important;
+  --tw-red-400: #f87171 !important;
+  --tw-red-500: #ef4444 !important;
+  --tw-red-600: #dc2626 !important;
+  --tw-purple-400: #c084fc !important;
+  --tw-purple-500: #a855f7 !important;
+  --tw-yellow-400: #facc15 !important;
+  --tw-yellow-500: #eab308 !important;
+}
+
+/* Disable theme transitions in admin area */
+[data-dashboard="true"] *,
+[data-dashboard="true"] *::before,
+[data-dashboard="true"] *::after,
+.admin-layout *,
+.admin-layout *::before,
+.admin-layout *::after {
+  transition: none !important;
+}
+
+/* Re-enable specific transitions for admin UI interactions */
+[data-dashboard="true"] button,
+[data-dashboard="true"] a,
+[data-dashboard="true"] .transition-all,
+.admin-layout button,
+.admin-layout a,
+.admin-layout .transition-all {
+  transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease !important;
+}
+
+/* ==================================================
    USAGE EXAMPLES & THEME SWITCHING
    ================================================== */
 /*

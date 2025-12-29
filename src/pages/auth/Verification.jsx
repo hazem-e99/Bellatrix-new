@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth.jsx';
 import LoadingSpinner from '../../components/UI/LoadingSpinner';
+import { motion } from 'framer-motion';
+import { CheckBadgeIcon, EnvelopeIcon, ArrowRightIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 
 const Verification = () => {
   const [formData, setFormData] = useState({
@@ -17,84 +19,52 @@ const Verification = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
 
-  // Get email from location state or form
   const emailFromState = location.state?.email || '';
 
   useEffect(() => {
     const emailFromQuery = searchParams.get('email');
     const codeFromQuery = searchParams.get('code');
-
     const emailToUse = emailFromState || emailFromQuery || '';
     const codeToUse = codeFromQuery || '';
-
     if (emailToUse || codeToUse) {
-      setFormData(prev => ({
-        ...prev,
-        email: emailToUse,
-        code: codeToUse,
-      }));
+      setFormData(prev => ({ ...prev, email: emailToUse, code: codeToUse }));
     }
   }, [emailFromState, searchParams]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-    
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: '',
-      }));
-    }
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
   const validateForm = () => {
     const newErrors = {};
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-
-    if (!formData.code.trim()) {
-      newErrors.code = 'Verification code is required';
-    } else if (formData.code.length < 4) {
-      newErrors.code = 'Verification code must be at least 4 characters';
-    }
-
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email';
+    if (!formData.code.trim()) newErrors.code = 'Code is required';
+    else if (formData.code.length < 4) newErrors.code = 'Min 4 characters';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (!validateForm()) return;
-
     setIsSubmitting(true);
-    
     try {
       setServerError('');
       const result = await verify({
         email: formData.email.trim(),
         code: formData.code.trim(),
       });
-      
       if (result.success) {
-        navigate('/auth/login', { 
-          state: { message: 'Email verified successfully! You can now sign in.' } 
-        });
+        navigate('/auth/login', { state: { message: 'Email verified successfully! You can now sign in.' } });
       } else if (result.message) {
         setServerError(result.message);
       }
     } catch (error) {
       console.error('Verification error:', error);
-      const msg = error?.response?.data?.message || 'Verification failed. Please check the code and try again.';
+      const msg = error?.response?.data?.message || 'Verification failed. Please try again.';
       setServerError(msg);
     } finally {
       setIsSubmitting(false);
@@ -102,159 +72,197 @@ const Verification = () => {
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left Side - Logo Section (50%) */}
-      <div className="hidden lg:flex lg:w-1/2 bg-white relative overflow-hidden">
+    <div className="min-h-screen flex" style={{ backgroundColor: '#001038' }}>
+      {/* Left Side - Decorative */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden" style={{ backgroundColor: '#000e30' }}>
+        {/* Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
+        </div>
+        
         <div className="relative z-10 flex flex-col items-center justify-center w-full p-12">
-          <img 
-            src="/images/logoThree.png" 
-            alt="Bellatrix Logo" 
-            className="w-full h-auto object-contain"
-          />
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mb-8"
+          >
+            <img 
+              src="/images/logoOne.png" 
+              alt="Bellatrix Logo" 
+              className="w-72 h-72 object-contain drop-shadow-2xl brightness-0 invert"
+            />
+          </motion.div>
+          
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-3xl font-bold text-white text-center mb-3"
+          >
+            Verify Your Email
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-white/60 text-center text-lg mb-8"
+          >
+            Enter the code we sent you
+          </motion.p>
+          
+          {/* Info Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-6 max-w-sm"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                <EnvelopeIcon className="w-5 h-5 text-green-400" />
+              </div>
+              <h3 className="text-white font-semibold">Check Your Emails</h3>
+            </div>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3 text-white/70 text-sm">
+                <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+                📧 Verification code email
+              </li>
+              <li className="flex items-center gap-3 text-white/70 text-sm">
+                <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+                🔐 Temporary password email
+              </li>
+            </ul>
+          </motion.div>
         </div>
       </div>
 
-      {/* Right Side - Verification Form (50%) */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-50">
-        <div className="w-full max-w-md">
+      {/* Right Side - Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-12">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="w-full max-w-md"
+        >
           {/* Mobile Logo */}
-          <div className="lg:hidden text-center mb-8">
+          <div className="lg:hidden text-center mb-6">
             <img 
-              src="/images/logoThree.png" 
+              src="/images/logoOne.png" 
               alt="Bellatrix Logo" 
-              className="w-auto h-24 object-contain mx-auto mb-4"
+              className="w-40 h-40 object-contain mx-auto mb-4 brightness-0 invert"
             />
+            <h1 className="text-xl font-bold text-white">Verify Email</h1>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-        <div>
-          <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-green-100">
-            <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Verify Your Email
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Enter the verification code sent to your email
-          </p>
-        </div>
-        
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email Address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                value={formData.email}
-                onChange={handleChange}
-                disabled={!!emailFromState}
-                className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  errors.email ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm disabled:bg-gray-100 disabled:cursor-not-allowed`}
-                placeholder="Email address"
-              />
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor="code" className="block text-sm font-medium text-gray-700">
-                Verification Code
-              </label>
-              <input
-                id="code"
-                name="code"
-                type="text"
-                value={formData.code}
-                onChange={handleChange}
-                className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  errors.code ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-center text-lg tracking-widest`}
-                placeholder="Enter verification code"
-                maxLength="6"
-              />
-              {errors.code && (
-                <p className="mt-1 text-sm text-red-600">{errors.code}</p>
-              )}
-            </div>
-          </div>
-
-          <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-            <div className="flex">
-              <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                </svg>
+          {/* Form Card */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 p-8">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-green-500/20 border border-green-500/30 mb-4">
+                <CheckBadgeIcon className="w-6 h-6 text-green-400" />
               </div>
-              <div className="ml-3">
-                <h3 className="text-sm font-medium text-blue-800">
-                  Check Your Emails
-                </h3>
-                <div className="mt-2 text-sm text-blue-700 space-y-2">
-                  <p>
-                    📧 Enter the <strong>verification code</strong> from the first email.
-                  </p>
-                  <p>
-                    🔐 Keep the <strong>temporary password</strong> from the second email - you'll need it to log in!
-                  </p>
+              <h2 className="text-xl font-bold text-white">Verify Your Email</h2>
+              <p className="text-white/50 text-sm mt-1">Enter the verification code sent to your email</p>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Email Field */}
+              <div>
+                <label className="block text-sm font-medium text-white/80 mb-2">Email Address</label>
+                <input
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={!!emailFromState}
+                  className={`w-full px-4 py-3 bg-white/5 border ${
+                    errors.email ? 'border-red-500/50' : 'border-white/10'
+                  } rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed`}
+                  placeholder="Enter your email"
+                />
+                {errors.email && <p className="mt-2 text-xs text-red-400">{errors.email}</p>}
+              </div>
+
+              {/* Code Field */}
+              <div>
+                <label className="block text-sm font-medium text-white/80 mb-2">Verification Code</label>
+                <input
+                  name="code"
+                  type="text"
+                  value={formData.code}
+                  onChange={handleChange}
+                  maxLength="6"
+                  className={`w-full px-4 py-3 bg-white/5 border ${
+                    errors.code ? 'border-red-500/50' : 'border-white/10'
+                  } rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-transparent transition-all text-center text-lg tracking-widest font-mono`}
+                  placeholder="Enter code"
+                />
+                {errors.code && <p className="mt-2 text-xs text-red-400">{errors.code}</p>}
+              </div>
+
+              {/* Info Box */}
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4">
+                <div className="flex items-start gap-3">
+                  <InformationCircleIcon className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div className="text-sm text-blue-300">
+                    <p>Keep your <strong>temporary password</strong> from the second email - you'll need it to log in!</p>
+                  </div>
                 </div>
               </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-green-600/25"
+              >
+                {isSubmitting ? (
+                  <LoadingSpinner size="sm" />
+                ) : (
+                  <>
+                    <span>Verify Email</span>
+                    <ArrowRightIcon className="w-5 h-5" />
+                  </>
+                )}
+              </button>
+
+              {serverError && (
+                <p className="text-sm text-red-400 text-center">{serverError}</p>
+              )}
+            </form>
+
+            {/* Links */}
+            <div className="mt-6 pt-6 border-t border-white/10 text-center space-y-3">
+              <p className="text-white/50 text-sm">
+                Didn't receive the code?{' '}
+                <button
+                  type="button"
+                  className="text-blue-400 font-medium hover:text-blue-300 transition-colors"
+                  onClick={() => alert('Resend functionality can be implemented here')}
+                >
+                  Resend Code
+                </button>
+              </p>
+              <p className="text-white/50 text-sm">
+                Already verified?{' '}
+                <Link
+                  to="/auth/login"
+                  className="text-blue-400 font-medium hover:text-blue-300 transition-colors"
+                >
+                  Sign in
+                </Link>
+              </p>
             </div>
           </div>
 
-          <div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? (
-                <LoadingSpinner size="sm" />
-              ) : (
-                'Verify Email'
-              )}
-            </button>
-            {serverError && (
-              <p className="mt-3 text-sm text-red-600 text-center">{serverError}</p>
-            )}
+          {/* Footer */}
+          <div className="mt-6 text-center text-sm text-white/30">
+            © 2024 Bellatrix. All rights reserved.
           </div>
-
-          <div className="text-center space-y-2">
-            <p className="text-sm text-gray-600">
-              Didn't receive the code?{' '}
-              <button
-                type="button"
-                className="font-medium text-blue-600 hover:text-blue-500"
-                onClick={() => {
-                  // You can implement resend verification here
-                  alert('Resend functionality can be implemented here');
-                }}
-              >
-                Resend Code
-              </button>
-            </p>
-            
-            <p className="text-sm text-gray-600">
-              Already verified?{' '}
-              <Link
-                to="/auth/login"
-                className="font-medium text-blue-600 hover:text-blue-500"
-              >
-                Sign in
-              </Link>
-            </p>
-          </div>
-        </form>
-        </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

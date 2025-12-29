@@ -226,29 +226,29 @@ const SettingField = ({
   const isDynamicField = fieldDef.description?.startsWith("Dynamic setting:");
 
   return (
-    <div className="bg-gray-800 rounded-lg border border-gray-700 p-4 transition-all hover:shadow-md">
+    <div className="bg-[var(--color-white-5)] hover:bg-[var(--color-white-10)] rounded-xl border border-[var(--color-white-10)] hover:border-[var(--color-white-20)] p-4 transition-all duration-200">
       {/* Label and Description */}
-      <div className="mb-2">
-        <label className="block text-sm font-semibold text-gray-200 mb-1 flex items-center gap-2">
+      <div className="mb-3">
+        <label className="flex items-center gap-2 text-sm font-semibold text-[var(--color-text-inverse)] mb-1">
           {label}
           {fieldDef.validation?.required && (
-            <span className="text-red-500 ml-1">*</span>
+            <span className="text-[var(--tw-red-400)] ml-1">*</span>
           )}
           {isDynamicField && (
-            <span className="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30">
+            <span className="text-xs bg-[var(--tw-green-500)]/15 text-[var(--tw-green-400)] px-2 py-0.5 rounded-full border border-[var(--tw-green-500)]/30">
               Dynamic
             </span>
           )}
         </label>
         {description && (
-          <p className="text-xs text-gray-400 mb-2">
+          <p className="text-xs text-[var(--color-ww-100)] mb-2">
             {description}
           </p>
         )}
       </div>
 
       {/* Input Field */}
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-3">
         <div className="flex-1">
           {isTextarea ? (
             <textarea
@@ -257,13 +257,13 @@ const SettingField = ({
               placeholder={placeholder}
               rows={3}
               disabled={isSaving}
-              className={`w-full px-3 py-2 border rounded-md text-sm transition-colors bg-gray-700 text-white border-gray-600 placeholder-gray-400
+              className={`w-full px-4 py-2.5 border rounded-lg text-sm transition-all duration-200 bg-[var(--color-white-5)] text-[var(--color-text-inverse)] border-[var(--color-white-20)] placeholder-[var(--color-text-muted)]
                 ${
                   validationError
-                    ? "border-red-500 focus:ring-red-500 focus:border-red-500"
-                    : "focus:ring-blue-500 focus:border-blue-500"
+                    ? "border-[var(--tw-red-500)] focus:ring-[var(--tw-red-500)]/20 focus:border-[var(--tw-red-500)]"
+                    : "focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)]"
                 }
-                ${isDirty ? "bg-yellow-900/20" : ""}
+                ${isDirty ? "bg-[var(--tw-yellow-500)]/10 border-[var(--tw-yellow-500)]/30" : ""}
                 disabled:opacity-50 disabled:cursor-not-allowed
                 focus:outline-none focus:ring-2`}
             />
@@ -280,13 +280,13 @@ const SettingField = ({
               onChange={handleChange}
               placeholder={placeholder}
               disabled={isSaving}
-              className={`w-full px-3 py-2 border rounded-md text-sm transition-colors bg-gray-700 text-white border-gray-600 placeholder-gray-400
+              className={`w-full px-4 py-2.5 border rounded-lg text-sm transition-all duration-200 bg-[var(--color-white-5)] text-[var(--color-text-inverse)] border-[var(--color-white-20)] placeholder-[var(--color-text-muted)]
                 ${
                   validationError
-                    ? "border-red-500 focus:ring-red-500 focus:border-red-500"
-                    : "focus:ring-blue-500 focus:border-blue-500"
+                    ? "border-[var(--tw-red-500)] focus:ring-[var(--tw-red-500)]/20 focus:border-[var(--tw-red-500)]"
+                    : "focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)]"
                 }
-                ${isDirty ? "bg-yellow-900/20" : ""}
+                ${isDirty ? "bg-[var(--tw-yellow-500)]/10 border-[var(--tw-yellow-500)]/30" : ""}
                 disabled:opacity-50 disabled:cursor-not-allowed
                 focus:outline-none focus:ring-2`}
             />
@@ -294,23 +294,24 @@ const SettingField = ({
 
           {/* Validation Error */}
           {validationError && (
-            <div className="flex items-center gap-1 mt-1 text-xs text-red-400">
-              <XCircleIcon className="w-3 h-3" />
+            <div className="flex items-center gap-1 mt-2 text-xs text-[var(--tw-red-400)]">
+              <XCircleIcon className="w-3.5 h-3.5" />
               <span>{validationError}</span>
             </div>
           )}
 
           {/* Dirty Indicator */}
           {isDirty && !validationError && (
-            <div className="flex items-center gap-1 mt-1 text-xs text-yellow-400">
+            <div className="flex items-center gap-1 mt-2 text-xs text-[var(--tw-yellow-400)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--tw-yellow-400)]"></span>
               <span>Unsaved changes</span>
             </div>
           )}
 
           {/* Success Indicator */}
           {!isDirty && existingId && (
-            <div className="flex items-center gap-1 mt-1 text-xs text-green-400">
-              <CheckCircleSolid className="w-3 h-3" />
+            <div className="flex items-center gap-1 mt-2 text-xs text-[var(--tw-green-400)]">
+              <CheckCircleSolid className="w-3.5 h-3.5" />
               <span>Saved</span>
             </div>
           )}
@@ -322,7 +323,7 @@ const SettingField = ({
           <button
             onClick={handleSave}
             disabled={!isDirty || isSaving}
-            className="p-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="p-2.5 rounded-lg bg-[var(--color-primary)] text-[var(--color-text-inverse)] hover:bg-[var(--color-primary-dark)] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-sm hover:shadow-[var(--color-primary)]/25"
             title="Save"
           >
             {isSaving ? (

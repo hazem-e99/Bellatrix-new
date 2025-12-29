@@ -290,10 +290,10 @@ const FooterSettings = () => {
    */
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex items-center justify-center" data-dashboard="true">
+      <div className="admin-component flex items-center justify-center h-64" data-dashboard="true">
         <div className="text-center">
-          <ArrowPathIcon className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
-          <p className="text-gray-400 text-lg">Loading footer settings...</p>
+          <ArrowPathIcon className="w-12 h-12 text-[var(--color-primary)] animate-spin mx-auto mb-4" />
+          <p className="text-[var(--color-ww-100)] text-lg">Loading footer settings...</p>
         </div>
       </div>
     );
@@ -303,95 +303,91 @@ const FooterSettings = () => {
    * Main render
    */
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-8" data-dashboard="true">
-      <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"
-        >
-          <div>
-            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-2">
-              Footer Settings
-            </h1>
-            <p className="text-gray-400">
-              Manage footer content, contact information, and social media links
+    <div className="admin-component space-y-6 text-[var(--color-text-inverse)]" data-dashboard="true">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"
+      >
+        <div>
+          <h2 className="text-2xl font-bold text-[var(--color-text-inverse)] mb-1">
+            Footer Settings
+          </h2>
+          <p className="text-[var(--color-ww-100)]">
+            Manage footer content, contact information, and social media links
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Button
+            variant="ghost"
+            onClick={handleRefresh}
+            className="border border-[var(--color-white-20)] hover:border-[var(--color-white-30)] !text-white hover:!text-white hover:bg-[var(--color-white-10)]"
+          >
+            <ArrowPathIcon className="w-5 h-5" />
+          </Button>
+
+          <Button
+            variant="primary"
+            onClick={() => setIsAddModalOpen(true)}
+            className="bg-[var(--tw-green-600)] hover:bg-[var(--tw-green-700)] text-[var(--color-text-inverse)] shadow-lg hover:shadow-[var(--tw-green-500)]/25"
+          >
+            <PlusIcon className="w-5 h-5 mr-2" />
+            Add New
+          </Button>
+
+          <Button
+            onClick={handleBulkSave}
+            disabled={dirtyFields.size === 0 || isBulkSaving}
+            className="bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-[var(--color-text-inverse)] shadow-lg hover:shadow-[var(--color-primary)]/25 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isBulkSaving ? (
+              <>
+                <ArrowPathIcon className="w-5 h-5 mr-2 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <CheckCircleIcon className="w-5 h-5 mr-2" />
+                Save All ({dirtyFields.size})
+              </>
+            )}
+          </Button>
+        </div>
+      </motion.div>
+
+      {/* Tab Content */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Card className="bg-[var(--color-white-10)] border border-[var(--color-white-20)] shadow-lg">
+          <CardHeader className="border-b border-[var(--color-white-10)] pb-4">
+            <CardTitle className="text-[var(--color-text-inverse)] text-xl font-semibold">
+              Footer Field Settings
+            </CardTitle>
+            <p className="text-[var(--color-ww-100)] mt-2 text-sm">
+              Configure individual footer settings. Changes are tracked and
+              can be saved all at once.
             </p>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              onClick={handleRefresh}
-              className="border border-gray-600 hover:border-gray-500"
-            >
-              <ArrowPathIcon className="w-5 h-5" />
-            </Button>
-
-            <Button
-              variant="primary"
-              onClick={() => setIsAddModalOpen(true)}
-              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-            >
-              <PlusIcon className="w-5 h-5 mr-2" />
-              Add New
-            </Button>
-
-            <Button
-              onClick={handleBulkSave}
-              disabled={dirtyFields.size === 0 || isBulkSaving}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isBulkSaving ? (
-                <>
-                  <ArrowPathIcon className="w-5 h-5 mr-2 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                <>
-                  <CheckCircleIcon className="w-5 h-5 mr-2" />
-                  Save All ({dirtyFields.size})
-                </>
-              )}
-            </Button>
-          </div>
-        </motion.div>
-
-        {/* Tab Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Card className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border-white/20 shadow-xl">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl">
-                Footer Field Settings
-              </CardTitle>
-              <p className="text-gray-400 mt-2">
-                Configure individual footer settings. Changes are tracked and
-                can be saved all at once.
-              </p>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {footerSettings.map((item) => (
-                  <SettingField
-                    key={item.fieldDef.key}
-                    fieldDef={item.fieldDef}
-                    existingValue={item.existingValue}
-                    existingId={item.existingId}
-                    onSaveSuccess={handleFieldSaveSuccess}
-                  />
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        {/* Footer Info */}
-      </div>
+          </CardHeader>
+          <CardContent className="pt-6">
+            <div className="space-y-4">
+              {footerSettings.map((item) => (
+                <SettingField
+                  key={item.fieldDef.key}
+                  fieldDef={item.fieldDef}
+                  existingValue={item.existingValue}
+                  existingId={item.existingId}
+                  onSaveSuccess={handleFieldSaveSuccess}
+                />
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
 
       {/* Add Setting Modal */}
       <AddSettingModal
