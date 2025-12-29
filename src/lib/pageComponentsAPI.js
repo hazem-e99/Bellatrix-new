@@ -94,7 +94,7 @@ const pageComponentsAPI = {
       }
 
       const response = await api.put(
-        `/Pages/components/${componentId}`,
+        `/Components/${componentId}`,
         updatedComponentData
       );
       return response.data;
@@ -119,7 +119,7 @@ const pageComponentsAPI = {
    */
   async deleteComponent(componentId) {
     try {
-      await api.delete(`/Pages/components/${componentId}`);
+      await api.delete(`/Components/${componentId}`);
     } catch (error) {
       console.error(`Error deleting component ${componentId}:`, error);
       throw error;
@@ -134,7 +134,7 @@ const pageComponentsAPI = {
    */
   async reorderComponents(pageId, componentIds) {
     try {
-      const response = await api.post(`/Pages/${pageId}/components/reorder`, {
+      const response = await api.put(`/Pages/${pageId}/reorder-components`, {
         componentIds,
       });
       return response.data;

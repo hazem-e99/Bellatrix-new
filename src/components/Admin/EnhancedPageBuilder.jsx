@@ -924,7 +924,23 @@ const EnhancedPageBuilder = () => {
 
 
 
-        setAvailableComponents(allComponents);
+        // Filter out excluded components
+        const excludedComponentTypes = [
+          'Services',
+          'ServicesSection',
+          'IndustriesSection',
+          'TestimonialsSection',
+          'Testimonials', 
+          'Industries'
+        ];
+        
+        const filteredComponents = allComponents.filter(
+          (comp) => !excludedComponentTypes.includes(comp.componentType)
+        );
+
+        console.log(" [COMPONENT REGISTRY] After filtering excluded components:", filteredComponents.length);
+
+        setAvailableComponents(filteredComponents);
 
       } catch (e) {
 

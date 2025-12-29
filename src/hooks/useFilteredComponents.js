@@ -6,10 +6,13 @@ export const useFilteredComponents = (
   searchTerm
 ) => {
   const filteredComponents = useMemo(() => {
-    // Exclude 'services' category components
+    // Exclude 'services' category components and specific components
     const excludedCategories = ['services'];
+    const excludedComponentTypes = ['TestimonialsSection', 'IndustriesSection'];
+    
     let filtered = availableComponents.filter(
-      (comp) => !excludedCategories.includes(comp.category)
+      (comp) => !excludedCategories.includes(comp.category) && 
+                !excludedComponentTypes.includes(comp.componentType)
     );
 
     if (selectedCategory !== "all") {

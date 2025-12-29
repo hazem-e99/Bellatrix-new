@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useCTAModal } from '../contexts/CTAModalContext';
 import { shouldOpenContactModal, autoGenerateModalConfig } from '../utils/ctaUtils';
 
@@ -16,6 +17,7 @@ import { shouldOpenContactModal, autoGenerateModalConfig } from '../utils/ctaUti
  */
 const GlobalCTAInterceptor = ({ children }) => {
   const { openCTAModal } = useCTAModal();
+  const location = useLocation();
 
   useEffect(() => {
     /**
@@ -81,6 +83,16 @@ const GlobalCTAInterceptor = ({ children }) => {
       const ctaElement = findClickableParent(clickedElement);
       
       if (!ctaElement) return;
+
+      // Skip interception on Admin routes
+      if (location.pathname.toLowerCase().startsWith('/admin')) {
+        return;
+      }
+
+      // Skip interception if manually disabled
+      if (ctaElement.hasAttribute('data-no-cta-intercept') || ctaElement.closest('[data-no-cta-intercept]')) {
+        return;
+      }
       
       // Get the text content
       const buttonText = getElementText(ctaElement);
@@ -108,9 +120,10 @@ const GlobalCTAInterceptor = ({ children }) => {
     return () => {
       document.removeEventListener('click', handleGlobalClick, true);
     };
-  }, [openCTAModal]);
+  }, [openCTAModal, location]); // Re-bind if location changes
 
   return children;
 };
+
 
 export default GlobalCTAInterceptor;

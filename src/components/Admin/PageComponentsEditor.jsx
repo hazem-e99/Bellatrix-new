@@ -572,51 +572,96 @@ const PageComponentsEditor = ({
 
 
 
-  // Load components from API
   const loadComponents = async (forceRefresh = false) => {
+
     try {
+
       setLoading(true);
+
       console.log(
+
         " [LOAD COMPONENTS] Loading components, forceRefresh:",
+
         forceRefresh
+
       );
 
-      // Load components - force refresh is handled by the API layer
-      const comps = await pagesAPI.getPageComponents(pageId, forceRefresh);
+
+
+      // Add cache busting parameter
+
+      const cacheBuster = forceRefresh ? `?t=${Date.now()}` : "";
+
+      const comps = await pagesAPI.getPageComponents(pageId + cacheBuster);
+
+
 
       console.log(" [LOAD COMPONENTS] Raw API response:", comps);
 
+
+
       if (comps && Array.isArray(comps)) {
+
         console.log(" [LOAD COMPONENTS] Extracted components:", comps.length);
+
         console.log(
+
           " [LOAD COMPONENTS] Component IDs:",
+
           comps.map((c) => c.id)
+
         );
 
+
+
         // Check for duplicate orderIndex values
+
         const orderIndices = comps.map((c) => c.orderIndex);
+
         const hasDuplicates =
+
           orderIndices.length !== new Set(orderIndices).size;
 
+
+
         if (hasDuplicates) {
+
           console.warn(
+
             " [ORDER CONFLICT] Duplicate orderIndex detected, normalizing..."
+
           );
+
           const normalizedComponents = normalizeOrderIndices(comps);
+
           setComponents(normalizedComponents);
+
         } else {
+
           setComponents(comps);
+
         }
+
       } else {
+
         console.warn(" [LOAD COMPONENTS] No components found in response");
+
         setComponents([]);
+
       }
+
     } catch (error) {
+
       console.error(" [LOAD COMPONENTS ERROR]:", error);
+
       showToast("Error loading page components", "error");
+
     } finally {
+
       setLoading(false);
+
     }
+
   };
 
 

@@ -146,7 +146,8 @@ const AddComponentModal = ({
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
-                  key={category.id}
+                  key={category.id}
+                  type="button"
                   onClick={() => setSelectedCategory(category.id)}
                   className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                     selectedCategory === category.id
@@ -409,3 +410,4 @@ const AddComponentModal = ({
 
 export default AddComponentModal;
 
+
