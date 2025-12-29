@@ -3,7 +3,17 @@
  * Provides default JSON structures for different component types
  */
 
+import { generalComponentSchemas } from "../data/generalComponentSchemas";
+
 export const getBasicJsonForComponent = (componentType) => {
+  // First, check if we have a specific schema for this component type
+  const schema = generalComponentSchemas[componentType];
+  if (schema && schema.defaultData) {
+    console.log(`[getBasicJsonForComponent] Found schema for ${componentType}:`, schema.defaultData);
+    return { ...schema.defaultData };
+  }
+
+  // Fallback to pattern matching for components not in schemas
   const type = componentType.toLowerCase();
 
   if (type.includes("hero")) {

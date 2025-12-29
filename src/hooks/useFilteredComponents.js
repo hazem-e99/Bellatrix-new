@@ -6,7 +6,11 @@ export const useFilteredComponents = (
   searchTerm
 ) => {
   const filteredComponents = useMemo(() => {
-    let filtered = availableComponents;
+    // Exclude 'services' category components
+    const excludedCategories = ['services'];
+    let filtered = availableComponents.filter(
+      (comp) => !excludedCategories.includes(comp.category)
+    );
 
     if (selectedCategory !== "all") {
       filtered = filtered.filter((comp) => comp.category === selectedCategory);

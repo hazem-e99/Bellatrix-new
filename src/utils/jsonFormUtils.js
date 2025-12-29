@@ -9,6 +9,30 @@ export const parseJsonToFormFields = (jsonString) => {
   }
 };
 
+// Helper function to detect if a field should use MediaPicker
+const isMediaField = (key) => {
+  const mediaKeywords = [
+    'image', 'video', 'media', 'url', 'src', 'photo', 'picture', 
+    'background', 'thumbnail', 'poster', 'avatar', 'icon', 'logo',
+    'banner', 'cover', 'file', 'asset'
+  ];
+  const lowerKey = key.toLowerCase();
+  return mediaKeywords.some(keyword => lowerKey.includes(keyword));
+};
+
+// Helper function to detect the media type (image or video)
+const getMediaType = (key) => {
+  const lowerKey = key.toLowerCase();
+  if (lowerKey.includes('video')) return 'video';
+  if (lowerKey.includes('image') || lowerKey.includes('photo') || 
+      lowerKey.includes('picture') || lowerKey.includes('thumbnail') ||
+      lowerKey.includes('avatar') || lowerKey.includes('icon') ||
+      lowerKey.includes('logo') || lowerKey.includes('banner') ||
+      lowerKey.includes('cover') || lowerKey.includes('background') ||
+      lowerKey.includes('poster')) return 'image';
+  return 'all'; // For generic 'media', 'url', 'src', 'file', 'asset'
+};
+
 export const generateFormFieldsFromJson = (jsonData, onChange) => {
   const fields = [];
   
@@ -17,6 +41,17 @@ export const generateFormFieldsFromJson = (jsonData, onChange) => {
     const fieldId = fieldPath.replace(/\./g, "_");
     
     if (typeof value === "string") {
+      // Check if this is a media field
+      if (isMediaField(key)) {
+        return {
+          type: "media",
+          key: fieldId,
+          path: fieldPath,
+          label: key.replace(/([A-Z])/g, ' $1').trim(),
+          value: value,
+          mediaType: getMediaType(key) // 'image', 'video', or 'all'
+        };
+      }
       return {
         type: "string",
         key: fieldId,

@@ -7031,6 +7031,320 @@ generalComponentSchemas.AboutValues = {
   },
 };
 
+// ============================================
+// MISSING COMPONENT SCHEMAS - Added for Edit Modal
+// ============================================
+
+// AboutHeroSection - About page hero
+generalComponentSchemas.AboutHeroSection = {
+  componentName: "AboutHeroSection",
+  category: "hero",
+  icon: "",
+  displayName: "About Hero Section",
+  description: "Hero section for the About page with video background and stats",
+  schema: {
+    type: "object",
+    properties: {
+      title: { type: "string", label: "Title", formField: "text" },
+      subtitle: { type: "string", label: "Subtitle", formField: "text" },
+      description: { type: "string", label: "Description", formField: "textarea" },
+      backgroundVideo: { type: "string", label: "Background Video URL", formField: "media", mediaType: "video" },
+      stats: {
+        type: "array",
+        label: "Stats",
+        items: {
+          type: "object",
+          properties: {
+            value: { type: "string", label: "Value", formField: "text" },
+            label: { type: "string", label: "Label", formField: "text" },
+          },
+        },
+        formField: "array",
+      },
+    },
+  },
+  defaultData: {
+    title: "About Bellatrix",
+    subtitle: "Your trusted partner in digital transformation",
+    description: "We are a leading consultancy firm specializing in NetSuite implementations, business process optimization, and technology solutions that drive growth and efficiency.",
+    backgroundVideo: "/Videos/about-hero.mp4",
+    stats: [
+      { value: "500+", label: "Projects Completed" },
+      { value: "15+", label: "Years Experience" },
+      { value: "98%", label: "Client Satisfaction" },
+      { value: "200+", label: "Happy Clients" },
+    ],
+  },
+};
+
+// HeroSection - Main homepage hero with slides
+generalComponentSchemas.HeroSection = {
+  componentName: "HeroSection",
+  category: "hero",
+  icon: "",
+  displayName: "Hero Section",
+  description: "Main hero section with video slides for homepage",
+  schema: {
+    type: "object",
+    properties: {
+      slides: {
+        type: "array",
+        label: "Slides",
+        items: {
+          type: "object",
+          properties: {
+            title: { type: "string", label: "Title", formField: "text" },
+            subtitle: { type: "string", label: "Subtitle", formField: "text" },
+            description: { type: "string", label: "Description", formField: "textarea" },
+            video: { type: "string", label: "Video URL", formField: "media", mediaType: "video" },
+          },
+        },
+        formField: "array",
+      },
+      stats: {
+        type: "array",
+        label: "Stats",
+        items: {
+          type: "object",
+          properties: {
+            value: { type: "string", label: "Value", formField: "text" },
+            label: { type: "string", label: "Label", formField: "text" },
+          },
+        },
+        formField: "array",
+      },
+    },
+  },
+  defaultData: {
+    slides: [
+      {
+        title: "Strategic Business Transformation",
+        subtitle: "Oracle NetSuite Consultancy",
+        description: "Streamline operations and drive growth with our comprehensive NetSuite solutions.",
+        video: "/Videos/implementation/homepage_hero.mp4",
+      },
+    ],
+    stats: [],
+  },
+};
+
+// TrainingHeroSection - Training service page hero
+generalComponentSchemas.TrainingHeroSection = {
+  componentName: "TrainingHeroSection",
+  category: "hero",
+  icon: "",
+  displayName: "Training Hero Section",
+  description: "Hero section for the Training services page",
+  schema: {
+    type: "object",
+    properties: {
+      heroContent: {
+        type: "object",
+        label: "Hero Content",
+        properties: {
+          title: { type: "string", label: "Title", formField: "text" },
+          subtitle: { type: "string", label: "Subtitle", formField: "text" },
+          description: { type: "string", label: "Description", formField: "textarea" },
+        },
+        formField: "object",
+      },
+      backgroundVideo: { type: "string", label: "Background Video URL", formField: "media", mediaType: "video" },
+      ctaButton: {
+        type: "object",
+        label: "CTA Button",
+        properties: {
+          text: { type: "string", label: "Button Text", formField: "text" },
+          variant: { type: "string", label: "Variant (primary/secondary)", formField: "text" },
+        },
+        formField: "object",
+      },
+    },
+  },
+  defaultData: {
+    heroContent: {
+      title: "Transform Your Career with Oracle NetSuite Training",
+      subtitle: "Professional ERP Education & Skills Development",
+      description: "Master Oracle NetSuite with comprehensive training programs designed for professionals at all levels.",
+    },
+    backgroundVideo: "/Videos/training-hero.mp4",
+    ctaButton: {
+      text: "Start Learning",
+      variant: "primary",
+    },
+  },
+};
+
+// RetailIndustryStats - Retail industry statistics section
+generalComponentSchemas.RetailIndustryStats = {
+  componentName: "RetailIndustryStats",
+  category: "industry",
+  icon: "",
+  displayName: "Retail Industry Stats",
+  description: "Statistics section for the Retail industry page",
+  schema: {
+    type: "object",
+    properties: {
+      title: { type: "string", label: "Title", formField: "text" },
+      subtitle: { type: "string", label: "Subtitle", formField: "text" },
+      description: { type: "string", label: "Description", formField: "textarea" },
+      stats: {
+        type: "array",
+        label: "Stats",
+        items: {
+          type: "object",
+          properties: {
+            value: { type: "string", label: "Value", formField: "text" },
+            label: { type: "string", label: "Label", formField: "text" },
+            description: { type: "string", label: "Description", formField: "text" },
+          },
+        },
+        formField: "array",
+      },
+    },
+  },
+  defaultData: {
+    title: "Retail Industry Stats",
+    subtitle: "",
+    description: "",
+    stats: [
+      { value: "85%", label: "Efficiency Improvement", description: "Average efficiency gain" },
+      { value: "60%", label: "Cost Reduction", description: "Operational cost savings" },
+      { value: "90%", label: "Accuracy Rate", description: "Data accuracy improvement" },
+      { value: "75%", label: "Time Savings", description: "Process automation benefits" },
+    ],
+  },
+};
+
+// RetailCaseStudiesSection - Retail case studies section
+generalComponentSchemas.RetailCaseStudiesSection = {
+  componentName: "RetailCaseStudiesSection",
+  category: "industry",
+  icon: "",
+  displayName: "Retail Case Studies Section",
+  description: "Case studies section for the Retail industry page",
+  schema: {
+    type: "object",
+    properties: {
+      title: { type: "string", label: "Title", formField: "text" },
+      description: { type: "string", label: "Description", formField: "textarea" },
+      caseStudies: {
+        type: "array",
+        label: "Case Studies",
+        items: {
+          type: "object",
+          properties: {
+            title: { type: "string", label: "Case Study Title", formField: "text" },
+            company: { type: "string", label: "Company Name", formField: "text" },
+            industry: { type: "string", label: "Industry", formField: "text" },
+            quote: { type: "string", label: "Quote", formField: "textarea" },
+            challenge: { type: "string", label: "Challenge", formField: "textarea" },
+            solution: { type: "string", label: "Solution", formField: "textarea" },
+            description: { type: "string", label: "Description", formField: "textarea" },
+            image: { type: "string", label: "Image URL", formField: "media", mediaType: "image" },
+            results: {
+              type: "array",
+              label: "Results",
+              items: { type: "string", label: "Result", formField: "text" },
+              formField: "array-text",
+            },
+          },
+        },
+        formField: "array",
+      },
+    },
+  },
+  defaultData: {
+    title: "Retail Success Stories",
+    description: "Real retail companies achieving remarkable results with NetSuite commerce solutions.",
+    caseStudies: [
+      {
+        title: "Modernizing Checkout for Fashion Retailer",
+        company: "Fashion Forward Co.",
+        industry: "Fashion Retail",
+        quote: "NetSuite transformed our operations and customer experience.",
+        challenge: "Legacy POS system causing checkout delays and inventory mismatches",
+        solution: "Implemented unified POS and real-time inventory synchronization",
+        description: "Complete digital transformation of retail operations",
+        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        results: ["40% faster checkout", "95% inventory accuracy", "25% sales increase"],
+      },
+    ],
+  },
+};
+
+// RetailImplementationSection - Retail implementation process section
+generalComponentSchemas.RetailImplementationSection = {
+  componentName: "RetailImplementationSection",
+  category: "industry",
+  icon: "",
+  displayName: "Retail Implementation Section",
+  description: "Implementation process section for the Retail industry page",
+  schema: {
+    type: "object",
+    properties: {
+      title: { type: "string", label: "Title", formField: "text" },
+      subtitle: { type: "string", label: "Subtitle", formField: "text" },
+      description: { type: "string", label: "Description", formField: "textarea" },
+      implementationProcess: {
+        type: "object",
+        label: "Implementation Process",
+        properties: {
+          title: { type: "string", label: "Process Title", formField: "text" },
+          steps: {
+            type: "array",
+            label: "Steps",
+            items: {
+              type: "object",
+              properties: {
+                title: { type: "string", label: "Step Title", formField: "text" },
+                desc: { type: "string", label: "Description", formField: "textarea" },
+                benefits: {
+                  type: "array",
+                  label: "Benefits",
+                  items: { type: "string", label: "Benefit", formField: "text" },
+                  formField: "array-text",
+                },
+              },
+            },
+            formField: "array",
+          },
+        },
+        formField: "object",
+      },
+    },
+  },
+  defaultData: {
+    title: "Retail Implementation Built for All Industries",
+    subtitle: "Proven Implementation Methodology",
+    description: "Streamline your entire NetSuite implementation lifecycle — from discovery to go-live — with a proven, secure methodology.",
+    implementationProcess: {
+      title: "Implementation Process",
+      steps: [
+        {
+          title: "Discovery & Assessment",
+          desc: "Analyze current retail processes and requirements",
+          benefits: ["Current state assessment", "Gap analysis", "Requirements documentation"],
+        },
+        {
+          title: "Solution Design",
+          desc: "Design NetSuite configuration for retail workflows",
+          benefits: ["System architecture", "Process flows", "Integration design"],
+        },
+        {
+          title: "Implementation",
+          desc: "Deploy and configure NetSuite for your business",
+          benefits: ["System setup", "Data migration", "User training"],
+        },
+        {
+          title: "Go-Live & Support",
+          desc: "Launch and provide ongoing support",
+          benefits: ["Go-live support", "User adoption", "Ongoing optimization"],
+        },
+      ],
+    },
+  },
+};
+
 // Log processed components for verification
 
 [

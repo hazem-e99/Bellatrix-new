@@ -1,12 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
+import MediaPicker from "./MediaPicker";
+import { PhotoIcon } from "@heroicons/react/24/outline";
 
 const DynamicFormField = ({ field, onChange }) => {
+  const [isMediaPickerOpen, setIsMediaPickerOpen] = useState(false);
+
   const handleChange = (value) => {
     onChange(field.path, value);
   };
 
+  // Handle media selection from MediaPicker
+  const handleMediaSelect = (mediaUrl) => {
+    handleChange(mediaUrl);
+    setIsMediaPickerOpen(false);
+  };
+
   const renderField = () => {
     switch (field.type) {
+      case "media":
+        return (
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-white capitalize">
+              {field.label}
+            </label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={field.value}
+                onChange={(e) => handleChange(e.target.value)}
+                className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder={`Enter ${field.label} URL or select from media`}
+              />
+              <button
+                type="button"
+                onClick={() => setIsMediaPickerOpen(true)}
+                className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors flex items-center gap-2"
+                title="Select from Media Library"
+              >
+                <PhotoIcon className="h-5 w-5" />
+                <span className="hidden sm:inline">Browse</span>
+              </button>
+            </div>
+            {/* Preview */}
+            {field.value && (
+              <div className="mt-2">
+                {field.mediaType === 'video' ? (
+                  <video
+                    src={field.value}
+                    className="max-w-xs max-h-32 rounded-md border border-white/20"
+                    controls
+                    muted
+                  />
+                ) : (
+                  <img
+                    src={field.value}
+                    alt={field.label}
+                    className="max-w-xs max-h-32 rounded-md border border-white/20 object-cover"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                )}
+              </div>
+            )}
+            {/* MediaPicker Modal */}
+            <MediaPicker
+              isOpen={isMediaPickerOpen}
+              onClose={() => setIsMediaPickerOpen(false)}
+              onSelect={handleMediaSelect}
+              accept={field.mediaType || 'all'}
+              title={`Select ${field.label}`}
+              maxSelection={1}
+            />
+          </div>
+        );
+
       case "string":
         return (
           <div className="space-y-2">
