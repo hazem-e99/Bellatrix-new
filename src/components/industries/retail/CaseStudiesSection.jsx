@@ -1,34 +1,74 @@
 import React from "react";
 import SEO from "../../SEO";
 
-const CaseStudiesSection = ({ data }) => {
-  // Add defensive programming
-  if (
-    !data ||
-    !data.caseStudies ||
-    !Array.isArray(data.caseStudies) ||
-    data.caseStudies.length === 0
-  ) {
-    return (
-      <section
-        className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
-      >
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Success <span className="text-cyan-400">Stories</span>
-            </h2>
-            <p className="text-gray-300">No case studies data available</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+const CaseStudiesSection = ({
+  data,
+  // Direct props from Page Builder schema
+  title,
+  description,
+  caseStudies: propsCaseStudies,
+}) => {
+  // Support both direct props and data object
+  const safeData = data || {};
+  const finalTitle = title || safeData.title || "Retail Success Stories";
+  const finalDescription =
+    description ||
+    safeData.description ||
+    "Real retail companies achieving remarkable results with NetSuite commerce solutions.";
+
+  // Get case studies from props or data
+  let caseStudies = propsCaseStudies || safeData.caseStudies || [];
+
+  // Default case studies if none provided
+  const defaultCaseStudies = [
+    {
+      id: "case-1",
+      title: "Modernizing Checkout for Fashion Retailer",
+      company: "Fashion Forward Co.",
+      industry: "Fashion Retail",
+      quote: "NetSuite transformed our operations and customer experience.",
+      challenge:
+        "Legacy POS system causing checkout delays and inventory mismatches",
+      solution:
+        "Implemented unified POS and real-time inventory synchronization",
+      description: "Complete digital transformation of retail operations",
+      results: [
+        "40% faster checkout",
+        "95% inventory accuracy",
+        "25% sales increase",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: "case-2",
+      title: "E-commerce Integration Success",
+      company: "Home Essentials Plus",
+      industry: "Home & Garden",
+      quote: "Seamless omnichannel experience for our customers.",
+      challenge: "Disconnected online and in-store systems",
+      solution: "NetSuite Commerce integration with unified inventory",
+      description: "Full omnichannel retail transformation",
+      results: [
+        "60% online sales growth",
+        "Real-time inventory sync",
+        "Customer satisfaction up 35%",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    },
+  ];
+
+  const finalCaseStudies =
+    caseStudies.length > 0 ? caseStudies : defaultCaseStudies;
+
+  console.log(" [RetailCaseStudiesSection] Rendering with:", {
+    finalTitle,
+    finalCaseStudies,
+  });
 
   return (
-    <section
-      className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
-    >
+    <section className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]">
       <SEO
         title="Retail Success Stories | Oracle NetSuite E-commerce Case Studies"
         description="Real retail success stories with Oracle NetSuite e-commerce solutions. Discover how retail companies achieved remarkable growth with NetSuite implementations."
@@ -64,21 +104,26 @@ const CaseStudiesSection = ({ data }) => {
       <div className="container mx-auto px-6 relative z-10">
         <header className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Success{" "}
-            <span
-              className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
-            >
-              Stories
-            </span>
+            {finalTitle.includes(" ") ? (
+              <>
+                {finalTitle.split(" ").slice(0, -1).join(" ")}{" "}
+                <span className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out">
+                  {finalTitle.split(" ").slice(-1)[0]}
+                </span>
+              </>
+            ) : (
+              <span className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out">
+                {finalTitle}
+              </span>
+            )}
           </h2>
           <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Real retail companies achieving remarkable results with NetSuite
-            commerce solutions.
+            {finalDescription}
           </p>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {data.caseStudies.map((study, index) => (
+          {finalCaseStudies.map((study, index) => (
             <article
               key={index}
               className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10"
@@ -92,16 +137,18 @@ const CaseStudiesSection = ({ data }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4">
                   <h3 className="text-xl font-bold text-white">
-                    {typeof study.company === 'string'
+                    {typeof study.company === "string"
                       ? study.company
-                      : study.company?.name || study.company?.title || 'Company Name'}
+                      : study.company?.name ||
+                        study.company?.title ||
+                        "Company Name"}
                   </h3>
-                  <p
-                    className="theme-accent-text text-[var(--color-cyan-300)] transition-colors duration-600 ease-in-out"
-                  >
-                    {typeof study.industry === 'string'
+                  <p className="theme-accent-text text-[var(--color-cyan-300)] transition-colors duration-600 ease-in-out">
+                    {typeof study.industry === "string"
                       ? study.industry
-                      : study.industry?.name || study.industry?.title || 'Industry'}
+                      : study.industry?.name ||
+                        study.industry?.title ||
+                        "Industry"}
                   </p>
                 </div>
               </div>
@@ -110,18 +157,22 @@ const CaseStudiesSection = ({ data }) => {
                 <div className="mb-4">
                   <h4 className="font-semibold text-white mb-2">Challenge:</h4>
                   <p className="text-gray-300 text-sm">
-                    {typeof study.challenge === 'string'
+                    {typeof study.challenge === "string"
                       ? study.challenge
-                      : study.challenge?.challenge || study.challenge?.description || 'Challenge Description'}
+                      : study.challenge?.challenge ||
+                        study.challenge?.description ||
+                        "Challenge Description"}
                   </p>
                 </div>
 
                 <div className="mb-4">
                   <h4 className="font-semibold text-white mb-2">Solution:</h4>
                   <p className="text-gray-300 text-sm">
-                    {typeof study.solution === 'string'
+                    {typeof study.solution === "string"
                       ? study.solution
-                      : study.solution?.solution || study.solution?.description || 'Solution Description'}
+                      : study.solution?.solution ||
+                        study.solution?.description ||
+                        "Solution Description"}
                   </p>
                 </div>
 
@@ -144,9 +195,12 @@ const CaseStudiesSection = ({ data }) => {
                           />
                         </svg>
                         <span className="text-gray-300 text-sm">
-                          {typeof result === 'string'
+                          {typeof result === "string"
                             ? result
-                            : result?.result || result?.name || result?.title || 'Result'}
+                            : result?.result ||
+                              result?.name ||
+                              result?.title ||
+                              "Result"}
                         </span>
                       </div>
                     ))}

@@ -1,34 +1,77 @@
 import React from "react";
 import SEO from "../../SEO";
 
-const FeaturesSection = ({ data }) => {
-  // Add defensive programming
-  if (
-    !data ||
-    !data.retailFeatures ||
-    !Array.isArray(data.retailFeatures) ||
-    data.retailFeatures.length === 0
-  ) {
-    return (
-      <section
-        className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
-      >
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Retail <span className="text-cyan-400">Features</span>
-            </h2>
-            <p className="text-gray-300">No features data available</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+const FeaturesSection = ({
+  data,
+  // Direct props from Page Builder schema
+  title,
+  subtitle,
+  retailFeatures: propsRetailFeatures,
+}) => {
+  // Support both direct props and data object
+  const safeData = data || {};
+  const finalTitle = title || safeData.title || "Retail Features";
+  const finalSubtitle =
+    subtitle ||
+    safeData.subtitle ||
+    "Comprehensive features designed specifically for retail operations and customer experience optimization.";
 
+  // Get features from props or data
+  let retailFeatures = propsRetailFeatures || safeData.retailFeatures || [];
+
+  // Default features if none provided
+  const defaultFeatures = [
+    {
+      id: "feature-1",
+      title: "Omnichannel POS",
+      description: "Unified point-of-sale across online and in-store channels",
+      icon: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z",
+      benefits: ["Faster checkout", "Inventory sync", "Flexible payments"],
+    },
+    {
+      id: "feature-2",
+      title: "Inventory Optimization",
+      description: "Real-time stock visibility across locations",
+      icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
+      benefits: [
+        "Reduce stockouts",
+        "Lower carrying costs",
+        "Demand forecasting",
+      ],
+    },
+    {
+      id: "feature-3",
+      title: "Customer 360",
+      description: "Complete customer view across all touchpoints",
+      icon:
+        "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
+      benefits: ["Unified profiles", "Purchase history", "Personalized offers"],
+    },
+    {
+      id: "feature-4",
+      title: "Order Management",
+      description: "Streamlined order processing and fulfillment",
+      icon:
+        "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
+      benefits: [
+        "Multi-channel orders",
+        "Automated routing",
+        "Real-time tracking",
+      ],
+    },
+  ];
+
+  const finalFeatures =
+    retailFeatures.length > 0 ? retailFeatures : defaultFeatures;
+
+  console.log(" [RetailFeaturesSection] Rendering with:", {
+    finalTitle,
+    finalFeatures,
+  });
+
+  // Show default content even without data
   return (
-    <section
-      className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]"
-    >
+    <section className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]">
       <SEO
         title="Retail Features | Oracle NetSuite E-commerce & POS Capabilities"
         description="Explore comprehensive Oracle NetSuite retail features for e-commerce, POS, inventory management, customer experience, and omnichannel retail operations."
@@ -64,29 +107,32 @@ const FeaturesSection = ({ data }) => {
       <div className="container mx-auto px-6 relative z-10">
         <header className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Retail{" "}
-            <span
-              className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
-            >
-              Features
-            </span>
+            {finalTitle.includes(" ") ? (
+              <>
+                {finalTitle.split(" ").slice(0, -1).join(" ")}{" "}
+                <span className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out">
+                  {finalTitle.split(" ").slice(-1)[0]}
+                </span>
+              </>
+            ) : (
+              <span className="theme-highlight-text text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out">
+                {finalTitle}
+              </span>
+            )}
           </h2>
           <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Comprehensive features designed specifically for retail operations
-            and customer experience optimization.
+            {finalSubtitle}
           </p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {data.retailFeatures.map((feature, index) => (
+          {finalFeatures.map((feature, index) => (
             <article
               key={index}
               className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300"
             >
               <div className="flex items-start space-x-4">
-                <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 theme-feature-icon bg-gradient-to-br from-[var(--color-brand-accent)] to-[var(--color-brand-variant)] transition-all duration-600 ease-in-out"
-                >
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 theme-feature-icon bg-gradient-to-br from-[var(--color-brand-accent)] to-[var(--color-brand-variant)] transition-all duration-600 ease-in-out">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -119,9 +165,7 @@ const FeaturesSection = ({ data }) => {
                   <div className="grid grid-cols-2 gap-2">
                     {(feature.benefits || []).map((benefit, i) => (
                       <div key={i} className="flex items-center space-x-2">
-                        <div
-                          className="w-1.5 h-1.5 rounded-full theme-feature-dot bg-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
-                        ></div>
+                        <div className="w-1.5 h-1.5 rounded-full theme-feature-dot bg-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"></div>
                         <span className="text-sm text-gray-300">
                           {typeof benefit === "string"
                             ? benefit

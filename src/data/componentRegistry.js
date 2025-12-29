@@ -10,10 +10,7 @@
 
 import { getGeneralComponentSchema } from "./generalComponentSchemas";
 
-
-
 export const componentRegistry = {
-
   // ===========================================
 
   // LANDING PAGE COMPONENTS
@@ -21,9 +18,7 @@ export const componentRegistry = {
   // ===========================================
 
   LandingPage: {
-
     Hero: {
-
       componentType: "Hero",
 
       componentName: "Landing Hero",
@@ -35,51 +30,37 @@ export const componentRegistry = {
       filePath: "src/components/Hero.jsx",
 
       description:
-
         "Main hero section with video backgrounds, slides, and stats",
 
       dataStructure: {
-
         slides: "array", // array of slide objects with title, subtitle, description, video
 
         stats: "array", // array of stat objects with value and label
-
       },
 
       defaultData: {
-
         slides: [
-
           {
-
             title: "Strategic Business Transformation",
 
             subtitle: "Oracle NetSuite Consultancy",
 
             description:
-
               "Streamline operations and drive growth with our comprehensive NetSuite solutions.",
 
             video: "/Videos/implementation/homepage_hero.mp4",
-
           },
-
         ],
 
         stats: [
-
           { value: "500+", label: "Projects Completed" },
 
           { value: "15+", label: "Years Experience" },
-
         ],
-
       },
-
     },
 
     Services: {
-
       componentType: "Services",
 
       componentName: "Services Section",
@@ -93,19 +74,15 @@ export const componentRegistry = {
       description: "Services grid with section header and view all button",
 
       dataStructure: {
-
         services: "array",
 
         sectionHeader: "object",
 
         viewAllButton: "object",
-
       },
-
     },
 
     Testimonials: {
-
       componentType: "Testimonials",
 
       componentName: "Testimonials Section",
@@ -119,19 +96,15 @@ export const componentRegistry = {
       description: "Customer testimonials with section header and CTA",
 
       dataStructure: {
-
         testimonials: "array",
 
         sectionHeader: "object",
 
         ctaButton: "object",
-
       },
-
     },
 
     Industries: {
-
       componentType: "Industries",
 
       componentName: "Industries Section",
@@ -145,20 +118,14 @@ export const componentRegistry = {
       description: "Industry showcase with styling options",
 
       dataStructure: {
-
         industries: "array",
 
         sectionHeader: "object",
 
         styles: "object",
-
       },
-
     },
-
   },
-
-
 
   // ===========================================
 
@@ -167,9 +134,7 @@ export const componentRegistry = {
   // ===========================================
 
   About: {
-
     AboutHeroSection: {
-
       componentType: "AboutHeroSection",
 
       componentName: "About Hero",
@@ -183,7 +148,6 @@ export const componentRegistry = {
       description: "About page hero with background video, title, and stats",
 
       dataStructure: {
-
         title: "string",
 
         subtitle: "string",
@@ -193,23 +157,19 @@ export const componentRegistry = {
         backgroundVideo: "string",
 
         stats: "array",
-
       },
 
       defaultData: {
-
         title: "About Bellatrix",
 
         subtitle: "Your trusted partner in digital transformation",
 
         description:
-
           "We are a leading consultancy firm specializing in NetSuite implementations, business process optimization, and technology solutions that drive growth and efficiency.",
 
         backgroundVideo: "/Videos/about-hero.mp4",
 
         stats: [
-
           { value: "500+", label: "Projects Completed" },
 
           { value: "15+", label: "Years Experience" },
@@ -217,15 +177,11 @@ export const componentRegistry = {
           { value: "98%", label: "Client Satisfaction" },
 
           { value: "200+", label: "Happy Clients" },
-
         ],
-
       },
-
     },
 
     AboutMissionSection: {
-
       componentType: "AboutMissionSection",
 
       componentName: "About Mission",
@@ -239,7 +195,6 @@ export const componentRegistry = {
       description: "Mission statement with vision and image",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
@@ -251,13 +206,10 @@ export const componentRegistry = {
         stats: "array",
 
         missionPoints: "array",
-
       },
-
     },
 
     AboutJourneySection: {
-
       componentType: "AboutJourneySection",
 
       componentName: "About Journey",
@@ -269,41 +221,30 @@ export const componentRegistry = {
       filePath: "src/components/About/AboutJourney.jsx",
 
       description:
-
         "Company journey timeline with beginning, growth, and today sections",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         milestones: "array", // title, date, description
-
       },
 
       defaultData: {
-
         title: "Our Journey",
 
         description: "How we evolved to deliver enterprise solutions",
 
         milestones: [
-
           { title: "Founded", date: "2010", description: "Company founded" },
 
           { title: "Growth", date: "2015", description: "Expanded services" },
-
         ],
-
       },
-
     },
 
-
-
     AboutTeamSection: {
-
       componentType: "AboutTeamSection",
 
       componentName: "About Team",
@@ -317,27 +258,21 @@ export const componentRegistry = {
       description: "Team members showcase with bios and expertise",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         members: "array", // name, role, image, bio, expertise
-
       },
 
       defaultData: {
-
         title: "Meet Our Team",
 
         description:
-
           "Our diverse team of experts brings together decades of experience in enterprise software, business consulting, and digital transformation.",
 
         members: [
-
           {
-
             name: "Sarah Johnson",
 
             role: "Chief Executive Officer",
@@ -345,29 +280,21 @@ export const componentRegistry = {
             image: "/images/ourteam/1.jpg",
 
             bio:
-
               "Visionary leader with 20+ years in enterprise software solutions.",
 
             expertise: [
-
               "Strategic Planning",
 
               "Business Development",
 
               "Leadership",
-
             ],
-
           },
-
         ],
-
       },
-
     },
 
     AboutValuesSection: {
-
       componentType: "AboutValuesSection",
 
       componentName: "About Values",
@@ -381,19 +308,15 @@ export const componentRegistry = {
       description: "Core values with icons and descriptions",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         items: "array", // title, description, icon, color
-
       },
-
     },
 
     AboutDifferentiatorsSection: {
-
       componentType: "AboutDifferentiatorsSection",
 
       componentName: "About Differentiators",
@@ -405,11 +328,9 @@ export const componentRegistry = {
       filePath: "src/components/About/AboutDifferentiators.jsx",
 
       description: "What makes us different from competitors",
-
     },
 
     AboutMilestonesSection: {
-
       componentType: "AboutMilestonesSection",
 
       componentName: "About Milestones",
@@ -421,11 +342,9 @@ export const componentRegistry = {
       filePath: "src/components/About/AboutMilestones.jsx",
 
       description: "Company milestones and achievements",
-
     },
 
     AboutCTASection: {
-
       componentType: "AboutCTASection",
 
       componentName: "About CTA",
@@ -437,12 +356,8 @@ export const componentRegistry = {
       filePath: "src/components/About/AboutCTA.jsx",
 
       description: "Call-to-action section for about page",
-
     },
-
   },
-
-
 
   // ===========================================
 
@@ -451,11 +366,9 @@ export const componentRegistry = {
   // ===========================================
 
   Services: {
-
     // Implementation Service Components
 
     ImplementationHeroSection: {
-
       componentType: "ImplementationHeroSection",
 
       componentName: "Implementation Hero",
@@ -469,7 +382,6 @@ export const componentRegistry = {
       description: "Implementation service hero with video background and CTA",
 
       dataStructure: {
-
         backgroundVideo: "string",
 
         titleParts: "array",
@@ -477,35 +389,27 @@ export const componentRegistry = {
         description: "string",
 
         ctaButton: "object",
-
       },
 
       defaultData: {
-
         backgroundVideo: "/Videos/HomeHeroSectionV.mp4",
 
         titleParts: ["Where", "Vision", "Meets", "Reality"],
 
         description:
-
           "We don't just implement solutions—we craft digital experiences that transform the way you do business",
 
         ctaButton: {
-
           text: "Start Implementation",
 
           icon: "M13 7l5 5m0 0l-5 5m5-5H6",
 
           variant: "primary",
-
         },
-
       },
-
     },
 
     ImplementationProcessSection: {
-
       componentType: "ImplementationProcessSection",
 
       componentName: "Implementation Process",
@@ -517,11 +421,9 @@ export const componentRegistry = {
       filePath: "src/components/Services/Implementation/ProcessSection.jsx",
 
       description: "Step-by-step implementation process",
-
     },
 
     ImplementationWhyChooseSection: {
-
       componentType: "ImplementationWhyChooseSection",
 
       componentName: "Why Choose Implementation",
@@ -533,11 +435,9 @@ export const componentRegistry = {
       filePath: "src/components/Services/Implementation/WhyChooseSection.jsx",
 
       description: "Benefits of choosing our implementation services",
-
     },
 
     ImplementationPricingSection: {
-
       componentType: "ImplementationPricingSection",
 
       componentName: "Implementation Pricing",
@@ -549,11 +449,9 @@ export const componentRegistry = {
       filePath: "src/components/Services/Implementation/PricingSection.jsx",
 
       description: "Pricing plans for implementation services",
-
     },
 
     ImplementationCtaSection: {
-
       componentType: "ImplementationCtaSection",
 
       componentName: "Implementation CTA",
@@ -565,15 +463,11 @@ export const componentRegistry = {
       filePath: "src/components/Services/Implementation/CtaSection.jsx",
 
       description: "Call-to-action for implementation services",
-
     },
-
-
 
     // Additional Service Components
 
     ServiceGrid: {
-
       componentType: "ServiceGrid",
 
       componentName: "Service Grid",
@@ -587,27 +481,20 @@ export const componentRegistry = {
       description: "Grid layout displaying various services with features",
 
       dataStructure: {
-
         services: "array", // array of service objects with title, description, icon, features
-
       },
 
       defaultData: {
-
         services: [
-
           {
-
             title: "NetSuite Implementation",
 
             description:
-
               "Complete NetSuite setup and configuration tailored to your business needs.",
 
             icon: "",
 
             features: [
-
               "System Configuration",
 
               "Data Migration",
@@ -615,23 +502,18 @@ export const componentRegistry = {
               "Custom Workflows",
 
               "User Training",
-
             ],
-
           },
 
           {
-
             title: "Training & Support",
 
             description:
-
               "Comprehensive training programs to maximize your NetSuite investment.",
 
             icon: "",
 
             features: [
-
               "User Training",
 
               "Admin Training",
@@ -639,19 +521,13 @@ export const componentRegistry = {
               "Custom Reports",
 
               "Ongoing Support",
-
             ],
-
           },
-
         ],
-
       },
-
     },
 
     TrainingProgramsSection: {
-
       componentType: "ProgramsSection",
 
       componentName: "Programs Section",
@@ -665,31 +541,23 @@ export const componentRegistry = {
       description: "Programs section with program cards and descriptions",
 
       dataStructure: {
-
         programsSection: "object", // object with title, description, image
 
         trainingPrograms: "array", // array of program objects
-
       },
 
       defaultData: {
-
         programsSection: {
-
           title: "Programs",
 
           description:
-
             "Comprehensive programs designed to enhance your skills and knowledge.",
 
           image: "/images/traning.jpg",
-
         },
 
         trainingPrograms: [
-
           {
-
             title: "Basic User Training",
 
             description: "Learn the fundamentals of NetSuite",
@@ -697,17 +565,12 @@ export const componentRegistry = {
             duration: "2 days",
 
             level: "Beginner",
-
           },
-
         ],
-
       },
-
     },
 
     TrainingWhyChooseSection: {
-
       componentType: "WhyChooseSection",
 
       componentName: "Why Choose Section",
@@ -721,27 +584,20 @@ export const componentRegistry = {
       description: "Why choose our section with features and benefits",
 
       dataStructure: {
-
         whyChooseSection: "object", // object with title, description
 
         trainingFeatures: "array", // array of feature objects
-
       },
 
       defaultData: {
-
         whyChooseSection: {
-
           title: "Why Choose Our Programs",
 
           description: "Comprehensive solutions designed for your success.",
-
         },
 
         trainingFeatures: [
-
           {
-
             id: 1,
 
             title: "Expert Instructors",
@@ -751,19 +607,13 @@ export const componentRegistry = {
             icon: "",
 
             shortDescription:
-
               "Certified instructors with real-world experience",
-
           },
-
         ],
-
       },
-
     },
 
     ImplementationCTASection: {
-
       componentType: "ImplementationCTASection",
 
       componentName: "Implementation CTA Section",
@@ -777,34 +627,23 @@ export const componentRegistry = {
       description: "Call-to-action section for implementation services",
 
       dataStructure: {
-
         cta: "object", // object with title, subtitle, buttonText, buttonLink
-
       },
 
       defaultData: {
-
         cta: {
-
           title: "Ready to Transform Your Business?",
 
           subtitle:
-
             "Get started with our comprehensive NetSuite implementation services today.",
 
           buttonText: "Start Your Implementation",
 
           buttonLink: "/contact",
-
         },
-
       },
-
     },
-
   },
-
-
 
   // ===========================================
 
@@ -813,9 +652,7 @@ export const componentRegistry = {
   // ===========================================
 
   HR: {
-
     HRHeroSection: {
-
       componentType: "HRHeroSection",
 
       componentName: "HR Hero",
@@ -825,11 +662,9 @@ export const componentRegistry = {
       icon: "",
 
       description:
-
         "HR solution hero section with title, subtitle, and description",
 
       dataStructure: {
-
         title: "string",
 
         subtitle: "string",
@@ -837,29 +672,22 @@ export const componentRegistry = {
         description: "string",
 
         backgroundImage: "string",
-
       },
 
       defaultData: {
-
         title: "nada HR, Payroll & People Management",
 
         subtitle:
-
           "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
 
         description:
-
           "Our comprehensive HR solution simplifies employee management.",
 
         backgroundImage: "/images/hr-hero.jpg",
-
       },
-
     },
 
     HRModulesSection: {
-
       componentType: "HRModulesSection",
 
       componentName: "HR Modules",
@@ -871,19 +699,15 @@ export const componentRegistry = {
       description: "HR modules showcase",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         modules: "array", // title, description, icon
-
       },
-
     },
 
     HRBenefitsSection: {
-
       componentType: "HRBenefitsSection",
 
       componentName: "HR Benefits",
@@ -895,19 +719,15 @@ export const componentRegistry = {
       description: "Benefits of HR solution",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         features: "array", // title, description
-
       },
-
     },
 
     HRPricingSection: {
-
       componentType: "HRPricingSection",
 
       componentName: "HR Pricing",
@@ -919,19 +739,15 @@ export const componentRegistry = {
       description: "HR solution pricing plans",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         pricing: "array", // name, price, description, features
-
       },
-
     },
 
     HRFAQSection: {
-
       componentType: "HRFAQSection",
 
       componentName: "HR FAQ",
@@ -943,103 +759,71 @@ export const componentRegistry = {
       description: "Frequently asked questions about HR solution",
 
       dataStructure: {
-
         title: "string",
 
         faq: "object", // title, items array
 
         faqItems: "array", // Direct items array for dynamic schema
-
       },
 
       defaultData: {
-
         title: "Frequently Asked Questions",
 
         faq: {
-
           title: "HR Solution FAQ",
 
           items: [
-
             {
-
               question: "Is my employee data secure and compliant?",
 
               answer:
-
                 "Yes. We use enterprise-grade 256-bit encryption, regular security audits, and are fully GDPR, SOC 2, and ISO 27001 compliant.",
-
             },
 
             {
-
               question:
-
                 "Can I integrate with my existing payroll and accounting software?",
 
               answer:
-
                 "Absolutely. We offer pre-built integrations with all major payroll providers and accounting software.",
-
             },
 
             {
-
               question: "How long does implementation typically take?",
 
               answer:
-
                 "Implementation time varies based on complexity: Essential (2-3 weeks), Professional (3-5 weeks), Enterprise (6-8 weeks).",
-
             },
-
           ],
-
         },
 
         faqItems: [
-
           {
-
             question: "Is my employee data secure and compliant?",
 
             answer:
-
               "Yes. We use enterprise-grade 256-bit encryption, regular security audits, and are fully GDPR, SOC 2, and ISO 27001 compliant.",
-
           },
 
           {
-
             question:
-
               "Can I integrate with my existing payroll and accounting software?",
 
             answer:
-
               "Absolutely. We offer pre-built integrations with all major payroll providers and accounting software.",
-
           },
 
           {
-
             question: "How long does implementation typically take?",
 
             answer:
-
               "Implementation time varies based on complexity: Essential (2-3 weeks), Professional (3-5 weeks), Enterprise (6-8 weeks).",
-
           },
-
         ],
-
       },
-
     },
 
     HRCTASection: {
-
       componentType: "HRCTASection",
 
       componentName: "HR CTA",
@@ -1049,12 +833,8 @@ export const componentRegistry = {
       icon: "",
 
       description: "Call-to-action for HR solution",
-
     },
-
   },
-
-
 
   // ===========================================
 
@@ -1063,9 +843,7 @@ export const componentRegistry = {
   // ===========================================
 
   Payroll: {
-
     PayrollHeroSection: {
-
       componentType: "PayrollHeroSection",
 
       componentName: "Payroll Hero",
@@ -1077,7 +855,6 @@ export const componentRegistry = {
       description: "Payroll solution hero section",
 
       dataStructure: {
-
         title: "string",
 
         subtitle: "string",
@@ -1085,29 +862,22 @@ export const componentRegistry = {
         description: "string",
 
         backgroundImage: "string",
-
       },
 
       defaultData: {
-
         title: "Transform Your Payroll Process",
 
         subtitle:
-
           "Streamline operations with our intelligent, automated payroll system",
 
         description:
-
           "Our comprehensive payroll solution automates complex processes and ensures accuracy.",
 
         backgroundImage: "/images/payroll-hero.jpg",
-
       },
-
     },
 
     PayrollHowItWorksSection: {
-
       componentType: "PayrollHowItWorksSection",
 
       componentName: "How Payroll Works",
@@ -1119,19 +889,15 @@ export const componentRegistry = {
       description: "How the payroll system works",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         steps: "array", // title, description, icon
-
       },
-
     },
 
     PayrollPainPointsSection: {
-
       componentType: "PayrollPainPointsSection",
 
       componentName: "Payroll Pain Points",
@@ -1145,19 +911,15 @@ export const componentRegistry = {
       description: "Problems that payroll system solves",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         painPoints: "array", // title, description
-
       },
-
     },
 
     PayrollFAQSection: {
-
       componentType: "PayrollFAQSection",
 
       componentName: "Payroll FAQ",
@@ -1169,59 +931,43 @@ export const componentRegistry = {
       description: "Payroll system FAQ",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         faqItems: "array", // question, answer
-
       },
 
       defaultData: {
-
         title: "Common Questions",
 
         description:
-
           "Get quick answers to the most frequently asked questions about our payroll system",
 
         faqItems: [
-
           {
-
             question: "Does this system support global payroll?",
 
             answer:
-
               "Yes, we support multi-country and multi-currency payroll operations.",
-
           },
 
           {
-
             question: "Can it integrate with our existing HR system?",
 
             answer: "Absolutely, we offer seamless integrations and open APIs.",
-
           },
 
           {
-
             question: "How long does implementation take?",
 
             answer: "Most companies are onboarded in less than 2 weeks.",
-
           },
-
         ],
-
       },
-
     },
 
     PayrollCTASection: {
-
       componentType: "PayrollCTASection",
 
       componentName: "Payroll CTA",
@@ -1231,12 +977,8 @@ export const componentRegistry = {
       icon: "",
 
       description: "Call-to-action for payroll solution",
-
     },
-
   },
-
-
 
   // ===========================================
 
@@ -1245,11 +987,9 @@ export const componentRegistry = {
   // ===========================================
 
   Industries: {
-
     // Manufacturing Components
 
     ManufacturingHeroSection: {
-
       componentType: "ManufacturingHeroSection",
 
       componentName: "Manufacturing Hero",
@@ -1261,11 +1001,9 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/HeroSection.jsx",
 
       description: "Manufacturing industry hero section",
-
     },
 
     ManufacturingIndustryStats: {
-
       componentType: "ManufacturingIndustryStats",
 
       componentName: "Manufacturing Stats",
@@ -1277,11 +1015,9 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/IndustryStats.jsx",
 
       description: "Manufacturing industry statistics",
-
     },
 
     ManufacturingCTASection: {
-
       componentType: "ManufacturingCTASection",
 
       componentName: "Manufacturing CTA",
@@ -1293,11 +1029,9 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/CTASection.jsx",
 
       description: "Manufacturing CTA section",
-
     },
 
     ManufacturingChallengesSection: {
-
       componentType: "ManufacturingChallengesSection",
 
       componentName: "Manufacturing Challenges",
@@ -1311,19 +1045,15 @@ export const componentRegistry = {
       description: "Manufacturing industry challenges",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         challenges: "array", // title, description, icon
-
       },
-
     },
 
     ManufacturingSolutionsSection: {
-
       componentType: "ManufacturingSolutionsSection",
 
       componentName: "Manufacturing Solutions",
@@ -1337,19 +1067,15 @@ export const componentRegistry = {
       description: "Manufacturing industry solutions",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         solutions: "array", // title, description, icon
-
       },
-
     },
 
     ManufacturingCaseStudies: {
-
       componentType: "ManufacturingCaseStudies",
 
       componentName: "Manufacturing Case Studies",
@@ -1363,19 +1089,15 @@ export const componentRegistry = {
       description: "Manufacturing case studies",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         caseStudies: "array", // title, description, company, results
-
       },
-
     },
 
     ManufacturingImplementationProcess: {
-
       componentType: "ManufacturingImplementationProcess",
 
       componentName: "Manufacturing Implementation",
@@ -1385,29 +1107,22 @@ export const componentRegistry = {
       icon: "",
 
       filePath:
-
         "src/components/industries/Manufacturing/ImplementationProcess.jsx",
 
       description: "Manufacturing implementation process",
 
       dataStructure: {
-
         title: "string",
 
         description: "string",
 
         steps: "array", // title, description, step
-
       },
-
     },
-
-
 
     // Retail Components
 
     RetailHeroSection: {
-
       componentType: "RetailHeroSection",
 
       componentName: "Retail Hero",
@@ -1420,10 +1135,35 @@ export const componentRegistry = {
 
       description: "Retail industry hero section",
 
+      hasEnhancedSchema: !!getGeneralComponentSchema("RetailHeroSection"),
+
+      schema: getGeneralComponentSchema("RetailHeroSection")?.schema,
+
+      defaultData: getGeneralComponentSchema("RetailHeroSection")?.defaultData,
+    },
+
+    RetailIndustryStats: {
+      componentType: "RetailIndustryStats",
+
+      componentName: "Retail Statistics",
+
+      category: "stats",
+
+      icon: "",
+
+      filePath: "src/components/industries/retail/IndustryStats.jsx",
+
+      description: "Retail industry statistics and metrics",
+
+      hasEnhancedSchema: !!getGeneralComponentSchema("RetailIndustryStats"),
+
+      schema: getGeneralComponentSchema("RetailIndustryStats")?.schema,
+
+      defaultData: getGeneralComponentSchema("RetailIndustryStats")
+        ?.defaultData,
     },
 
     RetailCTASection: {
-
       componentType: "RetailCTASection",
 
       componentName: "Retail CTA",
@@ -1436,36 +1176,14 @@ export const componentRegistry = {
 
       description: "Retail CTA section",
 
+      hasEnhancedSchema: !!getGeneralComponentSchema("RetailCTASection"),
+
+      schema: getGeneralComponentSchema("RetailCTASection")?.schema,
+
+      defaultData: getGeneralComponentSchema("RetailCTASection")?.defaultData,
     },
 
-    // RetailIndustryStats: {
-
-    //   componentType: "RetailIndustryStats",
-
-    //   componentName: "Retail Stats",
-
-    //   category: "stats",
-
-    //   icon: "",
-
-    //   filePath: "src/components/industries/retail/IndustryStats.jsx",
-
-    //   description: "Retail industry statistics",
-
-    //   dataStructure: {
-
-    //     title: "string",
-
-    //     description: "string",
-
-    //     stats: "array", // value, label, description
-
-    //   },
-
-    // },
-
     RetailChallengesSection: {
-
       componentType: "RetailChallengesSection",
 
       componentName: "Retail Challenges",
@@ -1478,20 +1196,15 @@ export const componentRegistry = {
 
       description: "Retail industry challenges",
 
-      dataStructure: {
+      hasEnhancedSchema: !!getGeneralComponentSchema("RetailChallengesSection"),
 
-        title: "string",
+      schema: getGeneralComponentSchema("RetailChallengesSection")?.schema,
 
-        description: "string",
-
-        challenges: "array", // title, description, icon
-
-      },
-
+      defaultData: getGeneralComponentSchema("RetailChallengesSection")
+        ?.defaultData,
     },
 
     RetailSolutionsSection: {
-
       componentType: "RetailSolutionsSection",
 
       componentName: "Retail Solutions",
@@ -1504,20 +1217,15 @@ export const componentRegistry = {
 
       description: "Retail industry solutions",
 
-      dataStructure: {
+      hasEnhancedSchema: !!getGeneralComponentSchema("RetailSolutionsSection"),
 
-        title: "string",
+      schema: getGeneralComponentSchema("RetailSolutionsSection")?.schema,
 
-        description: "string",
-
-        solutions: "array", // title, description, icon
-
-      },
-
+      defaultData: getGeneralComponentSchema("RetailSolutionsSection")
+        ?.defaultData,
     },
 
     RetailFeaturesSection: {
-
       componentType: "RetailFeaturesSection",
 
       componentName: "Retail Features",
@@ -1530,31 +1238,16 @@ export const componentRegistry = {
 
       description: "Retail industry features",
 
-      dataStructure: {
-
-        title: "string",
-
-        description: "string",
-
-        retailFeatures: "array", // title, description, icon, benefits
-
-      },
-
-      // attach enhanced schema/defaultData if available in generalComponentSchemas
-
       hasEnhancedSchema: !!getGeneralComponentSchema("RetailFeaturesSection"),
 
       schema: getGeneralComponentSchema("RetailFeaturesSection")?.schema,
 
       defaultData: getGeneralComponentSchema("RetailFeaturesSection")
-
         ?.defaultData,
-
     },
 
-    RetailCaseStudies: {
-
-      componentType: "RetailCaseStudies",
+    RetailCaseStudiesSection: {
+      componentType: "RetailCaseStudiesSection",
 
       componentName: "Retail Case Studies",
 
@@ -1564,31 +1257,38 @@ export const componentRegistry = {
 
       filePath: "src/components/industries/retail/CaseStudiesSection.jsx",
 
-      description: "Retail case studies",
-
-      dataStructure: {
-
-        title: "string",
-
-        description: "string",
-
-        caseStudies: "array", // title, description, company, results
-
-      },
-
-      // attach enhanced schema/defaultData if available in generalComponentSchemas
+      description: "Retail success stories and case studies",
 
       hasEnhancedSchema: !!getGeneralComponentSchema("RetailCaseStudies"),
 
       schema: getGeneralComponentSchema("RetailCaseStudies")?.schema,
 
       defaultData: getGeneralComponentSchema("RetailCaseStudies")?.defaultData,
-
     },
 
+    RetailImplementationSection: {
+      componentType: "RetailImplementationSection",
+
+      componentName: "Retail Implementation",
+
+      category: "implementation",
+
+      icon: "",
+
+      filePath: "src/components/industries/retail/ImplementationSection.jsx",
+
+      description: "Retail implementation process section",
+
+      hasEnhancedSchema: !!getGeneralComponentSchema(
+        "RetailImplementationSection"
+      ),
+
+      schema: getGeneralComponentSchema("RetailImplementationSection")?.schema,
+
+      defaultData: getGeneralComponentSchema("RetailImplementationSection")
+        ?.defaultData,
+    },
   },
-
-
 
   // ===========================================
 
@@ -1597,9 +1297,7 @@ export const componentRegistry = {
   // ===========================================
 
   CustomizationPage: {
-
     CustomizationHero: {
-
       componentType: "CustomizationHero",
 
       componentName: "Customization Hero",
@@ -1613,25 +1311,19 @@ export const componentRegistry = {
       description: "Hero section for Customization services page",
 
       dataStructure: {
-
         title: "string",
 
         subtitle: "string",
-
       },
 
       defaultData: {
-
         title: "NetSuite Customization Services",
 
         subtitle: "Tailored Solutions for Your Business",
-
       },
-
     },
 
     CustomizationServicesSection: {
-
       componentType: "CustomizationServicesSection",
 
       componentName: "Customization Services",
@@ -1645,87 +1337,73 @@ export const componentRegistry = {
       description: "Services section showcasing customization offerings",
 
       dataStructure: {
-
         title: "string",
 
         items: "array", // array of { title, description, icon }
-
       },
 
       defaultData: {
-
         title: "Our Customization Services",
 
         items: [
-
           {
-
             title: "Custom Fields & Forms",
 
-            description: "Create custom fields and forms to capture your specific business data.",
+            description:
+              "Create custom fields and forms to capture your specific business data.",
 
             icon: "",
-
           },
 
           {
-
             title: "Custom Scripts",
 
-            description: "Develop custom scripts to automate your business processes.",
+            description:
+              "Develop custom scripts to automate your business processes.",
 
             icon: "",
-
           },
 
           {
-
             title: "Custom Workflows",
 
-            description: "Design custom workflows to streamline your operations.",
+            description:
+              "Design custom workflows to streamline your operations.",
 
             icon: "",
-
           },
 
           {
-
             title: "Custom Reports",
 
-            description: "Build custom reports and dashboards for better insights.",
+            description:
+              "Build custom reports and dashboards for better insights.",
 
             icon: "",
-
           },
 
           {
-
             title: "SuiteScript Development",
 
-            description: "Expert SuiteScript development for complex customizations.",
+            description:
+              "Expert SuiteScript development for complex customizations.",
 
             icon: "",
-
           },
 
           {
-
             title: "SuiteFlow Automation",
 
-            description: "Automate business processes with SuiteFlow workflows.",
+            description:
+              "Automate business processes with SuiteFlow workflows.",
 
             icon: "",
-
           },
-
         ],
-
       },
-
     },
 
     CustomizationProcessSection: {
-
       componentType: "CustomizationProcessSection",
 
       componentName: "Customization Process",
@@ -1739,67 +1417,54 @@ export const componentRegistry = {
       description: "Step-by-step customization process section",
 
       dataStructure: {
-
         title: "string",
 
         steps: "array", // array of { title, description }
-
       },
 
       defaultData: {
-
         title: "Our Customization Process",
 
         steps: [
-
           {
-
             title: "Discovery",
 
-            description: "We analyze your business requirements and identify customization opportunities.",
-
+            description:
+              "We analyze your business requirements and identify customization opportunities.",
           },
 
           {
-
             title: "Design",
 
-            description: "Our team designs custom solutions tailored to your specific needs.",
-
+            description:
+              "Our team designs custom solutions tailored to your specific needs.",
           },
 
           {
-
             title: "Development",
 
-            description: "We develop and test customizations in a sandbox environment.",
-
+            description:
+              "We develop and test customizations in a sandbox environment.",
           },
 
           {
-
             title: "Deployment",
 
-            description: "Customizations are deployed to production with minimal disruption.",
-
+            description:
+              "Customizations are deployed to production with minimal disruption.",
           },
 
           {
-
             title: "Support",
 
-            description: "Ongoing support and maintenance for your custom solutions.",
-
+            description:
+              "Ongoing support and maintenance for your custom solutions.",
           },
-
         ],
-
       },
-
     },
 
     CustomizationCTASection: {
-
       componentType: "CustomizationCTASection",
 
       componentName: "Customization CTA",
@@ -1813,30 +1478,22 @@ export const componentRegistry = {
       description: "Call-to-action section for customization services",
 
       dataStructure: {
-
         title: "string",
 
         subtitle: "string",
 
         buttonText: "string",
-
       },
 
       defaultData: {
-
         title: "Ready to Customize Your NetSuite?",
 
         subtitle: "Get started with a free consultation",
 
         buttonText: "Contact Us Today",
-
       },
-
     },
-
   },
-
-
 
   // ===========================================
 
@@ -1845,10 +1502,7 @@ export const componentRegistry = {
   // ===========================================
 
   // Common/shared components cleaned: CTAButton removed from registry
-
 };
-
-
 
 /**
 
@@ -1857,36 +1511,22 @@ export const componentRegistry = {
  */
 
 export const getAllComponents = () => {
-
   const allComponents = [];
 
-
-
   Object.entries(componentRegistry).forEach(([pageType, components]) => {
-
     Object.entries(components).forEach(([componentKey, componentInfo]) => {
-
       allComponents.push({
-
         ...componentInfo,
 
         pageType,
 
         componentKey,
-
       });
-
     });
-
   });
 
-
-
   return allComponents;
-
 };
-
-
 
 /**
 
@@ -1895,16 +1535,10 @@ export const getAllComponents = () => {
  */
 
 export const getComponentsByCategory = (category) => {
-
   return getAllComponents().filter(
-
     (component) => component.category === category
-
   );
-
 };
-
-
 
 /**
 
@@ -1913,16 +1547,10 @@ export const getComponentsByCategory = (category) => {
  */
 
 export const getComponentsByPageType = (pageType) => {
-
   return componentRegistry[pageType]
-
     ? Object.values(componentRegistry[pageType])
-
     : [];
-
 };
-
-
 
 /**
 
@@ -1931,7 +1559,6 @@ export const getComponentsByPageType = (pageType) => {
  */
 
 export const componentCategories = [
-
   { id: "hero", label: "Hero Sections", icon: "" },
 
   { id: "content", label: "Content", icon: "" },
@@ -1971,10 +1598,6 @@ export const componentCategories = [
   { id: "buttons", label: "Buttons", icon: "" },
 
   // SEO category removed (SEO meta component not available in builder)
-
 ];
 
-
-
 export default componentRegistry;
-

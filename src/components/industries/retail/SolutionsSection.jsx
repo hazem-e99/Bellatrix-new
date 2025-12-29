@@ -1,44 +1,103 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SEO from "../../SEO";
 
-const SolutionsSection = ({ data, activeSolution, setActiveSolution }) => {
+const SolutionsSection = ({
+  data,
+  activeSolution: propActiveSolution,
+  setActiveSolution: propSetActiveSolution,
+  // Direct props from Page Builder schema
+  title,
+  subtitle,
+  description,
+  netSuiteSolutions: propsNetSuiteSolutions,
+  image,
+}) => {
+  // Internal state for activeSolution if not provided by parent
+  const [internalActiveSolution, setInternalActiveSolution] = useState(0);
+  const activeSolution =
+    propActiveSolution !== undefined
+      ? propActiveSolution
+      : internalActiveSolution;
+  const setActiveSolution = propSetActiveSolution || setInternalActiveSolution;
+
   // Ensure data is safe and provide fallback
   const safeData = data || {};
-  
+
+  // Support both direct props and data object
+  const finalTitle = title || safeData.title || "NetSuite Solutions";
+  const finalSubtitle =
+    subtitle || safeData.subtitle || "Comprehensive Retail Solutions";
+  const finalDescription =
+    description ||
+    safeData.description ||
+    "Comprehensive retail solutions that unify your commerce operations, from inventory management to customer experience optimization.";
+  const finalImage =
+    image ||
+    safeData.image ||
+    "https://i.pinimg.com/736x/5d/33/74/5d33743cd85ff60ff425a2614a87503f.jpg";
+
   // Safely extract solutions with proper array validation
-  let netSuiteSolutions = [];
-  if (Array.isArray(safeData.netSuiteSolutions)) {
-    netSuiteSolutions = safeData.netSuiteSolutions;
-  } else if (Array.isArray(safeData.solutions)) {
-    netSuiteSolutions = safeData.solutions;
-  } else if (Array.isArray(safeData.items)) {
-    netSuiteSolutions = safeData.items;
+  let netSuiteSolutions = propsNetSuiteSolutions || [];
+  if (netSuiteSolutions.length === 0) {
+    if (Array.isArray(safeData.netSuiteSolutions)) {
+      netSuiteSolutions = safeData.netSuiteSolutions;
+    } else if (Array.isArray(safeData.solutions)) {
+      netSuiteSolutions = safeData.solutions;
+    } else if (Array.isArray(safeData.items)) {
+      netSuiteSolutions = safeData.items;
+    }
   }
-  
+
   // Default solutions if none provided
   const defaultSolutions = [
     {
       title: "E-commerce Platform",
       description: "Complete e-commerce solution with NetSuite integration",
       features: ["Online store", "Payment processing", "Order management"],
-      benefits: "50% increase in online sales"
+      benefits: "50% increase in online sales",
     },
     {
       title: "Inventory Management",
       description: "Advanced inventory control and tracking",
-      features: ["Real-time tracking", "Multi-location", "Automated reordering"],
-      benefits: "30% reduction in stockouts"
+      features: [
+        "Real-time tracking",
+        "Multi-location",
+        "Automated reordering",
+      ],
+      benefits: "30% reduction in stockouts",
     },
     {
       title: "Customer Experience",
       description: "Unified customer experience across all channels",
-      features: ["360° customer view", "Personalization", "Omnichannel support"],
-      benefits: "40% improvement in customer satisfaction"
-    }
+      features: [
+        "360° customer view",
+        "Personalization",
+        "Omnichannel support",
+      ],
+      benefits: "40% improvement in customer satisfaction",
+    },
   ];
-  
-  const finalSolutions = netSuiteSolutions.length > 0 ? netSuiteSolutions : defaultSolutions;
-  const safeActiveSolution = Math.min(activeSolution || 0, finalSolutions.length - 1);
+
+  const finalSolutions =
+    netSuiteSolutions.length > 0 ? netSuiteSolutions : defaultSolutions;
+  const safeActiveSolution = Math.min(
+    activeSolution || 0,
+    finalSolutions.length - 1
+  );
+
+  // Auto-rotate solutions
+  useEffect(() => {
+    if (finalSolutions.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveSolution((prev) => (prev + 1) % finalSolutions.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [finalSolutions.length, setActiveSolution]);
+
+  console.log(" [RetailSolutionsSection] Rendering with:", {
+    finalTitle,
+    finalSolutions,
+  });
 
   return (
     <section className="bg-gray-50 py-20 light-section">
@@ -54,16 +113,24 @@ const SolutionsSection = ({ data, activeSolution, setActiveSolution }) => {
       <div className="container mx-auto px-6">
         <header className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            NetSuite{" "}
-            <span
-              className="theme-primary-text text-[var(--color-brand-accent)] transition-colors duration-600 ease-in-out"
-            >
-              Solutions
-            </span>
+            {finalTitle.includes(" ") ? (
+              <>
+                {finalTitle.split(" ").slice(0, -1).join(" ")}{" "}
+                <span className="theme-primary-text text-[var(--color-brand-accent)] transition-colors duration-600 ease-in-out">
+                  {finalTitle.split(" ").slice(-1)[0]}
+                </span>
+              </>
+            ) : (
+              <span className="theme-primary-text text-[var(--color-brand-accent)] transition-colors duration-600 ease-in-out">
+                {finalTitle}
+              </span>
+            )}
           </h2>
+          {finalSubtitle && (
+            <h3 className="text-xl text-gray-700 mb-4">{finalSubtitle}</h3>
+          )}
           <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            Comprehensive retail solutions that unify your commerce operations,
-            from inventory management to customer experience optimization.
+            {finalDescription}
           </p>
         </header>
 
@@ -80,7 +147,7 @@ const SolutionsSection = ({ data, activeSolution, setActiveSolution }) => {
               <div className="relative bg-gradient-to-br from-gray-900/10 via-blue-900/5 to-gray-900/10 rounded-3xl p-6 backdrop-blur-md border border-white/30 shadow-2xl group-hover:shadow-blue-500/20 transition-all duration-500">
                 <div className="relative bg-gradient-to-br from-white/5 via-transparent to-blue-500/5 rounded-2xl p-4 border border-white/20">
                   <img
-                    src="https://i.pinimg.com/736x/5d/33/74/5d33743cd85ff60ff425a2614a87503f.jpg"
+                    src={finalImage}
                     alt="NetSuite Retail Solutions"
                     className="w-full h-110 object-cover rounded-xl shadow-2xl brightness-105 contrast-110 saturate-105 group-hover:brightness-110 group-hover:contrast-115 group-hover:saturate-110 transition-all duration-500 filter drop-shadow-xl"
                   />
@@ -133,14 +200,17 @@ const SolutionsSection = ({ data, activeSolution, setActiveSolution }) => {
           {/* Solutions Showcase - Right Side */}
           <div className="flex-1 space-y-6">
             <h3 className="text-3xl font-bold text-gray-800">
-              {typeof finalSolutions[safeActiveSolution]?.title === 'string' 
-                ? finalSolutions[safeActiveSolution]?.title 
-                : finalSolutions[safeActiveSolution]?.title?.title || 'Solution Title'}
+              {typeof finalSolutions[safeActiveSolution]?.title === "string"
+                ? finalSolutions[safeActiveSolution]?.title
+                : finalSolutions[safeActiveSolution]?.title?.title ||
+                  "Solution Title"}
             </h3>
             <p className="text-gray-600 leading-relaxed text-lg">
-              {typeof finalSolutions[safeActiveSolution]?.description === 'string'
+              {typeof finalSolutions[safeActiveSolution]?.description ===
+              "string"
                 ? finalSolutions[safeActiveSolution]?.description
-                : finalSolutions[safeActiveSolution]?.description?.description || 'Solution Description'}
+                : finalSolutions[safeActiveSolution]?.description
+                    ?.description || "Solution Description"}
             </p>
 
             <div className="space-y-3 mb-6">
@@ -152,7 +222,9 @@ const SolutionsSection = ({ data, activeSolution, setActiveSolution }) => {
                   <div key={index} className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                     <span className="text-gray-600">
-                      {typeof feature === 'string' ? feature : feature?.name || feature?.title || 'Feature'}
+                      {typeof feature === "string"
+                        ? feature
+                        : feature?.name || feature?.title || "Feature"}
                     </span>
                   </div>
                 )
@@ -175,9 +247,12 @@ const SolutionsSection = ({ data, activeSolution, setActiveSolution }) => {
                   />
                 </svg>
                 <span className="text-blue-700 font-semibold">
-                  Result: {typeof finalSolutions[safeActiveSolution]?.benefits === 'string'
+                  Result:{" "}
+                  {typeof finalSolutions[safeActiveSolution]?.benefits ===
+                  "string"
                     ? finalSolutions[safeActiveSolution]?.benefits
-                    : finalSolutions[safeActiveSolution]?.benefits?.benefits || 'Improved Results'}
+                    : finalSolutions[safeActiveSolution]?.benefits?.benefits ||
+                      "Improved Results"}
                 </span>
               </div>
             </div>

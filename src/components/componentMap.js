@@ -75,8 +75,12 @@ export const idToPathMap = {
   // RETAIL INDUSTRY COMPONENTS
   // ===========================================
   RetailHeroSection: "industries/retail/HeroSection",
+  RetailIndustryStats: "industries/retail/IndustryStats",
   RetailChallengesSection: "industries/retail/ChallengesSection",
   RetailSolutionsSection: "industries/retail/SolutionsSection",
+  RetailFeaturesSection: "industries/retail/FeaturesSection",
+  RetailCaseStudiesSection: "industries/retail/CaseStudiesSection",
+  RetailImplementationSection: "industries/retail/ImplementationSection",
   RetailCTASection: "industries/retail/CTASection",
 
   // ===========================================
@@ -195,8 +199,20 @@ export const loadComponent = async (componentPath) => {
       // ===========================================
       "industries/retail/HeroSection": () =>
         import("./industries/retail/HeroSection"),
+      "industries/retail/IndustryStats": () =>
+        import("./industries/retail/IndustryStats"),
+      "industries/retail/ChallengesSection": () =>
+        import("./industries/retail/ChallengesSection"),
       "industries/retail/SolutionsSection": () =>
         import("./industries/retail/SolutionsSection"),
+      "industries/retail/FeaturesSection": () =>
+        import("./industries/retail/FeaturesSection"),
+      "industries/retail/CaseStudiesSection": () =>
+        import("./industries/retail/CaseStudiesSection"),
+      "industries/retail/ImplementationSection": () =>
+        import("./industries/retail/ImplementationSection"),
+      "industries/retail/CTASection": () =>
+        import("./industries/retail/CTASection"),
 
       // ===========================================
       // CUSTOMIZATION COMPONENTS

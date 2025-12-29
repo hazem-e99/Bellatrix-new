@@ -2,21 +2,36 @@ import React from "react";
 import SEO from "../../SEO";
 import CTAButton from "../../CTAButton";
 
-const HeroSection = ({ data: propsData }) => {
-  // PRIORITIZE props data over default data for real-time preview
-  const data = propsData || {
-    title: "Retail Solutions",
-    subtitle: "Transform your retail operations",
-    description: "Comprehensive NetSuite solutions for retail businesses",
-    ctaText: "Request Info"
+const HeroSection = ({
+  data: propsData,
+  // Direct props from Page Builder schema
+  title: propTitle,
+  subtitle: propSubtitle,
+  description: propDescription,
+  backgroundImage: propBackgroundImage,
+  ctaText: propCtaText,
+  ctaLink: propCtaLink,
+}) => {
+  // Support both direct props and data object - direct props take priority
+  const data = {
+    title: propTitle || propsData?.title || "Retail Solutions",
+    subtitle:
+      propSubtitle || propsData?.subtitle || "Transform your retail operations",
+    description:
+      propDescription ||
+      propsData?.description ||
+      "Comprehensive NetSuite solutions for retail businesses",
+    backgroundImage: propBackgroundImage || propsData?.backgroundImage || "",
+    ctaText: propCtaText || propsData?.ctaText || "Request Info",
+    ctaLink: propCtaLink || propsData?.ctaLink || "/contact",
   };
 
   // Debug logging for real-time updates
   console.log(" [RetailHeroSection] Component received data:", {
     hasPropsData: !!propsData,
-    propsData: propsData,
+    directProps: { propTitle, propSubtitle, propDescription },
     finalData: data,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 
   return (
@@ -25,6 +40,11 @@ const HeroSection = ({ data: propsData }) => {
       style={{
         width: "100%",
         fontFamily: '"Gotham A", "Gotham B"',
+        backgroundImage: data.backgroundImage
+          ? `url(${data.backgroundImage})`
+          : undefined,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <SEO
@@ -77,16 +97,12 @@ const HeroSection = ({ data: propsData }) => {
       <div className="relative z-10 container mx-auto px-6 max-w-6xl">
         <div className="py-10 md:py-0">
           {/* Title */}
-          <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4 text-white animate-slide-up tracking-tight"
-          >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4 text-white animate-slide-up tracking-tight">
             {data.title}
           </h1>
 
           {/* Description */}
-          <p
-            className="text-lg md:text-xl text-center text-gray-300 animate-fade-in leading-relaxed max-w-3xl mx-auto mb-8"
-          >
+          <p className="text-lg md:text-xl text-center text-gray-300 animate-fade-in leading-relaxed max-w-3xl mx-auto mb-8">
             {data.description}
           </p>
 

@@ -3045,8 +3045,356 @@ export const generalComponentSchemas = {
         ],
       },
     },
-  },
-
+  },
+  // Retail Challenges Section
+  RetailChallengesSection: {
+    componentName: "RetailChallengesSection",
+    category: "retail",
+    icon: "",
+    displayName: "Retail Challenges Section",
+    description: "Display retail industry challenges with interactive cards",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Retail Challenges",
+          required: true,
+          formField: "text",
+        },
+        subtitle: {
+          type: "string",
+          label: "Section Subtitle",
+          placeholder: "Understanding Modern Retail Obstacles",
+          formField: "text",
+        },
+        description: {
+          type: "string",
+          label: "Section Description",
+          placeholder: "Modern retail faces complex challenges that require integrated solutions",
+          formField: "textarea",
+        },
+        retailChallenges: {
+          type: "array",
+          label: "Challenges",
+          items: {
+            type: "object",
+            properties: {
+              title: {
+                type: "string",
+                label: "Challenge Title",
+                placeholder: "Omnichannel Complexity",
+                required: true,
+                formField: "text",
+              },
+              description: {
+                type: "string",
+                label: "Challenge Description",
+                placeholder: "Managing multiple sales channels and touchpoints",
+                required: true,
+                formField: "textarea",
+              },
+              icon: {
+                type: "string",
+                label: "SVG Icon Path",
+                placeholder: "M13 10V3L4 14h7v7l9-11h-7z",
+                formField: "text",
+              },
+              impact: {
+                type: "string",
+                label: "Impact Level",
+                placeholder: "High",
+                formField: "select",
+                options: [
+                  { value: "High", label: "High Impact" },
+                  { value: "Medium", label: "Medium Impact" },
+                  { value: "Low", label: "Low Impact" },
+                ],
+              },
+            },
+          },
+          formField: "array",
+          minItems: 1,
+          maxItems: 6,
+        },
+        image: {
+          type: "string",
+          label: "Section Image",
+          placeholder: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43",
+          formField: "media",
+          mediaType: "image",
+        },
+      },
+    },
+    defaultData: {
+      title: "Retail Challenges",
+      subtitle: "Understanding Modern Retail Obstacles",
+      description: "Modern retail faces complex challenges that require integrated solutions to deliver exceptional customer experiences and maintain profitability.",
+      retailChallenges: [
+        {
+          title: "Omnichannel Complexity",
+          description: "Managing multiple sales channels and touchpoints while maintaining consistency",
+          icon: "M13 10V3L4 14h7v7l9-11h-7z",
+          impact: "High",
+        },
+        {
+          title: "Inventory Management",
+          description: "Real-time inventory tracking across all channels and locations",
+          icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
+          impact: "High",
+        },
+        {
+          title: "Customer Experience",
+          description: "Delivering consistent and personalized experiences across all touchpoints",
+          icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
+          impact: "Medium",
+        },
+      ],
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    },
+  },
+  // Retail Solutions Section
+  RetailSolutionsSection: {
+    componentName: "RetailSolutionsSection",
+    category: "retail",
+    icon: "",
+    displayName: "Retail Solutions Section",
+    description: "Display NetSuite retail solutions with features and benefits",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "NetSuite Solutions",
+          required: true,
+          formField: "text",
+        },
+        subtitle: {
+          type: "string",
+          label: "Section Subtitle",
+          placeholder: "Comprehensive Retail Solutions",
+          formField: "text",
+        },
+        description: {
+          type: "string",
+          label: "Section Description",
+          placeholder: "Comprehensive retail solutions that unify your commerce operations",
+          formField: "textarea",
+        },
+        netSuiteSolutions: {
+          type: "array",
+          label: "Solutions",
+          items: {
+            type: "object",
+            properties: {
+              title: {
+                type: "string",
+                label: "Solution Title",
+                placeholder: "E-commerce Platform",
+                required: true,
+                formField: "text",
+              },
+              description: {
+                type: "string",
+                label: "Solution Description",
+                placeholder: "Complete e-commerce solution with NetSuite integration",
+                required: true,
+                formField: "textarea",
+              },
+              icon: {
+                type: "string",
+                label: "SVG Icon Path",
+                placeholder: "M13 10V3L4 14h7v7l9-11h-7z",
+                formField: "text",
+              },
+              features: {
+                type: "array",
+                label: "Solution Features",
+                items: {
+                  type: "string",
+                  formField: "text",
+                },
+                formField: "array",
+                minItems: 1,
+                maxItems: 8,
+              },
+              benefits: {
+                type: "string",
+                label: "Key Benefit/Result",
+                placeholder: "50% increase in online sales",
+                formField: "text",
+              },
+            },
+          },
+          formField: "array",
+          minItems: 1,
+          maxItems: 8,
+        },
+        image: {
+          type: "string",
+          label: "Section Image",
+          placeholder: "https://i.pinimg.com/736x/5d/33/74/5d33743cd85ff60ff425a2614a87503f.jpg",
+          formField: "media",
+          mediaType: "image",
+        },
+      },
+    },
+    defaultData: {
+      title: "NetSuite Solutions",
+      subtitle: "Comprehensive Retail Solutions",
+      description: "Comprehensive retail solutions that unify your commerce operations, from inventory management to customer experience optimization.",
+      netSuiteSolutions: [
+        {
+          title: "E-commerce Platform",
+          description: "Complete e-commerce solution with seamless NetSuite integration for unified operations",
+          icon: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z",
+          features: ["Online store management", "Payment processing", "Order management", "Shipping integration"],
+          benefits: "50% increase in online sales",
+        },
+        {
+          title: "Inventory Management",
+          description: "Advanced inventory control and real-time tracking across all locations",
+          icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
+          features: ["Real-time tracking", "Multi-location support", "Automated reordering", "Demand forecasting"],
+          benefits: "30% reduction in stockouts",
+        },
+        {
+          title: "Customer Experience",
+          description: "Unified customer experience platform across all channels and touchpoints",
+          icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
+          features: ["360 customer view", "Personalization engine", "Omnichannel support", "Loyalty programs"],
+          benefits: "40% improvement in customer satisfaction",
+        },
+      ],
+      image: "https://i.pinimg.com/736x/5d/33/74/5d33743cd85ff60ff425a2614a87503f.jpg",
+    },
+  },
+  // Retail Implementation Section
+  RetailImplementationSection: {
+    componentName: "RetailImplementationSection",
+    category: "retail",
+    icon: "",
+    displayName: "Retail Implementation Section",
+    description: "Implementation process steps for retail solutions",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Retail Implementation Built for All Industries",
+          required: true,
+          formField: "text",
+        },
+        subtitle: {
+          type: "string",
+          label: "Section Subtitle",
+          placeholder: "Proven Implementation Methodology",
+          formField: "text",
+        },
+        description: {
+          type: "string",
+          label: "Section Description",
+          placeholder: "Streamline your entire NetSuite implementation lifecycle",
+          formField: "textarea",
+        },
+        implementationProcess: {
+          type: "object",
+          label: "Implementation Process",
+          properties: {
+            title: {
+              type: "string",
+              label: "Process Title",
+              placeholder: "Implementation Process",
+              formField: "text",
+            },
+            steps: {
+              type: "array",
+              label: "Implementation Steps",
+              items: {
+                type: "object",
+                properties: {
+                  title: {
+                    type: "string",
+                    label: "Step Title",
+                    placeholder: "Discovery & Assessment",
+                    required: true,
+                    formField: "text",
+                  },
+                  desc: {
+                    type: "string",
+                    label: "Step Description",
+                    placeholder: "Analyze current retail processes and requirements",
+                    required: true,
+                    formField: "textarea",
+                  },
+                  icon: {
+                    type: "string",
+                    label: "Step Icon Path",
+                    placeholder: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2",
+                    formField: "text",
+                  },
+                  benefits: {
+                    type: "array",
+                    label: "Step Benefits",
+                    items: {
+                      type: "string",
+                      formField: "text",
+                    },
+                    formField: "array",
+                    minItems: 1,
+                    maxItems: 6,
+                  },
+                },
+              },
+              formField: "array",
+              minItems: 1,
+              maxItems: 8,
+            },
+          },
+          formField: "object",
+        },
+      },
+    },
+    defaultData: {
+      title: "Retail Implementation Built for All Industries",
+      subtitle: "Proven Implementation Methodology",
+      description: "Streamline your entire NetSuite implementation lifecycle from discovery to go-live with a proven, secure methodology.",
+      implementationProcess: {
+        title: "Implementation Process",
+        steps: [
+          {
+            title: "Discovery & Assessment",
+            desc: "Analyze current retail processes, identify gaps, and document requirements for your NetSuite implementation",
+            icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
+            benefits: ["Current state assessment", "Gap analysis", "Requirements documentation", "Timeline planning"],
+          },
+          {
+            title: "Solution Design",
+            desc: "Design NetSuite configuration optimized for your retail workflows and business processes",
+            icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z",
+            benefits: ["System architecture", "Process flows", "Integration design", "Customization planning"],
+          },
+          {
+            title: "Implementation",
+            desc: "Deploy and configure NetSuite with your retail-specific customizations and integrations",
+            icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37",
+            benefits: ["System setup", "Data migration", "User training", "Testing & QA"],
+          },
+          {
+            title: "Go-Live & Support",
+            desc: "Launch your NetSuite retail solution with comprehensive support and optimization",
+            icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806",
+            benefits: ["Go-live support", "User adoption", "Performance monitoring", "Ongoing optimization"],
+          },
+        ],
+      },
+    },
+  },
+
+
   // Testimonials Components
   Testimonials: {
     componentName: "Testimonials",
