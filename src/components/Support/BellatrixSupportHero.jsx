@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../SEO";
+import CTAButton from "../CTAButton";
 
 const BellatrixSupportHero = () => {
   return (
@@ -107,28 +108,18 @@ const BellatrixSupportHero = () => {
 
             {/* CTA Button */}
             <div style={{ textAlign: "center" }}>
-              <a
-                href="#request-info"
+              <CTAButton
+                variant="primary"
+                size="lg"
                 className="group relative inline-block min-w-[180px] min-h-[56px] font-bold text-sm uppercase leading-5 rounded-md px-4 py-4 mt-8 mb-0 no-underline transition-all duration-300 transform hover:scale-105 text-white border-2 theme-cta-button"
+                modalConfig={{
+                  title: "NetSuite Support Request",
+                  subtitle: "Let's discuss your support needs",
+                  icon: ""
+                }}
               >
-                <span className="relative z-10 flex items-center justify-center">
-                  <svg
-                    className="w-5 h-5 mr-2 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                    />
-                  </svg>
-                  Talk to an Expert
-                </span>
-                <div className="absolute inset-0 theme-cta-hover-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
-              </a>
+                Talk to an Expert
+              </CTAButton>
             </div>
           </div>
         </div>

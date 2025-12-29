@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ContactForm from "../ContactForm";
+import CTAButton from "../CTAButton";
 
 const Implementation = ({ data: propsData = null }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -144,28 +145,18 @@ const Implementation = ({ data: propsData = null }) => {
 
             {/* CTA Button */}
             <div className="text-center">
-              <button
-                onClick={openModal}
+              <CTAButton
+                variant="secondary"
+                size="lg"
                 className="group relative px-10 py-4 bg-white text-black font-bold text-lg rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl animate-slide-up-delay border-2 border-white"
+                modalConfig={{
+                  title: "NetSuite Implementation Request",
+                  subtitle: "Let's discuss your implementation needs",
+                  icon: ""
+                }}
               >
-                <span className="relative z-10 flex items-center justify-center">
-                  <svg
-                    className="w-5 h-5 mr-2 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d={data.heroSection.ctaButton.icon}
-                    />
-                  </svg>
-                  {data.heroSection.ctaButton.text}
-                </span>
-                <div className="absolute inset-0 bg-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
+                {data.heroSection.ctaButton.text}
+              </CTAButton>
             </div>
           </div>
         </div>
@@ -343,9 +334,18 @@ const Implementation = ({ data: propsData = null }) => {
 
               {/* Call to Action */}
               <div className="mt-6">
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                <CTAButton
+                  variant="primary"
+                  size="md"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                  modalConfig={{
+                    title: "Start Your Implementation Journey",
+                    subtitle: "Let's discuss your implementation process",
+                    icon: ""
+                  }}
+                >
                   {data.processSection.ctaButton}
-                </button>
+                </CTAButton>
               </div>
             </div>
           </div>
@@ -600,12 +600,18 @@ const Implementation = ({ data: propsData = null }) => {
 
             {/* CTA Button */}
             <div className="mb-16">
-              <button
-                onClick={openModal}
+              <CTAButton
+                variant="primary"
+                size="lg"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+                modalConfig={{
+                  title: "NetSuite Implementation Consultation",
+                  subtitle: "Let's discuss your implementation needs and timeline",
+                  icon: ""
+                }}
               >
                 {data.ctaSection.ctaButton}
-              </button>
+              </CTAButton>
             </div>
 
             {/* Features Grid */}

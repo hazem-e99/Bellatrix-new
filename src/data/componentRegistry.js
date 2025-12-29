@@ -1318,28 +1318,7 @@ export const componentRegistry = {
       defaultData: getGeneralComponentSchema("RetailCaseStudies")?.defaultData,
     },
 
-    RetailImplementationSection: {
-      componentType: "RetailImplementationSection",
-
-      componentName: "Retail Implementation",
-
-      category: "implementation",
-
-      icon: "",
-
-      filePath: "src/components/industries/retail/ImplementationSection.jsx",
-
-      description: "Retail implementation process section",
-
-      hasEnhancedSchema: !!getGeneralComponentSchema(
-        "RetailImplementationSection"
-      ),
-
-      schema: getGeneralComponentSchema("RetailImplementationSection")?.schema,
-
-      defaultData: getGeneralComponentSchema("RetailImplementationSection")
-        ?.defaultData,
-    },
+    // RetailImplementationSection removed from add section
   },
 
   // ===========================================
