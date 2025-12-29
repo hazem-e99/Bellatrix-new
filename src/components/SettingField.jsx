@@ -3,6 +3,8 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   ArrowPathIcon,
+  PlusIcon,
+  TrashIcon,
 } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleSolid } from "@heroicons/react/24/solid";
 import toast from "react-hot-toast";
@@ -23,16 +25,31 @@ const SettingField = ({
   existingId,
   onSaveSuccess,
 }) => {
-  const [value, setValue] = useState(existingValue || "");
+  // For phone_array, parse JSON array or use single value
+  const parseInitialValue = (val, type) => {
+    if (type === "phone_array") {
+      if (!val) return [""];
+      try {
+        const parsed = JSON.parse(val);
+        return Array.isArray(parsed) && parsed.length > 0 ? parsed : [""];
+      } catch {
+        // If not JSON, treat as single phone
+        return val ? [val] : [""];
+      }
+    }
+    return val || "";
+  };
+
+  const [value, setValue] = useState(() => parseInitialValue(existingValue, fieldDef.dataType));
   const [isSaving, setIsSaving] = useState(false);
   const [validationError, setValidationError] = useState(null);
   const [isDirty, setIsDirty] = useState(false);
 
   // Update value when existingValue changes (when data loads from API)
   useEffect(() => {
-    setValue(existingValue || "");
+    setValue(parseInitialValue(existingValue, fieldDef.dataType));
     setIsDirty(false);
-  }, [existingValue]);
+  }, [existingValue, fieldDef.dataType]);
 
   const {
     key,
@@ -56,6 +73,50 @@ const SettingField = ({
     if (validationError) {
       setValidationError(null);
     }
+  };
+
+  /**
+   * Handle phone array item change
+   */
+  const handlePhoneChange = (index, newPhone) => {
+    const newPhones = [...value];
+    newPhones[index] = newPhone;
+    setValue(newPhones);
+    setIsDirty(true);
+
+    if (validationError) {
+      setValidationError(null);
+    }
+  };
+
+  /**
+   * Add new phone number
+   */
+  const addPhone = () => {
+    setValue([...value, ""]);
+    setIsDirty(true);
+  };
+
+  /**
+   * Remove phone number
+   */
+  const removePhone = (index) => {
+    if (value.length > 1) {
+      const newPhones = value.filter((_, i) => i !== index);
+      setValue(newPhones);
+      setIsDirty(true);
+    }
+  };
+
+  /**
+   * Get value for saving (convert array to JSON string for phone_array)
+   */
+  const getValueForSave = () => {
+    if (dataType === "phone_array") {
+      const cleanedPhones = value.filter(phone => phone && phone.trim() !== "");
+      return JSON.stringify(cleanedPhones);
+    }
+    return value || "";
   };
 
   /**
@@ -92,16 +153,18 @@ const SettingField = ({
     setIsSaving(true);
 
     try {
+      const valueToSave = getValueForSave();
+
       if (existingId) {
         // UPDATE existing setting
         const payload = {
           id: existingId,
           key,
-          value: value || "",
+          value: valueToSave,
           description: description || "",
           category: category || "footer",
           isPublic: isPublicDefault !== undefined ? isPublicDefault : true,
-          dataType: dataType || "string",
+          dataType: dataType === "phone_array" ? "string" : (dataType || "string"),
         };
 
         console.log(` [SettingField] PUT request for "${key}":`, payload);
@@ -140,7 +203,7 @@ const SettingField = ({
           const payload = {
             id: existingSetting.id,
             key,
-            value: value || "",
+            value: valueToSave,
             description: description || existingSetting.description || "",
             category: category || existingSetting.category || "footer",
             isPublic:
@@ -149,7 +212,7 @@ const SettingField = ({
                 : existingSetting.isPublic !== undefined
                 ? existingSetting.isPublic
                 : true,
-            dataType: dataType || existingSetting.dataType || "string",
+            dataType: dataType === "phone_array" ? "string" : (dataType || existingSetting.dataType || "string"),
           };
 
           console.log(
@@ -179,11 +242,11 @@ const SettingField = ({
           // Key doesn't exist - CREATE new setting
           const payload = {
             key,
-            value: value || "",
+            value: valueToSave,
             description: description || "",
             category: category || "footer",
             isPublic: isPublicDefault !== undefined ? isPublicDefault : true,
-            dataType: dataType || "string",
+            dataType: dataType === "phone_array" ? "string" : (dataType || "string"),
           };
 
           console.log(
@@ -221,6 +284,9 @@ const SettingField = ({
 
   // Determine if field is a textarea
   const isTextarea = dataType === "text";
+  
+  // Determine if field is a phone array
+  const isPhoneArray = dataType === "phone_array";
 
   // Check if this is a dynamic field (not in FOOTER_SETTINGS_MAP)
   const isDynamicField = fieldDef.description?.startsWith("Dynamic setting:");
@@ -250,7 +316,51 @@ const SettingField = ({
       {/* Input Field */}
       <div className="flex items-start gap-3">
         <div className="flex-1">
-          {isTextarea ? (
+          {isPhoneArray ? (
+            /* Phone Array Input */
+            <div className="space-y-2">
+              {Array.isArray(value) && value.map((phone, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => handlePhoneChange(index, e.target.value)}
+                    placeholder={`${placeholder} ${index + 1}`}
+                    disabled={isSaving}
+                    className={`flex-1 px-4 py-2.5 border rounded-lg text-sm transition-all duration-200 bg-[var(--color-white-5)] text-[var(--color-text-inverse)] border-[var(--color-white-20)] placeholder-[var(--color-text-muted)]
+                      ${
+                        validationError
+                          ? "border-[var(--tw-red-500)] focus:ring-[var(--tw-red-500)]/20 focus:border-[var(--tw-red-500)]"
+                          : "focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)]"
+                      }
+                      ${isDirty ? "bg-[var(--tw-yellow-500)]/10 border-[var(--tw-yellow-500)]/30" : ""}
+                      disabled:opacity-50 disabled:cursor-not-allowed
+                      focus:outline-none focus:ring-2`}
+                  />
+                  {value.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => removePhone(index)}
+                      disabled={isSaving}
+                      className="p-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors disabled:opacity-50"
+                      title="Remove phone"
+                    >
+                      <TrashIcon className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={addPhone}
+                disabled={isSaving}
+                className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-colors disabled:opacity-50"
+              >
+                <PlusIcon className="w-4 h-4" />
+                Add Phone Number
+              </button>
+            </div>
+          ) : isTextarea ? (
             <textarea
               value={value}
               onChange={handleChange}

@@ -50,17 +50,17 @@ export const FOOTER_SETTINGS_MAP = [
   },
   {
     key: "company_phone",
-    label: "Contact Phone",
+    label: "Contact Phones",
     placeholder: "+1 (555) 123-4567",
-    dataType: "string",
+    dataType: "phone_array",
     category: "footer",
     isPublicDefault: true,
-    description: "Primary contact phone number",
+    description: "Contact phone numbers (you can add multiple)",
     validation: {
       pattern: /^[\d\s\-\+\(\)]+$/,
       errorMessage: "Please enter a valid phone number",
       minLength: 7,
-      maxLength: 20,
+      maxLength: 30,
     },
   },
   {
@@ -202,23 +202,72 @@ export const validateField = (key, value) => {
     return { isValid: true, error: null };
   }
 
-  const { validation } = field;
+  const { validation, dataType } = field;
   if (!validation) {
     return { isValid: true, error: null };
   }
 
+  // Handle phone_array type separately
+  if (dataType === "phone_array") {
+    if (!Array.isArray(value)) {
+      return { isValid: true, error: null };
+    }
+    
+    // Filter out empty values
+    const nonEmptyPhones = value.filter(phone => phone && phone.trim() !== "");
+    
+    // Required validation for arrays
+    if (validation.required && nonEmptyPhones.length === 0) {
+      return { isValid: false, error: `${field.label} is required` };
+    }
+    
+    // Validate each phone number
+    for (let i = 0; i < nonEmptyPhones.length; i++) {
+      const phone = nonEmptyPhones[i].trim();
+      
+      // Min length validation
+      if (validation.minLength && phone.length < validation.minLength) {
+        return {
+          isValid: false,
+          error: `Phone ${i + 1} must be at least ${validation.minLength} characters`,
+        };
+      }
+      
+      // Max length validation
+      if (validation.maxLength && phone.length > validation.maxLength) {
+        return {
+          isValid: false,
+          error: `Phone ${i + 1} must not exceed ${validation.maxLength} characters`,
+        };
+      }
+      
+      // Pattern validation
+      if (validation.pattern && !validation.pattern.test(phone)) {
+        return {
+          isValid: false,
+          error: validation.errorMessage || `Phone ${i + 1} format is invalid`,
+        };
+      }
+    }
+    
+    return { isValid: true, error: null };
+  }
+
+  // Standard string validation
+  const stringValue = typeof value === 'string' ? value : '';
+
   // Required validation
-  if (validation.required && (!value || value.trim() === "")) {
+  if (validation.required && (!stringValue || stringValue.trim() === "")) {
     return { isValid: false, error: `${field.label} is required` };
   }
 
   // Skip other validations if value is empty and not required
-  if (!value || value.trim() === "") {
+  if (!stringValue || stringValue.trim() === "") {
     return { isValid: true, error: null };
   }
 
   // Min length validation
-  if (validation.minLength && value.length < validation.minLength) {
+  if (validation.minLength && stringValue.length < validation.minLength) {
     return {
       isValid: false,
       error: `${field.label} must be at least ${validation.minLength} characters`,
@@ -226,7 +275,7 @@ export const validateField = (key, value) => {
   }
 
   // Max length validation
-  if (validation.maxLength && value.length > validation.maxLength) {
+  if (validation.maxLength && stringValue.length > validation.maxLength) {
     return {
       isValid: false,
       error: `${field.label} must not exceed ${validation.maxLength} characters`,
@@ -234,7 +283,7 @@ export const validateField = (key, value) => {
   }
 
   // Pattern validation
-  if (validation.pattern && !validation.pattern.test(value)) {
+  if (validation.pattern && !validation.pattern.test(stringValue)) {
     return {
       isValid: false,
       error: validation.errorMessage || `${field.label} format is invalid`,

@@ -70,15 +70,51 @@ const DynamicFooter = () => {
                 </p>
               )}
               {footerData.company_phone && (
-                <p className="text-gray-400">
-                  <span className="font-medium">Phone:</span>{" "}
-                  <a
-                    href={`tel:${footerData.company_phone}`}
-                    className="hover:text-blue-400 transition-colors"
-                  >
-                    {footerData.company_phone}
-                  </a>
-                </p>
+                <div className="text-gray-400">
+                  <span className="font-medium">Phone:</span>
+                  {(() => {
+                    // Try to parse as JSON array
+                    let phones = [];
+                    try {
+                      const parsed = JSON.parse(footerData.company_phone);
+                      phones = Array.isArray(parsed) ? parsed : [footerData.company_phone];
+                    } catch {
+                      phones = [footerData.company_phone];
+                    }
+                    
+                    const filteredPhones = phones.filter(p => p && p.trim());
+                    
+                    // Single phone - display inline
+                    if (filteredPhones.length === 1) {
+                      return (
+                        <span className="ml-1">
+                          <a
+                            href={`tel:${filteredPhones[0].replace(/\s/g, '')}`}
+                            className="hover:text-blue-400 transition-colors"
+                          >
+                            {filteredPhones[0]}
+                          </a>
+                        </span>
+                      );
+                    }
+                    
+                    // Multiple phones - display stacked
+                    return (
+                      <div className="mt-1 space-y-1">
+                        {filteredPhones.map((phone, index) => (
+                          <div key={index}>
+                            <a
+                              href={`tel:${phone.replace(/\s/g, '')}`}
+                              className="hover:text-blue-400 transition-colors"
+                            >
+                              {phone}
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()}
+                </div>
               )}
             </div>
           </div>
