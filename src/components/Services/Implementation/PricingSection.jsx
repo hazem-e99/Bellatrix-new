@@ -3,8 +3,17 @@ import React, { useState, useEffect } from "react";
 import SEO from "../../SEO";
 import CTAButton from "../../CTAButton";
 
-const PricingSection = ({ data = {} }) => {
+const PricingSection = (props) => {
   const [defaultData, setDefaultData] = useState(null);
+
+  // Extract direct props from Page Builder
+  const {
+    title: propTitle,
+    subtitle: propSubtitle,
+    plans: propPlans,
+    additionalInfo: propAdditionalInfo,
+    data: propsData,
+  } = props;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,27 +40,22 @@ const PricingSection = ({ data = {} }) => {
     fetchData();
   }, []);
 
-  // PRIORITIZE props data over default data for real-time preview
-  const displayData =
-    data && Object.keys(data).length > 0
-      ? data
-      : defaultData || {
-          title: "Implementation Pricing",
-          subtitle:
-            "Choose the perfect implementation plan that fits your business needs and budget",
-          plans: [],
-          additionalInfo: {
-            note: "All plans include free consultation and project scoping",
-            contactText:
-              "Need a custom solution? Contact our team for personalized pricing",
-          },
-        };
+  // PRIORITIZE direct props > data prop > defaultData
+  const displayData = {
+    title: propTitle || propsData?.title || defaultData?.title || "Implementation Pricing",
+    subtitle: propSubtitle || propsData?.subtitle || defaultData?.subtitle || "Choose the perfect implementation plan that fits your business needs and budget",
+    plans: propPlans || propsData?.plans || defaultData?.plans || [],
+    additionalInfo: propAdditionalInfo || propsData?.additionalInfo || defaultData?.additionalInfo || {
+      note: "All plans include free consultation and project scoping",
+      contactText: "Need a custom solution? Contact our team for personalized pricing",
+    },
+  };
 
   // Debug logging for real-time updates
   console.log(" [ImplementationPricingSection] Component received data:", {
-    hasPropsData: !!(data && Object.keys(data).length > 0),
-    propsData: data,
-    hasDefaultData: !!defaultData,
+    directProps: { propTitle, propSubtitle, propPlans },
+    propsData,
+    defaultData,
     finalData: displayData,
     timestamp: new Date().toISOString(),
   });
