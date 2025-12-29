@@ -1255,6 +1255,7 @@ const EnhancedPageBuilder = () => {
 
 
           // Handle contentJson string conversion for API
+          // IMPORTANT: Preserve BOTH contentJson (string) AND content (object) for API compatibility
 
           console.log(` Processing component ${index + 1}:`, {
 
@@ -1263,6 +1264,8 @@ const EnhancedPageBuilder = () => {
             originalContentJson: component.contentJson,
 
             contentJsonType: typeof component.contentJson,
+            
+            contentJsonLength: component.contentJson?.length || 0,
 
           });
 
@@ -1283,6 +1286,9 @@ const EnhancedPageBuilder = () => {
               const parsedContent = JSON.parse(component.contentJson);
 
               processedComponent.content = parsedContent;
+              
+              // CRITICAL FIX: Also preserve the original contentJson string for the API
+              processedComponent.contentJson = component.contentJson;
 
               console.log(
 
@@ -1292,7 +1298,7 @@ const EnhancedPageBuilder = () => {
 
                 }:`,
 
-                parsedContent
+                { contentKeys: Object.keys(parsedContent), contentJsonLength: component.contentJson.length }
 
               );
 
@@ -1309,6 +1315,8 @@ const EnhancedPageBuilder = () => {
               // If invalid JSON, create empty object
 
               processedComponent.content = {};
+              
+              processedComponent.contentJson = JSON.stringify({});
 
             }
 
@@ -1321,18 +1329,23 @@ const EnhancedPageBuilder = () => {
           ) {
 
             processedComponent.content = component.content;
+            
+            // Convert content object to contentJson string
+            processedComponent.contentJson = JSON.stringify(component.content);
 
             console.log(
 
               ` Using existing content object for component ${index + 1}:`,
 
-              component.content
+              { contentKeys: Object.keys(component.content) }
 
             );
 
           } else {
 
             processedComponent.content = {};
+            
+            processedComponent.contentJson = JSON.stringify({});
 
             console.log(` Creating empty content for component ${index + 1}`);
 
@@ -1344,7 +1357,12 @@ const EnhancedPageBuilder = () => {
 
             ` Final processed component ${index + 1}:`,
 
-            processedComponent
+            { 
+              componentType: processedComponent.componentType,
+              hasContent: !!processedComponent.content,
+              hasContentJson: !!processedComponent.contentJson,
+              contentJsonLength: processedComponent.contentJson?.length || 0,
+            }
 
           );
 
@@ -6777,8 +6795,20 @@ const EnhancedPageBuilder = () => {
 
 
   const getDefaultDataForComponent = (componentType) => {
+    // PRIORITY 1: Check if we have defaultData from the component registry (availableComponents)
+    const registryComponent = availableComponents.find(
+      (c) => c.componentType === componentType
+    );
+    
+    if (registryComponent?.defaultData && Object.keys(registryComponent.defaultData).length > 0) {
+      console.log(
+        ` [DEFAULT DATA] Using registry defaultData for ${componentType}:`,
+        Object.keys(registryComponent.defaultData)
+      );
+      return registryComponent.defaultData;
+    }
 
-    // Use the generated default data
+    // PRIORITY 2: Use the generated default data from JSON (legacy support)
 
     const defaultData = generateDefaultDataFromJSON();
 
@@ -6790,33 +6820,34 @@ const EnhancedPageBuilder = () => {
 
 
 
-    if (!componentData) {
-
-      console.warn(
-
-        `No default data defined for component: ${componentType}. Available components:`,
-
-        Object.keys(defaultData)
-
+    if (componentData) {
+      console.log(
+        ` [DEFAULT DATA] Using generateDefaultDataFromJSON for ${componentType}:`,
+        Object.keys(componentData)
       );
-
-      return {
-
-        title: "New Component Title",
-
-        description: "Component description - please configure this component",
-
-        content: "This component needs to be configured with proper data.",
-
-        _isPlaceholder: true,
-
-      };
-
+      return componentData;
     }
 
+    // PRIORITY 3: Return placeholder data if nothing found
+    console.warn(
 
+      `No default data defined for component: ${componentType}. Available in registry:`,
 
-    return componentData;
+      availableComponents.map(c => c.componentType).slice(0, 10)
+
+    );
+
+    return {
+
+      title: "New Component Title",
+
+      description: "Component description - please configure this component",
+
+      content: "This component needs to be configured with proper data.",
+
+      _isPlaceholder: true,
+
+    };
 
   };
 
