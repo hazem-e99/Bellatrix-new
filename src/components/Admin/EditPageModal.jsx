@@ -418,19 +418,25 @@ const EditPageModal = ({ isOpen, onClose, page, onSave, showToast }) => {
                 </div>
 
                 {/* Homepage Status */}
-                <div className="flex items-center gap-2 mt-4">
+                <div className="flex items-center space-x-3">
                   <input
                     type="checkbox"
                     id="isHomepage"
                     checked={formData.isHomepage}
                     onChange={(e) =>
-                      setFormData({ ...formData, isHomepage: e.target.checked })
+                      handleInputChange("isHomepage", e.target.checked)
                     }
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                    className="w-4 h-4 text-blue-600 bg-white/10 border-white/20 rounded focus:ring-blue-500 focus:ring-2"
                   />
-                  <label htmlFor="isHomepage" className="text-sm text-white">
+                  <label
+                    htmlFor="isHomepage"
+                    className="text-sm font-medium text-white"
+                  >
                     Set as main page of this category
                   </label>
+                  <span className="text-xs text-gray-400">
+                    Make this the homepage within its category
+                  </span>
                 </div>
                 <p className="text-xs text-gray-400 mt-1">
                   This will make the page the main (homepage) within its

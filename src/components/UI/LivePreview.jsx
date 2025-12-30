@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useMemo } from "react";
 
-import { AnimatePresence } from "framer-motion";
+// eslint-disable-next-line no-unused-vars
+import { AnimatePresence, motion } from "framer-motion";
 
 import { EyeIcon } from "@heroicons/react/24/outline";
 
-import { motion } from "framer-motion";
+
 
 import Card, { CardContent, CardHeader, CardTitle } from "../UI/Card";
 
 import {
   componentRegistry,
-  getComponentByType,
 } from "../../config/previewComponentRegistry";
 
 import PreviewError from "./LivePreview/PreviewError";
@@ -1360,7 +1360,6 @@ const ComponentPreview = ({
         // Support both saved componentType aliases: "TrainingProgramsSection" and "ProgramsSection"
 
         case "TrainingProgramsSection":
-
         case "ProgramsSection": {
           console.log(
             " [TrainingProgramsSection/ProgramsSection TRANSFORM] Input data:",
@@ -1678,7 +1677,6 @@ const ComponentPreview = ({
         }
 
         case "ServiceGrid":
-
         case "ServiceGridSection": {
           console.log(" [ServiceGrid TRANSFORM] Input data:", componentData);
 
