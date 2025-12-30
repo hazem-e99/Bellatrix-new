@@ -6998,6 +6998,97 @@ generalComponentSchemas.AboutValues = {
   },
 };
 
+generalComponentSchemas.RetailCaseStudiesSection = {
+  componentName: "CaseStudiesSection",
+  category: "industry",
+  icon: "📊",
+  displayName: "Retail Case Studies Section",
+  description: "Case studies section showcasing retail success stories",
+
+  schema: {
+    type: "object",
+    properties: {
+      title: {
+        type: "string",
+        label: "Section Title",
+        placeholder: "Retail Success Stories",
+        formField: "text",
+      },
+      description: {
+        type: "string",
+        label: "Section Description",
+        placeholder: "Real retail companies achieving remarkable results...",
+        formField: "textarea",
+      },
+      caseStudies: {
+        type: "array",
+        label: "Case Studies",
+        items: {
+          type: "object",
+          properties: {
+            company: {
+              type: "string",
+              label: "Company Name",
+              placeholder: "Fashion Forward Co.",
+              formField: "text",
+            },
+            industry: {
+              type: "string",
+              label: "Industry",
+              placeholder: "Fashion Retail",
+              formField: "text",
+            },
+            image: {
+              type: "string",
+              label: "Case Study Image",
+              placeholder: "/images/case-study.jpg",
+              formField: "media",
+              mediaType: "image",
+            },
+            challenge: {
+              type: "string",
+              label: "Challenge",
+              placeholder: "The main challenge faced...",
+              formField: "textarea",
+            },
+            solution: {
+              type: "string",
+              label: "Solution",
+              placeholder: "How we solved the challenge...",
+              formField: "textarea",
+            },
+            results: {
+              type: "array",
+              label: "Results",
+              items: {
+                type: "string",
+                formField: "text",
+              },
+              formField: "array-text",
+            },
+          },
+        },
+        formField: "array",
+      },
+    },
+  },
+
+  defaultData: {
+    title: "Retail Success Stories",
+    description: "Real retail companies achieving remarkable results with NetSuite commerce solutions.",
+    caseStudies: [
+      {
+        company: "Fashion Forward Co.",
+        industry: "Fashion Retail",
+        image: "",
+        challenge: "Legacy POS system causing checkout delays",
+        solution: "Implemented unified POS and real-time inventory",
+        results: ["40% faster checkout", "95% inventory accuracy"],
+      },
+    ],
+  },
+};
+
 // Log processed components for verification
 
 [

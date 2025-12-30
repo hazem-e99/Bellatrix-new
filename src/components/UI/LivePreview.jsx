@@ -2441,36 +2441,7 @@ const ComponentPreview = ({
           return transformedData;
         }
 
-        case "RetailImplementationSection": {
-          console.log(
-            " [RetailImplementationSection TRANSFORM] Input data:",
-
-            componentData
-          );
-
-          const transformedData = {
-            title: componentData.title || "Implementation Process",
-
-            subtitle: componentData.subtitle || "A proven methodology",
-
-            description:
-              componentData.description ||
-              "Our implementation process ensures success",
-
-            implementationProcess: componentData.implementationProcess || {
-              steps: componentData.steps || [],
-            },
-          };
-
-          console.log(
-            " [RetailImplementationSection TRANSFORM] Output data:",
-
-            transformedData
-          );
-
-          return transformedData;
-        }
-
+       
         case "RetailCTASection": {
           console.log(
             " [RetailCTASection TRANSFORM] Input data:",

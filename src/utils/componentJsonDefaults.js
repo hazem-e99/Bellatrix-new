@@ -4,13 +4,21 @@
  */
 
 import { generalComponentSchemas } from "../data/generalComponentSchemas";
+import { aboutComponentSchemas } from "../data/aboutComponentSchemas";
 
 export const getBasicJsonForComponent = (componentType) => {
-  // First, check if we have a specific schema for this component type
-  const schema = generalComponentSchemas[componentType];
-  if (schema && schema.defaultData) {
-    console.log(`[getBasicJsonForComponent] Found schema for ${componentType}:`, schema.defaultData);
-    return { ...schema.defaultData };
+  // First, check if we have a specific schema for this component type in generalComponentSchemas
+  const generalSchema = generalComponentSchemas[componentType];
+  if (generalSchema && generalSchema.defaultData) {
+    console.log(`[getBasicJsonForComponent] Found general schema for ${componentType}:`, generalSchema.defaultData);
+    return { ...generalSchema.defaultData };
+  }
+
+  // Then, check in aboutComponentSchemas
+  const aboutSchema = aboutComponentSchemas[componentType];
+  if (aboutSchema && aboutSchema.defaultData) {
+    console.log(`[getBasicJsonForComponent] Found about schema for ${componentType}:`, aboutSchema.defaultData);
+    return { ...aboutSchema.defaultData };
   }
 
   // Fallback to pattern matching for components not in schemas

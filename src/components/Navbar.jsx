@@ -14,9 +14,7 @@ import {
 
 } from "@heroicons/react/24/outline";
 
-// eslint-disable-next-line
-
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import ContactForm from "./ContactForm";
 

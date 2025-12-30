@@ -179,7 +179,7 @@ const CaseStudiesSection = ({
                 <div>
                   <h4 className="font-semibold text-white mb-3">Results:</h4>
                   <div className="space-y-2">
-                    {study.results.map((result, i) => (
+                    {Array.isArray(study.results) ? study.results.map((result, i) => (
                       <div key={i} className="flex items-center space-x-2">
                         <svg
                           className="w-4 h-4 theme-check-icon text-[var(--color-cyan-400)] transition-colors duration-600 ease-in-out"
@@ -203,7 +203,11 @@ const CaseStudiesSection = ({
                               "Result"}
                         </span>
                       </div>
-                    ))}
+                    )) : (
+                      <span className="text-gray-400 text-sm">
+                        {typeof study.results === "string" ? study.results : "No results available"}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

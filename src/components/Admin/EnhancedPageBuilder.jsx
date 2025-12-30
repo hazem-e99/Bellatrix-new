@@ -925,7 +925,9 @@ const EnhancedPageBuilder = () => {
           'IndustriesSection',
           'TestimonialsSection',
           'Testimonials', 
-          'Industries'
+          'Industries',
+          'RetailImplementationSection',
+          'RetailIndustryStats',
         ];
         
         const filteredComponents = allComponents.filter(
@@ -5732,49 +5734,49 @@ const EnhancedPageBuilder = () => {
 
       // // Retail Sections
 
-      // RetailIndustryStatsSection: {
+      RetailIndustryStatsSection: {
 
-      //   title: "Retail Industry Stats",
+        title: "Retail Industry Stats",
 
-      //   subtitle: "The evolving retail landscape",
+        subtitle: "The evolving retail landscape",
 
-      //   stats: [
+        stats: [
 
-      //     {
+          {
 
-      //       label: "Omnichannel Growth",
+            label: "Omnichannel Growth",
 
-      //       value: "85%",
+            value: "85%",
 
-      //       description:
+            description:
 
-      //         "of retailers are investing in omnichannel capabilities",
+              "of retailers are investing in omnichannel capabilities",
 
-      //     },
+          },
 
-      //     {
+          {
 
-      //       label: "Customer Expectations",
+            label: "Customer Expectations",
 
-      //       value: "78%",
+            value: "78%",
 
-      //       description: "expect seamless online and offline experiences",
+            description: "expect seamless online and offline experiences",
 
-      //     },
+          },
 
-      //     {
+          {
 
-      //       label: "Inventory Accuracy",
+            label: "Inventory Accuracy",
 
-      //       value: "95%",
+            value: "95%",
 
-      //       description: "accuracy needed for successful omnichannel retail",
+            description: "accuracy needed for successful omnichannel retail",
 
-      //     },
+          },
 
-      //   ],
+        ],
 
-      // },
+      },
 
 
 
