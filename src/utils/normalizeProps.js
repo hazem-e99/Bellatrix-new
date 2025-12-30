@@ -834,6 +834,19 @@ export const normalizeProps = (componentType, contentJson) => {
 
     }),
 
+    HRUseCasesSection: (data) => {
+      console.log(" [HRUseCasesSection] Raw form data:", data);
+      
+      return {
+        data: {
+          title: data.title || "Who Is It For?",
+          description: data.description || "",
+          useCases: Array.isArray(data.useCases) ? data.useCases : 
+                    Array.isArray(data.items) ? data.items : [],
+        }
+      };
+    },
+
 
 
     // Training Components
@@ -1893,6 +1906,8 @@ export const normalizeProps = (componentType, contentJson) => {
         "members",
         
         "milestones",
+        
+        "useCases",
 
       ];
 

@@ -936,20 +936,30 @@ const ComponentPreview = ({
             componentData
           );
 
+          // Handle nested data structure - check both componentData and componentData.data
+          const rawData = componentData.data || componentData;
+          
           // Ensure all fields are passed and use correct keys
-
           const transformedHRUseCasesData = {
             data: {
-              title: componentData.title || "Who Is It For?",
+              title: rawData.title || componentData.title || "Who Is It For?",
 
-              description: componentData.description || "",
+              description: rawData.description || componentData.description || "",
 
-              useCases: Array.isArray(componentData.useCases)
+              useCases: Array.isArray(rawData.useCases)
+                ? rawData.useCases.map((uc) => ({
+                    ...uc,
+                    description: uc.description || uc.desc || "Use case description",
+                  }))
+                : Array.isArray(componentData.useCases)
                 ? componentData.useCases.map((uc) => ({
                     ...uc,
-
-                    description:
-                      uc.description || uc.desc || "Use case description",
+                    description: uc.description || uc.desc || "Use case description",
+                  }))
+                : Array.isArray(rawData.items)
+                ? rawData.items.map((uc) => ({
+                    ...uc,
+                    description: uc.description || uc.desc || "Use case description",
                   }))
                 : [],
             },

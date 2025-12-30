@@ -1916,10 +1916,22 @@ export const generalComponentSchemas = {
           formField: "text",
         },
 
+        description: {
+          type: "string",
+
+          label: "Description",
+
+          placeholder: "Description of use cases section",
+
+          formField: "textarea",
+        },
+
         useCases: {
           type: "array",
 
           label: "Use Cases",
+
+          formField: "array",
 
           items: {
             type: "object",
