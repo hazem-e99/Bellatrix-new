@@ -51,13 +51,15 @@ export const fetchPublicFooterSettings = async () => {
       const allSettings = response.data.data;
       const footerData = {};
 
+      // List of footer-related key prefixes and exact keys
+      const footerKeyPrefixes = ["company_", "footer_", "social_"];
+      const footerExactKeys = ["copyright_text", "siteTitle", "privacy_policy_url", "terms_of_service_url"];
+
       Object.entries(allSettings).forEach(([key, value]) => {
-        // Assuming footer keys start with known prefixes
-        if (
-          key.startsWith("company_") ||
-          key.startsWith("footer_") ||
-          key.startsWith("social_")
-        ) {
+        // Check if key starts with known prefixes OR is an exact match
+        const isFooterKey = footerKeyPrefixes.some(prefix => key.startsWith(prefix)) || 
+                           footerExactKeys.includes(key);
+        if (isFooterKey) {
           footerData[key] = value;
         }
       });

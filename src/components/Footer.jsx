@@ -178,6 +178,8 @@ const Footer = () => {
 
     twitter: "#",
 
+    copyrightText: "",
+
   });
 
 
@@ -259,6 +261,8 @@ const Footer = () => {
             youtube: apiData.social_youtube || "#",
 
             twitter: apiData.twitter_link || "#",
+
+            copyrightText: apiData.copyright_text || "",
 
           };
 
@@ -848,9 +852,7 @@ const Footer = () => {
 
           <p>
 
-            &copy; {new Date().getFullYear()} {footerSettings.companyName}. All
-
-            rights reserved.
+            {footerSettings.copyrightText || `© ${new Date().getFullYear()} ${footerSettings.companyName}. All rights reserved.`}
 
           </p>
 

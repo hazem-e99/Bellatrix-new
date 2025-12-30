@@ -9,7 +9,7 @@ const Modal = ({ isOpen, onClose, icon, title, subtitle, children }) => {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md relative shadow-2xl overflow-hidden animate-fade-in-up rounded-2xl"
+        className="w-full max-w-2xl relative shadow-2xl overflow-hidden animate-fade-in-up rounded-2xl"
         onClick={(e) => e.stopPropagation()}
         style={{ backgroundColor: '#001248' }}
       >
@@ -21,19 +21,19 @@ const Modal = ({ isOpen, onClose, icon, title, subtitle, children }) => {
         </div>
 
         {/* Header */}
-        <div className="relative p-3 border-b border-white/10">
-          <div className="flex items-start gap-3">
+        <div className="relative px-6 py-4 border-b border-white/10">
+          <div className="flex items-start gap-4">
             {icon && (
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center shadow-lg flex-shrink-0">
                 <span className="text-white text-lg">{icon}</span>
               </div>
             )}
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-bold text-white leading-tight">
+              <h3 className="text-xl font-bold text-white leading-tight">
                 {title}
               </h3>
               {subtitle && (
-                <p className="text-white/70 text-xs">
+                <p className="text-white/70 text-sm mt-1">
                   {subtitle}
                 </p>
               )}
@@ -61,7 +61,7 @@ const Modal = ({ isOpen, onClose, icon, title, subtitle, children }) => {
         </div>
 
         {/* Content */}
-        <div className="relative p-3">
+        <div className="relative px-6 py-4">
           {children}
         </div>
       </div>

@@ -125,15 +125,24 @@ const PageDetailsStep = ({
           />
         </div>
 
-        <div className="flex items-center space-x-4">
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              checked={pageData.isHomepage}
-              onChange={(e) => onDataChange("isHomepage", e.target.checked)}
-              className="h-4 w-4 text-[var(--color-primary)] focus:ring-[var(--color-primary)] border-[var(--color-border-secondary)] rounded"
-            />
-            <span className="ml-2 text-sm text-[var(--color-text-inverse)]">
+        <div className="flex items-center space-x-6">
+          <label className="flex items-center cursor-pointer group">
+            <div className="relative">
+              <input
+                type="checkbox"
+                checked={pageData.isHomepage}
+                onChange={(e) => onDataChange("isHomepage", e.target.checked)}
+                className="sr-only peer"
+              />
+              <div className="h-5 w-5 rounded border-2 border-white/40 bg-white/10 peer-checked:bg-cyan-500 peer-checked:border-cyan-500 transition-all flex items-center justify-center">
+                {pageData.isHomepage && (
+                  <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+              </div>
+            </div>
+            <span className="ml-2 text-sm text-white font-medium group-hover:text-cyan-300 transition-colors">
               Set as Homepage
             </span>
           </label>

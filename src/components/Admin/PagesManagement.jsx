@@ -38,7 +38,36 @@ import {
       setLoading(true);
       setError(null);
       const data = await pagesAPI.getPages();
-      setPages(data);
+      console.log("[PagesManagement] Initial pages data:", data);
+      
+      // Fetch full page data to get component counts
+      const pagesWithComponentCounts = await Promise.all(
+        data.map(async (page) => {
+          try {
+            // Get full page data which includes components
+            const fullPage = await pagesAPI.getPageById(page.id);
+            console.log(`[PagesManagement] Full page data for ID ${page.id}:`, fullPage);
+            console.log(`[PagesManagement] Page keys:`, Object.keys(fullPage || {}));
+            
+            const componentCount = fullPage?.components?.length || 
+                                   fullPage?.pageComponents?.length || 
+                                   fullPage?.Components?.length ||
+                                   fullPage?.PageComponents?.length || 0;
+            console.log(`[PagesManagement] Component count for page ${page.id}:`, componentCount);
+            
+            return {
+              ...page,
+              componentCount
+            };
+          } catch (err) {
+            console.warn(`Failed to fetch page details for ${page.id}:`, err);
+            return { ...page, componentCount: 0 };
+          }
+        })
+      );
+      
+      console.log("[PagesManagement] Final pages with counts:", pagesWithComponentCounts);
+      setPages(pagesWithComponentCounts);
     } catch (err) {
       setError(err.message);
       showToast("Error fetching pages: " + err.message, "error");

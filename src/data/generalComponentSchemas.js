@@ -7018,7 +7018,7 @@ generalComponentSchemas.AboutValues = {
   "AboutTeam",
 
   "AboutValues",
-].forEach((name) => console.log(`Schema & live mapping updated for ${name} `));
+];
 
 /**
 

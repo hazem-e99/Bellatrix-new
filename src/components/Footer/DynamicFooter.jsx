@@ -221,8 +221,7 @@ const DynamicFooter = () => {
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()}{" "}
-            {footerData.company_name || "Your Company"}. All rights reserved.
+            {footerData.copyright_text || `© ${new Date().getFullYear()} ${footerData.company_name || "Your Company"}. All rights reserved.`}
           </p>
         </div>
       </div>
