@@ -5,11 +5,12 @@ import React from "react";
 import SEO from "../../SEO";
 
 import {
-  getVariantClasses,
   validateVariant,
 } from "../../../utils/variantSystem";
 
 import { smartRender } from "../../../utils/htmlSanitizer";
+
+import { renderIcon } from "../../../utils/iconUtils";
 
 import CTAButton from "../../CTAButton";
 
@@ -25,8 +26,6 @@ const CtaSection = ({
   features,
 
   trustedBy,
-
-  openModal,
 }) => {
   console.log(" [ImplementationCTASection Fixed] Received props:", {
     title,
@@ -208,19 +207,7 @@ const CtaSection = ({
                     <div
                       className={`w-12 h-12 ${bgColors[index]} rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
                     >
-                      <svg
-                        className="w-6 h-6 text-[var(--color-text-inverse)]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d={feature.icon}
-                        />
-                      </svg>
+                      {renderIcon(feature.icon, "w-6 h-6 text-[var(--color-text-inverse)]")}
                     </div>
 
                     <h3 className="text-xl font-semibold text-[var(--color-text-inverse)] mb-2">

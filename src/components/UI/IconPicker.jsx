@@ -39,6 +39,7 @@ const IconPicker = ({
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(0);
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const modalRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -119,7 +120,16 @@ const IconPicker = ({
       {/* Input Field with Icon Preview */}
       <div
         ref={inputRef}
-        onClick={() => !disabled && setIsOpen(true)}
+        onClick={() => {
+          if (!disabled && inputRef.current) {
+            const rect = inputRef.current.getBoundingClientRect();
+            setModalPosition({
+              top: rect.bottom + 8,
+              left: Math.min(rect.left, window.innerWidth - 400)
+            });
+            setIsOpen(true);
+          }
+        }}
         className={`${inputClasses} flex items-center justify-between cursor-pointer hover:bg-slate-700/80 ${
           disabled ? "opacity-50 cursor-not-allowed" : ""
         }`}
@@ -167,8 +177,13 @@ const IconPicker = ({
       {isOpen && (
         <div
           ref={modalRef}
-          className="absolute z-[9999] mt-2 w-full min-w-[320px] max-w-[400px] bg-slate-800 border border-slate-600/50 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
-          style={{ maxHeight: "450px" }}
+          className="fixed z-[99999] bg-slate-800 border border-slate-600/50 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+          style={{ 
+            maxHeight: "450px",
+            width: "380px",
+            top: modalPosition.top,
+            left: modalPosition.left
+          }}
         >
           {/* Search Input */}
           <div className="p-3 border-b border-slate-700">

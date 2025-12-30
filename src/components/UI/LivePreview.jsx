@@ -1963,7 +1963,9 @@ const ComponentPreview = ({
 
           const transformedData = {
             processSteps: componentData.processSteps ||
+              componentData.data?.processSteps ||
               componentData.steps ||
+              componentData.data?.steps ||
               componentData.items || [
                 {
                   title: "Analysis",
@@ -1992,13 +1994,14 @@ const ComponentPreview = ({
                 { title: "Training", description: "Train users", step: "04" },
               ],
 
-            title: componentData.title || "Implementation Process",
+            title: componentData.title || componentData.data?.title || "Manufacturing Implementation Built for All Industries",
 
             subtitle:
               componentData.subtitle ||
+              componentData.data?.subtitle ||
               "A proven methodology for manufacturing implementations",
 
-            description: componentData.description || "Our proven methodology",
+            description: componentData.description || componentData.data?.description || "Streamline your entire NetSuite implementation lifecycle — from discovery to go-live — with a proven, secure methodology.",
           };
 
           console.log(

@@ -616,7 +616,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
 
-                formField: "text",
+                formField: "icon",
               },
             },
           },
@@ -862,7 +862,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "",
 
-                formField: "text",
+                formField: "icon",
               },
 
               title: {
@@ -1097,7 +1097,7 @@ export const generalComponentSchemas = {
 
                 label: "Icon",
 
-                formField: "text",
+                formField: "icon",
               },
             },
           },
@@ -1772,7 +1772,7 @@ export const generalComponentSchemas = {
 
                 label: "Icon",
 
-                formField: "text",
+                formField: "icon",
               },
             },
           },
@@ -2608,7 +2608,7 @@ export const generalComponentSchemas = {
                 placeholder:
                   "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
 
-                formField: "text",
+                formField: "icon",
               },
 
               impact: {
@@ -2806,7 +2806,7 @@ export const generalComponentSchemas = {
 
                 label: "Icon SVG Path (Optional)",
 
-                formField: "text",
+                formField: "icon",
               },
             },
           },
@@ -2976,7 +2976,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "",
 
-                formField: "text",
+                formField: "icon",
               },
 
               title: {
@@ -3958,7 +3958,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "",
 
-                formField: "text",
+                formField: "icon",
               },
 
               link: {
@@ -4172,7 +4172,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "Factory",
 
-                formField: "text",
+                formField: "icon",
               },
 
               content: {
@@ -4673,7 +4673,7 @@ export const generalComponentSchemas = {
                 type: "string",
                 label: "SVG Icon Path",
                 placeholder: "M13 10V3L4 14h7v7l9-11h-7z",
-                formField: "text",
+                formField: "icon",
               },
               impact: {
                 type: "string",
@@ -4791,7 +4791,7 @@ export const generalComponentSchemas = {
                 type: "string",
                 label: "SVG Icon Path",
                 placeholder: "M13 10V3L4 14h7v7l9-11h-7z",
-                formField: "text",
+                formField: "icon",
               },
               features: {
                 type: "array",
@@ -5186,7 +5186,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "",
 
-                formField: "text",
+                formField: "icon",
               },
 
               features: {
@@ -5424,7 +5424,7 @@ export const generalComponentSchemas = {
 
               placeholder: "M13 7l5 5m0 0l-5 5m5-5H6",
 
-              formField: "text",
+              formField: "icon",
             },
           },
 
@@ -6969,7 +6969,7 @@ generalComponentSchemas.AboutValues = {
 
               label: "Icon (emoji or name)",
 
-              formField: "text",
+              formField: "icon",
             },
 
             title: { type: "string", label: "Value Title", formField: "text" },
