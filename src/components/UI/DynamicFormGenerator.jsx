@@ -15,6 +15,8 @@ import Button from "../UI/Button";
 
 import MediaPicker from "../UI/MediaPicker";
 
+import IconPicker from "../UI/IconPicker";
+
 /**
  * Custom Styled Select Component
  */
@@ -462,9 +464,9 @@ const DynamicFormGenerator = ({
 
     switch (fieldSchema.formField) {
       case "text":
-
+      // falls through
       case "email":
-
+      // falls through
       case "url":
         return (
           <div className="space-y-2">
@@ -561,9 +563,9 @@ const DynamicFormGenerator = ({
         );
 
       case "media":
-
+      // falls through
       case "media-image":
-
+      // falls through
       case "media-video":
         return (
           <div className="space-y-2">
@@ -641,6 +643,17 @@ const DynamicFormGenerator = ({
               </div>
             )}
           </div>
+        );
+
+      case "icon":
+        return (
+          <IconPicker
+            value={value || ""}
+            onChange={onChange}
+            label={fieldSchema.label}
+            placeholder={fieldSchema.placeholder || "Select an icon..."}
+            required={isRequired}
+          />
         );
 
       default:
@@ -1513,6 +1526,27 @@ const DynamicFormGenerator = ({
           </div>
         );
 
+      case "icon":
+        return (
+          <div key={fullPath}>
+            <IconPicker
+              value={value || ""}
+              onChange={(iconName) => {
+                console.log(" [ICON CHANGE]", {
+                  fullPath,
+                  oldValue: value,
+                  newValue: iconName,
+                  componentType,
+                });
+                handleChange(fullPath, iconName);
+              }}
+              label={fieldSchema.label}
+              placeholder={fieldSchema.placeholder || "Select an icon..."}
+              required={isRequired}
+            />
+          </div>
+        );
+
       default:
         return (
           <div key={fullPath} className="space-y-2">
@@ -1585,9 +1619,9 @@ const DynamicFormGenerator = ({
 
               schemaProperties: schema.properties,
 
-              formDataKeys: Object.keys(formData),
+              formDataKeys: formData && typeof formData === 'object' && !Array.isArray(formData) ? Object.keys(formData) : [],
 
-              hasItemsInData: "items" in formData,
+              hasItemsInData: formData && typeof formData === 'object' && !Array.isArray(formData) ? "items" in formData : false,
 
               hasItemsInSchema: "items" in schema.properties,
             });
@@ -1610,7 +1644,7 @@ const DynamicFormGenerator = ({
 
                 isInSchema: key in schema.properties,
 
-                isInFormData: key in formData,
+                isInFormData: formData && typeof formData === 'object' && !Array.isArray(formData) ? key in formData : false,
 
                 isHidden: fieldSchema.hidden === true,
               });

@@ -355,7 +355,7 @@ export const generalComponentSchemas = {
                 formField: "textarea",
               },
 
-              icon: { type: "string", label: "Icon", formField: "text" },
+              icon: { type: "string", label: "Icon", formField: "icon" },
             },
           },
 
@@ -1194,7 +1194,7 @@ export const generalComponentSchemas = {
                 formField: "textarea",
               },
 
-              icon: { type: "string", label: "Icon", formField: "text" },
+              icon: { type: "string", label: "Icon", formField: "icon" },
             },
           },
 
@@ -3384,7 +3384,7 @@ export const generalComponentSchemas = {
                 formField: "text",
               },
 
-              icon: { type: "string", label: "Icon", formField: "text" },
+              icon: { type: "string", label: "Icon", formField: "icon" },
             },
           },
 
@@ -4395,7 +4395,7 @@ export const generalComponentSchemas = {
                   formField: "textarea",
                 },
 
-                icon: { type: "string", label: "Icon", formField: "text" },
+                icon: { type: "string", label: "Icon", formField: "icon" },
 
                 benefits: {
                   type: "array",

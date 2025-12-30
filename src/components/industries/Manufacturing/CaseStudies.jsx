@@ -1,5 +1,6 @@
 import React from "react";
 
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 import SEO from "../../SEO";
@@ -51,9 +52,9 @@ const CaseStudies = (props) => {
   // Debug: Log the exact values being used
 
   console.log(" [CaseStudies] Title/Description Debug:", {
-    titleFromProps: data?.title,
+    titleFromProps: props?.data?.title,
 
-    descriptionFromProps: data?.description,
+    descriptionFromProps: props?.data?.description,
 
     finalTitle: finalData.title,
 
