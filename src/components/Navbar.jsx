@@ -14,7 +14,7 @@ import {
 
 } from "@heroicons/react/24/outline";
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import ContactForm from "./ContactForm";
 

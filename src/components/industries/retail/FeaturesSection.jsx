@@ -1,5 +1,4 @@
-import React from "react";
-import SEO from "../../SEO";
+import { renderIcon } from "../../../utils/iconUtils";
 
 const FeaturesSection = ({
   data,
