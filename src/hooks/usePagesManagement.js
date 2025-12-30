@@ -24,7 +24,24 @@ export const usePagesManagement = () => {
       setLoading(true);
       setError(null);
       const data = await pagesAPI.getPages();
-      setPages(data);
+      
+      // Fetch full page data to get component counts
+      const pagesWithComponentCounts = await Promise.all(
+        data.map(async (page) => {
+          try {
+            const fullPage = await pagesAPI.getPageById(page.id);
+            const componentCount = fullPage?.components?.length || 
+                                   fullPage?.pageComponents?.length || 
+                                   fullPage?.Components?.length ||
+                                   fullPage?.PageComponents?.length || 0;
+            return { ...page, componentCount };
+          } catch {
+            return { ...page, componentCount: 0 };
+          }
+        })
+      );
+      
+      setPages(pagesWithComponentCounts);
     } catch (err) {
       setError(err.message);
       showToast("Error fetching pages: " + err.message, "error");

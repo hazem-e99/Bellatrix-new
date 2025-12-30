@@ -90,13 +90,6 @@ const BenefitsSection = ({ data, activeBenefitIdx, onShowDemo }) => {
                 role="article"
                 aria-label={`HR Benefit: ${b.title || "HR Feature"}`}
               >
-                <div
-                  className="text-4xl mb-4"
-                  role="img"
-                  aria-label={`${b.title || "HR Feature"} icon`}
-                >
-                  {b.icon}
-                </div>
                 <h3 className="font-bold text-2xl text-[var(--color-primary-dark)] mb-4">
                   {b.title}
                 </h3>

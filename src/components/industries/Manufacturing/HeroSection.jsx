@@ -5,11 +5,6 @@ import { motion } from "framer-motion";
 
 const HeroSection = (props) => {
   // PRIORITIZE props data over default data for real-time preview
-  const ctaText =
-    props.ctaText ||
-    props.ctaButton?.text ||
-    props.data?.ctaText ||
-    props.data?.ctaButton?.text;
   const ctaButton = props.ctaButton || props.data?.ctaButton;
   const title = props.title || props.data?.title;
   const subtitle = props.subtitle || props.data?.subtitle;
@@ -21,15 +16,13 @@ const HeroSection = (props) => {
   const finalData = {
     title: title || "Manufacturing Solutions",
     subtitle: subtitle || "Streamline your manufacturing operations",
-    description:
-      description ||
-      "Comprehensive NetSuite solutions for manufacturing businesses",
+    description: description || "Comprehensive NetSuite solutions for manufacturing businesses",
     backgroundImage: backgroundImage || "/images/manufacturing-hero.jpg",
     backgroundVideo: backgroundVideo || "",
-    ctaButton: {
-      text: ctaText || ctaButton?.text || "Learn More",
-      link: null,
-      variant: ctaButton?.variant || "primary",
+    ctaButton: ctaButton || {
+      text: "Learn More",
+      link: "/manufacturing",
+      variant: "primary",
     },
   };
 
@@ -38,7 +31,7 @@ const HeroSection = (props) => {
     hasPropsData: !!(props.title || props.subtitle || props.data),
     props: props,
     finalData: finalData,
-    timestamp: new Date().toISOString(),
+    timestamp: new Date().toISOString()
   });
 
   return (
@@ -103,9 +96,7 @@ const HeroSection = (props) => {
                 className="px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl"
                 modalConfig={{
                   title: finalData.title || "Manufacturing Solutions",
-                  subtitle:
-                    finalData.description ||
-                    "Let's discuss your manufacturing needs",
+                  subtitle: finalData.description || "Let's discuss your manufacturing needs",
                 }}
               >
                 {finalData.ctaButton.text}
