@@ -644,31 +644,34 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    PayrollPainPointsSection: (data) => ({
-
-      title:
-
-        data.painPoints?.title || data.title || "Common Payroll Pain Points",
-
-      subtitle:
-
-        data.painPoints?.subtitle || data.subtitle || "Problems we solve",
-
-      image: data.image || "",
-
-      painPoints:
-
-        data.painPoints?.items ||
-
+    PayrollPainPointsSection: (data) => {
+      console.log(" [PayrollPainPointsSection] Raw form data:", data);
+      
+      // Extract painPoints array from various possible locations
+      const painPointsArray = 
         data.painPoints?.painPoints ||
-
-        data.painPoints ||
-
+        data.painPoints?.items ||
+        (Array.isArray(data.painPoints) ? data.painPoints : null) ||
         data.items ||
-
-        [],
-
-    }),
+        [];
+      
+      // Build the painPoints object that the component expects
+      const painPointsData = {
+        title: data.title || data.painPoints?.title || "Common Payroll Pain Points",
+        description: data.description || data.painPoints?.description || "Problems we solve",
+        painPoints: painPointsArray,
+        image: data.image || data.painPoints?.image || "",
+      };
+      
+      return {
+        // Component expects a `painPoints` prop
+        painPoints: painPointsData,
+        // Also spread at top level for compatibility
+        title: painPointsData.title,
+        description: painPointsData.description,
+        image: painPointsData.image,
+      };
+    },
 
 
 

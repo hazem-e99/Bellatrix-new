@@ -1200,6 +1200,14 @@ export const generalComponentSchemas = {
 
           formField: "array",
         },
+        
+        image: {
+          type: "string",
+          label: "Section Image",
+          placeholder: "/images/payroll-challenges.jpg",
+          formField: "media",
+          mediaType: "image",
+        },
       },
     },
 
