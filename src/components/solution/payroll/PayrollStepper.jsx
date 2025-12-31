@@ -220,7 +220,8 @@ const PayrollStepper = ({ steps = [], title, description }) => {
 
     fetchData();
 
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // staticDefaultData is a constant defined outside the component, no need to include in deps
 
 
 
@@ -230,7 +231,8 @@ const PayrollStepper = ({ steps = [], title, description }) => {
 
     () => (steps.length > 0 ? steps : defaultData?.steps || staticDefaultData.steps),
 
-    [steps, defaultData?.steps]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [steps, defaultData?.steps] // staticDefaultData.steps is a constant defined outside the component
 
   );
 
