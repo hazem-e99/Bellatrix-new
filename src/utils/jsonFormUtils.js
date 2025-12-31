@@ -2,6 +2,14 @@
 export const parseJsonToFormFields = (jsonString) => {
   try {
     const jsonData = JSON.parse(jsonString || "{}");
+    
+    // If the parsed data is a string (primitive), it means the data is corrupted
+    // (e.g. "Manufacturing Implementation"). Return empty object to allow clean editing.
+    if (typeof jsonData !== 'object' || jsonData === null) {
+        console.warn("parseJsonToFormFields: Parsed data is primitive, resetting to empty object:", jsonData);
+        return {};
+    }
+    
     return jsonData;
   } catch (error) {
     console.error("Error parsing JSON:", error);

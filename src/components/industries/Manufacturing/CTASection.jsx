@@ -21,9 +21,6 @@ const CTASection = ({
   features,
 
   trustedBy,
-
-  openContactModal,
-
 }) => {
 
   // Merge props with default data from JSON

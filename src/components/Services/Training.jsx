@@ -155,29 +155,7 @@ const Training = () => {
       </svg>
     );
   };
-  // Services data for navbar
-  const services = [
-    {
-      title: "Strategic Consultation",
-      link: "#",
-    },
-    {
-      title: "Implementation",
-      link: "/Implementation",
-    },
-    {
-      title: "Training",
-      link: "/Training",
-    },
-    {
-      title: "Tailored Customization",
-      link: "#",
-    },
-    {
-      title: "Seamless Integration",
-      link: "#",
-    },
-  ];
+
 
   return (
     <>
@@ -998,7 +976,7 @@ const Training = () => {
                       />
 
                       {/* Professional overlay effects */}
-                      <div className="absolute inset-4 rounded-xl bg-gradient-to-tr from-blue-500/5 via-transparent via-transparent to-cyan-400/5 pointer-events-none"></div>
+                      <div className="absolute inset-4 rounded-xl bg-gradient-to-tr from-blue-500/5 via-transparent to-cyan-400/5 pointer-events-none"></div>
                       <div className="absolute inset-4 rounded-xl bg-gradient-to-bl from-transparent via-white/3 to-transparent pointer-events-none"></div>
                     </div>
 

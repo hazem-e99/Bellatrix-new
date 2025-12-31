@@ -51,114 +51,6 @@ export const generalComponentSchemas = {
     },
   },
 
-  // Home Hero Section with Slides
-  HeroSection: {
-    componentName: "HeroSection",
-    category: "home",
-    icon: "",
-    displayName: "Home Hero Section",
-    description: "Hero section with video slides and stats for the home page",
-    schema: {
-      type: "object",
-      properties: {
-        slides: {
-          type: "array",
-          label: "Hero Slides",
-          items: {
-            type: "object",
-            properties: {
-              title: {
-                type: "string",
-                label: "Slide Title",
-                placeholder: "Strategic Business Transformation",
-                required: true,
-                formField: "text",
-              },
-              subtitle: {
-                type: "string",
-                label: "Slide Subtitle",
-                placeholder: "Oracle NetSuite Consultancy",
-                required: true,
-                formField: "text",
-              },
-              description: {
-                type: "string",
-                label: "Slide Description",
-                placeholder: "Streamline operations and drive growth...",
-                required: true,
-                formField: "textarea",
-              },
-              video: {
-                type: "string",
-                label: "Background Video",
-                placeholder: "/Videos/homepage_hero.mp4",
-                formField: "media",
-                mediaType: "video",
-              },
-            },
-          },
-          formField: "array",
-          minItems: 1,
-          maxItems: 5,
-        },
-        stats: {
-          type: "array",
-          label: "Statistics",
-          items: {
-            type: "object",
-            properties: {
-              value: {
-                type: "string",
-                label: "Stat Value",
-                placeholder: "500+",
-                required: true,
-                formField: "text",
-              },
-              label: {
-                type: "string",
-                label: "Stat Label",
-                placeholder: "Projects Completed",
-                required: true,
-                formField: "text",
-              },
-            },
-          },
-          formField: "array",
-          minItems: 0,
-          maxItems: 6,
-        },
-      },
-    },
-    defaultData: {
-      slides: [
-        {
-          title: "Strategic Business Transformation",
-          subtitle: "Oracle NetSuite Consultancy",
-          description: "Streamline operations and drive growth with our comprehensive NetSuite solutions.",
-          video: "/Videos/implementation/homepage_hero.mp4",
-        },
-        {
-          title: "Digital Optimization Experts",
-          subtitle: "Cloud Solutions Specialists",
-          description: "Enhance productivity with our tailored implementation and consulting services.",
-          video: "/Videos/implementation/homepage_hero.mp4",
-        },
-        {
-          title: "Data-Driven Decision Making",
-          subtitle: "Business Intelligence Partners",
-          description: "Leverage real-time analytics to transform your operations.",
-          video: "/Videos/implementation/homepage_hero.mp4",
-        },
-      ],
-      stats: [
-        { value: "500+", label: "Projects Completed" },
-        { value: "15+", label: "Years Experience" },
-        { value: "98%", label: "Client Satisfaction" },
-        { value: "200+", label: "Happy Clients" },
-      ],
-    },
-  },
-
   // Implementation Components
 
   // HeroSection: {
@@ -463,7 +355,7 @@ export const generalComponentSchemas = {
                 formField: "textarea",
               },
 
-              icon: { type: "string", label: "Icon", formField: "icon" },
+              icon: { type: "string", label: "Icon", formField: "text" },
             },
           },
 
@@ -724,7 +616,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
 
-                formField: "icon",
+                formField: "text",
               },
             },
           },
@@ -970,7 +862,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "",
 
-                formField: "icon",
+                formField: "text",
               },
 
               title: {
@@ -1205,7 +1097,7 @@ export const generalComponentSchemas = {
 
                 label: "Icon",
 
-                formField: "icon",
+                formField: "text",
               },
             },
           },
@@ -1302,7 +1194,7 @@ export const generalComponentSchemas = {
                 formField: "textarea",
               },
 
-              icon: { type: "string", label: "Icon", formField: "icon" },
+              icon: { type: "string", label: "Icon", formField: "text" },
             },
           },
 
@@ -1880,7 +1772,7 @@ export const generalComponentSchemas = {
 
                 label: "Icon",
 
-                formField: "icon",
+                formField: "text",
               },
             },
           },
@@ -2024,22 +1916,10 @@ export const generalComponentSchemas = {
           formField: "text",
         },
 
-        description: {
-          type: "string",
-
-          label: "Description",
-
-          placeholder: "Description of use cases section",
-
-          formField: "textarea",
-        },
-
         useCases: {
           type: "array",
 
           label: "Use Cases",
-
-          formField: "array",
 
           items: {
             type: "object",
@@ -2728,7 +2608,7 @@ export const generalComponentSchemas = {
                 placeholder:
                   "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
 
-                formField: "icon",
+                formField: "text",
               },
 
               impact: {
@@ -2926,7 +2806,7 @@ export const generalComponentSchemas = {
 
                 label: "Icon SVG Path (Optional)",
 
-                formField: "icon",
+                formField: "text",
               },
             },
           },
@@ -3096,7 +2976,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "",
 
-                formField: "icon",
+                formField: "text",
               },
 
               title: {
@@ -3504,49 +3384,7 @@ export const generalComponentSchemas = {
                 formField: "text",
               },
 
-              icon: { type: "string", label: "Icon", formField: "icon" },
-
-              details: {
-                type: "string",
-                label: "Implementation Details",
-                formField: "textarea",
-                placeholder: "Detailed explanation of this step...",
-              },
-
-              benefits: {
-                type: "array",
-                label: "Key Deliverables",
-                items: {
-                  type: "string",
-                  label: "Deliverable",
-                  formField: "text",
-                },
-                formField: "array",
-              },
-
-              stats: {
-                type: "array",
-                label: "Stats Cards",
-                items: {
-                  type: "object",
-                  properties: {
-                    title: { type: "string", label: "Title (e.g. Efficient)", formField: "text" },
-                    description: { type: "string", label: "Description", formField: "textarea" },
-                    icon: { type: "string", label: "Icon", formField: "icon" },
-                    color: { 
-                      type: "string", 
-                      label: "Color (blue/green)", 
-                      formField: "select",
-                      options: [
-                        { label: "Blue", value: "blue" },
-                        { label: "Green", value: "green" }
-                      ]
-                    },
-                  },
-                },
-                formField: "array",
-                maxItems: 2,
-              },
+              icon: { type: "string", label: "Icon", formField: "text" },
             },
           },
 
@@ -4120,7 +3958,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "",
 
-                formField: "icon",
+                formField: "text",
               },
 
               link: {
@@ -4334,7 +4172,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "Factory",
 
-                formField: "icon",
+                formField: "text",
               },
 
               content: {
@@ -4557,7 +4395,7 @@ export const generalComponentSchemas = {
                   formField: "textarea",
                 },
 
-                icon: { type: "string", label: "Icon", formField: "icon" },
+                icon: { type: "string", label: "Icon", formField: "text" },
 
                 benefits: {
                   type: "array",
@@ -4835,7 +4673,7 @@ export const generalComponentSchemas = {
                 type: "string",
                 label: "SVG Icon Path",
                 placeholder: "M13 10V3L4 14h7v7l9-11h-7z",
-                formField: "icon",
+                formField: "text",
               },
               impact: {
                 type: "string",
@@ -4953,7 +4791,7 @@ export const generalComponentSchemas = {
                 type: "string",
                 label: "SVG Icon Path",
                 placeholder: "M13 10V3L4 14h7v7l9-11h-7z",
-                formField: "icon",
+                formField: "text",
               },
               features: {
                 type: "array",
@@ -5348,7 +5186,7 @@ export const generalComponentSchemas = {
 
                 placeholder: "",
 
-                formField: "icon",
+                formField: "text",
               },
 
               features: {
@@ -5586,7 +5424,7 @@ export const generalComponentSchemas = {
 
               placeholder: "M13 7l5 5m0 0l-5 5m5-5H6",
 
-              formField: "icon",
+              formField: "text",
             },
           },
 
@@ -7131,7 +6969,7 @@ generalComponentSchemas.AboutValues = {
 
               label: "Icon (emoji or name)",
 
-              formField: "icon",
+              formField: "text",
             },
 
             title: { type: "string", label: "Value Title", formField: "text" },
@@ -7160,97 +6998,6 @@ generalComponentSchemas.AboutValues = {
   },
 };
 
-generalComponentSchemas.RetailCaseStudiesSection = {
-  componentName: "CaseStudiesSection",
-  category: "industry",
-  icon: "📊",
-  displayName: "Retail Case Studies Section",
-  description: "Case studies section showcasing retail success stories",
-
-  schema: {
-    type: "object",
-    properties: {
-      title: {
-        type: "string",
-        label: "Section Title",
-        placeholder: "Retail Success Stories",
-        formField: "text",
-      },
-      description: {
-        type: "string",
-        label: "Section Description",
-        placeholder: "Real retail companies achieving remarkable results...",
-        formField: "textarea",
-      },
-      caseStudies: {
-        type: "array",
-        label: "Case Studies",
-        items: {
-          type: "object",
-          properties: {
-            company: {
-              type: "string",
-              label: "Company Name",
-              placeholder: "Fashion Forward Co.",
-              formField: "text",
-            },
-            industry: {
-              type: "string",
-              label: "Industry",
-              placeholder: "Fashion Retail",
-              formField: "text",
-            },
-            image: {
-              type: "string",
-              label: "Case Study Image",
-              placeholder: "/images/case-study.jpg",
-              formField: "media",
-              mediaType: "image",
-            },
-            challenge: {
-              type: "string",
-              label: "Challenge",
-              placeholder: "The main challenge faced...",
-              formField: "textarea",
-            },
-            solution: {
-              type: "string",
-              label: "Solution",
-              placeholder: "How we solved the challenge...",
-              formField: "textarea",
-            },
-            results: {
-              type: "array",
-              label: "Results",
-              items: {
-                type: "string",
-                formField: "text",
-              },
-              formField: "array-text",
-            },
-          },
-        },
-        formField: "array",
-      },
-    },
-  },
-
-  defaultData: {
-    title: "Retail Success Stories",
-    description: "Real retail companies achieving remarkable results with NetSuite commerce solutions.",
-    caseStudies: [
-      {
-        company: "Fashion Forward Co.",
-        industry: "Fashion Retail",
-        image: "",
-        challenge: "Legacy POS system causing checkout delays",
-        solution: "Implemented unified POS and real-time inventory",
-        results: ["40% faster checkout", "95% inventory accuracy"],
-      },
-    ],
-  },
-};
-
 // Log processed components for verification
 
 [
@@ -7271,7 +7018,7 @@ generalComponentSchemas.RetailCaseStudiesSection = {
   "AboutTeam",
 
   "AboutValues",
-];
+].forEach((name) => console.log(`Schema & live mapping updated for ${name} `));
 
 /**
 

@@ -1,34 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+
 import ContactForm from "../../components/ContactForm";
 import Modal from "../../components/Modal";
 import ImplementationStepper from "../../components/industries/ImplementationStepper";
 
-const Manufacturing = () => {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [activeChallenge, setActiveChallenge] = useState(0);
-  const [activeSolution, setActiveSolution] = useState(0);
 
-  const openContactModal = () => setIsContactModalOpen(true);
-  const closeContactModal = () => setIsContactModalOpen(false);
-
-  // Auto-rotate challenges and solutions
-  useEffect(() => {
-    const challengeInterval = setInterval(() => {
-      setActiveChallenge((prev) => (prev + 1) % manufacturingChallenges.length);
-    }, 4000);
-
-    const solutionInterval = setInterval(() => {
-      setActiveSolution((prev) => (prev + 1) % netSuiteSolutions.length);
-    }, 5000);
-
-    return () => {
-      clearInterval(challengeInterval);
-      clearInterval(solutionInterval);
-    };
-  }, []);
-
-  const manufacturingChallenges = [
+const manufacturingChallenges = [
     {
       title: "Complex Production Planning",
       description:
@@ -170,63 +147,31 @@ const Manufacturing = () => {
     },
   ];
 
-  const implementationProcess = [
-    {
-      phase: "Discovery & Assessment",
-      duration: "2-3 weeks",
-      description:
-        "Analyze current manufacturing processes, systems, and requirements",
-      deliverables: [
-        "Current state assessment",
-        "Gap analysis",
-        "Requirements documentation",
-      ],
-    },
-    {
-      phase: "Solution Design",
-      duration: "3-4 weeks",
-      description:
-        "Design NetSuite configuration tailored to manufacturing workflows",
-      deliverables: [
-        "System architecture",
-        "Process flows",
-        "Integration design",
-      ],
-    },
-    {
-      phase: "Configuration & Development",
-      duration: "6-8 weeks",
-      description:
-        "Configure NetSuite modules and develop custom manufacturing features",
-      deliverables: [
-        "Configured system",
-        "Custom developments",
-        "Integration setup",
-      ],
-    },
-    {
-      phase: "Testing & Training",
-      duration: "3-4 weeks",
-      description:
-        "Comprehensive testing and user training for manufacturing teams",
-      deliverables: [
-        "Test results",
-        "Training materials",
-        "User documentation",
-      ],
-    },
-    {
-      phase: "Go-Live & Support",
-      duration: "2-3 weeks",
-      description:
-        "Production deployment with ongoing support and optimization",
-      deliverables: [
-        "Live system",
-        "Support documentation",
-        "Performance monitoring",
-      ],
-    },
-  ];
+const Manufacturing = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [activeChallenge, setActiveChallenge] = useState(0);
+  const [activeSolution, setActiveSolution] = useState(0);
+
+  const openContactModal = () => setIsContactModalOpen(true);
+  const closeContactModal = () => setIsContactModalOpen(false);
+
+  // Auto-rotate challenges and solutions
+  useEffect(() => {
+    const challengeInterval = setInterval(() => {
+      setActiveChallenge((prev) => (prev + 1) % manufacturingChallenges.length);
+    }, 4000);
+
+    const solutionInterval = setInterval(() => {
+      setActiveSolution((prev) => (prev + 1) % netSuiteSolutions.length);
+    }, 5000);
+
+    return () => {
+      clearInterval(challengeInterval);
+      clearInterval(solutionInterval);
+    };
+  }, []);
+
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -456,7 +401,7 @@ const Manufacturing = () => {
                       className="w-full h-96 object-cover rounded-xl shadow-2xl brightness-105 contrast-110 saturate-105 group-hover:brightness-110 group-hover:contrast-115 group-hover:saturate-110 transition-all duration-500 filter drop-shadow-xl"
                     />
 
-                    <div className="absolute inset-4 rounded-xl bg-gradient-to-tr from-blue-500/5 via-transparent via-transparent to-cyan-400/5 pointer-events-none"></div>
+                    <div className="absolute inset-4 rounded-xl bg-gradient-to-tr from-blue-500/5 via-transparent to-cyan-400/5 pointer-events-none"></div>
                     <div className="absolute inset-4 rounded-xl bg-gradient-to-bl from-transparent via-white/3 to-transparent pointer-events-none"></div>
                   </div>
 
