@@ -18,7 +18,33 @@ import { validateVariant } from "./variantSystem";
 
  */
 
+const normalizeGenericCTA = (data, defaultTitle) => {
+  const baseData = data.data || data;
+  const features = baseData.features || baseData.items || data.features || data.items || [];
+  
+  const btnText = 
+    baseData.buttonText || 
+    baseData.ctaButton?.text || 
+    (typeof baseData.ctaButton === 'string' ? baseData.ctaButton : null) || 
+    data.buttonText || 
+    data.ctaButton?.text || 
+    "Get Started";
 
+  return {
+    ...baseData,
+    title: baseData.title || data.title || defaultTitle || "Ready to Transform?",
+    subtitle: baseData.subtitle || data.subtitle || "Let's discuss your needs",
+    description: baseData.description || data.description || "",
+    features: Array.isArray(features) ? features : [],
+    ctaButton: {
+        text: btnText,
+        link: baseData.ctaButton?.link || baseData.buttonLink || null,
+        variant: baseData.ctaButton?.variant || "primary"
+    },
+    // Include data wrapper for compatibility and pass through original fields
+    data: { ...baseData, features: Array.isArray(features) ? features : [] } 
+  };
+};
 
 /**
 
@@ -79,24 +105,13 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
     // Retail CTA Section
-    RetailCTASection: (data) => {
-      console.log(" [RetailCTASection] Raw form data:", data);
-      
-      return {
-        title: data.title || "Ready to Transform Your Retail Operations?",
-        subtitle: data.subtitle || "",
-        description: data.description || "",
-        features: Array.isArray(data.features) ? data.features : [],
-        ctaButton: data.ctaButton || {},
-        data: {
-          title: data.title || "Ready to Transform Your Retail Operations?",
-          subtitle: data.subtitle || "",
-          description: data.description || "",
-          features: Array.isArray(data.features) ? data.features : [],
-          ctaButton: data.ctaButton || {},
-        }
-      };
-    },
+    RetailCTASection: (data) => normalizeGenericCTA(data, "Ready to Transform Your Retail Operations?"),
+    
+    // Other CTA Sections
+    AboutCTASection: (data) => normalizeGenericCTA(data, "Ready to Build Something Great?"),
+    HRCTASection: (data) => normalizeGenericCTA(data, "Ready to Transform Your HR?"),
+    ManufacturingCTASection: (data) => normalizeGenericCTA(data, "Ready to Transform Your Manufacturing Operations?"),
+    CustomizationCTASection: (data) => normalizeGenericCTA(data, "Ready to Customize?"),
 
     // Retail Solutions Section
     RetailSolutionsSection: (data) => {
@@ -762,7 +777,7 @@ export const normalizeProps = (componentType, contentJson) => {
     PayrollFAQSection: (data) => {
       console.log(" [PayrollFAQSection] Raw form data:", data);
       
-      const items = data.faq?.items || data.faq?.faqs || data.faqs || data.items || [];
+      const items = data.faqItems || data.faq?.items || data.faq?.faqs || data.faqs || data.items || [];
       
       return {
         faqData: {
@@ -1517,231 +1532,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    ImplementationCTASection: (data) => {
-
-      console.log(" [ImplementationCTASection] Raw form data:", data);
-
-      console.log(" [ImplementationCTASection] Text fields:", {
-
-        buttonText: data.buttonText,
-
-        ctaButtonText: data.ctaButton?.text,
-
-        buttonTextNested: data.button?.text,
-
-        title: data.title,
-
-        subtitle: data.subtitle,
-
-        description: data.description,
-
-      });
-
-      console.log(" [ImplementationCTASection] ALL TEXT OPTIONS:", {
-
-        // Check all possible button text properties
-
-        buttonText: data.buttonText,
-
-        ctaButtonText: data.ctaButton?.text,
-
-        buttonTextNested: data.button?.text,
-
-        text: data.text,
-
-        ctaText: data.ctaText,
-
-        btnText: data.btnText,
-
-        // Also check root level
-
-        ...data,
-
-      });
-
-
-
-      const buttonVariant = validateVariant(
-
-        data.ctaButton?.variant ||
-
-          data.button?.variant ||
-
-          data.variant ||
-
-          "primary"
-
-      );
-
-
-
-      // Try ALL possible button text sources
-
-      const buttonText =
-
-        data.ctaButton?.text ||
-
-        data.button?.text ||
-
-        data.buttonText ||
-
-        data.text ||
-
-        data.ctaText ||
-
-        data.btnText ||
-
-        "Get a quote";
-
-
-
-      // Use only features property
-
-      const featuresData = data.features || [
-
-        {
-
-          title: "Quick Response",
-
-          description: "Get a detailed proposal within 24 hours",
-
-          icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-
-        },
-
-        {
-
-          title: "Proven Success",
-
-          description: "99.9% implementation success rate",
-
-          icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
-
-        },
-
-        {
-
-          title: "Expert Support",
-
-          description: "Dedicated team of certified professionals",
-
-          icon:
-
-            "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
-
-        },
-
-      ];
-
-
-
-      console.log(" [FEATURES DEBUG] Features data:", {
-
-        features: data.features,
-
-        finalFeatures: featuresData,
-
-      });
-
-
-
-      const normalized = {
-
-        // Structure 1: Direct props
-
-        title: data.title || "Ready for a Seamless NetSuite Implementation?",
-
-        subtitle:
-
-          data.subtitle ||
-
-          "Transform your business operations with our expert NetSuite implementation services. Let's turn your vision into reality with proven methodologies and dedicated support.",
-
-        description: data.description || "",
-
-
-
-        // Structure 2: CTA button
-
-        ctaButton: {
-
-          text: buttonText,
-
-          link: data.ctaButton?.link || data.button?.link || data.link || null,
-
-          variant: buttonVariant,
-
-        },
-
-
-
-        // Structure 3: Alternative button prop (some components use this)
-
-        button: {
-
-          text: buttonText,
-
-          link: data.ctaButton?.link || data.button?.link || data.link || null,
-
-          variant: buttonVariant,
-
-        },
-
-
-
-        // Structure 4: Direct text prop (some components use this)
-
-        buttonText: buttonText,
-
-        buttonLink:
-
-          data.ctaButton?.link || data.button?.link || data.link || null,
-
-
-
-        // ADD: Features data mapping
-
-        features: featuresData,
-
-      };
-
-
-
-      console.log(
-
-        " [ImplementationCTASection] Final normalized:",
-
-        normalized
-
-      );
-
-      console.log(
-
-        " [ImplementationCTASection] Final button text:",
-
-        normalized.ctaButton.text
-
-      );
-
-      console.log(
-
-        " [ImplementationCTASection] Alternative button text:",
-
-        normalized.button.text
-
-      );
-
-      console.log(
-
-        " [ImplementationCTASection] Direct button text:",
-
-        normalized.buttonText
-
-      );
-
-      return normalized;
-
-    },
+    ImplementationCTASection: (data) => normalizeGenericCTA(data, "Ready to Start Implementation?"),
 
 
 
@@ -1909,37 +1700,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    AboutCTASection: (data) => {
 
-      console.log(" [AboutCTASection] Raw form data:", data);
-
-
-
-      return {
-
-        title: data.title || "Ready to Work With Us?",
-
-        subtitle: data.subtitle || "Let's transform your business together",
-
-        description: data.description || "Contact us to discuss",
-
-        ctaButton: data.ctaButton || {
-
-          text: "Contact Us",
-
-          link: "/contact",
-
-          variant: "primary",
-
-        },
-
-        features: data.features || [],
-
-        onOpenContactModal: () => console.log("Contact modal opened"),
-
-      };
-
-    },
 
 
 

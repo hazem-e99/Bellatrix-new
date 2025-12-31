@@ -298,61 +298,7 @@ const ComponentPreview = ({
           return transformedDifferentiatorsData;
         }
 
-        case "AboutCTASection": {
-          console.log(
-            " [AboutCTASection TRANSFORM] Input data:",
 
-            componentData
-          );
-
-          const transformedCTAData = {
-            title: componentData.title || "Ready to Build Something Great?",
-
-            subtitle:
-              componentData.subtitle ||
-              "Let's collaborate to transform your business with innovative Oracle NetSuite solutions that drive growth, efficiency, and success.",
-
-            description:
-              componentData.description ||
-              "Contact us today to discuss how we can help you optimize your operations and drive growth.",
-
-            ctaButton: {
-              text: componentData.ctaButton?.text || "Start Consultation",
-              link: null, // Force modal opening
-              variant: componentData.ctaButton?.variant || "primary",
-            },
-
-            features: componentData.features || [
-              {
-                title: "Quick Start",
-
-                description: "Get started our consultation",
-              },
-
-              {
-                title: "Expert Team",
-
-                description: "Work with certified professionals",
-              },
-
-              {
-                title: "Proven Results",
-
-                description: "Join our success stories",
-              },
-            ],
-
-            onOpenContactModal: () => console.log("Contact modal opened"),
-          };
-
-          console.log(
-            " [AboutCTASection TRANSFORM] Output data:",
-
-            transformedCTAData
-          );
-
-          return transformedCTAData;
-        }
 
         // General Components
 
@@ -932,29 +878,7 @@ const ComponentPreview = ({
           return transformedHRFAQData;
         }
 
-        case "HRCTASection": {
-          console.log(" [HRCTASection TRANSFORM] Input data:", componentData);
 
-          const transformedHRCTAData = {
-            title: componentData.title || "Ready to Transform Your HR?",
-
-            subtitle: componentData.subtitle || "Let's discuss your HR needs",
-
-            ctaButton: {
-              text: componentData.ctaButton?.text || "Get Started",
-              link: null, // Force modal opening
-              variant: componentData.ctaButton?.variant || "primary",
-            },
-          };
-
-          console.log(
-            " [HRCTASection TRANSFORM] Output data:",
-
-            transformedHRCTAData
-          );
-
-          return transformedHRCTAData;
-        }
 
         // Landing Page Components
 
@@ -1513,31 +1437,7 @@ const ComponentPreview = ({
           return transformedData;
         }
 
-        case "ImplementationCtaSection": {
-          console.log(
-            " [ImplementationCtaSection TRANSFORM] Input data:",
-            componentData
-          );
 
-          const transformedData = {
-            title: componentData.title || "Ready to Start Implementation?",
-            subtitle: componentData.subtitle || "Let's discuss your needs",
-            description: componentData.description || "",
-            ctaButton: {
-              text: componentData.ctaButton?.text || "Get Started",
-              link: null, // Force modal opening
-              variant: "primary",
-            },
-            features: componentData.features || [],
-          };
-
-          console.log(
-            " [ImplementationCtaSection TRANSFORM] Output data:",
-            transformedData
-          );
-
-          return transformedData;
-        }
 
         // Manufacturing Industry Components
 
@@ -1879,78 +1779,37 @@ const ComponentPreview = ({
           return transformedData;
         }
 
-        case "ManufacturingCTASection": {
-          console.log(
-            " [ManufacturingCTASection TRANSFORM] Input data:",
 
-            componentData
-          );
+
+        case "RetailFeaturesSection": {
+          console.log(" [RetailFeaturesSection TRANSFORM] Input data:", componentData);
+          
+          let rawFeatures = 
+            componentData.retailFeatures || 
+            componentData.features || 
+            componentData.items || 
+            componentData.data?.retailFeatures || 
+            componentData.data?.features || 
+            componentData.data?.items || 
+            [];
+            
+          if (!Array.isArray(rawFeatures)) rawFeatures = [];
+
+          const features = rawFeatures.map(f => {
+              let benefits = f.benefits;
+              if (typeof benefits === 'string') {
+                  benefits = benefits.split(',').map(b => b.trim()).filter(b => b);
+              }
+              return { ...f, benefits: Array.isArray(benefits) ? benefits : [] };
+           });
 
           const transformedData = {
-            title:
-              componentData.title ||
-              "Ready to Transform Your Manufacturing Operations?",
-
-            subtitle:
-              componentData.subtitle ||
-              "Get started with our manufacturing experts",
-
-            description:
-              componentData.description ||
-              "Contact our manufacturing specialists to learn how NetSuite can optimize your operations",
-
-            ctaButton: {
-              text: componentData.ctaButton?.text || "Get Started",
-
-              link: null,
-
-              variant: componentData.ctaButton?.variant || "primary",
-            },
-
-            features: componentData.features || [
-              {
-                icon: "",
-
-                title: "Free Assessment",
-
-                description:
-                  "Comprehensive evaluation of your manufacturing processes",
-              },
-
-              {
-                icon: "",
-
-                title: "Rapid Implementation",
-
-                description:
-                  "Get up and running faster with our proven methodology",
-              },
-
-              {
-                icon: "",
-
-                title: "Ongoing Support",
-
-                description:
-                  "Continuous optimization and support for your success",
-              },
-            ],
-
-            trustedBy: componentData.trustedBy || [
-              "Fortune 500 Manufacturers",
-
-              "SMEs",
-
-              "Startups",
-            ],
+              data: {
+                  title: componentData.title || "Retail Features",
+                  subtitle: componentData.subtitle || "Comprehensive features",
+                  retailFeatures: features
+              }
           };
-
-          console.log(
-            " [ManufacturingCTASection TRANSFORM] Output data:",
-
-            transformedData
-          );
-
           return transformedData;
         }
 
@@ -2059,81 +1918,7 @@ const ComponentPreview = ({
           return transformedData;
         }
 
-        case "RetailFeaturesSection": {
-          console.log(
-            " [RetailFeaturesSection TRANSFORM] Input data:",
 
-            componentData
-          );
-
-          const transformedData = {
-            title: componentData.title || "Retail Features",
-
-            subtitle:
-              componentData.subtitle || "Key features of our retail solution",
-
-            retailFeatures: componentData.retailFeatures ||
-              componentData.features ||
-              componentData.items || [
-                {
-                  title: "Point of Sale",
-
-                  description: "Modern POS system with offline capability",
-
-                  icon: "",
-                },
-
-                {
-                  title: "E-commerce Integration",
-
-                  description: "Seamless online and offline experience",
-
-                  icon: "",
-                },
-
-                {
-                  title: "Inventory Management",
-
-                  description: "Real-time inventory tracking across channels",
-
-                  icon: "",
-                },
-
-                {
-                  title: "Customer Analytics",
-
-                  description:
-                    "Advanced customer insights and behavior analysis",
-
-                  icon: "",
-                },
-
-                {
-                  title: "Omnichannel Support",
-
-                  description: "Unified experience across all touchpoints",
-
-                  icon: "",
-                },
-
-                {
-                  title: "Mobile Commerce",
-
-                  description: "Mobile-optimized shopping experience",
-
-                  icon: "",
-                },
-              ],
-          };
-
-          console.log(
-            " [RetailFeaturesSection TRANSFORM] Output data:",
-
-            transformedData
-          );
-
-          return transformedData;
-        }
 
         case "RetailCaseStudies": {
           console.log(
@@ -2214,29 +1999,57 @@ const ComponentPreview = ({
         }
 
        
+        case "CtaSection":
+        case "ImplementationCtaSection":
+        case "ImplementationCTASection":
+        case "AboutCTASection":
+        case "HRCTASection":
+        case "ManufacturingCTASection":
+        case "CustomizationCTASection":
         case "RetailCTASection": {
           console.log(
-            " [RetailCTASection TRANSFORM] Input data:",
+            " [GenericCTASection TRANSFORM] Input data:",
             componentData
           );
 
+          const baseData = componentData.data || componentData;
+          
+          const features = 
+              baseData.features || 
+              baseData.items || 
+              componentData.features || 
+              componentData.items || 
+              [];
+
+          // Button logic: check multiple sources
+          const btnText = 
+              baseData.buttonText || 
+              baseData.ctaButton?.text || 
+              (typeof baseData.ctaButton === 'string' ? baseData.ctaButton : null) ||
+              componentData.buttonText || 
+              componentData.ctaButton?.text || 
+              "Get Started";
+
           const transformedData = {
-            title: componentData.title || "Ready to Transform Retail?",
+            title: baseData.title || componentData.title || "Ready to Transform?",
             subtitle:
-              componentData.subtitle || "Let's discuss your retail needs",
+              baseData.subtitle || componentData.subtitle || "Let's discuss your needs",
             description:
+              baseData.description ||
               componentData.description ||
-              "Join hundreds of retail companies that have unified their commerce operations and improved customer experience with NetSuite. Get started with a free consultation today.",
-            features: componentData.features || [],
+              "Join hundreds of companies that have unified their operations. Get started with a free consultation today.",
+            features: features,
             ctaButton: {
-              text: componentData.ctaButton?.text || "Get Started",
-              link: null, // Force modal opening
-              variant: componentData.ctaButton?.variant || "primary",
+              text: btnText,
+              link: baseData.ctaButton?.link || baseData.buttonLink || null, // Force modal opening usually
+              variant: baseData.ctaButton?.variant || componentData.ctaButton?.variant || "primary",
             },
+            // Pass through any other props just in case
+            ...baseData
           };
 
           console.log(
-            " [RetailCTASection TRANSFORM] Output data:",
+            " [GenericCTASection TRANSFORM] Output data:",
             transformedData
           );
 
@@ -2323,6 +2136,8 @@ const ComponentPreview = ({
           console.log(" [PayrollPainPointsSection TRANSFORM] Output data:", transformedData);
           return transformedData;
         }
+
+
 
         default:
           // Generic prop structure for unknown components

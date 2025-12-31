@@ -72,7 +72,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
 
 
-  const slides = propsSlides.length > 0 ? propsSlides : (data?.slides || defaultSlides);
+  const slides = propsSlides.length > 0 ? propsSlides : (data?.slides?.length > 0 ? data.slides : defaultSlides);
 
   const stats = propsStats.length > 0 ? propsStats : (data?.stats || []);
 
