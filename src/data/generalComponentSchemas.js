@@ -53,137 +53,68 @@ export const generalComponentSchemas = {
 
   // Implementation Components
 
-  // HeroSection: {
+  // Hero Section (Flat - matches ID 116)
+  HeroSection: {
+    componentName: "HeroSection",
+    category: "general",
+    icon: "",
+    displayName: "Hero Section",
+    description: "Standard Hero Section with video background",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Title",
+          placeholder: "Enter title",
+          formField: "text",
+        },
+        subtitle: {
+            type: "string",
+            label: "Subtitle",
+            placeholder: "Enter subtitle",
+            formField: "text"
+        },
+        description: {
+          type: "string",
+          label: "Description",
+          placeholder: "Enter description",
+          formField: "textarea",
+        },
+        backgroundVideo: {
+          type: "string",
+          label: "Background Video URL",
+          placeholder: "/Videos/implementation/homepage_hero.mp4",
+          formField: "media",
+          mediaType: "video",
+        },
+        ctaButton: {
+            type: "object",
+            label: "CTA Button",
+            properties: {
+                text: { type: "string", label: "Text", formField: "text" },
+                link: { type: "string", label: "Link", formField: "text" },
+                variant: { 
+                    type: "string", 
+                    label: "Variant", 
+                    formField: "select", 
+                    options: [{value:"primary", label:"Primary"}, {value:"secondary", label:"Secondary"}] 
+                }
+            },
+            formField: "object"
+        }
+      },
+    },
+    defaultData: {
+      title: "Welcome",
+      subtitle: "",
+      description: "",
+      backgroundVideo: "/Videos/implementation/homepage_hero.mp4",
+      ctaButton: { text: "Get Started", variant: "primary" }
+    },
+  },
 
-  //   componentName: "HeroSection",
 
-  //   category: "implementation",
-
-  //   icon: "",
-
-  //   displayName: "Implementation Hero Section",
-
-  //   description: "Hero section for implementation service page",
-
-  //   schema: {
-
-  //     type: "object",
-
-  //     properties: {
-
-  //       backgroundVideo: {
-
-  //         type: "string",
-
-  //         label: "Background Video URL",
-
-  //         placeholder: "/Videos/HomeHeroSectionV.mp4",
-
-  //         formField: "media",
-
-  //         mediaType: "video",
-
-  //       },
-
-  //       titleParts: {
-
-  //         type: "array",
-
-  //         label: "Title Parts",
-
-  //         items: { type: "string", label: "Title Part", formField: "text" },
-
-  //         formField: "array-text",
-
-  //       },
-
-  //       description: {
-
-  //         type: "string",
-
-  //         label: "Description",
-
-  //         placeholder:
-
-  //           "We don't just implement solutions—we craft digital experiences that transform the way you do business",
-
-  //         formField: "textarea",
-
-  //       },
-
-  //       ctaButton: {
-
-  //         type: "object",
-
-  //         label: "CTA Button",
-
-  //         properties: {
-
-  //           text: {
-
-  //             type: "string",
-
-  //             label: "Button Text",
-
-  //             placeholder: "Start Implementation",
-
-  //             formField: "text",
-
-  //           },
-
-  //           icon: { type: "string", label: "Button Icon", formField: "text" },
-
-  //           variant: {
-
-  //             type: "string",
-
-  //             label: "Button Variant",
-
-  //             formField: "select",
-
-  //             options: [
-
-  //               { value: "primary", label: "Primary" },
-
-  //               { value: "secondary", label: "Secondary" },
-
-  //             ],
-
-  //           },
-
-  //         },
-
-  //         formField: "object",
-
-  //       },
-
-  //     },
-
-  //   },
-
-  //   defaultData: {
-
-  //     backgroundVideo: "/Videos/HomeHeroSectionV.mp4",
-
-  //     titleParts: ["Where", "Vision", "Meets", "Reality"],
-
-  //     description:
-
-  //       "We don't just implement solutions—we craft digital experiences that transform the way you do business",
-
-  //     ctaButton: {
-
-  //       text: "Start Implementation",
-
-  //       icon: "M13 7l5 5m0 0l-5 5m5-5H6",
-
-  //       variant: "primary",
-
-  //     },
-
-  //   },
-
-  // },
 
   ProcessSection: {
     componentName: "ProcessSection",

@@ -103,6 +103,32 @@ const ComponentPreview = ({
           }
         }
 
+        case "Hero":
+        case "HeroSection": {
+            console.log(" [Hero/HeroSection TRANSFORM] Input:", componentData);
+            const baseData = componentData.data || componentData;
+            
+            // If slides exist, use them. Otherwise create one slide from flat props.
+            let slides = baseData.slides;
+            if (!slides || !Array.isArray(slides) || slides.length === 0) {
+                 slides = [{
+                     title: baseData.title || "Welcome",
+                     subtitle: baseData.subtitle || "",
+                     description: baseData.description || baseData.content || "",
+                     video: baseData.video || baseData.backgroundVideo || "/Videos/implementation/homepage_hero.mp4",
+                 }];
+            }
+            
+            const transformedData = {
+                 slides,
+                 stats: baseData.stats || [],
+                 data: baseData
+            };
+            
+            console.log(" [Hero/HeroSection TRANSFORM] Output:", transformedData);
+            return transformedData;
+        }
+
         case "AboutHeroSection":
           return {
             data: {
@@ -361,7 +387,7 @@ const ComponentPreview = ({
                   componentData.subtitle ||
                   "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
 
-                bgVideo: componentData.bgVideo || "/Videos/hrVideo.mp4",
+                bgVideo: componentData.bgVideo || componentData.backgroundImage || "/Videos/hrVideo.mp4",
 
                 bgColor:
                   componentData.bgColor ||
@@ -882,25 +908,7 @@ const ComponentPreview = ({
 
         // Landing Page Components
 
-        case "HeroSection": {
-          console.log(" [HeroSection TRANSFORM] Input data:", componentData);
 
-          const transformedHeroData = {
-            slides: componentData.slides || [],
-
-            stats: componentData.stats || [],
-
-            data: componentData,
-          };
-
-          console.log(
-            " [HeroSection TRANSFORM] Output data:",
-
-            transformedHeroData
-          );
-
-          return transformedHeroData;
-        }
 
         case "ServicesSection": {
           console.log(

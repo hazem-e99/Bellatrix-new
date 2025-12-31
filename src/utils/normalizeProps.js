@@ -94,12 +94,32 @@ export const normalizeProps = (componentType, contentJson) => {
     HeroSection: (data) => {
       console.log(" [HeroSection] Raw form data:", data);
       
+      let slides = data.slides;
+      if (!slides || !Array.isArray(slides) || slides.length === 0) {
+          slides = [{
+             title: data.title || "Welcome",
+             subtitle: data.subtitle || "",
+             description: data.description || data.content || "",
+             video: data.video || data.backgroundVideo || "/Videos/implementation/homepage_hero.mp4"
+          }];
+      }
+
       return {
-        slides: Array.isArray(data.slides) ? data.slides : [],
+        slides: slides,
         stats: Array.isArray(data.stats) ? data.stats : [],
-        data: {
-          slides: Array.isArray(data.slides) ? data.slides : [],
-          stats: Array.isArray(data.stats) ? data.stats : [],
+        data: { ...data, slides }
+      };
+    },
+
+
+    // HR Hero Section
+    HRHeroSection: (data) => {
+      return {
+        hero: {
+          title: data.title || "Modern HR, Payroll & People Management",
+          subtitle: data.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
+          bgVideo: data.bgVideo || data.backgroundImage || "/Videos/hrVideo.mp4",
+          bgColor: data.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
         }
       };
     },
