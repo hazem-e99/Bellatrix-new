@@ -129,6 +129,22 @@ const ComponentPreview = ({
             return transformedData;
         }
 
+        case "AboutTeam":
+        case "AboutTeamSection": {
+             console.log(" [AboutTeam TRANSFORM] Input:", componentData);
+             const baseData = componentData.data || componentData;
+             const members = baseData.members || baseData.items || baseData.teamMembers || [];
+             
+             return {
+                 teamMembers: members,
+                 data: {
+                     title: baseData.title || "Meet Our Team",
+                     description: baseData.description || "",
+                     members: members
+                 }
+             };
+        }
+
         case "AboutHeroSection":
           return {
             data: {

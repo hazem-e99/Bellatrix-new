@@ -124,6 +124,30 @@ export const normalizeProps = (componentType, contentJson) => {
       };
     },
 
+    // About Team Section
+    AboutTeam: (data) => {
+       const members = data.members || data.items || data.teamMembers || [];
+       return {
+           teamMembers: members,
+           data: {
+               title: data.title || "Meet Our Team",
+               description: data.description || "",
+               members: members
+           }
+       };
+    },
+    AboutTeamSection: (data) => {
+       const members = data.members || data.items || data.teamMembers || [];
+       return {
+           teamMembers: members,
+           data: {
+               title: data.title || "Meet Our Team",
+               description: data.description || "",
+               members: members
+           }
+       };
+    },
+    
     // Retail CTA Section
     RetailCTASection: (data) => normalizeGenericCTA(data, "Ready to Transform Your Retail Operations?"),
     
@@ -997,31 +1021,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
     // HR Components
 
-    HRHeroSection: (data) => ({
 
-      data: {
-
-        hero: {
-
-          title: data.hero?.title || data.title || "HR Management Solutions",
-
-          subtitle:
-
-            data.hero?.subtitle ||
-
-            data.subtitle ||
-
-            "Streamline your HR processes",
-
-          bgVideo: data.hero?.bgVideo || data.bgVideo,
-
-          bgColor: data.hero?.bgColor || data.bgColor,
-
-        },
-
-      },
-
-    }),
 
 
 
@@ -1666,33 +1666,7 @@ export const normalizeProps = (componentType, contentJson) => {
     // and AboutDifferentiatorsSection are defined earlier in the file (around line 868)
     // Do not add duplicate definitions here.
 
-    AboutTeamSection: (data) => {
 
-      console.log(" [AboutTeamSection] Raw form data:", data);
-
-
-
-      return {
-
-        title: data.title || "Meet Our Team",
-
-        description: data.description || "Our diverse team of experts",
-
-        members: data.members || [],
-
-        teamMembers: data.members || [],
-
-        data: {
-
-          title: data.title || "Meet Our Team",
-
-          description: data.description || "Our diverse team of experts",
-
-        },
-
-      };
-
-    },
 
 
 
