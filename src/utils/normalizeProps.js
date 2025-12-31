@@ -687,21 +687,47 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    PayrollWorkflowSection: (data) => ({
-
-      title: data.workflow?.title || data.title || "Payroll Workflow",
-
-      subtitle:
-
-        data.workflow?.subtitle ||
-
-        data.subtitle ||
-
-        "How our payroll process works",
-
-      steps: data.workflow?.steps || data.steps || data.workflow || [],
-
-    }),
+    PayrollWorkflowSection: (data) => {
+      console.log(" [PayrollWorkflowSection] Raw form data:", data);
+      
+      // Extract steps from various possible locations
+      const stepsArray = 
+        data.workflowSteps ||
+        data.steps ||
+        data.workflow?.steps ||
+        [];
+      
+      // Process steps to ensure proper structure
+      const processedSteps = stepsArray.map((step, index) => ({
+        title: step.title || step.stepTitle || `Step ${index + 1}`,
+        stepTitle: step.stepTitle || step.title || `Step ${index + 1}`,
+        description: step.description || step.stepDescription || "",
+        stepDescription: step.stepDescription || step.description || "",
+        features: Array.isArray(step.features) 
+          ? step.features 
+          : (typeof step.features === 'string' ? step.features.split(',').map(f => f.trim()) : []),
+        automated: step.automated || "",
+        compliant: step.compliant || "",
+        automatedLabel: step.automatedLabel || "Automated",
+        compliantLabel: step.compliantLabel || "Compliant",
+      }));
+      
+      // Build workflowData object that component expects
+      const workflowData = {
+        title: data.title || data.workflow?.title || "Payroll System Built for All Industries",
+        description: data.description || data.workflow?.description || "Streamline your entire payroll lifecycle",
+        steps: processedSteps,
+      };
+      
+      return {
+        // Component expects a `workflowData` prop
+        workflowData: workflowData,
+        // Also spread at top level for compatibility
+        title: workflowData.title,
+        description: workflowData.description,
+        steps: workflowData.steps,
+      };
+    },
 
 
 
@@ -836,6 +862,74 @@ export const normalizeProps = (componentType, contentJson) => {
       items: data.whyPerfect?.items || data.whyPerfect || data.items || [],
 
     }),
+
+
+
+    // About Components
+    
+    AboutMissionSection: (data) => {
+      console.log(" [AboutMissionSection] Raw form data:", data);
+      
+      return {
+        data: {
+          title: data.title || "Our Mission",
+          subtitle: data.subtitle || "",
+          description: data.description || "To empower businesses with innovative technology solutions.",
+          vision: data.vision || "",
+          additionalContent: data.additionalContent || "",
+          image: data.image || "/images/ourProServices.png",
+          imageAlt: data.imageAlt || "About Bellatrix - Professional Services",
+          stats: Array.isArray(data.stats) ? data.stats : [],
+          missionPoints: Array.isArray(data.missionPoints) ? data.missionPoints : [],
+        },
+      };
+    },
+
+    AboutJourneySection: (data) => {
+      console.log(" [AboutJourneySection] Raw form data:", data);
+      
+      return {
+        data: {
+          title: data.title || "Our Journey",
+          description: data.description || "From humble beginnings to becoming a trusted Oracle NetSuite partner.",
+          beginningTitle: data.beginningTitle || "The Beginning",
+          beginningText: data.beginningText || "",
+          growthTitle: data.growthTitle || "Growth & Evolution",
+          growthText: data.growthText || "",
+          todayTitle: data.todayTitle || "Today",
+          todayText: data.todayText || "",
+          imageUrl: data.imageUrl || data.image || "/images/solution.jpg",
+          milestones: Array.isArray(data.milestones) ? data.milestones : [],
+          timeline: Array.isArray(data.timeline) ? data.timeline : [],
+        },
+      };
+    },
+
+    AboutValuesSection: (data) => {
+      console.log(" [AboutValuesSection] Raw form data:", data);
+      
+      return {
+        data: {
+          title: data.title || "Our Values",
+          description: data.description || "",
+          items: Array.isArray(data.items) ? data.items : (Array.isArray(data.values) ? data.values : []),
+        },
+        values: Array.isArray(data.items) ? data.items : (Array.isArray(data.values) ? data.values : []),
+      };
+    },
+
+    AboutDifferentiatorsSection: (data) => {
+      console.log(" [AboutDifferentiatorsSection] Raw form data:", data);
+      
+      return {
+        data: {
+          title: data.title || "What Makes Us Different",
+          description: data.description || "",
+          items: Array.isArray(data.items) ? data.items : [],
+        },
+        items: Array.isArray(data.items) ? data.items : [],
+      };
+    },
 
 
 
@@ -1650,145 +1744,9 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    AboutMissionSection: (data) => {
-
-      console.log(" [AboutMissionSection DEBUG] Input data:", {
-
-        rawData: data,
-
-        dataType: typeof data,
-
-        keys: Object.keys(data || {}),
-
-        hasTitle: !!data?.title,
-
-        hasSubtitle: !!data?.subtitle,
-
-        hasDescription: !!data?.description,
-
-        hasVision: !!data?.vision,
-
-        hasAdditionalContent: !!data?.additionalContent,
-
-        hasImage: !!data?.image,
-
-        hasStats: Array.isArray(data?.stats),
-
-        statsCount: data?.stats?.length || 0,
-
-        statsData: data?.stats,
-
-        hasMissionPoints: Array.isArray(data?.missionPoints),
-
-        missionPointsCount: data?.missionPoints?.length || 0,
-
-        missionPointsData: data?.missionPoints,
-
-      });
-
-
-
-      // Process each field with detailed logging
-
-      const processedData = {
-
-        title: data?.title || "",
-
-        subtitle: data?.subtitle || "",
-
-        description: data?.description || "",
-
-        vision: data?.vision || "",
-
-        additionalContent: data?.additionalContent || "",
-
-        image: data?.image || "",
-
-        stats: Array.isArray(data?.stats) ? data.stats : [],
-
-        missionPoints: Array.isArray(data?.missionPoints)
-
-          ? data.missionPoints
-
-          : [],
-
-      };
-
-
-
-      console.log(" [AboutMissionSection DEBUG] Field processing:", {
-
-        titleProcessed: `"${data?.title}" -> "${processedData.title}"`,
-
-        subtitleProcessed: `"${data?.subtitle}" -> "${processedData.subtitle}"`,
-
-        descriptionProcessed: `"${data?.description}" -> "${processedData.description}"`,
-
-        visionProcessed: `"${data?.vision}" -> "${processedData.vision}"`,
-
-        imageProcessed: `"${data?.image}" -> "${processedData.image}"`,
-
-        statsProcessed: `${data?.stats?.length || 0} items -> ${
-
-          processedData.stats.length
-
-        } items`,
-
-        missionPointsProcessed: `${data?.missionPoints?.length || 0} items -> ${
-
-          processedData.missionPoints.length
-
-        } items`,
-
-      });
-
-
-
-      const normalized = {
-        ...processedData,
-        data: processedData,
-
-      };
-
-
-
-      console.log(" [AboutMissionSection DEBUG] Final normalized output:", {
-
-        structure: "data wrapper",
-
-        innerData: normalized.data,
-
-        fieldsCount: Object.keys(normalized.data).length,
-
-        hasAllFields: {
-
-          title: !!normalized.data.title,
-
-          subtitle: !!normalized.data.subtitle,
-
-          description: !!normalized.data.description,
-
-          vision: !!normalized.data.vision,
-
-          additionalContent: !!normalized.data.additionalContent,
-
-          image: !!normalized.data.image,
-
-          stats: Array.isArray(normalized.data.stats),
-
-          missionPoints: Array.isArray(normalized.data.missionPoints),
-
-        },
-
-      });
-
-
-
-      return normalized;
-
-    },
-
-
+    // NOTE: AboutMissionSection, AboutJourneySection, AboutValuesSection, 
+    // and AboutDifferentiatorsSection are defined earlier in the file (around line 868)
+    // Do not add duplicate definitions here.
 
     AboutTeamSection: (data) => {
 
@@ -1820,65 +1778,6 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    AboutValuesSection: (data) => {
-
-      console.log(" [AboutValuesSection] Raw form data:", data);
-
-
-
-      return {
-
-        values: data.items || [],
-
-        data: {
-
-          title: data.title || "Our Values",
-
-          description: data.description || "Core values that guide us",
-
-        },
-
-      };
-
-    },
-
-
-
-    AboutJourneySection: (data) => {
-
-      console.log(" [AboutJourneySection] Raw form data:", data);
-
-
-
-      return {
-        title: data.title || "Our Journey",
-        description: data.description || "From humble beginnings",
-        timeline: data.timeline || data.milestones || [],
-        milestones: data.milestones || data.timeline || [],
-        image: data.image || data.imageUrl || "",
-        imageUrl: data.imageUrl || data.image || "",
-        beginningTitle: data.beginningTitle || "",
-        beginningText: data.beginningText || "",
-        growthTitle: data.growthTitle || "",
-        growthText: data.growthText || "",
-        todayTitle: data.todayTitle || "",
-        todayText: data.todayText || "",
-        data: {
-
-          title: data.title || "Our Journey",
-
-          description: data.description || "From humble beginnings",
-
-          timeline: data.timeline || data.milestones || [],
-
-        },
-
-      };
-
-    },
-
-
-
     AboutMilestonesSection: (data) => {
 
       console.log(" [AboutMilestonesSection] Raw form data:", data);
@@ -1894,30 +1793,6 @@ export const normalizeProps = (componentType, contentJson) => {
           title: data.title || "Our Milestones",
 
           description: data.description || "Key achievements",
-
-        },
-
-      };
-
-    },
-
-
-
-    AboutDifferentiatorsSection: (data) => {
-
-      console.log(" [AboutDifferentiatorsSection] Raw form data:", data);
-
-
-
-      return {
-
-        differentiators: data.items || [],
-
-        data: {
-
-          title: data.title || "What Sets Us Apart",
-
-          description: data.description || "Our competitive advantages",
 
         },
 

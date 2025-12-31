@@ -40,6 +40,8 @@ import Card, { CardContent } from "../UI/Card";
 
 import FancyToggle from "../UI/FancyToggle";
 
+import { LivePreview } from "../UI/LivePreview";
+
 import pagesAPI from "../../lib/pagesAPI";
 
 import {
@@ -1899,6 +1901,17 @@ const PageComponentsEditor = ({
 
         loading={saving}
 
+      />
+
+      {/* Live Preview */}
+      <LivePreview
+        components={components.filter(
+          (comp) => comp.isVisible !== false && comp.isVisible !== 0
+        )}
+        previewMode="desktop"
+        showDebugInfo={false}
+        className="mt-6"
+        key={`preview-${components.map((c) => c.contentJson || '').join('|').slice(0, 200)}`}
       />
 
     </div>

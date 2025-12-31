@@ -1355,6 +1355,20 @@ export const generalComponentSchemas = {
 
                 formField: "text",
               },
+              
+              automatedLabel: {
+                type: "string",
+                label: "Automated Label",
+                placeholder: "Automated",
+                formField: "text",
+              },
+              
+              compliantLabel: {
+                type: "string",
+                label: "Compliant Label",
+                placeholder: "Compliant",
+                formField: "text",
+              },
             },
           },
         },

@@ -137,7 +137,9 @@ const ComponentPreview = ({
 
               additionalContent: componentData.additionalContent || "",
 
-              image: componentData.image || "",
+              image: componentData.image || "/images/ourProServices.png",
+
+              imageAlt: componentData.imageAlt || "About Bellatrix - Professional Services",
 
               stats: Array.isArray(componentData.stats)
                 ? componentData.stats
@@ -156,6 +158,30 @@ const ComponentPreview = ({
           );
 
           return transformedMissionData;
+        }
+
+        case "AboutJourneySection": {
+          console.log(" [AboutJourneySection TRANSFORM] Input data:", componentData);
+          
+          // AboutJourney component expects { data: { title, description, imageUrl, ... } }
+          const transformedJourneyData = {
+            data: {
+              title: componentData.title || "Our Journey",
+              description: componentData.description || "From humble beginnings to becoming a trusted Oracle NetSuite partner.",
+              beginningTitle: componentData.beginningTitle || "The Beginning",
+              beginningText: componentData.beginningText || "",
+              growthTitle: componentData.growthTitle || "Growth & Evolution",
+              growthText: componentData.growthText || "",
+              todayTitle: componentData.todayTitle || "Today",
+              todayText: componentData.todayText || "",
+              imageUrl: componentData.imageUrl || componentData.image || "/images/solution.jpg",
+              milestones: componentData.milestones || [],
+              timeline: componentData.timeline || [],
+            },
+          };
+          
+          console.log(" [AboutJourneySection TRANSFORM] Output data:", transformedJourneyData);
+          return transformedJourneyData;
         }
 
         case "AboutTeamSection": {
@@ -214,45 +240,7 @@ const ComponentPreview = ({
           return transformedValuesData;
         }
 
-        case "AboutJourneySection": {
-          console.log(
-            " [AboutJourneySection TRANSFORM] Input data:",
-
-            componentData
-          );
-
-          const transformedJourneyData = {
-            data: {
-              beginningTitle: componentData.beginningTitle || "The Beginning",
-
-              beginningText:
-                componentData.beginningText ||
-                "Founded in 2008 with a vision to bridge the gap between complex enterprise software and real business needs. Our founders recognized that many businesses were struggling to fully leverage their technology investments.",
-
-              growthTitle: componentData.growthTitle || "Growth & Evolution",
-
-              growthText:
-                componentData.growthText ||
-                "Over the years, we've evolved from a small consulting firm to a comprehensive digital transformation partner, helping hundreds of organizations across various industries unlock their full potential.",
-
-              todayTitle: componentData.todayTitle || "Today",
-
-              todayText:
-                componentData.todayText ||
-                "We continue to innovate and expand our services, staying at the forefront of technology trends while maintaining our core values of excellence and integrity.",
-
-              imageUrl: componentData.imageUrl || "/images/solution.jpg",
-            },
-          };
-
-          console.log(
-            " [AboutJourneySection TRANSFORM] Output data:",
-
-            transformedJourneyData
-          );
-
-          return transformedJourneyData;
-        }
+        // AboutJourneySection case already defined earlier in the switch at line ~163
 
         case "AboutMilestonesSection": {
           console.log(
@@ -445,190 +433,7 @@ const ComponentPreview = ({
           return transformedHRHeroData;
         }
 
-        case "PayrollWorkflowSection": {
-          console.log(
-            " [PayrollWorkflowSection TRANSFORM] Input data:",
-
-            componentData
-          );
-
-          const transformedPayrollWorkflowData = {
-            workflowData: {
-              title:
-                componentData.title ||
-                "Payroll System Built for All Industries",
-
-              description:
-                componentData.description ||
-                "Streamline your entire payroll lifecycle — from onboarding to salary disbursement — with a secure, intuitive platform.",
-
-              steps: componentData.steps || [
-                {
-                  title: "Employee Data Import",
-
-                  stepTitle: "Employee Data Import",
-
-                  description:
-                    "Easily onboard and manage employee records in one place.",
-
-                  stepDescription:
-                    "Import employee data from spreadsheets or integrated HR systems. Supports bulk uploads and data validation with real-time error checking.",
-
-                  features: [
-                    "Bulk import from Excel/CSV",
-
-                    "Data validation",
-
-                    "Duplicate detection",
-
-                    "HR system integration",
-                  ],
-
-                  automated: "Reduces manual work by 80%",
-
-                  compliant: "Built-in regulatory compliance",
-                },
-
-                {
-                  title: "Time & Attendance Sync",
-
-                  stepTitle: "Time & Attendance Sync",
-
-                  description:
-                    "Integrate timesheets and attendance for accurate payroll.",
-
-                  stepDescription:
-                    "Syncs with your time tracking tools to ensure accurate hours and leave data for every employee. Supports multiple time tracking systems.",
-
-                  features: [
-                    "Real-time sync",
-
-                    "Multiple time systems",
-
-                    "Leave management",
-
-                    "Overtime calculation",
-                  ],
-
-                  automated: "Automated time tracking integration",
-
-                  compliant: "Accurate compliance reporting",
-                },
-
-                {
-                  title: "Salary & Tax Calculation",
-
-                  stepTitle: "Salary & Tax Auto-Calculation",
-
-                  description:
-                    "Automate salary, tax, and deduction calculations.",
-
-                  stepDescription:
-                    "Calculates gross and net pay, taxes, and deductions automatically based on your rules and local compliance. Handles complex tax scenarios.",
-
-                  features: [
-                    "Auto tax calculation",
-
-                    "Compliance built-in",
-
-                    "Deduction management",
-
-                    "Bonus processing",
-                  ],
-
-                  automated: "100% automated calculations",
-
-                  compliant: "Tax law compliance guaranteed",
-                },
-
-                {
-                  title: "Approval Workflows",
-
-                  stepTitle: "Approval Workflows",
-
-                  description: "Streamline approvals with role-based access.",
-
-                  stepDescription:
-                    "Multi-level approval flows for payroll runs, with notifications and audit trails. Customizable approval hierarchies.",
-
-                  features: [
-                    "Multi-level approval",
-
-                    "Email notifications",
-
-                    "Audit trails",
-
-                    "Role-based access",
-                  ],
-
-                  automated: "Automated approval routing",
-
-                  compliant: "Complete audit trail",
-                },
-
-                {
-                  title: "Payment Execution",
-
-                  stepTitle: "Payment Execution",
-
-                  description:
-                    "Execute payments securely through integrated bank APIs.",
-
-                  stepDescription:
-                    "Initiate salary payments directly from the platform with secure, bank-level integrations. Supports multiple payment methods.",
-
-                  features: [
-                    "Bank API integration",
-
-                    "Multiple payment methods",
-
-                    "Secure transactions",
-
-                    "Payment tracking",
-                  ],
-
-                  automated: "One-click payment processing",
-
-                  compliant: "Bank-level security compliance",
-                },
-
-                {
-                  title: "Payslip & Reporting",
-
-                  stepTitle: "Payslip Generation & Reporting",
-
-                  description:
-                    "Generate payslips and compliance-ready reports instantly.",
-
-                  stepDescription:
-                    "Employees get digital payslips; admins get downloadable, compliance-ready reports. Customizable templates and automated distribution.",
-
-                  features: [
-                    "Digital payslips",
-
-                    "Custom templates",
-
-                    "Auto distribution",
-
-                    "Compliance reports",
-                  ],
-
-                  automated: "Instant report generation",
-
-                  compliant: "Regulatory compliance ready",
-                },
-              ],
-            },
-          };
-
-          console.log(
-            " [PayrollWorkflowSection TRANSFORM] Output data:",
-
-            transformedPayrollWorkflowData
-          );
-
-          return transformedPayrollWorkflowData;
-        }
+        // PayrollWorkflowSection case moved to line ~2502 for better organization with payroll components
 
         case "PayrollStepperSection": {
           console.log(
@@ -652,52 +457,7 @@ const ComponentPreview = ({
           return transformedPayrollStepperData;
         }
 
-        case "PayrollPainPointsSection": {
-          {
-            console.log(
-              " [PayrollPainPointsSection TRANSFORM] Input data:",
-
-              componentData
-            );
-
-            const painPoints = Array.isArray(componentData.painPoints)
-              ? componentData.painPoints.map((item) => ({
-                  ...item,
-
-                  title: item.title || item["Pain Point Title"] || "",
-
-                  description:
-                    item.description || item["Pain Point Description"] || "",
-                }))
-              : [];
-
-            const transformedPayrollPainPointsData = {
-              // The PayrollPainPoints component expects a single `painPoints` prop
-
-              // containing { title, description, painPoints: [...] }
-
-              painPoints: {
-                title:
-                  componentData.title ||
-                  'The Payroll <span class="text-[var(--color-primary)]">Struggles</span> We Eliminate',
-
-                description:
-                  componentData.description ||
-                  "Our system addresses the most common payroll challenges faced by consultancy firms:",
-
-                painPoints,
-              },
-            };
-
-            console.log(
-              " [PayrollPainPointsSection TRANSFORM] Output data:",
-
-              transformedPayrollPainPointsData
-            );
-
-            return transformedPayrollPainPointsData;
-          }
-        }
+        // PayrollPainPointsSection case moved to line ~2357 for better organization with payroll components
 
         case "PayrollFAQSection": {
           {
@@ -2499,6 +2259,69 @@ const ComponentPreview = ({
           return transformedData;
         }
 
+        case "PayrollWorkflowSection": {
+          console.log(" [PayrollWorkflowSection TRANSFORM] Input data:", componentData);
+          
+          // Extract steps from various possible field names
+          const stepsArray = 
+            componentData.workflowSteps ||
+            componentData.steps ||
+            componentData.workflow?.steps ||
+            [];
+          
+          // Process steps to ensure proper structure
+          const processedSteps = stepsArray.map((step, index) => ({
+            title: step.title || step.stepTitle || `Step ${index + 1}`,
+            stepTitle: step.stepTitle || step.title || `Step ${index + 1}`,
+            description: step.description || step.stepDescription || "",
+            stepDescription: step.stepDescription || step.description || "",
+            features: Array.isArray(step.features) 
+              ? step.features 
+              : (typeof step.features === 'string' ? step.features.split(',').map(f => f.trim()) : []),
+            automated: step.automated || "",
+            compliant: step.compliant || "",
+            automatedLabel: step.automatedLabel || "Automated",
+            compliantLabel: step.compliantLabel || "Compliant",
+          }));
+          
+          // Build workflowData object that component expects
+          const transformedData = {
+            workflowData: {
+              title: componentData.title || "Payroll System Built for All Industries",
+              description: componentData.description || "Streamline your entire payroll lifecycle",
+              steps: processedSteps,
+            },
+          };
+          
+          console.log(" [PayrollWorkflowSection TRANSFORM] Output data:", transformedData);
+          return transformedData;
+        }
+
+        // AboutMissionSection case already defined earlier in the switch at line ~121
+
+        case "PayrollPainPointsSection": {
+          console.log(" [PayrollPainPointsSection TRANSFORM] Input data:", componentData);
+          
+          const painPointsArray = 
+            componentData.painPoints?.painPoints ||
+            componentData.painPoints?.items ||
+            (Array.isArray(componentData.painPoints) ? componentData.painPoints : null) ||
+            componentData.items ||
+            [];
+          
+          const transformedData = {
+            painPoints: {
+              title: componentData.title || componentData.painPoints?.title || "Common Payroll Pain Points",
+              description: componentData.description || componentData.painPoints?.description || "Problems we solve",
+              painPoints: painPointsArray,
+              image: componentData.image || componentData.painPoints?.image || "",
+            },
+          };
+          
+          console.log(" [PayrollPainPointsSection TRANSFORM] Output data:", transformedData);
+          return transformedData;
+        }
+
         default:
           // Generic prop structure for unknown components
 
@@ -2853,6 +2676,30 @@ const LivePreview = ({
                             rawData.missionPoints?.length || 0,
                         },
 
+                        timestamp: new Date().toISOString(),
+                      }
+                    );
+                  }
+
+                  // Enhanced debugging for AboutJourneySection
+                  if (component.componentType === "AboutJourneySection") {
+                    console.log(
+                      " [AboutJourneySection EXTRACTION] Debug data:",
+                      {
+                        rawContentJson: component.contentJson,
+                        parsedData: rawData,
+                        fieldAnalysis: {
+                          hasTitle: !!rawData.title,
+                          hasDescription: !!rawData.description,
+                          hasBeginningTitle: !!rawData.beginningTitle,
+                          hasBeginningText: !!rawData.beginningText,
+                          hasGrowthTitle: !!rawData.growthTitle,
+                          hasGrowthText: !!rawData.growthText,
+                          hasTodayTitle: !!rawData.todayTitle,
+                          hasTodayText: !!rawData.todayText,
+                          hasImageUrl: !!rawData.imageUrl,
+                          hasImage: !!rawData.image,
+                        },
                         timestamp: new Date().toISOString(),
                       }
                     );

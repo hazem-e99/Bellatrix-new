@@ -154,9 +154,8 @@ const SectionsStep = ({
         showDebugInfo={false}
         className="mt-6"
         key={`preview-${pageData.components
-          .map((c) => c.contentJson)
-          .join("|")
-          .slice(0, 100)}`}
+          .map((c) => `${c.componentType}-${c.contentJson?.length || 0}-${c.contentJson?.slice(-50) || ''}`)
+          .join("|")}`}
       />
 
       <ComponentInputModal

@@ -24,12 +24,24 @@ const AboutJourney = ({ data = {} }) => {
   }, []);
 
   // PRIORITIZE props data over default data for real-time preview
-  const displayData = data || defaultData || {
+  // Check if data has any actual content (not just an empty object)
+  const hasPropsData = data && Object.keys(data).length > 0;
+  
+  console.log(" [AboutJourney] Received props data:", {
+    data,
+    hasPropsData,
+    defaultData,
+    willUsePropData: hasPropsData,
+    dataKeys: data ? Object.keys(data) : [],
+    timestamp: new Date().toISOString(),
+  });
+
+  const displayData = hasPropsData ? data : (defaultData || {
     title: "Our Journey",
     description:
       "From humble beginnings to becoming a trusted Oracle NetSuite partner, our journey has been marked by innovation, growth, and unwavering commitment to excellence.",
     timeline: [],
-  };
+  });
 
 
 
