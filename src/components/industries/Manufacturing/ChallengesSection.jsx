@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { motion } from "framer-motion";
-
 import SEO from "../../SEO";
-
-import { useComponentData } from "../../../utils/useComponentData";
-
-import manufacturingData from "../../../../public/data/manufacturing-data.json";
 
 const ChallengesSection = (props) => {
   console.log(" [ChallengesSection] ALL PROPS:", props);
@@ -17,7 +11,7 @@ const ChallengesSection = (props) => {
 
   const subtitle = props?.subtitle || props?.data?.subtitle;
 
-  const description = props?.description || props?.data?.description;
+  const _description = props?.description || props?.data?.description;
 
   const image = props?.image || props?.data?.image;
 
@@ -97,10 +91,7 @@ const ChallengesSection = (props) => {
 
   const finalSubtitle = subtitle || defaultData.subtitle;
 
-  const finalDescription =
-    description ||
-    defaultData.description ||
-    "We understand the unique challenges manufacturers face and provide targeted solutions.";
+  // Description is available via description prop if needed
 
   const finalImage = image || defaultData.image;
 

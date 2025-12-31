@@ -152,7 +152,7 @@ const SolutionsSection = ({
                     className="w-full h-110 object-cover rounded-xl shadow-2xl brightness-105 contrast-110 saturate-105 group-hover:brightness-110 group-hover:contrast-115 group-hover:saturate-110 transition-all duration-500 filter drop-shadow-xl"
                   />
 
-                  <div className="absolute inset-4 rounded-xl bg-gradient-to-tr from-blue-500/5 via-transparent via-transparent to-cyan-400/5 pointer-events-none"></div>
+                  <div className="absolute inset-4 rounded-xl bg-gradient-to-tr from-blue-500/5 via-transparent to-cyan-400/5 pointer-events-none"></div>
                   <div className="absolute inset-4 rounded-xl bg-gradient-to-bl from-transparent via-white/3 to-transparent pointer-events-none"></div>
                 </div>
 
@@ -217,8 +217,23 @@ const SolutionsSection = ({
               <h4 className="font-semibold text-gray-800 mb-3">
                 Key Features:
               </h4>
-              {(finalSolutions[safeActiveSolution]?.features || []).map(
-                (feature, index) => (
+              {(() => {
+                let features = finalSolutions[safeActiveSolution]?.features;
+
+                // Handle string features (comma separated)
+                if (typeof features === 'string') {
+                  features = features.split(',').map(f => f.trim()).filter(f => f);
+                }
+
+                // Ensure features is an array
+                if (!Array.isArray(features)) {
+                  return (
+                    <div className="text-gray-500 text-sm">
+                      No features available for this solution.
+                    </div>
+                  );
+                }
+                return features.map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                     <span className="text-gray-600">
@@ -227,8 +242,8 @@ const SolutionsSection = ({
                         : feature?.name || feature?.title || "Feature"}
                     </span>
                   </div>
-                )
-              )}
+                ));
+              })()}
             </div>
 
             <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">

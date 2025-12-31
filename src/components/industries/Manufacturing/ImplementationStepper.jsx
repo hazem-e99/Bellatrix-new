@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { getIconPath } from "../../../utils/iconPaths";
 
 const ImplementationStepper = ({ implementationProcess }) => {
-  // Ensure we have valid data, fallback to empty array if not
-  const safeProcessData = implementationProcess || [];
+  // Ensure we have valid data and normalize it
+  const safeProcessData = (implementationProcess || []).map(step => {
+    // Handle benefits if string
+    let benefits = step.benefits;
+    if (typeof benefits === 'string') {
+      benefits = benefits.split(',').map(b => b.trim()).filter(b => b);
+    }
+
+    return {
+      ...step,
+      benefits: Array.isArray(benefits) ? benefits : undefined,
+      stats: Array.isArray(step.stats) ? step.stats : step.stats
+    };
+  });
 
   const steps = [
     {
@@ -358,49 +371,50 @@ const ImplementationStepper = ({ implementationProcess }) => {
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white rounded-lg p-4 border border-blue-100">
-                  <div className="flex items-center text-blue-600 mb-2">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                      />
-                    </svg>
-                    <span className="font-medium">Efficient</span>
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Streamlined process with proven methodologies
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-lg p-4 border border-blue-100">
-                  <div className="flex items-center text-green-600 mb-2">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    <span className="font-medium">Proven</span>
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Tested methodology with 98% success rate
-                  </p>
-                </div>
+                {(steps[current].stats && steps[current].stats.length > 0 
+                  ? steps[current].stats 
+                  : [
+                      {
+                        title: "Efficient",
+                        description: "Streamlined process with proven methodologies",
+                        icon: "Bolt",
+                        color: "blue"
+                      },
+                      {
+                        title: "Proven",
+                        description: "Tested methodology with 98% success rate",
+                        icon: "CheckCircle",
+                        color: "green"
+                      }
+                    ]
+                ).map((stat, idx) => {
+                  const iconPathData = getIconPath(stat.icon) || stat.icon || "M13 10V3L4 14h7v7l9-11h-7z";
+                  const color = stat.color || (idx === 0 ? "blue" : "green");
+                  
+                  return (
+                    <div key={idx} className={`bg-white rounded-lg p-4 border border-${color}-100`}>
+                      <div className={`flex items-center text-${color}-600 mb-2`}>
+                        <svg
+                          className="w-5 h-5 mr-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d={iconPathData}
+                          />
+                        </svg>
+                        <span className="font-medium">{stat.title}</span>
+                      </div>
+                      <p className="text-sm text-gray-600">
+                        {stat.description}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

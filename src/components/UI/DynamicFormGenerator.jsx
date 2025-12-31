@@ -811,6 +811,19 @@ const DynamicFormGenerator = ({
               placeholder={`Select ${fieldSchema.label}`}
               label={fieldSchema.label}
             />
+        </div>
+        );
+
+      case "icon":
+        return (
+          <div key={fullPath} className="space-y-2">
+            <IconPicker
+              value={value || ""}
+              onChange={(val) => handleChange(fullPath, val)}
+              label={fieldSchema.label}
+              placeholder={fieldSchema.placeholder || "Select an icon..."}
+              required={isRequired}
+            />
           </div>
         );
 
@@ -1079,6 +1092,10 @@ const DynamicFormGenerator = ({
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-sm font-medium text-gray-300">
                         Item {index + 1}
+                        {/* Debug info */}
+                        <span className="ml-2 text-xs text-gray-500">
+                          {itemSchema ? (itemSchema.properties ? `(${Object.keys(itemSchema.properties).length} fields)` : `(type: ${itemSchema.type})`) : "(no schema)"}
+                        </span>
                       </h4>
 
                       <div className="flex items-center space-x-2">
@@ -1523,27 +1540,6 @@ const DynamicFormGenerator = ({
                 </button>
               </div>
             )}
-          </div>
-        );
-
-      case "icon":
-        return (
-          <div key={fullPath}>
-            <IconPicker
-              value={value || ""}
-              onChange={(iconName) => {
-                console.log(" [ICON CHANGE]", {
-                  fullPath,
-                  oldValue: value,
-                  newValue: iconName,
-                  componentType,
-                });
-                handleChange(fullPath, iconName);
-              }}
-              label={fieldSchema.label}
-              placeholder={fieldSchema.placeholder || "Select an icon..."}
-              required={isRequired}
-            />
           </div>
         );
 

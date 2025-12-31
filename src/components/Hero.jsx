@@ -166,10 +166,11 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
     return () => clearInterval(interval);
 
-  }, []);
+  }, [slides.length]);
 
 
 
+  // eslint-disable-next-line no-unused-vars
   const nextSlide = () => {
 
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -180,6 +181,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
 
 
+  // eslint-disable-next-line no-unused-vars
   const prevSlide = () => {
 
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
@@ -204,7 +206,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
         setIsPlaying(true);
 
-      } catch (error) {
+      } catch {
 
         console.log("Video playback still blocked after user interaction");
 

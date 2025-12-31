@@ -51,6 +51,114 @@ export const generalComponentSchemas = {
     },
   },
 
+  // Home Hero Section with Slides
+  HeroSection: {
+    componentName: "HeroSection",
+    category: "home",
+    icon: "",
+    displayName: "Home Hero Section",
+    description: "Hero section with video slides and stats for the home page",
+    schema: {
+      type: "object",
+      properties: {
+        slides: {
+          type: "array",
+          label: "Hero Slides",
+          items: {
+            type: "object",
+            properties: {
+              title: {
+                type: "string",
+                label: "Slide Title",
+                placeholder: "Strategic Business Transformation",
+                required: true,
+                formField: "text",
+              },
+              subtitle: {
+                type: "string",
+                label: "Slide Subtitle",
+                placeholder: "Oracle NetSuite Consultancy",
+                required: true,
+                formField: "text",
+              },
+              description: {
+                type: "string",
+                label: "Slide Description",
+                placeholder: "Streamline operations and drive growth...",
+                required: true,
+                formField: "textarea",
+              },
+              video: {
+                type: "string",
+                label: "Background Video",
+                placeholder: "/Videos/homepage_hero.mp4",
+                formField: "media",
+                mediaType: "video",
+              },
+            },
+          },
+          formField: "array",
+          minItems: 1,
+          maxItems: 5,
+        },
+        stats: {
+          type: "array",
+          label: "Statistics",
+          items: {
+            type: "object",
+            properties: {
+              value: {
+                type: "string",
+                label: "Stat Value",
+                placeholder: "500+",
+                required: true,
+                formField: "text",
+              },
+              label: {
+                type: "string",
+                label: "Stat Label",
+                placeholder: "Projects Completed",
+                required: true,
+                formField: "text",
+              },
+            },
+          },
+          formField: "array",
+          minItems: 0,
+          maxItems: 6,
+        },
+      },
+    },
+    defaultData: {
+      slides: [
+        {
+          title: "Strategic Business Transformation",
+          subtitle: "Oracle NetSuite Consultancy",
+          description: "Streamline operations and drive growth with our comprehensive NetSuite solutions.",
+          video: "/Videos/implementation/homepage_hero.mp4",
+        },
+        {
+          title: "Digital Optimization Experts",
+          subtitle: "Cloud Solutions Specialists",
+          description: "Enhance productivity with our tailored implementation and consulting services.",
+          video: "/Videos/implementation/homepage_hero.mp4",
+        },
+        {
+          title: "Data-Driven Decision Making",
+          subtitle: "Business Intelligence Partners",
+          description: "Leverage real-time analytics to transform your operations.",
+          video: "/Videos/implementation/homepage_hero.mp4",
+        },
+      ],
+      stats: [
+        { value: "500+", label: "Projects Completed" },
+        { value: "15+", label: "Years Experience" },
+        { value: "98%", label: "Client Satisfaction" },
+        { value: "200+", label: "Happy Clients" },
+      ],
+    },
+  },
+
   // Implementation Components
 
   // HeroSection: {
@@ -3397,6 +3505,48 @@ export const generalComponentSchemas = {
               },
 
               icon: { type: "string", label: "Icon", formField: "icon" },
+
+              details: {
+                type: "string",
+                label: "Implementation Details",
+                formField: "textarea",
+                placeholder: "Detailed explanation of this step...",
+              },
+
+              benefits: {
+                type: "array",
+                label: "Key Deliverables",
+                items: {
+                  type: "string",
+                  label: "Deliverable",
+                  formField: "text",
+                },
+                formField: "array",
+              },
+
+              stats: {
+                type: "array",
+                label: "Stats Cards",
+                items: {
+                  type: "object",
+                  properties: {
+                    title: { type: "string", label: "Title (e.g. Efficient)", formField: "text" },
+                    description: { type: "string", label: "Description", formField: "textarea" },
+                    icon: { type: "string", label: "Icon", formField: "icon" },
+                    color: { 
+                      type: "string", 
+                      label: "Color (blue/green)", 
+                      formField: "select",
+                      options: [
+                        { label: "Blue", value: "blue" },
+                        { label: "Green", value: "green" }
+                      ]
+                    },
+                  },
+                },
+                formField: "array",
+                maxItems: 2,
+              },
             },
           },
 

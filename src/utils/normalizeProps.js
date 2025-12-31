@@ -64,6 +64,74 @@ export const normalizeProps = (componentType, contentJson) => {
 
   const componentMappings = {
 
+    // Home Hero Section
+    HeroSection: (data) => {
+      console.log(" [HeroSection] Raw form data:", data);
+      
+      return {
+        slides: Array.isArray(data.slides) ? data.slides : [],
+        stats: Array.isArray(data.stats) ? data.stats : [],
+        data: {
+          slides: Array.isArray(data.slides) ? data.slides : [],
+          stats: Array.isArray(data.stats) ? data.stats : [],
+        }
+      };
+    },
+
+    // Retail CTA Section
+    RetailCTASection: (data) => {
+      console.log(" [RetailCTASection] Raw form data:", data);
+      
+      return {
+        title: data.title || "Ready to Transform Your Retail Operations?",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        features: Array.isArray(data.features) ? data.features : [],
+        ctaButton: data.ctaButton || {},
+        data: {
+          title: data.title || "Ready to Transform Your Retail Operations?",
+          subtitle: data.subtitle || "",
+          description: data.description || "",
+          features: Array.isArray(data.features) ? data.features : [],
+          ctaButton: data.ctaButton || {},
+        }
+      };
+    },
+
+    // Retail Solutions Section
+    RetailSolutionsSection: (data) => {
+      console.log(" [RetailSolutionsSection] Raw form data:", data);
+      
+      const solutions = Array.isArray(data.solutions) ? data.solutions : (Array.isArray(data.items) ? data.items : []);
+      
+      // Normalize features in each solution
+      const normalizedSolutions = solutions.map(sol => {
+        let features = sol.features;
+        if (typeof features === 'string') {
+          features = features.split(',').map(f => f.trim()).filter(f => f);
+        }
+        return {
+          ...sol,
+          features: Array.isArray(features) ? features : []
+        };
+      });
+
+      return {
+        title: data.title || "NetSuite Solutions",
+        subtitle: data.subtitle || "Comprehensive Retail Solutions",
+        description: data.description || "",
+        solutions: normalizedSolutions,
+        image: data.image || "",
+        data: {
+          title: data.title || "NetSuite Solutions",
+          subtitle: data.subtitle || "Comprehensive Retail Solutions",
+          description: data.description || "",
+          solutions: normalizedSolutions,
+          image: data.image || "",
+        }
+      };
+    },
+
     // Integration Components
 
     IntegrationTypesSection: (data) => {
@@ -1251,25 +1319,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
     // (see `ImplementationProcess.jsx` -> useComponentData('implementationProcess', data, ...)).
 
-    ManufacturingImplementationProcess: (data) => {
 
-      const steps = data.processSteps || data.steps || data.items || [];
-
-      return {
-
-        data: {
-
-          steps,
-
-        },
-
-        title: data.title || "Implementation Process",
-
-        description: data.description || "Our proven methodology",
-
-      };
-
-    },
 
 
 
@@ -1295,7 +1345,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
         ctaButtonText: data.ctaButton?.text,
 
-        buttonText: data.button?.text,
+        buttonTextNested: data.button?.text,
 
         title: data.title,
 
@@ -1313,7 +1363,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
         ctaButtonText: data.ctaButton?.text,
 
-        buttonText: data.button?.text,
+        buttonTextNested: data.button?.text,
 
         text: data.text,
 
@@ -1513,8 +1563,47 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    // About Components
+    // Manufacturing Implementation Process
+    ManufacturingImplementationProcess: (data) => {
+      console.log(" [ManufacturingImplementationProcess] Normalizing:", data);
+      
+      const steps = Array.isArray(data.processSteps) 
+        ? data.processSteps 
+        : (Array.isArray(data.steps) ? data.steps : []);
 
+      const normalizedSteps = steps.map(step => {
+        // Normalize benefits (Key Deliverables)
+        let benefits = step.benefits;
+        if (typeof benefits === 'string') {
+          benefits = benefits.split(',').map(b => b.trim()).filter(b => b);
+        }
+        
+        // Normalize stats
+        const stats = Array.isArray(step.stats) ? step.stats : [];
+
+        return {
+          ...step,
+          benefits: Array.isArray(benefits) ? benefits : [],
+          stats: stats,
+          details: step.details || step.description || ""
+        };
+      });
+
+      return {
+        title: data.title || "Manufacturing Implementation Process",
+        description: data.description || "Our proven methodology for manufacturing implementations",
+        processSteps: normalizedSteps,
+        steps: normalizedSteps,
+        data: {
+          title: data.title || "Manufacturing Implementation Process",
+          description: data.description || "Our proven methodology for manufacturing implementations",
+          processSteps: normalizedSteps,
+          steps: normalizedSteps
+        }
+      };
+    },
+
+    // About Components
     AboutHeroSection: (data) => {
 
       console.log(" [AboutHeroSection] Raw form data:", data);

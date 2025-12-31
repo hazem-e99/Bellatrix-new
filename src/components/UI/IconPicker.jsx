@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import * as HeroiconsOutline from "@heroicons/react/24/outline";
-import * as HeroiconsSolid from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 /**
@@ -94,6 +93,8 @@ const IconPicker = ({
   }, [searchQuery]);
 
   const handleIconSelect = (iconName) => {
+    // Save the icon name - components can use getIconPath() to convert to SVG path
+    console.log(" [IconPicker] Selected icon:", iconName);
     onChange(iconName);
     setIsOpen(false);
     setSearchQuery("");
