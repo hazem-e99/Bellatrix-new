@@ -654,6 +654,8 @@ export const normalizeProps = (componentType, contentJson) => {
 
         data.painPoints?.subtitle || data.subtitle || "Problems we solve",
 
+      image: data.image || "",
+
       painPoints:
 
         data.painPoints?.items ||
@@ -906,6 +908,10 @@ export const normalizeProps = (componentType, contentJson) => {
       console.log(" [HRUseCasesSection] Raw form data:", data);
       
       return {
+        title: data.title || "Who Is It For?",
+        description: data.description || "",
+        useCases: Array.isArray(data.useCases) ? data.useCases : 
+                  Array.isArray(data.items) ? data.items : [],
         data: {
           title: data.title || "Who Is It For?",
           description: data.description || "",
@@ -1305,6 +1311,8 @@ export const normalizeProps = (componentType, contentJson) => {
 
         "A structured approach to successful implementation",
 
+      image: data.image || "",
+
       phases: data.process?.phases || data.phases || data.steps || [],
 
     }),
@@ -1611,6 +1619,13 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
       return {
+        title: data.title || "About Us",
+        subtitle: data.subtitle || "Your trusted partner",
+        description: data.description || "We help businesses transform",
+        backgroundVideo: data.backgroundVideo || "",
+        backgroundImage: data.backgroundImage || "",
+        image: data.image || "",
+        stats: data.stats || [],
 
         data: {
 
@@ -1727,7 +1742,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
       const normalized = {
-
+        ...processedData,
         data: processedData,
 
       };
@@ -1780,6 +1795,12 @@ export const normalizeProps = (componentType, contentJson) => {
 
       return {
 
+        title: data.title || "Meet Our Team",
+
+        description: data.description || "Our diverse team of experts",
+
+        members: data.members || [],
+
         teamMembers: data.members || [],
 
         data: {
@@ -1827,14 +1848,25 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
       return {
-
+        title: data.title || "Our Journey",
+        description: data.description || "From humble beginnings",
+        timeline: data.timeline || data.milestones || [],
+        milestones: data.milestones || data.timeline || [],
+        image: data.image || data.imageUrl || "",
+        imageUrl: data.imageUrl || data.image || "",
+        beginningTitle: data.beginningTitle || "",
+        beginningText: data.beginningText || "",
+        growthTitle: data.growthTitle || "",
+        growthText: data.growthText || "",
+        todayTitle: data.todayTitle || "",
+        todayText: data.todayText || "",
         data: {
 
           title: data.title || "Our Journey",
 
           description: data.description || "From humble beginnings",
 
-          timeline: data.timeline || [],
+          timeline: data.timeline || data.milestones || [],
 
         },
 
@@ -1950,10 +1982,18 @@ export const normalizeProps = (componentType, contentJson) => {
       if (data.video) normalized.video = data.video;
       if (data.backgroundVideo) normalized.backgroundVideo = data.backgroundVideo;
       if (data.backgroundImage) normalized.backgroundImage = data.backgroundImage;
+      if (data.image) normalized.image = data.image;
+      if (data.imageUrl) normalized.imageUrl = data.imageUrl;
+      // Also try to extract image from nested section objects
+      if (!normalized.image && data.programsSection?.image) normalized.image = data.programsSection.image;
+      if (!normalized.image && data.heroSection?.image) normalized.image = data.heroSection.image;
       
-      // Common object patterns
+      // Common object patterns - pass through nested sections
       if (data.ctaButton) normalized.ctaButton = data.ctaButton;
       if (data.sectionHeader) normalized.sectionHeader = data.sectionHeader;
+      if (data.programsSection) normalized.programsSection = data.programsSection;
+      if (data.trainingPrograms) normalized.trainingPrograms = data.trainingPrograms;
+      if (data.features) normalized.features = data.features;
       if (data.data) normalized.data = data.data;
 
 

@@ -1,1296 +1,867 @@
 /**
-
- * Enhanced Component Schema Registry for About Components
-
- * Defines the data structure, field configurations, and form generation metadata for About page components
-
+ * About Components Schemas
+ * Comprehensive schemas for all About page components
+ * Each schema defines all dynamic fields with proper formField types
  */
 
 export const aboutComponentSchemas = {
-  AboutHeroSection: {
-    componentName: "AboutHero",
-
+  // ============================================
+  // 1. AboutCTASection
+  // ============================================
+  AboutCTASection: {
+    componentName: "AboutCTASection",
     category: "about",
-
-    icon: "",
-
-    displayName: "About Hero",
-
-    description: "Hero section with background video, title, and stats",
-
+    icon: "📣",
+    displayName: "About CTA Section",
+    description: "Call-to-action section with title, description, features, and button",
     schema: {
       type: "object",
-
       properties: {
         title: {
           type: "string",
-
-          label: "Hero Title",
-
-          placeholder: "About Bellatrix",
-
+          label: "Title",
+          placeholder: "Ready to Build Something Great?",
           required: true,
-
-          formField: "text",
+          formField: "text"
         },
-
         subtitle: {
           type: "string",
-
-          label: "Hero Subtitle",
-
-          placeholder: "Your trusted partner in digital transformation",
-
-          required: true,
-
-          formField: "text",
+          label: "Subtitle",
+          placeholder: "Let's collaborate to transform your business",
+          formField: "textarea"
         },
-
         description: {
           type: "string",
-
-          label: "Hero Description",
-
-          placeholder: "We are a leading consultancy firm...",
-
-          required: true,
-
-          formField: "textarea",
+          label: "Description",
+          placeholder: "Contact us today to discuss how we can help you",
+          formField: "textarea"
         },
-
-        backgroundVideo: {
+        buttonText: {
           type: "string",
-
-          label: "Background Video URL",
-
-          placeholder: "/Videos/about-hero.mp4",
-
-          formField: "media",
-
-          mediaType: "video",
+          label: "Button Text",
+          placeholder: "Start Consultation",
+          required: true,
+          formField: "text"
         },
-
-        stats: {
+        buttonLink: {
+          type: "string",
+          label: "Button Link",
+          placeholder: "/contact",
+          formField: "text"
+        },
+        features: {
           type: "array",
-
-          label: "Statistics",
-
-          items: {
-            type: "object",
-
-            properties: {
-              value: {
-                type: "string",
-
-                label: "Statistic Value",
-
-                placeholder: "500+",
-
-                required: true,
-
-                formField: "text",
-              },
-
-              label: {
-                type: "string",
-
-                label: "Statistic Label",
-
-                placeholder: "Projects Completed",
-
-                required: true,
-
-                formField: "text",
-              },
-            },
-          },
-
+          label: "Features",
           formField: "array",
-
-          minItems: 0,
-
-          maxItems: 6,
-
-          hidden: true, // إخفاء حقل stats من Component Configuration
-        },
-      },
-    },
-
-    defaultData: {
-      title: "About Bellatrix",
-
-      subtitle: "Your trusted partner in digital transformation",
-
-      description:
-        "We are a leading consultancy firm specializing in NetSuite implementations, business process optimization, and technology solutions that drive growth and efficiency.",
-
-      backgroundVideo: "/Videos/about-hero.mp4",
-
-      stats: [
-        { value: "500+", label: "Projects Completed" },
-
-        { value: "15+", label: "Years Experience" },
-
-        { value: "98%", label: "Client Satisfaction" },
-
-        { value: "200+", label: "Happy Clients" },
-      ],
-    },
-  },
-
-  AboutMissionSection: {
-    componentName: "AboutMission",
-
-    category: "about",
-
-    icon: "",
-
-    displayName: "About Mission",
-
-    description:
-      "Mission and vision statement section with statistics and key points",
-
-    schema: {
-      type: "object",
-
-      properties: {
-        title: {
-          type: "string",
-
-          label: "Section Title",
-
-          placeholder: "About Bellatrix",
-
-          required: true,
-
-          formField: "text",
-        },
-
-        subtitle: {
-          type: "string",
-
-          label: "Section Subtitle",
-
-          placeholder:
-            "Leading consultancy specializing in NetSuite implementations...",
-
-          formField: "text",
-        },
-
-        description: {
-          type: "string",
-
-          label: "Main Description",
-
-          placeholder:
-            "We are a leading consultancy firm specializing in NetSuite implementations...",
-
-          required: true,
-
-          formField: "textarea",
-        },
-
-        vision: {
-          type: "string",
-
-          label: "Vision Statement",
-
-          placeholder:
-            "To be the global leader in business transformation consulting...",
-
-          formField: "textarea",
-        },
-
-        additionalContent: {
-          type: "string",
-
-          label: "Additional Content",
-
-          placeholder: "Additional information about the mission and values...",
-
-          formField: "textarea",
-        },
-
-        image: {
-          type: "string",
-
-          label: "Mission Image",
-
-          placeholder: "/images/ourProServices.png",
-
-          formField: "media",
-
-          mediaType: "image",
-        },
-
-        stats: {
-          type: "array",
-
-          label: "Key Statistics",
-
           items: {
             type: "object",
-
             properties: {
-              value: {
-                type: "string",
-
-                label: "Statistic Value",
-
-                placeholder: "500+",
-
-                required: true,
-
-                formField: "text",
-              },
-
-              label: {
-                type: "string",
-
-                label: "Statistic Label",
-
-                placeholder: "Projects Completed",
-
-                required: true,
-
-                formField: "text",
-              },
-            },
-          },
-
-          formField: "array",
-
-          minItems: 0,
-
-          maxItems: 6,
-
-          hidden: true, // إخفاء حقل stats من Component Configuration
-        },
-
-        missionPoints: {
-          type: "array",
-
-          label: "Mission Points",
-
-          items: {
-            type: "object",
-
-            properties: {
-              title: {
-                type: "string",
-
-                label: "Point Title",
-
-                placeholder: "Innovation",
-
-                required: true,
-
-                formField: "text",
-              },
-
-              description: {
-                type: "string",
-
-                label: "Point Description",
-
-                placeholder: "We embrace cutting-edge technologies...",
-
-                required: true,
-
-                formField: "textarea",
-              },
-
               icon: {
                 type: "string",
-
-                label: "Point Icon",
-
-                placeholder: "",
-
-                formField: "text",
+                label: "Icon (Emoji)",
+                placeholder: "⭐",
+                formField: "text"
               },
-            },
-          },
-
-          formField: "array",
-
-          minItems: 0,
-
-          maxItems: 8,
-
-          hidden: true, // إخفاء حقل missionPoints من Component Configuration
-        },
-      },
-    },
-
-    defaultData: {
-      title: "",
-
-      subtitle: "",
-
-      description: "",
-
-      vision: "",
-
-      additionalContent: "",
-
-      image: "",
-
-      stats: [],
-
-      missionPoints: [],
-    },
-  },
-
-  AboutTeamSection: {
-    componentName: "AboutTeam",
-
-    category: "about",
-
-    icon: "",
-
-    displayName: "About Team",
-
-    description: "Team members showcase section",
-
-    schema: {
-      type: "object",
-
-      properties: {
-        title: {
-          type: "string",
-
-          label: "Team Section Title",
-
-          placeholder: "Meet Our Team",
-
-          required: true,
-
-          formField: "text",
-        },
-
-        description: {
-          type: "string",
-
-          label: "Team Section Description",
-
-          placeholder: "Our diverse team of experts...",
-
-          required: true,
-
-          formField: "textarea",
-        },
-
-        members: {
-          type: "array",
-
-          label: "Team Members",
-
-          items: {
-            type: "object",
-
-            properties: {
-              name: {
-                type: "string",
-
-                label: "Member Name",
-
-                placeholder: "Sarah Johnson",
-
-                required: true,
-
-                formField: "text",
-              },
-
-              role: {
-                type: "string",
-
-                label: "Member Role",
-
-                placeholder: "Chief Executive Officer",
-
-                required: true,
-
-                formField: "text",
-              },
-
-              image: {
-                type: "string",
-
-                label: "Member Image",
-
-                placeholder: "/images/ourteam/1.jpg",
-
-                formField: "media",
-
-                mediaType: "image",
-              },
-
-              bio: {
-                type: "string",
-
-                label: "Member Bio",
-
-                placeholder: "Visionary leader with 20+ years...",
-
-                formField: "textarea",
-              },
-
-              expertise: {
-                type: "array",
-
-                label: "Areas of Expertise",
-
-                items: {
-                  type: "string",
-
-                  formField: "text",
-                },
-
-                formField: "tagList",
-
-                placeholder: "Strategic Planning, Business Development",
-              },
-            },
-          },
-
-          formField: "array",
-
-          minItems: 1,
-
-          maxItems: 12,
-        },
-      },
-    },
-
-    defaultData: {
-      title: "Meet Our Team",
-
-      description:
-        "Our diverse team of experts brings together decades of experience in enterprise software, business consulting, and digital transformation.",
-
-      members: [
-        {
-          name: "Sarah Johnson",
-
-          role: "Chief Executive Officer",
-
-          image: "/images/ourteam/1.jpg",
-
-          bio:
-            "Visionary leader with 20+ years in enterprise software solutions.",
-
-          expertise: [
-            "Strategic Planning",
-            "Business Development",
-            "Leadership",
-          ],
-        },
-
-        {
-          name: "Michael Chen",
-
-          role: "Chief Technology Officer",
-
-          image: "/images/ourteam/2.jpg",
-
-          bio:
-            "Technology expert specializing in NetSuite implementations and cloud solutions.",
-
-          expertise: [
-            "NetSuite Development",
-            "Cloud Architecture",
-            "System Integration",
-          ],
-        },
-
-        {
-          name: "Emily Rodriguez",
-
-          role: "Head of Operations",
-
-          image: "/images/ourteam/3.jpg",
-
-          bio:
-            "Operations specialist ensuring seamless project delivery and client success.",
-
-          expertise: [
-            "Project Management",
-            "Process Optimization",
-            "Quality Assurance",
-          ],
-        },
-      ],
-    },
-  },
-
-  AboutValuesSection: {
-    componentName: "AboutValues",
-
-    category: "about",
-
-    icon: "",
-
-    displayName: "About Values",
-
-    description: "Company values and principles section",
-
-    schema: {
-      type: "object",
-
-      properties: {
-        title: {
-          type: "string",
-
-          label: "Values Title",
-
-          placeholder: "Our Values",
-
-          required: true,
-
-          formField: "text",
-        },
-
-        description: {
-          type: "string",
-
-          label: "Values Description",
-
-          placeholder: "These core values guide everything we do...",
-
-          required: true,
-
-          formField: "textarea",
-        },
-
-        items: {
-          type: "array",
-
-          label: "Company Values",
-
-          items: {
-            type: "object",
-
-            properties: {
               title: {
                 type: "string",
-
-                label: "Value Title",
-
-                placeholder: "Innovation",
-
+                label: "Feature Title",
+                placeholder: "Expert Team",
                 required: true,
-
-                formField: "text",
+                formField: "text"
               },
-
               description: {
                 type: "string",
-
-                label: "Value Description",
-
-                placeholder: "We embrace cutting-edge technologies...",
-
-                required: true,
-
-                formField: "textarea",
-              },
-
-              icon: {
-                type: "string",
-
-                label: "Value Icon",
-
-                placeholder: "",
-
-                formField: "text",
-              },
-
-              color: {
-                type: "string",
-
-                label: "Color Gradient",
-
-                placeholder: "from-blue-500 to-cyan-500",
-
-                formField: "text",
-              },
-            },
-          },
-
-          formField: "array",
-
-          minItems: 2,
-
-          maxItems: 8,
-        },
-      },
+                label: "Feature Description",
+                placeholder: "Certified professionals with deep industry knowledge",
+                formField: "textarea"
+              }
+            }
+          }
+        }
+      }
     },
-
     defaultData: {
-      title: "Our Values",
-
-      description:
-        "These core values guide everything we do and shape how we interact with our clients, partners, and each other.",
-
-      items: [
+      title: "Ready to Build Something Great?",
+      subtitle: "Let's collaborate to transform your business with innovative solutions that drive growth, efficiency, and success.",
+      description: "Contact us today to discuss how we can help you optimize your operations and drive growth.",
+      buttonText: "Start Consultation",
+      buttonLink: "/contact",
+      features: [
         {
-          title: "Innovation",
-
-          description:
-            "We embrace cutting-edge technologies and creative thinking to solve complex business challenges.",
-
-          icon: "",
-
-          color: "from-blue-500 to-cyan-500",
+          icon: "👥",
+          title: "Expert Team",
+          description: "Certified professionals with deep industry knowledge"
         },
-
         {
-          title: "Excellence",
-
-          description:
-            "We deliver exceptional quality in every project, exceeding client expectations consistently.",
-
-          icon: "",
-
-          color: "from-gray-400 to-gray-600",
+          icon: "🏆",
+          title: "Proven Track Record",
+          description: "Hundreds of successful implementations"
         },
-
         {
-          title: "Integrity",
-
-          description:
-            "We act with honesty and transparency, building trust through ethical business practices.",
-
-          icon: "",
-
-          color: "from-green-500 to-teal-500",
-        },
-
-        {
-          title: "Partnership",
-
-          description:
-            "We work closely with our clients as trusted partners in their digital transformation journey.",
-
-          icon: "",
-
-          color: "from-orange-500 to-red-500",
-        },
-      ],
-    },
+          icon: "🛡️",
+          title: "Ongoing Support",
+          description: "24/7 support to ensure your success"
+        }
+      ]
+    }
   },
 
-  AboutJourneySection: {
-    componentName: "AboutJourney",
-
-    category: "about",
-
-    icon: "",
-
-    displayName: "About Journey",
-
-    description: "Company journey and history section with static content",
-
-    schema: {
-      type: "object",
-
-      properties: {
-        beginningTitle: {
-          type: "string",
-
-          label: "Beginning Section Title",
-
-          placeholder: "The Beginning",
-
-          formField: "text",
-        },
-
-        beginningText: {
-          type: "string",
-
-          label: "Beginning Section Text",
-
-          placeholder: "Founded in 2008 with a vision to bridge the gap...",
-
-          formField: "textarea",
-        },
-
-        growthTitle: {
-          type: "string",
-
-          label: "Growth Section Title",
-
-          placeholder: "Growth & Evolution",
-
-          formField: "text",
-        },
-
-        growthText: {
-          type: "string",
-
-          label: "Growth Section Text",
-
-          placeholder:
-            "Over the years, we've evolved from a small consulting firm...",
-
-          formField: "textarea",
-        },
-
-        todayTitle: {
-          type: "string",
-
-          label: "Today Section Title",
-
-          placeholder: "Today",
-
-          formField: "text",
-        },
-
-        todayText: {
-          type: "string",
-
-          label: "Today Section Text",
-
-          placeholder: "We continue to innovate and expand our services...",
-
-          formField: "textarea",
-        },
-
-        imageUrl: {
-          type: "string",
-
-          label: "Journey Image URL",
-
-          placeholder: "/images/solution.jpg",
-
-          formField: "media",
-
-          mediaType: "image",
-        },
-      },
-    },
-
-    defaultData: {
-      beginningTitle: "The Beginning",
-
-      beginningText:
-        "Founded in 2008 with a vision to bridge the gap between complex enterprise software and real business needs. Our founders recognized that many businesses were struggling to fully leverage their technology investments.",
-
-      growthTitle: "Growth & Evolution",
-
-      growthText:
-        "Over the years, we've evolved from a small consulting firm to a comprehensive digital transformation partner, helping hundreds of organizations across various industries unlock their full potential.",
-
-      todayTitle: "Today",
-
-      todayText:
-        "We continue to innovate and expand our services, staying at the forefront of technology trends while maintaining our core values of excellence and integrity.",
-
-      imageUrl: "/images/solution.jpg",
-    },
-  },
-
-  AboutMilestonesSection: {
-    componentName: "AboutMilestones",
-
-    category: "about",
-
-    icon: "",
-
-    displayName: "About Milestones",
-
-    description: "Company achievements and milestones section",
-
-    schema: {
-      type: "object",
-
-      properties: {
-        title: {
-          type: "string",
-
-          label: "Milestones Title",
-
-          placeholder: "Our Milestones",
-
-          required: true,
-
-          formField: "text",
-        },
-
-        description: {
-          type: "string",
-
-          label: "Milestones Description",
-
-          placeholder: "Key achievements and milestones...",
-
-          required: true,
-
-          formField: "textarea",
-        },
-
-        items: {
-          type: "array",
-
-          label: "Milestone Items",
-
-          items: {
-            type: "object",
-
-            properties: {
-              year: {
-                type: "string",
-
-                label: "Milestone Year",
-
-                placeholder: "2024",
-
-                required: true,
-
-                formField: "text",
-              },
-
-              title: {
-                type: "string",
-
-                label: "Milestone Title",
-
-                placeholder: "AI Integration",
-
-                required: true,
-
-                formField: "text",
-              },
-
-              description: {
-                type: "string",
-
-                label: "Milestone Description",
-
-                placeholder: "Pioneered AI-powered solutions...",
-
-                required: true,
-
-                formField: "textarea",
-              },
-            },
-          },
-
-          formField: "array",
-
-          minItems: 1,
-
-          maxItems: 10,
-        },
-      },
-    },
-
-    defaultData: {
-      title: "Our Milestones",
-
-      description:
-        "Key achievements and milestones that mark our journey of growth, innovation, and commitment to excellence.",
-
-      items: [
-        {
-          year: "2020",
-
-          title: "Global Expansion",
-
-          description:
-            "Expanded operations to serve clients across multiple continents.",
-        },
-
-        {
-          year: "2023",
-
-          title: "500+ Projects",
-
-          description:
-            "Successfully completed over 500 implementation projects.",
-        },
-
-        {
-          year: "2024",
-
-          title: "AI Integration",
-
-          description:
-            "Pioneered AI-powered solutions for enhanced business intelligence.",
-        },
-      ],
-    },
-  },
-
+  // ============================================
+  // 2. AboutDifferentiatorsSection
+  // ============================================
   AboutDifferentiatorsSection: {
-    componentName: "AboutDifferentiators",
-
+    componentName: "AboutDifferentiatorsSection",
     category: "about",
-
-    icon: "",
-
-    displayName: "About Differentiators",
-
-    description: "What sets the company apart section",
-
+    icon: "⭐",
+    displayName: "About Differentiators Section",
+    description: "Section showcasing what sets the company apart with stats",
     schema: {
       type: "object",
-
       properties: {
         title: {
           type: "string",
-
-          label: "Differentiators Title",
-
+          label: "Section Title",
           placeholder: "What Sets Us Apart",
-
           required: true,
-
-          formField: "text",
+          formField: "text"
         },
-
         description: {
           type: "string",
-
-          label: "Differentiators Description",
-
-          placeholder: "Our unique combination of expertise...",
-
-          required: true,
-
-          formField: "textarea",
+          label: "Section Description",
+          placeholder: "Our unique combination of expertise and commitment to excellence",
+          formField: "textarea"
         },
-
         items: {
           type: "array",
-
-          label: "Differentiator Items",
-
+          label: "Differentiators",
+          formField: "array",
           items: {
             type: "object",
-
             properties: {
               title: {
                 type: "string",
-
                 label: "Differentiator Title",
-
                 placeholder: "Industry Expertise",
-
                 required: true,
-
-                formField: "text",
+                formField: "text"
               },
-
               description: {
                 type: "string",
-
                 label: "Differentiator Description",
-
-                placeholder: "Deep understanding of various industries...",
-
-                required: true,
-
-                formField: "textarea",
+                placeholder: "Deep knowledge across multiple industries",
+                formField: "textarea"
               },
-
               stats: {
                 type: "string",
-
-                label: "Statistics",
-
-                placeholder: "15+ Industries",
-
-                formField: "text",
+                label: "Stats Badge",
+                placeholder: "15+ Years",
+                formField: "text"
               },
-
               icon: {
                 type: "string",
-
-                label: "Differentiator Icon",
-
-                placeholder: "",
-
-                formField: "text",
-              },
-            },
-          },
-
-          formField: "array",
-
-          minItems: 2,
-
-          maxItems: 6,
-        },
-      },
+                label: "Icon (Emoji)",
+                placeholder: "🎯",
+                formField: "text"
+              }
+            }
+          }
+        }
+      }
     },
-
     defaultData: {
       title: "What Sets Us Apart",
-
-      description:
-        "Our unique combination of expertise, methodology, and commitment to excellence makes us the preferred choice for Oracle NetSuite implementations.",
-
+      description: "Our unique combination of expertise, methodology, and commitment to excellence makes us the preferred choice for Oracle NetSuite implementations.",
       items: [
         {
           title: "Industry Expertise",
-
-          description:
-            "Deep understanding of various industries and their unique challenges.",
-
-          stats: "15+ Industries",
-
-          icon: "",
+          description: "Deep knowledge across multiple industries and business models",
+          stats: "15+ Years",
+          icon: "🎯"
         },
-
         {
-          title: "Proven Methodology",
-
-          description:
-            "Time-tested implementation methodology ensuring project success.",
-
-          stats: "98% Success Rate",
-
-          icon: "",
+          title: "Certified Team",
+          description: "Oracle certified professionals with proven track records",
+          stats: "50+ Experts",
+          icon: "👥"
         },
-
         {
-          title: "Ongoing Support",
-
-          description:
-            "24/7 support and maintenance services for continuous optimization.",
-
-          stats: "24/7 Support",
-
-          icon: "",
+          title: "Global Reach",
+          description: "Serving clients across the globe with local expertise",
+          stats: "20+ Countries",
+          icon: "🌍"
         },
-
         {
-          title: "Custom Solutions",
-
-          description:
-            "Tailored solutions designed specifically for your business needs.",
-
-          stats: "100% Custom",
-
-          icon: "",
-        },
-      ],
-    },
+          title: "Success Rate",
+          description: "Consistently delivering successful implementations",
+          stats: "98%",
+          icon: "🏆"
+        }
+      ]
+    }
   },
 
-  AboutCTASection: {
-    componentName: "AboutCTA",
-
+  // ============================================
+  // 3. AboutHeroSection
+  // ============================================
+  AboutHeroSection: {
+    componentName: "AboutHeroSection",
     category: "about",
-
-    icon: "",
-
-    displayName: "About CTA",
-
-    description: "Call-to-action section with features and button",
-
+    icon: "🎬",
+    displayName: "About Hero Section",
+    description: "Hero section with video background, title, and stats",
     schema: {
       type: "object",
-
       properties: {
         title: {
           type: "string",
-
-          label: "CTA Title",
-
-          placeholder: "Ready to Build Something Great?",
-
+          label: "Hero Title",
+          placeholder: "About Bellatrix",
           required: true,
-
-          formField: "text",
+          formField: "text"
         },
-
         subtitle: {
           type: "string",
-
-          label: "CTA Subtitle",
-
-          placeholder: "Let's collaborate to transform your business...",
-
-          required: true,
-
-          formField: "textarea",
+          label: "Hero Subtitle",
+          placeholder: "Your trusted partner in digital transformation",
+          formField: "text"
         },
-
         description: {
           type: "string",
-
-          label: "CTA Description",
-
-          placeholder: "Contact us today to discuss...",
-
-          formField: "textarea",
+          label: "Hero Description",
+          placeholder: "We are a leading consultancy firm specializing in NetSuite implementations",
+          formField: "textarea"
         },
-
-        ctaButton: {
-          type: "object",
-
-          label: "CTA Button",
-
-          properties: {
-            text: {
-              type: "string",
-
-              label: "Button Text",
-
-              placeholder: "Start Consultation",
-
-              required: true,
-
-              formField: "text",
-            },
-          },
-
-          formField: "object",
+        backgroundVideo: {
+          type: "string",
+          label: "Background Video",
+          placeholder: "/Videos/about-hero.mp4",
+          formField: "media",
+          mediaType: "video"
         },
-
-        features: {
+        backgroundImage: {
+          type: "string",
+          label: "Background Image (Fallback)",
+          placeholder: "/images/about-hero.jpg",
+          formField: "media",
+          mediaType: "image"
+        },
+        ctaButtonText: {
+          type: "string",
+          label: "CTA Button Text",
+          placeholder: "Discover Our Story",
+          formField: "text"
+        },
+        stats: {
           type: "array",
-
-          label: "Features List",
-
+          label: "Hero Stats",
+          formField: "array",
           items: {
             type: "object",
+            properties: {
+              value: {
+                type: "string",
+                label: "Stat Value",
+                placeholder: "500+",
+                required: true,
+                formField: "text"
+              },
+              label: {
+                type: "string",
+                label: "Stat Label",
+                placeholder: "Projects Completed",
+                required: true,
+                formField: "text"
+              }
+            }
+          }
+        }
+      }
+    },
+    defaultData: {
+      title: "About Bellatrix",
+      subtitle: "Your trusted partner in digital transformation",
+      description: "We are a leading consultancy firm specializing in NetSuite implementations, business process optimization, and technology solutions that drive growth and efficiency.",
+      backgroundVideo: "/Videos/about-hero.mp4",
+      backgroundImage: "",
+      ctaButtonText: "Discover Our Story",
+      stats: [
+        { value: "500+", label: "Projects Completed" },
+        { value: "15+", label: "Years Experience" },
+        { value: "98%", label: "Client Satisfaction" },
+        { value: "200+", label: "Happy Clients" }
+      ]
+    }
+  },
 
+  // ============================================
+  // 4. AboutJourneySection
+  // ============================================
+  AboutJourneySection: {
+    componentName: "AboutJourneySection",
+    category: "about",
+    icon: "🚀",
+    displayName: "About Journey Section",
+    description: "Company journey timeline with beginning, growth, and today sections",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Our Journey",
+          required: true,
+          formField: "text"
+        },
+        description: {
+          type: "string",
+          label: "Section Description",
+          placeholder: "From humble beginnings to becoming a trusted Oracle NetSuite partner",
+          formField: "textarea"
+        },
+        beginningTitle: {
+          type: "string",
+          label: "Beginning Section Title",
+          placeholder: "The Beginning",
+          formField: "text"
+        },
+        beginningText: {
+          type: "string",
+          label: "Beginning Section Text",
+          placeholder: "Founded in 2008 with a vision to bridge the gap between complex enterprise software and real business needs.",
+          formField: "textarea"
+        },
+        growthTitle: {
+          type: "string",
+          label: "Growth Section Title",
+          placeholder: "Growth & Evolution",
+          formField: "text"
+        },
+        growthText: {
+          type: "string",
+          label: "Growth Section Text",
+          placeholder: "Over the years, we've evolved from a small consulting firm to a comprehensive digital transformation partner.",
+          formField: "textarea"
+        },
+        todayTitle: {
+          type: "string",
+          label: "Today Section Title",
+          placeholder: "Today",
+          formField: "text"
+        },
+        todayText: {
+          type: "string",
+          label: "Today Section Text",
+          placeholder: "We continue to innovate and expand our services, staying at the forefront of technology trends.",
+          formField: "textarea"
+        },
+        imageUrl: {
+          type: "string",
+          label: "Journey Image",
+          placeholder: "/images/journey.jpg",
+          formField: "media",
+          mediaType: "image"
+        },
+        milestones: {
+          type: "array",
+          label: "Timeline Milestones",
+          formField: "array",
+          items: {
+            type: "object",
+            properties: {
+              year: {
+                type: "string",
+                label: "Year",
+                placeholder: "2008",
+                formField: "text"
+              },
+              title: {
+                type: "string",
+                label: "Milestone Title",
+                placeholder: "Company Founded",
+                formField: "text"
+              },
+              description: {
+                type: "string",
+                label: "Milestone Description",
+                placeholder: "Started with a vision to transform businesses",
+                formField: "textarea"
+              }
+            }
+          }
+        }
+      }
+    },
+    defaultData: {
+      title: "Our Journey",
+      description: "From humble beginnings to becoming a trusted Oracle NetSuite partner, our journey has been marked by innovation, growth, and unwavering commitment to excellence.",
+      beginningTitle: "The Beginning",
+      beginningText: "Founded in 2008 with a vision to bridge the gap between complex enterprise software and real business needs. Our founders recognized that many businesses were struggling to fully leverage their technology investments.",
+      growthTitle: "Growth & Evolution",
+      growthText: "Over the years, we've evolved from a small consulting firm to a comprehensive digital transformation partner, helping hundreds of organizations across various industries unlock their full potential.",
+      todayTitle: "Today",
+      todayText: "We continue to innovate and expand our services, staying at the forefront of technology trends while maintaining our core values of excellence and integrity.",
+      imageUrl: "/images/solution.jpg",
+      milestones: [
+        { year: "2008", title: "Company Founded", description: "Started with a vision to transform businesses" },
+        { year: "2012", title: "NetSuite Partnership", description: "Became an official Oracle NetSuite partner" },
+        { year: "2018", title: "Global Expansion", description: "Expanded operations to serve clients worldwide" },
+        { year: "2023", title: "500+ Projects", description: "Reached milestone of 500+ successful implementations" }
+      ]
+    }
+  },
+
+  // ============================================
+  // 5. AboutMilestonesSection
+  // ============================================
+  AboutMilestonesSection: {
+    componentName: "AboutMilestonesSection",
+    category: "about",
+    icon: "🏅",
+    displayName: "About Milestones Section",
+    description: "Key milestones and achievements in numbers",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Our Journey in Numbers",
+          required: true,
+          formField: "text"
+        },
+        description: {
+          type: "string",
+          label: "Section Description",
+          placeholder: "Key milestones that mark our growth and success",
+          formField: "textarea"
+        },
+        items: {
+          type: "array",
+          label: "Milestones",
+          formField: "array",
+          items: {
+            type: "object",
+            properties: {
+              number: {
+                type: "string",
+                label: "Number/Value",
+                placeholder: "500+",
+                required: true,
+                formField: "text"
+              },
+              title: {
+                type: "string",
+                label: "Milestone Title",
+                placeholder: "Projects Completed",
+                required: true,
+                formField: "text"
+              },
+              description: {
+                type: "string",
+                label: "Milestone Description",
+                placeholder: "Successfully delivered implementations across industries",
+                formField: "textarea"
+              }
+            }
+          }
+        }
+      }
+    },
+    defaultData: {
+      title: "Our Journey in Numbers",
+      description: "Key milestones that mark our growth and success in delivering exceptional Oracle NetSuite solutions.",
+      items: [
+        {
+          number: "500+",
+          title: "Projects Completed",
+          description: "Successfully delivered implementations across industries"
+        },
+        {
+          number: "50+",
+          title: "Team Members",
+          description: "Growing team of certified professionals"
+        },
+        {
+          number: "15+",
+          title: "Countries",
+          description: "Serving clients globally"
+        },
+        {
+          number: "99%",
+          title: "Success Rate",
+          description: "Project success rate"
+        },
+        {
+          number: "24/7",
+          title: "Support",
+          description: "Round-the-clock customer support"
+        },
+        {
+          number: "200+",
+          title: "Happy Clients",
+          description: "Trusted by businesses worldwide"
+        }
+      ]
+    }
+  },
+
+  // ============================================
+  // 6. AboutMissionSection
+  // ============================================
+  AboutMissionSection: {
+    componentName: "AboutMissionSection",
+    category: "about",
+    icon: "🎯",
+    displayName: "About Mission Section",
+    description: "Mission and vision statement with image and stats",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Our Mission",
+          required: true,
+          formField: "text"
+        },
+        subtitle: {
+          type: "string",
+          label: "Section Subtitle",
+          placeholder: "Transforming businesses through technology",
+          formField: "text"
+        },
+        description: {
+          type: "string",
+          label: "Mission Description",
+          placeholder: "To empower businesses with innovative technology solutions that transform operations and drive growth.",
+          required: true,
+          formField: "textarea"
+        },
+        vision: {
+          type: "string",
+          label: "Vision Statement",
+          placeholder: "To be the global leader in business transformation consulting",
+          formField: "textarea"
+        },
+        additionalContent: {
+          type: "string",
+          label: "Additional Content",
+          placeholder: "Additional information about your mission",
+          formField: "textarea"
+        },
+        image: {
+          type: "string",
+          label: "Mission Image",
+          placeholder: "/images/mission.jpg",
+          formField: "media",
+          mediaType: "image"
+        },
+        stats: {
+          type: "array",
+          label: "Statistics",
+          formField: "array",
+          items: {
+            type: "object",
+            properties: {
+              value: {
+                type: "string",
+                label: "Stat Value",
+                placeholder: "500+",
+                required: true,
+                formField: "text"
+              },
+              label: {
+                type: "string",
+                label: "Stat Label",
+                placeholder: "Projects Completed",
+                required: true,
+                formField: "text"
+              }
+            }
+          }
+        },
+        missionPoints: {
+          type: "array",
+          label: "Key Focus Areas",
+          formField: "array",
+          items: {
+            type: "object",
             properties: {
               title: {
                 type: "string",
-
-                label: "Feature Title",
-
-                placeholder: "Quick Start",
-
+                label: "Point Title",
+                placeholder: "Digital Excellence",
                 required: true,
-
-                formField: "text",
+                formField: "text"
               },
-
               description: {
                 type: "string",
-
-                label: "Feature Description",
-
-                placeholder: "Get started our consultation",
-
-                required: true,
-
-                formField: "text",
-              },
-            },
-          },
-
-          formField: "array",
-
-          minItems: 1,
-
-          maxItems: 6,
-        },
-      },
+                label: "Point Description",
+                placeholder: "Driving digital transformation with cutting-edge solutions",
+                formField: "textarea"
+              }
+            }
+          }
+        }
+      }
     },
-
     defaultData: {
-      title: "Ready to Build Something Great?",
-
-      subtitle:
-        "Let's collaborate to transform your business with innovative Oracle NetSuite solutions that drive growth, efficiency, and success.",
-
-      description:
-        "Contact us today to discuss how we can help you optimize your operations and drive growth.",
-
-      ctaButton: {
-        text: "Start Consultation",
-      },
-
-      features: [
-        {
-          title: "Quick Start",
-
-          description: "Get started our consultation",
-        },
-
-        {
-          title: "Expert Team",
-
-          description: "Work with certified professionals",
-        },
-
-        {
-          title: "Proven Results",
-
-          description: "Join our success stories",
-        },
+      title: "Our Mission",
+      subtitle: "Transforming businesses through technology",
+      description: "To empower businesses with innovative technology solutions that transform operations, enhance productivity, and drive sustainable growth.",
+      vision: "To be the global leader in business transformation consulting, helping organizations achieve their full potential through technology excellence.",
+      additionalContent: "",
+      image: "/images/ourProServices.png",
+      stats: [
+        { value: "500+", label: "Projects Completed" },
+        { value: "98%", label: "Client Satisfaction" },
+        { value: "15+", label: "Years Experience" },
+        { value: "50+", label: "Expert Team" }
       ],
-    },
+      missionPoints: [
+        {
+          title: "Digital Excellence",
+          description: "Driving digital transformation with cutting-edge solutions"
+        },
+        {
+          title: "Customer Success",
+          description: "Ensuring our clients achieve their business objectives"
+        },
+        {
+          title: "Innovation First",
+          description: "Continuously innovating to stay ahead of industry trends"
+        },
+        {
+          title: "Quality Delivery",
+          description: "Delivering high-quality implementations on time and within budget"
+        }
+      ]
+    }
   },
+
+  // ============================================
+  // 7. AboutTeamSection
+  // ============================================
+  AboutTeamSection: {
+    componentName: "AboutTeamSection",
+    category: "about",
+    icon: "👥",
+    displayName: "About Team Section",
+    description: "Team members carousel with photos and bios",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Meet Our Team",
+          required: true,
+          formField: "text"
+        },
+        description: {
+          type: "string",
+          label: "Section Description",
+          placeholder: "Our diverse team of experts brings together decades of experience",
+          formField: "textarea"
+        },
+        members: {
+          type: "array",
+          label: "Team Members",
+          formField: "array",
+          items: {
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                label: "Member Name",
+                placeholder: "Sarah Johnson",
+                required: true,
+                formField: "text"
+              },
+              role: {
+                type: "string",
+                label: "Role/Position",
+                placeholder: "CEO & Founder",
+                required: true,
+                formField: "text"
+              },
+              bio: {
+                type: "string",
+                label: "Bio",
+                placeholder: "15+ years of experience in enterprise software and business transformation.",
+                formField: "textarea"
+              },
+              image: {
+                type: "string",
+                label: "Member Photo",
+                placeholder: "/images/team/member.jpg",
+                formField: "media",
+                mediaType: "image"
+              },
+              expertise: {
+                type: "array",
+                label: "Expertise Tags",
+                formField: "array",
+                items: {
+                  type: "string",
+                  label: "Skill",
+                  placeholder: "Leadership",
+                  formField: "text"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    defaultData: {
+      title: "Meet Our Team",
+      description: "Our diverse team of experts brings together decades of experience in enterprise software, business consulting, and digital transformation.",
+      members: [
+        {
+          name: "Sarah Johnson",
+          role: "CEO & Founder",
+          bio: "15+ years of experience in enterprise software and business transformation.",
+          image: "/images/team/sarah-johnson.jpg",
+          expertise: ["Leadership", "Strategy", "Enterprise Solutions"]
+        },
+        {
+          name: "Michael Chen",
+          role: "CTO",
+          bio: "Expert in cloud architecture and scalable software solutions.",
+          image: "/images/team/michael-chen.jpg",
+          expertise: ["Cloud Architecture", "Software Engineering", "DevOps"]
+        },
+        {
+          name: "Emily Rodriguez",
+          role: "VP of Customer Success",
+          bio: "Passionate about helping businesses achieve their digital transformation goals.",
+          image: "/images/team/emily-rodriguez.jpg",
+          expertise: ["Customer Success", "Business Consulting", "Project Management"]
+        }
+      ]
+    }
+  },
+
+  // ============================================
+  // 8. AboutValuesSection
+  // ============================================
+  AboutValuesSection: {
+    componentName: "AboutValuesSection",
+    category: "about",
+    icon: "💎",
+    displayName: "About Values Section",
+    description: "Company core values with icons and descriptions",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Our Values",
+          required: true,
+          formField: "text"
+        },
+        description: {
+          type: "string",
+          label: "Section Description",
+          placeholder: "These core values guide everything we do",
+          formField: "textarea"
+        },
+        items: {
+          type: "array",
+          label: "Values",
+          formField: "array",
+          items: {
+            type: "object",
+            properties: {
+              icon: {
+                type: "string",
+                label: "Icon (Emoji)",
+                placeholder: "⭐",
+                formField: "text"
+              },
+              title: {
+                type: "string",
+                label: "Value Title",
+                placeholder: "Excellence",
+                required: true,
+                formField: "text"
+              },
+              description: {
+                type: "string",
+                label: "Value Description",
+                placeholder: "We strive for excellence in everything we do",
+                formField: "textarea"
+              },
+              color: {
+                type: "string",
+                label: "Gradient Color",
+                placeholder: "from-blue-500 to-cyan-500",
+                formField: "text"
+              }
+            }
+          }
+        }
+      }
+    },
+    defaultData: {
+      title: "Our Values",
+      description: "These core values guide everything we do and shape how we interact with our clients, partners, and each other.",
+      items: [
+        {
+          icon: "⭐",
+          title: "Excellence",
+          description: "We strive for excellence in everything we do, delivering high-quality solutions that exceed expectations.",
+          color: "from-blue-500 to-cyan-500"
+        },
+        {
+          icon: "🤝",
+          title: "Integrity",
+          description: "We conduct business with honesty, transparency, and ethical practices in all our relationships.",
+          color: "from-gray-400 to-gray-600"
+        },
+        {
+          icon: "💡",
+          title: "Innovation",
+          description: "We embrace new technologies and creative approaches to solve complex business challenges.",
+          color: "from-green-500 to-teal-500"
+        },
+        {
+          icon: "❤️",
+          title: "Customer Focus",
+          description: "We put our customers at the center of everything we do, ensuring their success is our success.",
+          color: "from-orange-500 to-red-500"
+        }
+      ]
+    }
+  }
 };
 
 /**
-
  * Get schema for a specific About component
-
  * @param {string} componentType - The component type name
-
- * @returns {Object} Component schema with metadata
-
+ * @returns {Object|null} - The schema object or null if not found
  */
-
 export const getAboutComponentSchema = (componentType) => {
   return aboutComponentSchemas[componentType] || null;
 };
 
 /**
-
- * Get all About components for the registry
-
- * @returns {Array} Array of component definitions
-
+ * Get all About component schemas
+ * @returns {Object} - All About component schemas
  */
-
-export const getAllAboutComponents = () => {
-  return Object.entries(aboutComponentSchemas).map(
-    ([componentType, schema]) => ({
-      id: componentType,
-
-      name: schema.displayName,
-
-      description: schema.description,
-
-      icon: schema.icon,
-
-      componentType,
-
-      componentName: schema.componentName,
-
-      category: schema.category,
-
-      schema: schema.schema,
-
-      defaultData: schema.defaultData,
-    })
-  );
+export const getAllAboutSchemas = () => {
+  return aboutComponentSchemas;
 };
 
 /**
-
- * Get default data for a component type
-
+ * Get default data for a specific About component
  * @param {string} componentType - The component type name
-
- * @returns {Object} Default data object for the component
-
+ * @returns {Object} - The default data object or empty object if not found
  */
-
-export const getAboutComponentDefaultData = (componentType) => {
-  const schema = aboutComponentSchemas[componentType];
-
-  return schema ? schema.defaultData : {};
+export const getAboutDefaultData = (componentType) => {
+  return aboutComponentSchemas[componentType]?.defaultData || {};
 };
 
 export default aboutComponentSchemas;
