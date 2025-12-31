@@ -656,6 +656,105 @@ const DynamicFormGenerator = ({
           />
         );
 
+      case "array": {
+        const arrayValue = Array.isArray(value) ? value : [];
+        const itemSchema = fieldSchema.items;
+        // Use local state for expansion or default to expanded
+        // Since we can't easily use the global expandedSections state with a unique path here without passing it down
+        // We'll default to always expanded for nested arrays for now to keep it simple and functional
+        
+        return (
+          <div className="space-y-3 border border-white/10 rounded-lg p-3 bg-white/5">
+            <div className="flex items-center justify-between">
+              <label className={labelClasses}>
+                {fieldSchema.label} <span className="text-gray-500 text-xs">({arrayValue.length})</span>
+                {isRequired && <span className="text-red-400">*</span>}
+              </label>
+
+              <Button
+                size="sm"
+                onClick={() => {
+                  const defaultItem = createDefaultItem(itemSchema);
+                  const newArray = [...arrayValue, defaultItem];
+                  onChange(newArray);
+                }}
+                className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border-blue-400/30 text-xs px-2 py-1"
+              >
+                <PlusIcon className="h-3 w-3 mr-1" />
+                Add
+              </Button>
+            </div>
+
+            <div className="space-y-2">
+              {arrayValue.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-2 p-2 bg-white/5 rounded border border-white/10"
+                >
+                   {/* Handle generic item rendering */}
+                   <div className="flex-1">
+                      {itemSchema && itemSchema.type === "string" ? (
+                        <input
+                          type="text"
+                          value={item || ""}
+                          onChange={(e) => {
+                            const newArray = [...arrayValue];
+                            newArray[index] = e.target.value;
+                            onChange(newArray);
+                          }}
+                          className={`${inputClasses} text-sm py-1 px-2`}
+                          placeholder={`${fieldSchema.label} item`}
+                        />
+                      ) : itemSchema && itemSchema.properties ? (
+                         /* Recursive object rendering for nested array items */
+                         <div className="space-y-2">
+                           {Object.entries(itemSchema.properties).map(([propKey, propSchema]) => (
+                              <div key={propKey}>
+                                {renderArrayItemField(
+                                  propKey, 
+                                  propSchema, 
+                                  item?.[propKey], 
+                                  (newValue) => {
+                                    const newArray = [...arrayValue];
+                                    if (!newArray[index] || typeof newArray[index] !== 'object') {
+                                       newArray[index] = {};
+                                    }
+                                    newArray[index] = { ...newArray[index], [propKey]: newValue };
+                                    onChange(newArray);
+                                  }
+                                )}
+                              </div>
+                           ))}
+                         </div>
+                      ) : (
+                        <div className="text-gray-400 text-xs">Unsupported item type</div>
+                      )}
+                   </div>
+
+                   <Button
+                      size="xs"
+                      onClick={() => {
+                        const newArray = [...arrayValue];
+                        newArray.splice(index, 1);
+                        onChange(newArray);
+                      }}
+                      className="bg-red-500/20 hover:bg-red-500/30 text-red-300 border-red-400/30 mt-1"
+                    >
+                      <TrashIcon className="h-3 w-3" />
+                    </Button>
+                </div>
+              ))}
+              
+              {arrayValue.length === 0 && (
+                <div className="text-center py-2 text-gray-500 text-xs italic">
+                  No items added
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      }
+
       default:
         return (
           <div className="space-y-2">

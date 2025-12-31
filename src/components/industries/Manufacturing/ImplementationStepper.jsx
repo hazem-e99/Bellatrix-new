@@ -13,7 +13,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
     return {
       ...step,
       benefits: Array.isArray(benefits) ? benefits : undefined,
-      stats: Array.isArray(step.stats) ? step.stats : step.stats
+      stats: Array.isArray(step.stats) ? step.stats : undefined
     };
   });
 
@@ -25,6 +25,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         safeProcessData[0]?.description ||
         "Analyze current manufacturing processes, systems, and requirements",
       details:
+        safeProcessData[0]?.details ||
         "Comprehensive analysis of your existing manufacturing operations, including process mapping, system evaluation, and requirements gathering. We identify gaps and opportunities for improvement.",
       icon: (
         <svg
@@ -47,6 +48,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         "Requirements documentation",
         "Process mapping",
       ],
+      stats: safeProcessData[0]?.stats,
     },
     {
       title: safeProcessData[1]?.title || "Solution Design",
@@ -55,6 +57,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         safeProcessData[1]?.description ||
         "Design NetSuite configuration tailored to manufacturing workflows",
       details:
+        safeProcessData[1]?.details ||
         "Create a detailed blueprint for your NetSuite implementation, including system architecture, integration points, and customization requirements specific to manufacturing processes.",
       icon: (
         <svg
@@ -77,6 +80,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         "Integration design",
         "Custom requirements",
       ],
+      stats: safeProcessData[1]?.stats,
     },
     {
       title: safeProcessData[2]?.title || "Configuration & Development",
@@ -85,6 +89,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         safeProcessData[2]?.description ||
         "Configure NetSuite modules and develop custom manufacturing features",
       details:
+        safeProcessData[2]?.details ||
         "Implementation of NetSuite configuration based on the approved design, including custom script development, workflow automation, and integration setup.",
       icon: (
         <svg
@@ -113,6 +118,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         "Integration setup",
         "Workflow automation",
       ],
+      stats: safeProcessData[2]?.stats,
     },
     {
       title: safeProcessData[3]?.title || "Testing & Training",
@@ -121,6 +127,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         safeProcessData[3]?.description ||
         "Comprehensive testing and user training for manufacturing teams",
       details:
+        safeProcessData[3]?.details ||
         "Thorough system testing including unit, integration, and user acceptance testing. Comprehensive training programs for all user groups to ensure smooth adoption.",
       icon: (
         <svg
@@ -143,6 +150,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         "User documentation",
         "System validation",
       ],
+      stats: safeProcessData[3]?.stats,
     },
     {
       title: safeProcessData[4]?.title || "Go-Live & Support",
@@ -151,6 +159,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         safeProcessData[4]?.description ||
         "Production deployment with ongoing support and optimization",
       details:
+        safeProcessData[4]?.details ||
         "Carefully managed production deployment with real-time monitoring, immediate support, and post-implementation optimization to ensure successful system adoption.",
       icon: (
         <svg
@@ -173,6 +182,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
         "Performance monitoring",
         "Optimization",
       ],
+      stats: safeProcessData[4]?.stats,
     },
   ];
 
