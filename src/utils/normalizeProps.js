@@ -759,17 +759,19 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    PayrollFAQSection: (data) => ({
-
-      title: data.faq?.title || data.title || "Payroll FAQ",
-
-      subtitle:
-
-        data.faq?.subtitle || data.subtitle || "Frequently asked questions",
-
-      faqs: data.faq?.items || data.faq?.faqs || data.faqs || data.items || [],
-
-    }),
+    PayrollFAQSection: (data) => {
+      console.log(" [PayrollFAQSection] Raw form data:", data);
+      
+      const items = data.faq?.items || data.faq?.faqs || data.faqs || data.items || [];
+      
+      return {
+        faqData: {
+          title: data.faq?.title || data.title || "Payroll FAQ",
+          subtitle: data.faq?.subtitle || data.subtitle || "Frequently asked questions",
+          items: items
+        }
+      };
+    },
 
 
 
@@ -864,6 +866,31 @@ export const normalizeProps = (componentType, contentJson) => {
     }),
 
 
+
+    // Service Components
+    ServiceGrid: (data) => {
+      console.log(" [ServiceGrid] Raw form data:", data);
+      
+      let normalizedServices = undefined;
+      
+      if (Array.isArray(data.services)) {
+        normalizedServices = data.services.map(service => ({
+          ...service,
+          features: Array.isArray(service.features) 
+            ? service.features 
+            : (typeof service.features === 'string' ? service.features.split(',').map(f => f.trim()).filter(Boolean) : [])
+        }));
+      }
+
+      return {
+        data: {
+          title: data.title || "Our Services",
+          subtitle: data.subtitle || "Comprehensive NetSuite solutions to drive your business forward",
+          services: normalizedServices,
+          bottomCTA: data.bottomCTA
+        }
+      };
+    },
 
     // About Components
     
@@ -991,15 +1018,33 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    HRBenefitsSection: (data) => ({
+    HRBenefitsSection: (data) => {
+      console.log(" [HRBenefitsSection] Raw form data:", data);
+      
+      const items = Array.isArray(data.features) ? data.features : (Array.isArray(data.benefits) ? data.benefits : (Array.isArray(data.items) ? data.items : []));
+      
+      return {
+        data: {
+          features: {
+            title: data.title || "Why Choose Our HR Solution?",
+            description: data.description || "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
+            items: items
+          }
+        }
+      };
+    },
 
-      title: data.benefits?.title || data.title || "HR Benefits",
-
-      items: data.benefits?.items || data.items || [],
-
-      benefits: data.benefits?.items || data.benefits || data.items || [],
-
-    }),
+    HRPricingSection: (data) => {
+      console.log(" [HRPricingSection] Raw form data:", data);
+      
+      return {
+        data: {
+          title: data.title || "Implementation Pricing",
+          description: data.description || "Choose the perfect implementation plan that fits your business needs and budget",
+          pricing: Array.isArray(data.pricing) ? data.pricing : (Array.isArray(data.items) ? data.items : []),
+        }
+      };
+    },
 
     HRUseCasesSection: (data) => {
       console.log(" [HRUseCasesSection] Raw form data:", data);
@@ -1018,7 +1063,23 @@ export const normalizeProps = (componentType, contentJson) => {
       };
     },
 
-
+    HRFAQSection: (data) => {
+      console.log(" [HRFAQSection] Raw form data:", data);
+      
+      const items = data.faq?.items || data.faq?.faqs || data.faqs || data.items || [];
+      
+      return {
+        data: {
+          faq: {
+            title: data.faq?.title || data.title || "Frequently Asked Questions",
+            items: items.map(item => ({
+              q: item.question || item.q,
+              a: item.answer || item.a
+            }))
+          }
+        }
+      };
+    },
 
     // Training Components
 
@@ -1390,7 +1451,23 @@ export const normalizeProps = (componentType, contentJson) => {
 
     },
 
-
+    ImplementationPricingSection: (data) => {
+      console.log(" [ImplementationPricingSection] Raw form data:", data);
+      
+      const plans = Array.isArray(data.plans) ? data.plans : (Array.isArray(data.pricing) ? data.pricing : (Array.isArray(data.items) ? data.items : []));
+      
+      return {
+        data: {
+          title: data.title || "Implementation Pricing",
+          subtitle: data.subtitle || "Choose the perfect implementation plan that fits your business needs and budget",
+          plans: plans,
+          additionalInfo: data.additionalInfo || {
+             note: "All plans include free consultation and project scoping",
+             contactText: "Need a custom solution? Contact our team for personalized pricing"
+          }
+        }
+      };
+    },
 
     ImplementationProcessSection: (data) => ({
 
@@ -1704,6 +1781,36 @@ export const normalizeProps = (componentType, contentJson) => {
           description: data.description || "Our proven methodology for manufacturing implementations",
           processSteps: normalizedSteps,
           steps: normalizedSteps
+        }
+      };
+    },
+
+
+    // Retail Components
+    RetailFeaturesSection: (data) => {
+      console.log(" [RetailFeaturesSection] Raw form data:", data);
+      
+      let rawFeatures = Array.isArray(data.retailFeatures) ? data.retailFeatures : (Array.isArray(data.features) ? data.features : (Array.isArray(data.items) ? data.items : []));
+      
+      const features = rawFeatures.map(feature => {
+        let benefits = feature.benefits;
+        if (typeof benefits === 'string') {
+          benefits = benefits.split(',').map(b => b.trim()).filter(b => b);
+        }
+        return {
+           ...feature,
+           benefits: Array.isArray(benefits) ? benefits : []
+        };
+      });
+
+      return {
+        title: data.title || "Retail Features",
+        subtitle: data.subtitle || "Comprehensive features designed specifically for retail operations and customer experience optimization.",
+        retailFeatures: features,
+        data: {
+          title: data.title || "Retail Features",
+          subtitle: data.subtitle || "Comprehensive features designed specifically for retail operations and customer experience optimization.",
+          retailFeatures: features
         }
       };
     },

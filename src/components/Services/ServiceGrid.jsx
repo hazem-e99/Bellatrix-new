@@ -83,11 +83,18 @@ const ServiceGrid = ({ data = {} }) => {
 
 
 
-  const services = data.services || defaultServices;
-
-  const title = data.title || "Our Services";
-
-  const subtitle = data.subtitle || "Comprehensive NetSuite solutions to drive your business forward";
+  // Enhanced dynamic data handling
+  console.log(" [ServiceGrid] Props update:", { hasData: !!(data && Object.keys(data).length), dataKeys: Object.keys(data || {}) });
+  
+  const hasData = data && Object.keys(data).length > 0;
+  const services = (hasData && data.services) ? data.services : defaultServices;
+  const title = (hasData && data.title) ? data.title : "Our Services";
+  const subtitle = (hasData && data.subtitle) ? data.subtitle : "Comprehensive NetSuite solutions to drive your business forward";
+  
+  const bottomCTA = (hasData && data.bottomCTA) ? data.bottomCTA : {
+    text: "Ready to transform your business with NetSuite?",
+    buttonText: "Get Started Today"
+  };
 
 
 
@@ -222,7 +229,7 @@ const ServiceGrid = ({ data = {} }) => {
 
           <p className="text-gray-600 mb-6">
 
-            Ready to transform your business with NetSuite?
+            {bottomCTA.text}
 
           </p>
 
@@ -236,7 +243,7 @@ const ServiceGrid = ({ data = {} }) => {
               icon: ""
             }}
           >
-            Get Started Today
+            {bottomCTA.buttonText}
           </CTAButton>
 
         </div>

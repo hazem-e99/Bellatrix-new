@@ -479,8 +479,12 @@ const ComponentPreview = ({
 
             const rawItems =
               componentData.items ||
+              componentData.faqs ||
               componentData.faqItems ||
-              (componentData.faq && componentData.faq.items) ||
+              componentData.data?.items ||
+              componentData.data?.faqs ||
+              componentData.data?.faqItems ||
+              (componentData.faq && (componentData.faq.items || componentData.faq.faqs)) ||
               [];
 
             const items = Array.isArray(rawItems)
@@ -856,25 +860,23 @@ const ComponentPreview = ({
         case "HRFAQSection": {
           console.log(" [HRFAQSection TRANSFORM] Input data:", componentData);
 
+          const rawItems = 
+             componentData.items || 
+             componentData.faqs || 
+             componentData.faqItems || 
+             componentData.data?.items || 
+             componentData.data?.faqs || 
+             componentData.data?.faqItems || 
+             componentData.faq?.items || 
+             componentData.faq?.faqs || 
+             [];
+
           let items = [];
 
-          if (
-            Array.isArray(componentData.faqItems) &&
-            componentData.faqItems.length > 0
-          ) {
-            items = componentData.faqItems.map((f) => ({
-              q: f.q || f.question || "",
-
-              a: f.a || f.answer || "",
-            }));
-          } else if (
-            Array.isArray(componentData.faq?.items) &&
-            componentData.faq.items.length > 0
-          ) {
-            items = componentData.faq.items.map((f) => ({
-              q: f.q || f.question || "",
-
-              a: f.a || f.answer || "",
+          if (Array.isArray(rawItems) && rawItems.length > 0) {
+            items = rawItems.map((f) => ({
+              q: f.q || f.question || f.title || "",
+              a: f.a || f.answer || f.description || "",
             }));
           } else {
             items = [
