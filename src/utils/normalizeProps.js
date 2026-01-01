@@ -1,6 +1,26 @@
 import { validateVariant } from "./variantSystem";
 
+/**
+ * Helper function to clean corrupted data that has numeric string keys
+ * This happens when a string is accidentally spread into an object
+ * Example: {...componentType} where componentType = "ManufacturingCaseStudies"
+ * Results in: {"0": "M", "1": "a", "2": "n", ...}
+ */
+const cleanCorruptedData = (data) => {
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    return data;
+  }
 
+  const cleaned = {};
+  for (const key in data) {
+    // Skip numeric string keys that come from spread strings
+    if (/^\d+$/.test(key)) {
+      continue;
+    }
+    cleaned[key] = data[key];
+  }
+  return cleaned;
+};
 
 /**
 
@@ -74,13 +94,14 @@ export const normalizeProps = (componentType, contentJson) => {
 
   }
 
-
+  // Clean corrupted data (numeric keys from spread strings)
+  const cleanedData = cleanCorruptedData(contentJson);
 
   console.log(
 
     ` [normalizeProps] Processing ${componentType} with data:`,
 
-    contentJson
+    cleanedData
 
   );
 
@@ -146,6 +167,195 @@ export const normalizeProps = (componentType, contentJson) => {
                members: members
            }
        };
+    },
+
+    // Manufacturing Case Studies Section
+    ManufacturingCaseStudiesSection: (data) => {
+        const items = data.items || data.caseStudies || [];
+        return {
+            title: data.title || "Success Stories",
+            description: data.description || "",
+            items: items,
+            caseStudies: items,
+            data: {
+                title: data.title || "Success Stories",
+                description: data.description || "",
+                items: items,
+                caseStudies: items
+            }
+        };
+    },
+    // Alias for ManufacturingCaseStudies (without Section suffix) - matches componentMap.js
+    ManufacturingCaseStudies: (data) => {
+        const items = data.items || data.caseStudies || [];
+        return {
+            title: data.title || "Success Stories",
+            description: data.description || "",
+            items: items,
+            caseStudies: items,
+            data: {
+                title: data.title || "Success Stories",
+                description: data.description || "",
+                items: items,
+                caseStudies: items
+            }
+        };
+    },
+    CaseStudiesSection: (data) => {
+        const items = data.items || data.caseStudies || [];
+        return {
+            title: data.title || "Success Stories",
+            description: data.description || "",
+            items: items,
+            caseStudies: items,
+            data: {
+                title: data.title || "Success Stories",
+                description: data.description || "",
+                items: items,
+                caseStudies: items
+            }
+        };
+    },
+
+    // Retail Challenges Section
+    RetailChallengesSection: (data) => {
+        const challenges = data.retailChallenges || data.challenges || data.items || [];
+        return {
+            title: data.title || "Retail Challenges",
+            subtitle: data.subtitle || "",
+            description: data.description || "",
+            challenges: challenges,
+            retailChallenges: challenges,
+            image: data.image || "",
+            data: {
+                title: data.title || "Retail Challenges",
+                subtitle: data.subtitle || "",
+                description: data.description || "",
+                challenges: challenges,
+                image: data.image || ""
+            }
+        };
+    },
+
+    // Manufacturing Challenges Section
+    ManufacturingChallengesSection: (data) => {
+        const challenges = data.challenges || data.items || [];
+        return {
+            title: data.title || "Manufacturing Challenges",
+            subtitle: data.subtitle || "",
+            description: data.description || "",
+            challenges: challenges,
+            image: data.image || "",
+            data: {
+                title: data.title || "Manufacturing Challenges",
+                subtitle: data.subtitle || "",
+                description: data.description || "",
+                challenges: challenges,
+                image: data.image || ""
+            }
+        };
+    },
+
+    // Manufacturing Solutions Section
+    ManufacturingSolutionsSection: (data) => {
+        const solutions = data.solutions || data.items || [];
+        // Normalize features in each solution
+        const normalizedSolutions = solutions.map(sol => {
+            let features = sol.features;
+            if (typeof features === 'string') {
+                features = features.split(',').map(f => f.trim()).filter(f => f);
+            }
+            return {
+                ...sol,
+                features: Array.isArray(features) ? features : []
+            };
+        });
+        return {
+            title: data.title || "NetSuite Solutions",
+            subtitle: data.subtitle || "",
+            description: data.description || "",
+            solutions: normalizedSolutions,
+            image: data.image || "",
+            data: {
+                title: data.title || "NetSuite Solutions",
+                subtitle: data.subtitle || "",
+                description: data.description || "",
+                solutions: normalizedSolutions,
+                image: data.image || ""
+            }
+        };
+    },
+
+    // Manufacturing Industry Stats
+    ManufacturingIndustryStats: (data) => {
+        const stats = data.stats || data.items || [];
+        return {
+            title: data.title || "Industry Stats",
+            subtitle: data.subtitle || "",
+            description: data.description || "",
+            stats: stats,
+            backgroundImage: data.backgroundImage || "",
+            data: {
+                title: data.title || "Industry Stats",
+                subtitle: data.subtitle || "",
+                description: data.description || "",
+                stats: stats,
+                backgroundImage: data.backgroundImage || ""
+            }
+        };
+    },
+
+    // Retail Case Studies Section
+    RetailCaseStudiesSection: (data) => {
+        const caseStudies = data.caseStudies || data.items || [];
+        return {
+            title: data.title || "Success Stories",
+            subtitle: data.subtitle || "",
+            description: data.description || "",
+            caseStudies: caseStudies,
+            items: caseStudies,
+            data: {
+                title: data.title || "Success Stories",
+                subtitle: data.subtitle || "",
+                description: data.description || "",
+                caseStudies: caseStudies
+            }
+        };
+    },
+
+    // HR Use Cases Section
+    HRUseCasesSection: (data) => {
+        const useCases = data.useCases || data.items || [];
+        return {
+            title: data.title || "HR Use Cases",
+            description: data.description || "",
+            useCases: useCases,
+            data: {
+                title: data.title || "HR Use Cases",
+                description: data.description || "",
+                useCases: useCases
+            }
+        };
+    },
+
+    // About Milestones Section
+    AboutMilestonesSection: (data) => {
+        const milestones = data.milestones || [];
+        const items = data.items || [];
+        return {
+            title: data.title || "Our Journey",
+            subtitle: data.subtitle || "",
+            description: data.description || "",
+            milestones: milestones,
+            items: items,
+            data: {
+                title: data.title || "Our Journey",
+                subtitle: data.subtitle || "",
+                description: data.description || "",
+                milestones: milestones,
+                items: items
+            }
+        };
     },
     
     // Retail CTA Section
@@ -1081,23 +1291,6 @@ export const normalizeProps = (componentType, contentJson) => {
       };
     },
 
-    HRUseCasesSection: (data) => {
-      console.log(" [HRUseCasesSection] Raw form data:", data);
-      
-      return {
-        title: data.title || "Who Is It For?",
-        description: data.description || "",
-        useCases: Array.isArray(data.useCases) ? data.useCases : 
-                  Array.isArray(data.items) ? data.items : [],
-        data: {
-          title: data.title || "Who Is It For?",
-          description: data.description || "",
-          useCases: Array.isArray(data.useCases) ? data.useCases : 
-                    Array.isArray(data.items) ? data.items : [],
-        }
-      };
-    },
-
     HRFAQSection: (data) => {
       console.log(" [HRFAQSection] Raw form data:", data);
       
@@ -1661,36 +1854,9 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
 
-
     // NOTE: AboutMissionSection, AboutJourneySection, AboutValuesSection, 
-    // and AboutDifferentiatorsSection are defined earlier in the file (around line 868)
+    // AboutDifferentiatorsSection, and AboutMilestonesSection are defined earlier in the file
     // Do not add duplicate definitions here.
-
-
-
-
-
-    AboutMilestonesSection: (data) => {
-
-      console.log(" [AboutMilestonesSection] Raw form data:", data);
-
-
-
-      return {
-
-        milestones: data.items || [],
-
-        data: {
-
-          title: data.title || "Our Milestones",
-
-          description: data.description || "Key achievements",
-
-        },
-
-      };
-
-    },
 
 
 
@@ -1828,7 +1994,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
   try {
 
-    const normalizedProps = mappingFunction(contentJson);
+    const normalizedProps = mappingFunction(cleanedData);
 
 
 
@@ -1840,7 +2006,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
       ` [normalizeProps] Input data keys:`,
 
-      Object.keys(contentJson)
+      Object.keys(cleanedData)
 
     );
 
@@ -1856,7 +2022,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
     // Check if form data was actually used (not just defaults)
 
-    const hasFormData = Object.keys(contentJson).length > 0;
+    const hasFormData = Object.keys(cleanedData).length > 0;
 
     if (hasFormData) {
 

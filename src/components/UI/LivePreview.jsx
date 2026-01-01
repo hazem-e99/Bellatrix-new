@@ -226,32 +226,25 @@ const ComponentPreview = ({
           return transformedJourneyData;
         }
 
-        case "AboutTeamSection": {
-          console.log(
-            " [AboutTeamSection TRANSFORM] Input data:",
-
-            componentData
-          );
-
-          const transformedTeamData = {
-            teamMembers: componentData.members || [],
-
-            data: {
-              title: componentData.title || "Meet Our Team",
-
-              description:
-                componentData.description ||
-                "Our diverse team of experts brings together decades of experience in enterprise software, business consulting, and digital transformation.",
-            },
-          };
-
-          console.log(
-            " [AboutTeamSection TRANSFORM] Output data:",
-
-            transformedTeamData
-          );
-
-          return transformedTeamData;
+        // Manufacturing Case Studies Section
+        case "ManufacturingCaseStudiesSection":
+        case "CaseStudiesSection": {
+            console.log(" [ManufacturingCaseStudies TRANSFORM] Input:", componentData);
+            const baseData = componentData.data || componentData;
+            const items = baseData.items || baseData.caseStudies || [];
+            
+            return {
+                title: baseData.title || "Success Stories",
+                description: baseData.description || "",
+                items: items,
+                caseStudies: items,
+                data: {
+                    title: baseData.title || "Success Stories",
+                    description: baseData.description || "",
+                    items: items,
+                    caseStudies: items
+                }
+            };
         }
 
         case "AboutValuesSection": {
