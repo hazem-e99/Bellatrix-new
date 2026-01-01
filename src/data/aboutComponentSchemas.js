@@ -251,6 +251,22 @@ export const aboutComponentSchemas = {
           placeholder: "Discover Our Story",
           formField: "text"
         },
+        ctaButtonLink: {
+          type: "string",
+          label: "CTA Button Link",
+          placeholder: "/about",
+          formField: "text"
+        },
+        ctaButtonVariant: {
+          type: "string",
+          label: "CTA Button Style",
+          formField: "select",
+          options: [
+            { value: "primary", label: "Primary" },
+            { value: "secondary", label: "Secondary" },
+            { value: "outline", label: "Outline" }
+          ]
+        },
         stats: {
           type: "array",
           label: "Hero Stats",
@@ -284,6 +300,8 @@ export const aboutComponentSchemas = {
       backgroundVideo: "/Videos/about-hero.mp4",
       backgroundImage: "",
       ctaButtonText: "Discover Our Story",
+      ctaButtonLink: "/about",
+      ctaButtonVariant: "primary",
       stats: [
         { value: "500+", label: "Projects Completed" },
         { value: "15+", label: "Years Experience" },

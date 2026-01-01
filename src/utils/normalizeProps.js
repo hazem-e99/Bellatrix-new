@@ -357,6 +357,222 @@ export const normalizeProps = (componentType, contentJson) => {
             }
         };
     },
+
+    // Service Grid Section
+    ServiceGrid: (data) => {
+        const services = data.services || data.items || [];
+        // Normalize features in each service
+        const normalizedServices = services.map(svc => {
+            let features = svc.features;
+            if (typeof features === 'string') {
+                features = features.split(',').map(f => f.trim()).filter(f => f);
+            }
+            return {
+                ...svc,
+                features: Array.isArray(features) ? features : []
+            };
+        });
+        return {
+            title: data.title || "Our Services",
+            subtitle: data.subtitle || "",
+            services: normalizedServices,
+            bottomCTA: data.bottomCTA || {},
+            data: {
+                title: data.title || "Our Services",
+                subtitle: data.subtitle || "",
+                services: normalizedServices,
+                bottomCTA: data.bottomCTA || {}
+            }
+        };
+    },
+
+    // Programs Section (Training)
+    ProgramsSection: (data) => {
+        const programs = data.trainingPrograms || data.programs || data.items || [];
+        const programsSection = data.programsSection || {};
+        return {
+            programsSection: {
+                title: programsSection.title || data.title || "Training Programs",
+                description: programsSection.description || data.description || "",
+                image: programsSection.image || data.image || ""
+            },
+            trainingPrograms: programs,
+            data: {
+                programsSection: {
+                    title: programsSection.title || data.title || "Training Programs",
+                    description: programsSection.description || data.description || "",
+                    image: programsSection.image || data.image || ""
+                },
+                trainingPrograms: programs
+            }
+        };
+    },
+
+    // Implementation Process Section
+    ImplementationProcessSection: (data) => {
+        const steps = data.steps || data.items || [];
+        return {
+            title: data.title || "Implementation Process",
+            subtitle: data.subtitle || "",
+            image: data.image || "",
+            steps: steps,
+            ctaButton: data.ctaButton || "",
+            data: {
+                title: data.title || "Implementation Process",
+                subtitle: data.subtitle || "",
+                image: data.image || "",
+                steps: steps,
+                ctaButton: data.ctaButton || ""
+            }
+        };
+    },
+
+    // Payroll How It Works Section
+    PayrollHowItWorksSection: (data) => {
+        const steps = data.steps || data.items || [];
+        return {
+            title: data.title || "How It Works",
+            description: data.description || "",
+            content: data.content || "",
+            steps: steps,
+            data: {
+                title: data.title || "How It Works",
+                description: data.description || "",
+                content: data.content || "",
+                steps: steps
+            }
+        };
+    },
+
+    // Manufacturing Implementation Process
+    ManufacturingImplementationProcess: (data) => {
+        const processSteps = data.processSteps || data.steps || data.items || [];
+        return {
+            title: data.title || "Manufacturing Implementation Process",
+            description: data.description || "",
+            processSteps: processSteps,
+            steps: processSteps,
+            data: {
+                title: data.title || "Manufacturing Implementation Process",
+                description: data.description || "",
+                processSteps: processSteps
+            }
+        };
+    },
+
+    // Customization Process Section
+    CustomizationProcessSection: (data) => {
+        const steps = data.steps || data.items || [];
+        return {
+            title: data.title || "Customization Process",
+            steps: steps,
+            data: {
+                title: data.title || "Customization Process",
+                steps: steps
+            }
+        };
+    },
+
+    // Implementation Why Choose Section
+    ImplementationWhyChooseSection: (data) => {
+        const features = data.features || data.items || [];
+        return {
+            title: data.title || "Why Choose Us",
+            subtitle: data.subtitle || "",
+            image: data.image || "",
+            features: features,
+            data: {
+                title: data.title || "Why Choose Us",
+                subtitle: data.subtitle || "",
+                image: data.image || "",
+                features: features
+            }
+        };
+    },
+
+    // Why Choose Section (Generic)
+    WhyChooseSection: (data) => {
+        const features = data.features || data.trainingFeatures || data.items || [];
+        const whyChooseSection = data.whyChooseSection || {};
+        return {
+            title: whyChooseSection.title || data.title || "Why Choose Us",
+            subtitle: data.subtitle || "",
+            description: whyChooseSection.description || data.description || "",
+            features: features,
+            trainingFeatures: features,
+            whyChooseSection: {
+                title: whyChooseSection.title || data.title || "Why Choose Us",
+                description: whyChooseSection.description || data.description || ""
+            },
+            data: {
+                title: whyChooseSection.title || data.title || "Why Choose Us",
+                subtitle: data.subtitle || "",
+                description: whyChooseSection.description || data.description || "",
+                features: features
+            }
+        };
+    },
+
+    // HR Benefits Section
+    HRBenefitsSection: (data) => {
+        const benefits = data.benefits || data.items || [];
+        const features = data.features || [];
+        return {
+            title: data.title || "Benefits",
+            subtitle: data.subtitle || "",
+            description: data.description || "",
+            benefits: benefits,
+            features: features,
+            data: {
+                title: data.title || "Benefits",
+                subtitle: data.subtitle || "",
+                description: data.description || "",
+                benefits: benefits,
+                features: features
+            }
+        };
+    },
+
+    // Implementation Pricing Section
+    ImplementationPricingSection: (data) => {
+        const plans = data.plans || data.pricing || data.items || [];
+        // Normalize features in each plan
+        const normalizedPlans = plans.map(plan => {
+            let features = plan.features;
+            if (typeof features === 'string') {
+                features = features.split(',').map(f => f.trim()).filter(f => f);
+            }
+            return {
+                ...plan,
+                features: Array.isArray(features) ? features : []
+            };
+        });
+        return {
+            title: data.title || "Pricing",
+            subtitle: data.subtitle || "",
+            plans: normalizedPlans,
+            data: {
+                title: data.title || "Pricing",
+                subtitle: data.subtitle || "",
+                plans: normalizedPlans
+            }
+        };
+    },
+
+    // Retail Features Section
+    RetailFeaturesSection: (data) => {
+        const features = data.features || data.items || [];
+        return {
+            title: data.title || "Features",
+            subtitle: data.subtitle || "",
+            features: features,
+            data: {
+                title: data.title || "Features",
+                subtitle: data.subtitle || "",
+                features: features
+            }
+        };
+    },
     
     // Retail CTA Section
     RetailCTASection: (data) => normalizeGenericCTA(data, "Ready to Transform Your Retail Operations?"),
@@ -1110,22 +1326,6 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    PayrollHowItWorksSection: (data) => ({
-
-      title: data.howItWorks?.title || data.title || "How It Works",
-
-      description:
-
-        data.howItWorks?.description || data.subtitle || data.description,
-
-      steps:
-
-        data.coreWorkflow?.steps || data.howItWorks?.steps || data.steps || [],
-
-    }),
-
-
-
     PayrollWhyPerfectSection: (data) => ({
 
       title: data.whyPerfect?.title || data.title || "Why It's Perfect",
@@ -1135,31 +1335,6 @@ export const normalizeProps = (componentType, contentJson) => {
     }),
 
 
-
-    // Service Components
-    ServiceGrid: (data) => {
-      console.log(" [ServiceGrid] Raw form data:", data);
-      
-      let normalizedServices = undefined;
-      
-      if (Array.isArray(data.services)) {
-        normalizedServices = data.services.map(service => ({
-          ...service,
-          features: Array.isArray(service.features) 
-            ? service.features 
-            : (typeof service.features === 'string' ? service.features.split(',').map(f => f.trim()).filter(Boolean) : [])
-        }));
-      }
-
-      return {
-        data: {
-          title: data.title || "Our Services",
-          subtitle: data.subtitle || "Comprehensive NetSuite solutions to drive your business forward",
-          services: normalizedServices,
-          bottomCTA: data.bottomCTA
-        }
-      };
-    },
 
     // About Components
     
@@ -1744,80 +1919,6 @@ export const normalizeProps = (componentType, contentJson) => {
     }),
 
 
-
-    ImplementationCTASection: (data) => normalizeGenericCTA(data, "Ready to Start Implementation?"),
-
-
-
-    // Manufacturing Implementation Process
-    ManufacturingImplementationProcess: (data) => {
-      console.log(" [ManufacturingImplementationProcess] Normalizing:", data);
-      
-      const steps = Array.isArray(data.processSteps) 
-        ? data.processSteps 
-        : (Array.isArray(data.steps) ? data.steps : []);
-
-      const normalizedSteps = steps.map(step => {
-        // Normalize benefits (Key Deliverables)
-        let benefits = step.benefits;
-        if (typeof benefits === 'string') {
-          benefits = benefits.split(',').map(b => b.trim()).filter(b => b);
-        }
-        
-        // Normalize stats
-        const stats = Array.isArray(step.stats) ? step.stats : [];
-
-        return {
-          ...step,
-          benefits: Array.isArray(benefits) ? benefits : [],
-          stats: stats,
-          details: step.details || step.description || ""
-        };
-      });
-
-      return {
-        title: data.title || "Manufacturing Implementation Process",
-        description: data.description || "Our proven methodology for manufacturing implementations",
-        processSteps: normalizedSteps,
-        steps: normalizedSteps,
-        data: {
-          title: data.title || "Manufacturing Implementation Process",
-          description: data.description || "Our proven methodology for manufacturing implementations",
-          processSteps: normalizedSteps,
-          steps: normalizedSteps
-        }
-      };
-    },
-
-
-    // Retail Components
-    RetailFeaturesSection: (data) => {
-      console.log(" [RetailFeaturesSection] Raw form data:", data);
-      
-      let rawFeatures = Array.isArray(data.retailFeatures) ? data.retailFeatures : (Array.isArray(data.features) ? data.features : (Array.isArray(data.items) ? data.items : []));
-      
-      const features = rawFeatures.map(feature => {
-        let benefits = feature.benefits;
-        if (typeof benefits === 'string') {
-          benefits = benefits.split(',').map(b => b.trim()).filter(b => b);
-        }
-        return {
-           ...feature,
-           benefits: Array.isArray(benefits) ? benefits : []
-        };
-      });
-
-      return {
-        title: data.title || "Retail Features",
-        subtitle: data.subtitle || "Comprehensive features designed specifically for retail operations and customer experience optimization.",
-        retailFeatures: features,
-        data: {
-          title: data.title || "Retail Features",
-          subtitle: data.subtitle || "Comprehensive features designed specifically for retail operations and customer experience optimization.",
-          retailFeatures: features
-        }
-      };
-    },
 
     // About Components
     AboutHeroSection: (data) => {

@@ -57,6 +57,9 @@ export const idToPathMap = {
   TrainingHeroSection: "Services/training/HeroSection",
   TrainingProgramsSection: "Services/training/TrainingPrograms",
   TrainingWhyChooseSection: "Services/training/WhyChooseSection",
+  // Aliases without "Training" prefix
+  ProgramsSection: "Services/training/ProgramsSection",
+  WhyChooseSection: "Services/training/WhyChooseSection",
 
   // ===========================================
   // MANUFACTURING INDUSTRY COMPONENTS
@@ -175,6 +178,9 @@ export const loadComponent = async (componentPath) => {
         import("./Services/training/TrainingPrograms"),
       "Services/training/WhyChooseSection": () =>
         import("./Services/training/WhyChooseSection"),
+      // Aliases without "Training" prefix
+      "Services/training/ProgramsSection": () =>
+        import("./Services/training/ProgramsSection"),
 
       // ===========================================
       // MANUFACTURING INDUSTRY COMPONENTS

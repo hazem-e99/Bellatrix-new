@@ -7,6 +7,181 @@
  */
 
 export const generalComponentSchemas = {
+  // ============================================
+  // ABOUT COMPONENTS
+  // ============================================
+  
+  AboutMissionSection: {
+    componentName: "AboutMissionSection",
+    category: "about",
+    icon: "🎯",
+    displayName: "About Mission Section",
+    description: "Mission and vision statement with image and stats",
+    schema: {
+      type: "object",
+      properties: {
+        title: { type: "string", label: "Section Title", placeholder: "Our Mission", formField: "text" },
+        subtitle: { type: "string", label: "Subtitle", placeholder: "Transforming businesses", formField: "text" },
+        description: { type: "string", label: "Description", placeholder: "Mission description", formField: "textarea" },
+        vision: { type: "string", label: "Vision Statement", placeholder: "Our vision", formField: "textarea" },
+        additionalContent: { type: "string", label: "Additional Content", placeholder: "More information", formField: "textarea" },
+        image: { type: "string", label: "Section Image", placeholder: "/images/mission.jpg", formField: "media", mediaType: "image" },
+        stats: {
+          type: "array",
+          label: "Statistics",
+          items: {
+            type: "object",
+            properties: {
+              value: { type: "string", label: "Value", formField: "text" },
+              label: { type: "string", label: "Label", formField: "text" },
+            },
+          },
+          formField: "array",
+        },
+        missionPoints: {
+          type: "array",
+          label: "Key Focus Areas",
+          items: {
+            type: "object",
+            properties: {
+              title: { type: "string", label: "Point Title", formField: "text" },
+              description: { type: "string", label: "Description", formField: "textarea" },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      title: "Our Mission",
+      subtitle: "Transforming businesses through technology",
+      description: "To empower businesses with innovative technology solutions.",
+      vision: "To be the global leader in business transformation consulting.",
+      additionalContent: "",
+      image: "/images/ourProServices.png",
+      stats: [],
+      missionPoints: [],
+    },
+  },
+
+  AboutJourneySection: {
+    componentName: "AboutJourneySection",
+    category: "about",
+    icon: "🚀",
+    displayName: "About Journey Section",
+    description: "Company journey timeline with milestones",
+    schema: {
+      type: "object",
+      properties: {
+        title: { type: "string", label: "Section Title", placeholder: "Our Journey", formField: "text" },
+        description: { type: "string", label: "Description", placeholder: "From humble beginnings...", formField: "textarea" },
+        beginningTitle: { type: "string", label: "Beginning Title", placeholder: "The Beginning", formField: "text" },
+        beginningText: { type: "string", label: "Beginning Text", placeholder: "Founded in 2008...", formField: "textarea" },
+        growthTitle: { type: "string", label: "Growth Title", placeholder: "Growth & Evolution", formField: "text" },
+        growthText: { type: "string", label: "Growth Text", placeholder: "Over the years...", formField: "textarea" },
+        todayTitle: { type: "string", label: "Today Title", placeholder: "Today", formField: "text" },
+        todayText: { type: "string", label: "Today Text", placeholder: "We continue to innovate...", formField: "textarea" },
+        imageUrl: { type: "string", label: "Journey Image", placeholder: "/images/journey.jpg", formField: "media", mediaType: "image" },
+        milestones: {
+          type: "array",
+          label: "Milestones",
+          items: {
+            type: "object",
+            properties: {
+              year: { type: "string", label: "Year", formField: "text" },
+              title: { type: "string", label: "Title", formField: "text" },
+              description: { type: "string", label: "Description", formField: "textarea" },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      title: "Our Journey",
+      description: "From humble beginnings to a trusted partner.",
+      beginningTitle: "The Beginning",
+      beginningText: "Founded with a vision to transform businesses.",
+      growthTitle: "Growth & Evolution",
+      growthText: "Evolved from a small firm to a comprehensive partner.",
+      todayTitle: "Today",
+      todayText: "We continue to innovate.",
+      imageUrl: "/images/solution.jpg",
+      milestones: [],
+    },
+  },
+
+  AboutValuesSection: {
+    componentName: "AboutValuesSection",
+    category: "about",
+    icon: "💎",
+    displayName: "About Values Section",
+    description: "Company core values with icons",
+    schema: {
+      type: "object",
+      properties: {
+        title: { type: "string", label: "Section Title", placeholder: "Our Values", formField: "text" },
+        description: { type: "string", label: "Description", placeholder: "These core values guide us", formField: "textarea" },
+        items: {
+          type: "array",
+          label: "Values",
+          items: {
+            type: "object",
+            properties: {
+              title: { type: "string", label: "Value Title", formField: "text" },
+              description: { type: "string", label: "Description", formField: "textarea" },
+              icon: { type: "string", label: "Icon (Emoji)", formField: "text" },
+              color: { type: "string", label: "Gradient Color", formField: "text" },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      title: "Our Values",
+      description: "These core values guide everything we do.",
+      items: [],
+    },
+  },
+
+  AboutDifferentiatorsSection: {
+    componentName: "AboutDifferentiatorsSection",
+    category: "about",
+    icon: "⭐",
+    displayName: "About Differentiators Section",
+    description: "What sets us apart with stats",
+    schema: {
+      type: "object",
+      properties: {
+        title: { type: "string", label: "Section Title", placeholder: "What Sets Us Apart", formField: "text" },
+        description: { type: "string", label: "Description", placeholder: "Our unique combination...", formField: "textarea" },
+        items: {
+          type: "array",
+          label: "Differentiators",
+          items: {
+            type: "object",
+            properties: {
+              title: { type: "string", label: "Title", formField: "text" },
+              description: { type: "string", label: "Description", formField: "textarea" },
+              stats: { type: "string", label: "Stats Badge", formField: "text" },
+              icon: { type: "string", label: "Icon (Emoji)", formField: "text" },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      title: "What Sets Us Apart",
+      description: "Our unique combination of expertise makes us the preferred choice.",
+      items: [],
+    },
+  },
+
+  // ============================================
+  // IMPLEMENTATION COMPONENTS 
+  // ============================================
   ImplementationModal: {
     componentName: "ImplementationModal",
 
@@ -189,13 +364,33 @@ export const generalComponentSchemas = {
         },
 
         ctaButton: {
-          type: "string",
-
-          label: "CTA Button Text",
-
-          placeholder: "Start Your Journey",
-
-          formField: "text",
+          type: "object",
+          label: "CTA Button",
+          properties: {
+            text: { 
+              type: "string", 
+              label: "Button Text", 
+              placeholder: "Start Your Journey",
+              formField: "text" 
+            },
+            link: { 
+              type: "string", 
+              label: "Button Link", 
+              placeholder: "/contact",
+              formField: "text" 
+            },
+            variant: { 
+              type: "string", 
+              label: "Button Style", 
+              formField: "select", 
+              options: [
+                { value: "primary", label: "Primary" }, 
+                { value: "secondary", label: "Secondary" },
+                { value: "outline", label: "Outline" }
+              ] 
+            }
+          },
+          formField: "object"
         },
       },
     },
@@ -209,7 +404,192 @@ export const generalComponentSchemas = {
 
       steps: [],
 
-      ctaButton: "Start Your Journey",
+      ctaButton: { text: "Start Your Journey", link: "/contact", variant: "primary" },
+    },
+  },
+
+  // Implementation Process Section Schema
+  ImplementationProcessSection: {
+    componentName: "ImplementationProcessSection",
+    category: "implementation",
+    icon: "⚙️",
+    displayName: "Implementation Process Section",
+    description: "Shows the implementation process with steps and image",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Our Implementation Process",
+          formField: "text",
+        },
+        subtitle: {
+          type: "string",
+          label: "Section Subtitle",
+          placeholder: "A proven methodology",
+          formField: "text",
+        },
+        image: {
+          type: "string",
+          label: "Section Image",
+          placeholder: "/images/implementation-process.jpg",
+          formField: "media",
+          mediaType: "image",
+        },
+        steps: {
+          type: "array",
+          label: "Process Steps",
+          items: {
+            type: "object",
+            properties: {
+              number: { type: "number", label: "Step Number", formField: "text" },
+              title: { type: "string", label: "Step Title", formField: "text" },
+              description: { type: "string", label: "Step Description", formField: "textarea" },
+              icon: { type: "string", label: "Icon (SVG Path)", formField: "text" },
+            },
+          },
+          formField: "array",
+        },
+        ctaButton: {
+          type: "object",
+          label: "CTA Button",
+          properties: {
+            text: { type: "string", label: "Button Text", formField: "text" },
+            link: { type: "string", label: "Button Link", formField: "text" },
+            variant: {
+              type: "string",
+              label: "Button Style",
+              formField: "select",
+              options: [
+                { value: "primary", label: "Primary" },
+                { value: "secondary", label: "Secondary" },
+              ],
+            },
+          },
+          formField: "object",
+        },
+      },
+    },
+    defaultData: {
+      title: "Our Implementation Process",
+      subtitle: "A proven methodology for seamless business transformation",
+      image: "/Videos/implementation/implementProcess.jpg",
+      steps: [
+        { number: 1, title: "Discovery", description: "Requirements analysis", icon: "" },
+        { number: 2, title: "Design", description: "Solution architecture", icon: "" },
+        { number: 3, title: "Build", description: "Configuration & development", icon: "" },
+        { number: 4, title: "Deploy", description: "Go-live & support", icon: "" },
+      ],
+      ctaButton: { text: "Start Your Journey", link: "/contact", variant: "primary" },
+    },
+  },
+
+  // Implementation Pricing Section Schema
+  ImplementationPricingSection: {
+    componentName: "ImplementationPricingSection",
+    category: "implementation",
+    icon: "💰",
+    displayName: "Implementation Pricing Section",
+    description: "Pricing plans for implementation services",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Implementation Pricing",
+          formField: "text",
+        },
+        subtitle: {
+          type: "string",
+          label: "Section Subtitle",
+          placeholder: "Choose the plan that fits your needs",
+          formField: "text",
+        },
+        plans: {
+          type: "array",
+          label: "Pricing Plans",
+          items: {
+            type: "object",
+            properties: {
+              name: { type: "string", label: "Plan Name", formField: "text" },
+              description: { type: "string", label: "Plan Description", formField: "textarea" },
+              price: { type: "string", label: "Price", formField: "text" },
+              priceNote: { type: "string", label: "Price Note", formField: "text" },
+              features: { type: "string", label: "Features (comma separated)", formField: "textarea" },
+              ctaText: { type: "string", label: "CTA Button Text", formField: "text" },
+              isPopular: { type: "boolean", label: "Is Popular?", formField: "checkbox" },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      title: "Implementation Pricing",
+      subtitle: "Choose the perfect implementation plan for your business",
+      plans: [
+        { name: "Starter", description: "Basic implementation", price: "$15,000", priceNote: "one-time", features: "Basic setup, Training", ctaText: "Get Started", isPopular: false },
+        { name: "Professional", description: "Full implementation", price: "$35,000", priceNote: "one-time", features: "Full setup, Customization, Training, Support", ctaText: "Get Started", isPopular: true },
+      ],
+    },
+  },
+
+  // Implementation Why Choose Section Schema
+  ImplementationWhyChooseSection: {
+    componentName: "ImplementationWhyChooseSection",
+    category: "implementation",
+    icon: "✅",
+    displayName: "Why Choose Implementation Section",
+    description: "Why choose us section with features and image",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Why Choose Bellatrix?",
+          formField: "text",
+        },
+        subtitle: {
+          type: "string",
+          label: "Section Subtitle",
+          placeholder: "Years of expertise",
+          formField: "text",
+        },
+        image: {
+          type: "string",
+          label: "Section Image",
+          placeholder: "/images/why-choose.jpg",
+          formField: "media",
+          mediaType: "image",
+        },
+        features: {
+          type: "array",
+          label: "Features",
+          items: {
+            type: "object",
+            properties: {
+              number: { type: "string", label: "Feature Number", placeholder: "01", formField: "text" },
+              title: { type: "string", label: "Feature Title", formField: "text" },
+              description: { type: "string", label: "Feature Description", formField: "textarea" },
+              icon: { type: "string", label: "Icon", formField: "text" },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      title: "Why Choose Bellatrix for Implementation?",
+      subtitle: "Years of expertise and proven methodologies",
+      image: "/images/why-choose.jpg",
+      features: [
+        { number: "01", title: "Expert Team", description: "Certified professionals", icon: "" },
+        { number: "02", title: "Proven Track Record", description: "500+ implementations", icon: "" },
+        { number: "03", title: "Ongoing Support", description: "24/7 assistance", icon: "" },
+      ],
     },
   },
 
@@ -506,6 +886,22 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
+              formField: "text",
+            },
+            variant: {
+              type: "string",
+              label: "Button Style",
+              formField: "select",
+              options: [
+                { value: "primary", label: "Primary" },
+                { value: "secondary", label: "Secondary" },
+                { value: "outline", label: "Outline" }
+              ]
+            }
           },
 
           formField: "object",
@@ -684,6 +1080,22 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
+              formField: "text",
+            },
+            variant: {
+              type: "string",
+              label: "Button Style",
+              formField: "select",
+              options: [
+                { value: "primary", label: "Primary" },
+                { value: "secondary", label: "Secondary" },
+                { value: "outline", label: "Outline" }
+              ]
+            }
           },
 
           formField: "object",
@@ -841,6 +1253,22 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
+              formField: "text",
+            },
+            variant: {
+              type: "string",
+              label: "Button Style",
+              formField: "select",
+              options: [
+                { value: "primary", label: "Primary" },
+                { value: "secondary", label: "Secondary" },
+                { value: "outline", label: "Outline" }
+              ]
+            }
           },
 
           formField: "object",
@@ -1477,6 +1905,173 @@ export const generalComponentSchemas = {
 
           answer: "Yes, we use enterprise-grade security...",
         },
+      ],
+    },
+  },
+
+  // Customization Process Section Schema
+  CustomizationProcessSection: {
+    componentName: "CustomizationProcessSection",
+    category: "services",
+    icon: "⚙️",
+    displayName: "Customization Process Section",
+    description: "Shows the customization process with steps",
+    schema: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          label: "Section Title",
+          placeholder: "Our Customization Process",
+          formField: "text",
+        },
+        subtitle: {
+          type: "string",
+          label: "Section Subtitle",
+          placeholder: "How we customize your solution",
+          formField: "text",
+        },
+        description: {
+          type: "string",
+          label: "Section Description",
+          placeholder: "A detailed description of our process",
+          formField: "textarea",
+        },
+        steps: {
+          type: "array",
+          label: "Process Steps",
+          items: {
+            type: "object",
+            properties: {
+              title: {
+                type: "string",
+                label: "Step Title",
+                placeholder: "Step Title",
+                formField: "text",
+              },
+              description: {
+                type: "string",
+                label: "Step Description",
+                placeholder: "Describe this step",
+                formField: "textarea",
+              },
+              icon: {
+                type: "string",
+                label: "Step Icon",
+                placeholder: "Icon name or SVG path",
+                formField: "text",
+              },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      title: "Our Customization Process",
+      subtitle: "How we tailor solutions to your needs",
+      description: "We follow a proven methodology to customize NetSuite for your business.",
+      steps: [
+        { title: "Analysis", description: "We analyze your requirements", icon: "" },
+        { title: "Design", description: "We design the solution", icon: "" },
+        { title: "Build", description: "We build and test", icon: "" },
+        { title: "Deploy", description: "We deploy and support", icon: "" },
+      ],
+    },
+  },
+
+  // Programs Section Schema (Training Programs)
+  ProgramsSection: {
+    componentName: "ProgramsSection",
+    category: "training",
+    icon: "📚",
+    displayName: "Programs Section",
+    description: "Training programs section with program cards",
+    schema: {
+      type: "object",
+      properties: {
+        programsSection: {
+          type: "object",
+          label: "Section Header",
+          properties: {
+            title: {
+              type: "string",
+              label: "Section Title",
+              placeholder: "Our Training Programs",
+              formField: "text",
+            },
+            description: {
+              type: "string",
+              label: "Section Description",
+              placeholder: "Comprehensive training solutions",
+              formField: "textarea",
+            },
+            image: {
+              type: "string",
+              label: "Section Image",
+              placeholder: "/images/training.jpg",
+              formField: "media",
+              mediaType: "image",
+            },
+          },
+          formField: "object",
+        },
+        trainingPrograms: {
+          type: "array",
+          label: "Training Programs",
+          items: {
+            type: "object",
+            properties: {
+              title: {
+                type: "string",
+                label: "Program Title",
+                placeholder: "NetSuite Fundamentals",
+                formField: "text",
+              },
+              description: {
+                type: "string",
+                label: "Program Description",
+                placeholder: "Learn the basics of NetSuite",
+                formField: "textarea",
+              },
+              duration: {
+                type: "string",
+                label: "Duration",
+                placeholder: "2 weeks",
+                formField: "text",
+              },
+              level: {
+                type: "string",
+                label: "Level",
+                placeholder: "Beginner",
+                formField: "select",
+                options: [
+                  { value: "Beginner", label: "Beginner" },
+                  { value: "Intermediate", label: "Intermediate" },
+                  { value: "Advanced", label: "Advanced" },
+                ],
+              },
+              icon: {
+                type: "string",
+                label: "Program Icon",
+                placeholder: "Icon name",
+                formField: "text",
+              },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      programsSection: {
+        title: "Our Training Programs",
+        description: "Comprehensive training solutions to empower your team",
+        image: "/images/training.jpg",
+      },
+      trainingPrograms: [
+        { title: "NetSuite Fundamentals", description: "Core concepts and navigation", duration: "2 weeks", level: "Beginner", icon: "" },
+        { title: "Advanced NetSuite", description: "Advanced features and customization", duration: "3 weeks", level: "Advanced", icon: "" },
       ],
     },
   },
@@ -2976,6 +3571,22 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
+              formField: "text",
+            },
+            variant: {
+              type: "string",
+              label: "Button Style",
+              formField: "select",
+              options: [
+                { value: "primary", label: "Primary" },
+                { value: "secondary", label: "Secondary" },
+                { value: "outline", label: "Outline" }
+              ]
+            }
           },
 
           formField: "object",
@@ -2996,6 +3607,22 @@ export const generalComponentSchemas = {
 
               formField: "text",
             },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/downloads/guide",
+              formField: "text",
+            },
+            variant: {
+              type: "string",
+              label: "Button Style",
+              formField: "select",
+              options: [
+                { value: "primary", label: "Primary" },
+                { value: "secondary", label: "Secondary" },
+                { value: "outline", label: "Outline" }
+              ]
+            }
           },
 
           formField: "object",

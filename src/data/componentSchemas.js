@@ -634,9 +634,9 @@ export const componentSchemas = {
 
       text: "Start Learning Today",
 
+      link: "/training",
 
-
-
+      variant: "primary",
 
       icon: "",
 
@@ -722,9 +722,9 @@ export const componentSchemas = {
 
       text: "Learn More",
 
+      link: "/manufacturing",
 
-
-
+      variant: "primary",
 
     },
 
@@ -956,9 +956,9 @@ export const componentSchemas = {
 
       text: "Schedule Manufacturing Consultation",
 
+      link: "/contact",
 
-
-
+      variant: "primary",
 
       icon: "",
 
@@ -1428,9 +1428,9 @@ export const componentSchemas = {
 
       text: "Schedule Implementation Consultation",
 
+      link: "/contact",
 
-
-
+      variant: "primary",
 
       icon: "",
 
@@ -1502,9 +1502,9 @@ export const componentSchemas = {
 
       text: "Explore Retail Solutions",
 
+      link: "/retail",
 
-
-
+      variant: "primary",
 
     },
 
@@ -2169,6 +2169,8 @@ export const componentSchemas = {
       text: "Get Started",
 
       link: "/contact",
+
+      variant: "primary",
 
     },
 
