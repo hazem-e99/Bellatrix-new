@@ -20,9 +20,9 @@ const ComponentFormRenderer = ({
   };
 
   const componentSchema =
-    componentSchemas[component.componentType] ||
     getAboutComponentSchema(component.componentType) ||
-    getGeneralComponentSchema(component.componentType);
+    getGeneralComponentSchema(component.componentType) ||
+    (componentSchemas[component.componentType]?.schema ? componentSchemas[component.componentType] : null);
 
   if (viewMode === "json") {
     return (
