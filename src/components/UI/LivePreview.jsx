@@ -381,33 +381,28 @@ const ComponentPreview = ({
         case "HRHeroSection": {
           console.log(
             " [HRHeroSection TRANSFORM] Input data:",
-
             componentData
           );
 
           const transformedHRHeroData = {
+            // Direct props for component compatibility
+            title: componentData.title || "Modern HR, Payroll & People Management",
+            subtitle: componentData.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
+            bgVideo: componentData.bgVideo || componentData.backgroundImage || "/Videos/hrVideo.mp4",
+            bgColor: componentData.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
+            // Nested structure for data prop
             data: {
               hero: {
-                title:
-                  componentData.title ||
-                  "Modern HR, Payroll & People Management",
-
-                subtitle:
-                  componentData.subtitle ||
-                  "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
-
+                title: componentData.title || "Modern HR, Payroll & People Management",
+                subtitle: componentData.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
                 bgVideo: componentData.bgVideo || componentData.backgroundImage || "/Videos/hrVideo.mp4",
-
-                bgColor:
-                  componentData.bgColor ||
-                  "bg-gradient-to-br from-[#191970] via-black to-blue-700",
+                bgColor: componentData.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
               },
             },
           };
 
           console.log(
             " [HRHeroSection TRANSFORM] Output data:",
-
             transformedHRHeroData
           );
 

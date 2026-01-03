@@ -16,13 +16,11 @@ const SectionsStep = ({
   onAddComponent,
   onUpdateComponent,
   onRemoveComponent,
-  onDuplicateComponent,
   onReorderComponents,
   componentSchemas = {},
   showNewInputModal,
   setShowNewInputModal,
   currentComponent,
-  openNewInputModal,
   useNewInputSystemState,
   setUseNewInputSystemState,
 }) => {

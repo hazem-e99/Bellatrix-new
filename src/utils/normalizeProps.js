@@ -136,11 +136,19 @@ export const normalizeProps = (componentType, contentJson) => {
     // HR Hero Section
     HRHeroSection: (data) => {
       return {
-        hero: {
-          title: data.title || "Modern HR, Payroll & People Management",
-          subtitle: data.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
-          bgVideo: data.bgVideo || data.backgroundImage || "/Videos/hrVideo.mp4",
-          bgColor: data.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
+        // Direct props for component compatibility
+        title: data.title || "Modern HR, Payroll & People Management",
+        subtitle: data.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
+        bgVideo: data.bgVideo || data.backgroundImage || "/Videos/hrVideo.mp4",
+        bgColor: data.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
+        // Nested structure for data prop
+        data: {
+          hero: {
+            title: data.title || "Modern HR, Payroll & People Management",
+            subtitle: data.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
+            bgVideo: data.bgVideo || data.backgroundImage || "/Videos/hrVideo.mp4",
+            bgColor: data.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
+          }
         }
       };
     },

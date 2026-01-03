@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SEO from "../../SEO";
 import CTAButton from "../../CTAButton";
 
-const BenefitsSection = ({ data, activeBenefitIdx, onShowDemo }) => {
+const BenefitsSection = ({ data, activeBenefitIdx }) => {
   const [defaultData, setDefaultData] = useState(null);
 
   useEffect(() => {

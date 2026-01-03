@@ -1,12 +1,6 @@
 import React from "react";
-
 import { motion } from "framer-motion";
-
 import SEO from "../../SEO";
-
-import { useComponentData } from "../../../utils/useComponentData";
-
-import manufacturingData from "../../../../public/data/manufacturing-data.json";
 
 
 

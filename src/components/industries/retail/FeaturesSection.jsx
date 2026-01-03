@@ -1,4 +1,3 @@
-import { renderIcon } from "../../../utils/iconUtils";
 import SEO from "../../SEO";
 
 const FeaturesSection = ({
