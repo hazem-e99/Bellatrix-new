@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback, Suspense, lazy } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
 import {
   PlusIcon,
   DocumentTextIcon,
@@ -7,6 +7,12 @@ import {
   VideoCameraIcon,
   Bars3BottomLeftIcon,
   TrashIcon,
+} from "@heroicons/react/24/outline";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  KeyboardSensor,
   useSensor,
   useSensors,
   DragOverlay,
@@ -16,8 +22,6 @@ import {
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -555,7 +559,6 @@ const PageBuilder = ({ category, selectedPage, sections, onSectionsUpdate }) => 
     switch (sectionKey) {
 
       case 'hero':
-
       case 'heroSection':
 
         return {
@@ -1965,7 +1968,6 @@ const SectionPreview = ({ sectionKey, sectionData }) => {
     switch (sectionKey) {
 
       case 'hero':
-
       case 'heroSection':
 
         return (

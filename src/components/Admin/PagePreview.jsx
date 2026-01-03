@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { motion } from "framer-motion";
-
 import {
 
   XMarkIcon,
@@ -305,7 +303,6 @@ const PagePreview = ({
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-
   }, [isOpen, componentsSnapshot, pageData]);
 
 
