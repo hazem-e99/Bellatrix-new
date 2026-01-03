@@ -460,7 +460,7 @@ const PageBuilder = ({ category, selectedPage, sections, onSectionsUpdate }) => 
 
       'pricingSection': 'ImplementationPricingSection',
 
-      'ctaSection': 'ImplementationCTASection',
+      'ctaSection': 'ImplementationCtaSection',
 
       'modalContent': 'ImplementationModal'
 
@@ -516,7 +516,7 @@ const PageBuilder = ({ category, selectedPage, sections, onSectionsUpdate }) => 
 
       'ImplementationPricingSection': 'Services/Implementation/PricingSection',
 
-      'ImplementationCTASection': 'Services/Implementation/CtaSection',
+      'ImplementationCtaSection': 'Services/Implementation/CtaSection',
 
       'TrainingHeroSection': 'Services/training/HeroSection',
 

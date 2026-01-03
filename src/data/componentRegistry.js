@@ -612,37 +612,6 @@ export const componentRegistry = {
         ],
       },
     },
-
-    ImplementationCTASection: {
-      componentType: "ImplementationCTASection",
-
-      componentName: "Implementation CTA Section",
-
-      category: "cta",
-
-      icon: "",
-
-      filePath: "src/components/Services/Implementation/Implementation.jsx",
-
-      description: "Call-to-action section for implementation services",
-
-      dataStructure: {
-        cta: "object", // object with title, subtitle, buttonText, buttonLink
-      },
-
-      defaultData: {
-        cta: {
-          title: "Ready to Transform Your Business?",
-
-          subtitle:
-            "Get started with our comprehensive NetSuite implementation services today.",
-
-          buttonText: "Start Your Implementation",
-
-          buttonLink: "/contact",
-        },
-      },
-    },
   },
 
   // ===========================================

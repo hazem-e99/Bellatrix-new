@@ -2013,7 +2013,6 @@ const ComponentPreview = ({
        
         case "CtaSection":
         case "ImplementationCtaSection":
-        case "ImplementationCTASection":
         case "AboutCTASection":
         case "HRCTASection":
         case "ManufacturingCTASection":

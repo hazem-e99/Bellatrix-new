@@ -52,7 +52,6 @@ export const idToPathMap = {
   ImplementationProcessSection: "Services/Implementation/ProcessSection",
   ImplementationWhyChooseSection: "Services/Implementation/WhyChooseSection",
   ImplementationPricingSection: "Services/Implementation/PricingSection",
-  ImplementationCTASection: "Services/Implementation/CtaSection",
   ImplementationCtaSection: "Services/Implementation/CtaSection",
   TrainingHeroSection: "Services/training/HeroSection",
   TrainingProgramsSection: "Services/training/TrainingPrograms",

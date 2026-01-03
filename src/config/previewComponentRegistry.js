@@ -135,7 +135,6 @@ export const componentRegistry = {
   WhyChooseSection: ImplementationWhyChoose, // Alias
   ImplementationPricingSection: ImplementationPricing,
   ImplementationCtaSection: ImplementationCta,
-  ImplementationCTASection: ImplementationCta, // Alias
   ServiceGrid: ServiceGrid,
   ServiceGridSection: ServiceGrid,
 

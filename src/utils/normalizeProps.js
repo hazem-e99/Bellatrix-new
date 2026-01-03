@@ -2239,8 +2239,6 @@ export const validateProps = (componentType, props) => {
 
     ImplementationHeroSection: ["data"],
 
-    ImplementationCTASection: ["title", "ctaButton"],
-
     TrainingHeroSection: ["heroContent"],
 
     TrainingProgramsSection: ["programsSection", "trainingPrograms"],
