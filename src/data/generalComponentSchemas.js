@@ -24,16 +24,19 @@ export const generalComponentSchemas = {
         subtitle: { type: "string", label: "Subtitle", placeholder: "Transforming businesses", formField: "text" },
         description: { type: "string", label: "Description", placeholder: "Mission description", formField: "textarea" },
         vision: { type: "string", label: "Vision Statement", placeholder: "Our vision", formField: "textarea" },
+        visionTitle: { type: "string", label: "Vision Title", placeholder: "Our Vision", formField: "text" },
         additionalContent: { type: "string", label: "Additional Content", placeholder: "More information", formField: "textarea" },
         image: { type: "string", label: "Section Image", placeholder: "/images/mission.jpg", formField: "media", mediaType: "image" },
+        badgeText: { type: "string", label: "Badge Text", placeholder: "Industry Leader", formField: "text" },
+        missionPointsTitle: { type: "string", label: "Key Focus Areas Title", placeholder: "Key Focus Areas", formField: "text" },
         stats: {
           type: "array",
           label: "Statistics",
           items: {
             type: "object",
             properties: {
-              value: { type: "string", label: "Value", formField: "text" },
-              label: { type: "string", label: "Label", formField: "text" },
+              value: { type: "string", label: "Value (e.g. 500+)", placeholder: "500+", formField: "text" },
+              label: { type: "string", label: "Label", placeholder: "Projects Completed", formField: "text" },
             },
           },
           formField: "array",
@@ -57,9 +60,17 @@ export const generalComponentSchemas = {
       subtitle: "Transforming businesses through technology",
       description: "To empower businesses with innovative technology solutions.",
       vision: "To be the global leader in business transformation consulting.",
+      visionTitle: "Our Vision",
       additionalContent: "",
       image: "/images/ourProServices.png",
-      stats: [],
+      badgeText: "Industry Leader",
+      missionPointsTitle: "Key Focus Areas",
+      stats: [
+        { value: "500+", label: "Projects Completed" },
+        { value: "98%", label: "Client Satisfaction" },
+        { value: "15+", label: "Years Experience" },
+        { value: "50+", label: "Expert Team" },
+      ],
       missionPoints: [],
     },
   },
@@ -437,6 +448,24 @@ export const generalComponentSchemas = {
           formField: "media",
           mediaType: "image",
         },
+        sectionTitle: {
+          type: "string",
+          label: "Stepper Section Title",
+          placeholder: "Implementation Process",
+          formField: "text",
+        },
+        keyDeliverablesTitle: {
+          type: "string",
+          label: "Key Deliverables Label",
+          placeholder: "Key Deliverables",
+          formField: "text",
+        },
+        implementationDetailsTitle: {
+          type: "string",
+          label: "Details Section Title",
+          placeholder: "Implementation Details",
+          formField: "text",
+        },
         steps: {
           type: "array",
           label: "Process Steps",
@@ -446,7 +475,24 @@ export const generalComponentSchemas = {
               number: { type: "number", label: "Step Number", formField: "text" },
               title: { type: "string", label: "Step Title", formField: "text" },
               description: { type: "string", label: "Step Description", formField: "textarea" },
+              duration: { type: "string", label: "Duration", placeholder: "2-3 weeks", formField: "text" },
               icon: { type: "string", label: "Icon (SVG Path)", formField: "text" },
+              details: { type: "string", label: "Detailed Description", placeholder: "Comprehensive analysis...", formField: "textarea" },
+              benefits: { type: "string", label: "Key Deliverables (comma separated)", placeholder: "Benefit 1, Benefit 2", formField: "textarea" },
+              stats: {
+                type: "array",
+                label: "Stats Cards",
+                items: {
+                  type: "object",
+                  properties: {
+                    title: { type: "string", label: "Stat Title", placeholder: "Efficient", formField: "text" },
+                    description: { type: "string", label: "Stat Description", placeholder: "Streamlined process", formField: "textarea" },
+                    icon: { type: "string", label: "Icon Name", placeholder: "Bolt", formField: "text" },
+                    color: { type: "string", label: "Color", placeholder: "blue", formField: "text" },
+                  },
+                },
+                formField: "array",
+              },
             },
           },
           formField: "array",
@@ -475,11 +521,14 @@ export const generalComponentSchemas = {
       title: "Our Implementation Process",
       subtitle: "A proven methodology for seamless business transformation",
       image: "/Videos/implementation/implementProcess.jpg",
+      sectionTitle: "Implementation Process",
+      keyDeliverablesTitle: "Key Deliverables",
+      implementationDetailsTitle: "Implementation Details",
       steps: [
-        { number: 1, title: "Discovery", description: "Requirements analysis", icon: "" },
-        { number: 2, title: "Design", description: "Solution architecture", icon: "" },
-        { number: 3, title: "Build", description: "Configuration & development", icon: "" },
-        { number: 4, title: "Deploy", description: "Go-live & support", icon: "" },
+        { number: 1, title: "Discovery", description: "Requirements analysis", duration: "2-3 weeks", icon: "", details: "Comprehensive analysis of your existing operations", benefits: "Current state assessment, Gap analysis, Requirements documentation", stats: [{ title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" }, { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }] },
+        { number: 2, title: "Design", description: "Solution architecture", duration: "3-4 weeks", icon: "", details: "Create a detailed blueprint for your implementation", benefits: "System architecture, Process flows, Integration design", stats: [{ title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" }, { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }] },
+        { number: 3, title: "Build", description: "Configuration & development", duration: "6-8 weeks", icon: "", details: "Implementation of configuration and custom development", benefits: "Configured system, Custom developments, Workflow automation", stats: [{ title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" }, { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }] },
+        { number: 4, title: "Deploy", description: "Go-live & support", duration: "2-3 weeks", icon: "", details: "Carefully managed production deployment", benefits: "Live system, Support documentation, Performance monitoring", stats: [{ title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" }, { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }] },
       ],
       ctaButton: { text: "Start Your Journey", link: "/contact", variant: "primary" },
     },
@@ -2204,7 +2253,7 @@ export const generalComponentSchemas = {
 
           label: "Title",
 
-          placeholder: "Transform Your HR Management",
+          placeholder: "Modern HR, Payroll & People Management",
 
           formField: "text",
         },
@@ -2214,44 +2263,44 @@ export const generalComponentSchemas = {
 
           label: "Subtitle",
 
-          placeholder: "Streamline your human resources",
-
-          formField: "text",
-        },
-
-        description: {
-          type: "string",
-
-          label: "Description",
-
-          placeholder: "Our comprehensive HR solution...",
+          placeholder: "Automate HR, empower employees, and stay compliant",
 
           formField: "textarea",
         },
 
-        backgroundImage: {
+        bgVideo: {
           type: "string",
 
-          label: "Background Image URL",
+          label: "Background Video URL",
 
-          placeholder: "/images/hr-hero.jpg",
+          placeholder: "/Videos/hrVideo.mp4",
 
           formField: "media",
 
-          mediaType: "image",
+          mediaType: "video",
+        },
+
+        bgColor: {
+          type: "string",
+
+          label: "Background Color (CSS class)",
+
+          placeholder: "bg-gradient-to-br from-[#191970] via-black to-blue-700",
+
+          formField: "text",
         },
       },
     },
 
     defaultData: {
-      title: "Transform Your HR Management",
+      title: "Modern HR, Payroll & People Management",
 
-      subtitle: "Streamline your human resources",
+      subtitle:
+        "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
 
-      description:
-        "Our comprehensive HR solution simplifies employee management.",
+      bgVideo: "/Videos/hrVideo.mp4",
 
-      backgroundImage: "/images/hr-hero.jpg",
+      bgColor: "bg-gradient-to-br from-[#191970] via-black to-blue-700",
     },
   },
 
@@ -3935,6 +3984,27 @@ export const generalComponentSchemas = {
           formField: "textarea",
         },
 
+        sectionTitle: {
+          type: "string",
+          label: "Stepper Section Title",
+          placeholder: "Implementation Process",
+          formField: "text",
+        },
+
+        keyDeliverablesTitle: {
+          type: "string",
+          label: "Key Deliverables Label",
+          placeholder: "Key Deliverables",
+          formField: "text",
+        },
+
+        implementationDetailsTitle: {
+          type: "string",
+          label: "Details Section Title",
+          placeholder: "Implementation Details",
+          formField: "text",
+        },
+
         processSteps: {
           type: "array",
 
@@ -3965,6 +4035,25 @@ export const generalComponentSchemas = {
               },
 
               icon: { type: "string", label: "Icon", formField: "text" },
+              
+              details: { type: "string", label: "Detailed Description", formField: "textarea" },
+              
+              benefits: { type: "string", label: "Benefits (comma separated)", placeholder: "Benefit 1, Benefit 2", formField: "textarea" },
+
+              stats: {
+                type: "array",
+                label: "Stats Cards",
+                items: {
+                  type: "object",
+                  properties: {
+                    title: { type: "string", label: "Stat Title", placeholder: "Efficient", formField: "text" },
+                    description: { type: "string", label: "Stat Description", placeholder: "Streamlined process", formField: "textarea" },
+                    icon: { type: "string", label: "Icon Name", placeholder: "Bolt", formField: "text" },
+                    color: { type: "string", label: "Color", placeholder: "blue", formField: "text" },
+                  },
+                },
+                formField: "array",
+              },
             },
           },
 
@@ -3982,53 +4071,64 @@ export const generalComponentSchemas = {
 
       description: "Our proven methodology for manufacturing implementations",
 
+      sectionTitle: "Implementation Process",
+
+      keyDeliverablesTitle: "Key Deliverables",
+
+      implementationDetailsTitle: "Implementation Details",
+
       processSteps: [
         {
           step: "Discovery",
-
           title: "Requirements Analysis",
-
           description: "Deep dive into your manufacturing processes",
-
           duration: "2-3 weeks",
-
           icon: "",
+          details: "Comprehensive analysis of your existing manufacturing operations",
+          benefits: "Current state assessment, Gap analysis, Requirements documentation",
+          stats: [
+            { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
+            { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
+          ]
         },
-
         {
           step: "Design",
-
           title: "Solution Design",
-
           description: "Custom solution architecture for your needs",
-
           duration: "3-4 weeks",
-
           icon: "",
+          details: "Create a detailed blueprint for your implementation",
+          benefits: "System architecture, Process flows, Integration design",
+          stats: [
+            { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
+            { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
+          ]
         },
-
         {
           step: "Build",
-
           title: "Configuration & Development",
-
           description: "System configuration and customization",
-
           duration: "6-8 weeks",
-
           icon: "",
+          details: "Implementation of configuration and custom development",
+          benefits: "Configured system, Custom developments, Workflow automation",
+          stats: [
+            { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
+            { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
+          ]
         },
-
         {
           step: "Deploy",
-
           title: "Go-Live & Support",
-
           description: "Deployment and post-implementation support",
-
           duration: "2-3 weeks",
-
           icon: "",
+          details: "Carefully managed production deployment",
+          benefits: "Live system, Support documentation, Performance monitoring",
+          stats: [
+            { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
+            { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
+          ]
         },
       ],
     },

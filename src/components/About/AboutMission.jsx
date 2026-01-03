@@ -25,14 +25,34 @@ const AboutMission = ({ data }) => {
   }, []);
 
   // PRIORITIZE props data over default data for real-time preview
-  const missionData = data || defaultData || {
-    title: "Our Mission",
-    description:
-      "To empower businesses with innovative technology solutions that transform operations, enhance productivity, and drive sustainable growth.",
-    vision:
-      "To be the global leader in business transformation consulting, helping organizations achieve their full potential through technology excellence.",
+  // Handle both direct data and normalized {data: {...}} format
+  const rawData = data?.data || data || {};
+  
+  // Default stats if not provided
+  const defaultStats = [
+    { value: "500+", label: "Projects Completed" },
+    { value: "98%", label: "Client Satisfaction" },
+    { value: "15+", label: "Years Experience" },
+    { value: "50+", label: "Expert Team" },
+  ];
+  
+  const missionData = {
+    title: rawData.title || defaultData?.title || "Our Mission",
+    subtitle: rawData.subtitle || defaultData?.subtitle || "",
+    description: rawData.description || defaultData?.description || "To empower businesses with innovative technology solutions that transform operations, enhance productivity, and drive sustainable growth.",
+    vision: rawData.vision || defaultData?.vision || "To be the global leader in business transformation consulting, helping organizations achieve their full potential through technology excellence.",
+    visionTitle: rawData.visionTitle || defaultData?.visionTitle || "Our Vision",
+    additionalContent: rawData.additionalContent || defaultData?.additionalContent || "",
+    image: rawData.image || defaultData?.image || "/images/ourProServices.png",
+    imageAlt: rawData.imageAlt || defaultData?.imageAlt || "About Bellatrix - Professional Services",
+    badgeText: rawData.badgeText || defaultData?.badgeText || "Industry Leader",
+    missionPointsTitle: rawData.missionPointsTitle || defaultData?.missionPointsTitle || "Key Focus Areas",
+    stats: (Array.isArray(rawData.stats) && rawData.stats.length > 0) ? rawData.stats : (defaultData?.stats || defaultStats),
+    missionPoints: Array.isArray(rawData.missionPoints) ? rawData.missionPoints : (defaultData?.missionPoints || []),
   };
 
+  // Debug logging for real-time updates
+  console.log(" [AboutMission] Data received:", { props: data, rawData, missionData });
 
 
   return (
@@ -108,7 +128,7 @@ const AboutMission = ({ data }) => {
                       d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
                     />
                   </svg>
-                  <span>Industry Leader</span>
+                  <span>{missionData.badgeText}</span>
                 </div>
               </div>
             </div>
@@ -128,7 +148,7 @@ const AboutMission = ({ data }) => {
             {missionData.vision && (
               <div className="mt-6 p-4 rounded-xl border bg-[var(--color-primary-bg)] border-[var(--color-border-light)] transition-all duration-600 ease-in-out">
                 <h4 className="text-lg font-semibold mb-2 text-[var(--color-text-primary)] transition-colors duration-600 ease-in-out">
-                  Our Vision
+                  {missionData.visionTitle}
                 </h4>
                 <p className="text-sm text-[var(--color-text-secondary)] transition-colors duration-600 ease-in-out">
                   {missionData.vision}
@@ -142,70 +162,30 @@ const AboutMission = ({ data }) => {
                 </p>
               </div>
             )}
-            <div className="grid grid-cols-2 gap-4">
-              <div
-                className="p-4 rounded-xl border bg-[var(--color-primary-bg)] border-[var(--color-border-light)] transition-all duration-600 ease-in-out"
-              >
-                <div
-                  className="text-2xl font-bold text-[var(--color-primary)] transition-colors duration-600 ease-in-out"
-                >
-                  500+
-                </div>
-                <div
-                  className="text-sm text-[var(--color-text-secondary)] transition-colors duration-600 ease-in-out"
-                >
-                  Projects Completed
-                </div>
+            {/* Stats Grid - Dynamic */}
+            {missionData.stats && missionData.stats.length > 0 && (
+              <div className="grid grid-cols-2 gap-4">
+                {missionData.stats.map((stat, index) => (
+                  <div
+                    key={index}
+                    className="p-4 rounded-xl border bg-[var(--color-primary-bg)] border-[var(--color-border-light)] transition-all duration-600 ease-in-out"
+                  >
+                    <div className="text-2xl font-bold text-[var(--color-primary)] transition-colors duration-600 ease-in-out">
+                      {stat.value || stat.number || "0"}
+                    </div>
+                    <div className="text-sm text-[var(--color-text-secondary)] transition-colors duration-600 ease-in-out">
+                      {stat.label || stat.text || stat.description || "Statistic"}
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div
-                className="p-4 rounded-xl border bg-[var(--color-primary-bg)] border-[var(--color-border-light)] transition-all duration-600 ease-in-out"
-              >
-                <div
-                  className="text-2xl font-bold text-[var(--color-primary)] transition-colors duration-600 ease-in-out"
-                >
-                  98%
-                </div>
-                <div
-                  className="text-sm text-[var(--color-text-secondary)] transition-colors duration-600 ease-in-out"
-                >
-                  Client Satisfaction
-                </div>
-              </div>
-              <div
-                className="p-4 rounded-xl border bg-[var(--color-primary-bg)] border-[var(--color-border-light)] transition-all duration-600 ease-in-out"
-              >
-                <div
-                  className="text-2xl font-bold text-[var(--color-primary)] transition-colors duration-600 ease-in-out"
-                >
-                  15+
-                </div>
-                <div
-                  className="text-sm text-[var(--color-text-secondary)] transition-colors duration-600 ease-in-out"
-                >
-                  Years Experience
-                </div>
-              </div>
-              <div
-                className="p-4 rounded-xl border bg-[var(--color-primary-bg)] border-[var(--color-border-light)] transition-all duration-600 ease-in-out"
-              >
-                <div
-                  className="text-2xl font-bold text-[var(--color-primary)] transition-colors duration-600 ease-in-out"
-                >
-                  50+
-                </div>
-                <div
-                  className="text-sm text-[var(--color-text-secondary)] transition-colors duration-600 ease-in-out"
-                >
-                  Expert Team
-                </div>
-              </div>
-            </div>
+            )}
             
             {/* Mission Points Section */}
             {missionData.missionPoints && missionData.missionPoints.length > 0 && (
               <div className="mt-8">
                 <h4 className="text-xl font-semibold mb-4 text-[var(--color-text-primary)] transition-colors duration-600 ease-in-out">
-                  Key Focus Areas
+                  {missionData.missionPointsTitle}
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {missionData.missionPoints.map((point, index) => (

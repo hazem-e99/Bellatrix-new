@@ -43,9 +43,16 @@ const ImplementationProcess = (props) => {
           </p>
         </header>
         <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-          Implementation Process
+          {finalData.sectionTitle || "Implementation Process"}
         </h3>
-        <ImplementationStepper implementationProcess={finalData.processSteps || finalData.steps} />
+        <ImplementationStepper 
+          implementationProcess={finalData.processSteps || finalData.steps} 
+          labels={{
+            keyDeliverablesTitle: finalData.keyDeliverablesTitle || "Key Deliverables",
+            implementationDetailsTitle: finalData.implementationDetailsTitle || "Implementation Details",
+            defaultStats: finalData.defaultStats || undefined
+          }}
+        />
       </div>
     </section>
   );

@@ -411,16 +411,28 @@ export const normalizeProps = (componentType, contentJson) => {
     // Implementation Process Section
     ImplementationProcessSection: (data) => {
         const steps = data.steps || data.items || [];
+        const defaultStats = data.defaultStats || [
+            { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
+            { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
+        ];
         return {
             title: data.title || "Implementation Process",
             subtitle: data.subtitle || "",
             image: data.image || "",
+            sectionTitle: data.sectionTitle || "Implementation Process",
+            keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
+            implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
+            defaultStats: defaultStats,
             steps: steps,
             ctaButton: data.ctaButton || "",
             data: {
                 title: data.title || "Implementation Process",
                 subtitle: data.subtitle || "",
                 image: data.image || "",
+                sectionTitle: data.sectionTitle || "Implementation Process",
+                keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
+                implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
+                defaultStats: defaultStats,
                 steps: steps,
                 ctaButton: data.ctaButton || ""
             }
@@ -447,14 +459,26 @@ export const normalizeProps = (componentType, contentJson) => {
     // Manufacturing Implementation Process
     ManufacturingImplementationProcess: (data) => {
         const processSteps = data.processSteps || data.steps || data.items || [];
+        const defaultStats = data.defaultStats || [
+            { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
+            { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
+        ];
         return {
             title: data.title || "Manufacturing Implementation Process",
             description: data.description || "",
+            sectionTitle: data.sectionTitle || "Implementation Process",
+            keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
+            implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
+            defaultStats: defaultStats,
             processSteps: processSteps,
             steps: processSteps,
             data: {
                 title: data.title || "Manufacturing Implementation Process",
                 description: data.description || "",
+                sectionTitle: data.sectionTitle || "Implementation Process",
+                keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
+                implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
+                defaultStats: defaultStats,
                 processSteps: processSteps
             }
         };
@@ -1437,22 +1461,7 @@ export const normalizeProps = (componentType, contentJson) => {
     }),
 
 
-
-    HRBenefitsSection: (data) => {
-      console.log(" [HRBenefitsSection] Raw form data:", data);
-      
-      const items = Array.isArray(data.features) ? data.features : (Array.isArray(data.benefits) ? data.benefits : (Array.isArray(data.items) ? data.items : []));
-      
-      return {
-        data: {
-          features: {
-            title: data.title || "Why Choose Our HR Solution?",
-            description: data.description || "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
-            items: items
-          }
-        }
-      };
-    },
+    // NOTE: HRBenefitsSection is defined above at line ~517
 
     HRPricingSection: (data) => {
       console.log(" [HRPricingSection] Raw form data:", data);
@@ -1854,45 +1863,8 @@ export const normalizeProps = (componentType, contentJson) => {
 
     },
 
-    ImplementationPricingSection: (data) => {
-      console.log(" [ImplementationPricingSection] Raw form data:", data);
-      
-      const plans = Array.isArray(data.plans) ? data.plans : (Array.isArray(data.pricing) ? data.pricing : (Array.isArray(data.items) ? data.items : []));
-      
-      return {
-        data: {
-          title: data.title || "Implementation Pricing",
-          subtitle: data.subtitle || "Choose the perfect implementation plan that fits your business needs and budget",
-          plans: plans,
-          additionalInfo: data.additionalInfo || {
-             note: "All plans include free consultation and project scoping",
-             contactText: "Need a custom solution? Contact our team for personalized pricing"
-          }
-        }
-      };
-    },
-
-    ImplementationProcessSection: (data) => ({
-
-      title: data.process?.title || data.title || "Implementation Process",
-
-      subtitle:
-
-        data.process?.subtitle || data.subtitle || "Our proven methodology",
-
-      description:
-
-        data.process?.description ||
-
-        data.description ||
-
-        "A structured approach to successful implementation",
-
-      image: data.image || "",
-
-      phases: data.process?.phases || data.phases || data.steps || [],
-
-    }),
+    // NOTE: ImplementationPricingSection is defined above at line ~537
+    // NOTE: ImplementationProcessSection is defined above at line ~412
 
 
 

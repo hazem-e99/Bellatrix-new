@@ -1,7 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { getIconPath } from "../../../utils/iconPaths";
 
-const ImplementationStepper = ({ implementationProcess }) => {
+const ImplementationStepper = ({ implementationProcess, labels = {} }) => {
+  // Get dynamic labels with defaults
+  const dynamicLabels = {
+    keyDeliverablesTitle: labels.keyDeliverablesTitle || "Key Deliverables",
+    implementationDetailsTitle: labels.implementationDetailsTitle || "Implementation Details",
+    defaultStats: labels.defaultStats || [
+      {
+        title: "Efficient",
+        description: "Streamlined process with proven methodologies",
+        icon: "Bolt",
+        color: "blue"
+      },
+      {
+        title: "Proven",
+        description: "Tested methodology with 98% success rate",
+        icon: "CheckCircle",
+        color: "green"
+      }
+    ]
+  };
+
   // Ensure we have valid data and normalize it
   const safeProcessData = (implementationProcess || []).map(step => {
     // Handle benefits if string
@@ -287,7 +307,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
             {/* Key Benefits */}
             <div className="mb-6">
               <h4 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-3">
-                Key Deliverables
+                {dynamicLabels.keyDeliverablesTitle}
               </h4>
               <div className="grid grid-cols-2 gap-2">
                 {steps[current].benefits.map((benefit, idx) => (
@@ -370,7 +390,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
           <div className="lg:w-3/5">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 md:p-8 border border-blue-100">
               <h4 className="text-lg font-semibold text-gray-800 mb-4">
-                Implementation Details
+                {dynamicLabels.implementationDetailsTitle}
               </h4>
               <p className="text-gray-700 leading-relaxed mb-6">
                 {typeof steps[current]?.details === "string"
@@ -383,20 +403,7 @@ const ImplementationStepper = ({ implementationProcess }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {(steps[current].stats && steps[current].stats.length > 0 
                   ? steps[current].stats 
-                  : [
-                      {
-                        title: "Efficient",
-                        description: "Streamlined process with proven methodologies",
-                        icon: "Bolt",
-                        color: "blue"
-                      },
-                      {
-                        title: "Proven",
-                        description: "Tested methodology with 98% success rate",
-                        icon: "CheckCircle",
-                        color: "green"
-                      }
-                    ]
+                  : dynamicLabels.defaultStats
                 ).map((stat, idx) => {
                   const iconPathData = getIconPath(stat.icon) || stat.icon || "M13 10V3L4 14h7v7l9-11h-7z";
                   const color = stat.color || (idx === 0 ? "blue" : "green");
