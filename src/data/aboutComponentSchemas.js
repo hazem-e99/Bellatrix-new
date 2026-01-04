@@ -11,7 +11,7 @@ export const aboutComponentSchemas = {
   AboutCTASection: {
     componentName: "AboutCTASection",
     category: "about",
-    icon: "📣",
+    icon: "",
     displayName: "About CTA Section",
     description: "Call-to-action section with title, description, features, and button",
     schema: {
@@ -59,7 +59,7 @@ export const aboutComponentSchemas = {
               icon: {
                 type: "string",
                 label: "Icon (Emoji)",
-                placeholder: "⭐",
+                placeholder: "",
                 formField: "text"
               },
               title: {
@@ -88,17 +88,17 @@ export const aboutComponentSchemas = {
       buttonLink: "/contact",
       features: [
         {
-          icon: "👥",
+          icon: "",
           title: "Expert Team",
           description: "Certified professionals with deep industry knowledge"
         },
         {
-          icon: "🏆",
+          icon: "",
           title: "Proven Track Record",
           description: "Hundreds of successful implementations"
         },
         {
-          icon: "🛡️",
+          icon: "",
           title: "Ongoing Support",
           description: "24/7 support to ensure your success"
         }
@@ -112,7 +112,7 @@ export const aboutComponentSchemas = {
   AboutDifferentiatorsSection: {
     componentName: "AboutDifferentiatorsSection",
     category: "about",
-    icon: "⭐",
+    icon: "",
     displayName: "About Differentiators Section",
     description: "Section showcasing what sets the company apart with stats",
     schema: {
@@ -160,7 +160,7 @@ export const aboutComponentSchemas = {
               icon: {
                 type: "string",
                 label: "Icon (Emoji)",
-                placeholder: "🎯",
+                placeholder: "",
                 formField: "text"
               }
             }
@@ -176,25 +176,25 @@ export const aboutComponentSchemas = {
           title: "Industry Expertise",
           description: "Deep knowledge across multiple industries and business models",
           stats: "15+ Years",
-          icon: "🎯"
+          icon: ""
         },
         {
           title: "Certified Team",
           description: "Oracle certified professionals with proven track records",
           stats: "50+ Experts",
-          icon: "👥"
+          icon: ""
         },
         {
           title: "Global Reach",
           description: "Serving clients across the globe with local expertise",
           stats: "20+ Countries",
-          icon: "🌍"
+          icon: ""
         },
         {
           title: "Success Rate",
           description: "Consistently delivering successful implementations",
           stats: "98%",
-          icon: "🏆"
+          icon: ""
         }
       ]
     }
@@ -206,7 +206,7 @@ export const aboutComponentSchemas = {
   AboutHeroSection: {
     componentName: "AboutHeroSection",
     category: "about",
-    icon: "🎬",
+    icon: "",
     displayName: "About Hero Section",
     description: "Hero section with video background, title, and stats",
     schema: {
@@ -317,7 +317,7 @@ export const aboutComponentSchemas = {
   AboutJourneySection: {
     componentName: "AboutJourneySection",
     category: "about",
-    icon: "🚀",
+    icon: "",
     displayName: "About Journey Section",
     description: "Company journey timeline with beginning, growth, and today sections",
     schema: {
@@ -434,7 +434,7 @@ export const aboutComponentSchemas = {
   AboutMilestonesSection: {
     componentName: "AboutMilestonesSection",
     category: "about",
-    icon: "🏅",
+    icon: "",
     displayName: "About Milestones Section",
     description: "Key milestones and achievements in numbers",
     schema: {
@@ -529,7 +529,7 @@ export const aboutComponentSchemas = {
   AboutMissionSection: {
     componentName: "AboutMissionSection",
     category: "about",
-    icon: "🎯",
+    icon: "",
     displayName: "About Mission Section",
     description: "Mission and vision statement with image and stats",
     schema: {
@@ -663,7 +663,7 @@ export const aboutComponentSchemas = {
   AboutTeamSection: {
     componentName: "AboutTeamSection",
     category: "about",
-    icon: "👥",
+    icon: "",
     displayName: "About Team Section",
     description: "Team members carousel with photos and bios",
     schema: {
@@ -767,7 +767,7 @@ export const aboutComponentSchemas = {
   AboutValuesSection: {
     componentName: "AboutValuesSection",
     category: "about",
-    icon: "💎",
+    icon: "",
     displayName: "About Values Section",
     description: "Company core values with icons and descriptions",
     schema: {
@@ -796,7 +796,7 @@ export const aboutComponentSchemas = {
               icon: {
                 type: "string",
                 label: "Icon (Emoji)",
-                placeholder: "⭐",
+                placeholder: "",
                 formField: "text"
               },
               title: {
@@ -828,25 +828,25 @@ export const aboutComponentSchemas = {
       description: "These core values guide everything we do and shape how we interact with our clients, partners, and each other.",
       items: [
         {
-          icon: "⭐",
+          icon: "",
           title: "Excellence",
           description: "We strive for excellence in everything we do, delivering high-quality solutions that exceed expectations.",
           color: "from-blue-500 to-cyan-500"
         },
         {
-          icon: "🤝",
+          icon: "",
           title: "Integrity",
           description: "We conduct business with honesty, transparency, and ethical practices in all our relationships.",
           color: "from-gray-400 to-gray-600"
         },
         {
-          icon: "💡",
+          icon: "",
           title: "Innovation",
           description: "We embrace new technologies and creative approaches to solve complex business challenges.",
           color: "from-green-500 to-teal-500"
         },
         {
-          icon: "❤️",
+          icon: "",
           title: "Customer Focus",
           description: "We put our customers at the center of everything we do, ensuring their success is our success.",
           color: "from-orange-500 to-red-500"
