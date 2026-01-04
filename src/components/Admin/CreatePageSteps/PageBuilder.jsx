@@ -282,7 +282,7 @@ const PageBuilder = ({ category, selectedPage, sections, onSectionsUpdate }) => 
 
 
 
-  const fetchExistingPageData = async () => {
+  const fetchExistingPageData = useCallback(async () => {
 
     if (!selectedPage) return;
 
@@ -314,7 +314,7 @@ const PageBuilder = ({ category, selectedPage, sections, onSectionsUpdate }) => 
 
     }
 
-  };
+  }, [selectedPage]);
 
 
 
@@ -328,7 +328,7 @@ const PageBuilder = ({ category, selectedPage, sections, onSectionsUpdate }) => 
 
     }
 
-  }, [fetchAvailableComponents, selectedPage]);
+  }, [fetchAvailableComponents, selectedPage, fetchExistingPageData]);
 
 
 

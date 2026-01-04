@@ -8064,21 +8064,36 @@ const EnhancedPageBuilder = () => {
             );
           }
 
-          // Check content - only validate if component has content requirement
-          if (comp.content === undefined || comp.content === null) {
-            console.warn(` Component ${i + 1} has undefined/null content, using empty object`);
-            // Don't error out, just use empty content
+          // Check content - normalize to object, don't error on invalid types
+          // First, check if content is missing or falsy (except for valid empty objects/arrays)
+          if (comp.content === undefined || comp.content === null || comp.content === false || comp.content === 0 || comp.content === "") {
+            console.warn(` Component ${i + 1} has missing/falsy content (${typeof comp.content}), using empty object`);
             comp.content = {};
+          } else if (typeof comp.content === "string") {
+            // Content might be a JSON string, try to parse it
+            try {
+              console.log(` Component ${i + 1} has string content, attempting JSON parse`);
+              const parsed = JSON.parse(comp.content);
+              // After parsing, ensure we have an object
+              if (parsed && typeof parsed === "object") {
+                comp.content = parsed;
+                console.log(` Component ${i + 1} content parsed successfully`);
+              } else {
+                console.warn(` Component ${i + 1} parsed to non-object (${typeof parsed}), using empty object`);
+                comp.content = {};
+              }
+            } catch (parseError) {
+              // If it's not valid JSON, treat it as empty content
+              console.warn(` Component ${i + 1} has invalid JSON string content, using empty object`, parseError);
+              comp.content = {};
+            }
           } else if (typeof comp.content !== "object") {
-            console.error(` Component ${i + 1} has invalid content:`, {
-              hasContent: !!comp.content,
-              contentType: typeof comp.content,
-              content: comp.content,
-            });
-            return validateAndReturn(
-              `Component #${i + 1} (${comp.componentName}) has invalid content format - محتوى المكون ${i + 1} غير صحيح`
-            );
+            // For any other non-object types (number, boolean, etc.), convert to empty object
+            console.warn(` Component ${i + 1} has non-object content (${typeof comp.content}), converting to empty object`);
+            comp.content = {};
           }
+          // At this point, comp.content should always be an object
+          console.log(` Component ${i + 1} content validation passed, content type: ${typeof comp.content}`);
 
           // Check orderIndex uniqueness
           const orderIndex = comp.orderIndex;
