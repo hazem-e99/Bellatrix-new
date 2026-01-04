@@ -14,7 +14,7 @@ export const generalComponentSchemas = {
   AboutMissionSection: {
     componentName: "AboutMissionSection",
     category: "about",
-    icon: "🎯",
+    icon: "",
     displayName: "About Mission Section",
     description: "Mission and vision statement with image and stats",
     schema: {
@@ -78,7 +78,7 @@ export const generalComponentSchemas = {
   AboutJourneySection: {
     componentName: "AboutJourneySection",
     category: "about",
-    icon: "🚀",
+    icon: "",
     displayName: "About Journey Section",
     description: "Company journey timeline with milestones",
     schema: {
@@ -125,7 +125,7 @@ export const generalComponentSchemas = {
   AboutValuesSection: {
     componentName: "AboutValuesSection",
     category: "about",
-    icon: "💎",
+    icon: "",
     displayName: "About Values Section",
     description: "Company core values with icons",
     schema: {
@@ -159,7 +159,7 @@ export const generalComponentSchemas = {
   AboutDifferentiatorsSection: {
     componentName: "AboutDifferentiatorsSection",
     category: "about",
-    icon: "⭐",
+    icon: "",
     displayName: "About Differentiators Section",
     description: "What sets us apart with stats",
     schema: {
@@ -423,7 +423,7 @@ export const generalComponentSchemas = {
   ImplementationProcessSection: {
     componentName: "ImplementationProcessSection",
     category: "implementation",
-    icon: "⚙️",
+    icon: "",
     displayName: "Implementation Process Section",
     description: "Shows the implementation process with steps and image",
     schema: {
@@ -538,7 +538,7 @@ export const generalComponentSchemas = {
   ImplementationPricingSection: {
     componentName: "ImplementationPricingSection",
     category: "implementation",
-    icon: "💰",
+    icon: "",
     displayName: "Implementation Pricing Section",
     description: "Pricing plans for implementation services",
     schema: {
@@ -589,7 +589,7 @@ export const generalComponentSchemas = {
   ImplementationWhyChooseSection: {
     componentName: "ImplementationWhyChooseSection",
     category: "implementation",
-    icon: "✅",
+    icon: "",
     displayName: "Why Choose Implementation Section",
     description: "Why choose us section with features and image",
     schema: {
@@ -1648,7 +1648,7 @@ export const generalComponentSchemas = {
 
           description: "Automate repetitive payroll tasks",
 
-          icon: "⏱",
+          icon: "",
         },
       ],
 
@@ -1962,7 +1962,7 @@ export const generalComponentSchemas = {
   CustomizationProcessSection: {
     componentName: "CustomizationProcessSection",
     category: "services",
-    icon: "⚙️",
+    icon: "",
     displayName: "Customization Process Section",
     description: "Shows the customization process with steps",
     schema: {
@@ -2033,7 +2033,7 @@ export const generalComponentSchemas = {
   ProgramsSection: {
     componentName: "ProgramsSection",
     category: "training",
-    icon: "📚",
+    icon: "",
     displayName: "Programs Section",
     description: "Training programs section with program cards",
     schema: {
@@ -2170,25 +2170,7 @@ export const generalComponentSchemas = {
           formField: "textarea",
         },
 
-        features: {
-          type: "array",
 
-          label: "Features / Benefits",
-
-          items: { type: "string", label: "Feature", formField: "text" },
-
-          formField: "array-text",
-        },
-
-        trustedBy: {
-          type: "array",
-
-          label: "Trusted By (list)",
-
-          items: { type: "string", label: "Company", formField: "text" },
-
-          formField: "array-text",
-        },
 
         ctaButton: {
           type: "object",
@@ -2215,15 +2197,7 @@ export const generalComponentSchemas = {
 
       description: "Contact us to learn more about our payroll solution",
 
-      features: [
-        "No setup fees",
 
-        "30-day money back guarantee",
-
-        "24/7 customer support",
-      ],
-
-      trustedBy: ["Fortune 500 Companies", "SMEs", "Startups"],
 
       ctaButton: {
         text: "Get Started",

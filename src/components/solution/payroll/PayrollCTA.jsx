@@ -8,17 +8,12 @@ const PayrollCTA = ({
   subtitle,
   description,
   ctaButton,
-  features,
-  trustedBy,
-  onCtaClick,
 }) => {
   console.log(" [PayrollCTA Fixed] Received props:", {
     title,
     subtitle,
     description,
     ctaButton,
-    features,
-    trustedBy,
   });
 
   // Use props DIRECTLY - no complex data processing or async fetching
@@ -27,40 +22,10 @@ const PayrollCTA = ({
     subtitle: subtitle || "",
     description: description || "",
     buttonText: ctaButton?.text || "Start Now",
-    // Normalize features so component can safely map over them
-    features: (function normalizeFeatures(input) {
-      if (Array.isArray(input)) {
-        return input.map((f) => {
-          if (typeof f === "string") return f;
-          if (!f) return "";
-          return f.title || f.text || f.description || String(f);
-        });
-      }
-      if (typeof input === "string") {
-        return input
-          .split(/[;\n,]+/)
-          .map((s) => s.trim())
-          .filter(Boolean);
-      }
-      if (input && typeof input === "object") {
-        // object -> take values as strings (fallback)
-        return Object.values(input).map((v) => String(v));
-      }
-      return [
-        "No setup fees",
-        "30-day money back guarantee",
-        "24/7 customer support",
-      ];
-    })(features),
-    trustedBy: trustedBy || ["Fortune 500 Companies", "SMEs", "Startups"],
   };
 
-  // Extra debug showing normalized features
-  console.log(" [PayrollCTA Fixed] Final data:", {
-    ...finalData,
-    features: finalData.features,
-    trustedBy: finalData.trustedBy,
-  });
+  // Extra debug showing normalized data
+  console.log(" [PayrollCTA Fixed] Final data:", finalData);
 
   // Check if title and description contain HTML and render accordingly
   const titleHTML = smartRender(finalData.title);
@@ -142,47 +107,7 @@ const PayrollCTA = ({
               {finalData.buttonText}
             </CTAButton>
 
-            {/* Additional Benefits - Dynamic from form data */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-[var(--color-text-inverse)]/80">
-              {finalData.features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center space-x-2"
-                >
-                  <svg
-                    className="w-5 h-5 text-[var(--color-accent)]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span className="text-sm">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Trust indicators - Dynamic from form data */}
-            <div className="mt-8 pt-8 border-t border-[var(--color-text-inverse)]/20">
-              <p className="text-[var(--color-text-inverse)]/60 text-sm mb-4">
-                Trusted by thousands of businesses worldwide
-              </p>
-              <div className="flex justify-center items-center space-x-8 opacity-70">
-                {finalData.trustedBy.map((company, index) => (
-                  <div
-                    key={index}
-                    className="text-[var(--color-text-inverse)]/50 text-xs"
-                  >
-                    {company}
-                  </div>
-                ))}
-              </div>
-            </div>
+           
           </header>
         </div>
 

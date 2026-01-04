@@ -2838,7 +2838,7 @@ const EnhancedPageBuilder = () => {
 
           {
 
-            icon: "⏱",
+            icon: "",
 
             title: "Time & Attendance",
 
