@@ -45,14 +45,14 @@ export const getVariantClasses = (variant) => {
   const validatedVariant = validateVariant(variant);
 
   const classes = {
-    primary: "bg-[#001248] hover:bg-[#000a2e] text-white border-[#001248]",
-    secondary: "bg-gray-600 hover:bg-gray-700 text-white border-gray-600",
+    primary: "bg-[var(--color-primary)] hover:bg-[var(--color-hover)] text-white border-[var(--color-primary)]",
+    secondary: "bg-[var(--color-secondary)] hover:bg-[var(--color-secondary-dark)] text-white border-[var(--color-secondary)]",
     outline:
-      "bg-transparent hover:bg-[#001248] text-[#001248] hover:text-white border-2 border-[#001248]",
-    success: "bg-green-600 hover:bg-green-700 text-white border-green-600",
-    warning: "bg-yellow-600 hover:bg-yellow-700 text-white border-yellow-600",
-    danger: "bg-red-600 hover:bg-red-700 text-white border-red-600",
-    info: "bg-cyan-600 hover:bg-cyan-700 text-white border-cyan-600",
+      "bg-transparent hover:bg-[var(--color-primary)] text-[var(--color-primary)] hover:text-white border-2 border-[var(--color-primary)]",
+    success: "bg-[var(--color-success)] hover:bg-green-700 text-white border-[var(--color-success)]",
+    warning: "bg-[var(--color-warning)] hover:bg-yellow-700 text-white border-[var(--color-warning)]",
+    danger: "bg-[var(--color-error)] hover:bg-red-700 text-white border-[var(--color-error)]",
+    info: "bg-[var(--color-info)] hover:bg-cyan-700 text-white border-[var(--color-info)]",
   };
 
   return classes[validatedVariant] || classes.primary;
@@ -102,39 +102,39 @@ export const getAvailableVariants = () => {
 export const variantOptions = [
   {
     value: "primary",
-    label: "Primary (Dark Navy)",
-    classes: "bg-[#001248] hover:bg-[#000a2e] text-white border-[#001248]",
+    label: "Primary (Theme Blue/Silver)",
+    classes: "bg-[var(--color-primary)] hover:bg-[var(--color-hover)] text-white border-[var(--color-primary)]",
   },
   {
     value: "secondary",
-    label: "Secondary (Gray)",
-    classes: "bg-gray-600 hover:bg-gray-700 text-white border-gray-600",
+    label: "Secondary (Theme Gray)",
+    classes: "bg-[var(--color-secondary)] hover:bg-[var(--color-secondary-dark)] text-white border-[var(--color-secondary)]",
   },
   {
     value: "outline",
     label: "Outline (Transparent)",
     classes:
-      "bg-transparent hover:bg-[#001248] text-[#001248] hover:text-white border-2 border-[#001248]",
+      "bg-transparent hover:bg-[var(--color-primary)] text-[var(--color-primary)] hover:text-white border-2 border-[var(--color-primary)]",
   },
   {
     value: "success",
     label: "Success (Green)",
-    classes: "bg-green-600 hover:bg-green-700 text-white border-green-600",
+    classes: "bg-[var(--color-success)] hover:bg-green-700 text-white border-[var(--color-success)]",
   },
   {
     value: "warning",
     label: "Warning (Yellow)",
-    classes: "bg-yellow-600 hover:bg-yellow-700 text-white border-yellow-600",
+    classes: "bg-[var(--color-warning)] hover:bg-yellow-700 text-white border-[var(--color-warning)]",
   },
   {
     value: "danger",
     label: "Danger (Red)",
-    classes: "bg-red-600 hover:bg-red-700 text-white border-red-600",
+    classes: "bg-[var(--color-error)] hover:bg-red-700 text-white border-[var(--color-error)]",
   },
   {
     value: "info",
     label: "Info (Cyan)",
-    classes: "bg-cyan-600 hover:bg-cyan-700 text-white border-cyan-600",
+    classes: "bg-[var(--color-info)] hover:bg-cyan-700 text-white border-[var(--color-info)]",
   },
 ];
 

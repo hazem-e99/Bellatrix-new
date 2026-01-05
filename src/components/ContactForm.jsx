@@ -167,14 +167,14 @@ const ContactForm = ({
             </label>
             <select name="industry" value={formData.industry} onChange={handleInputChange} className={selectClasses} required
               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`, backgroundPosition: 'right 8px center', backgroundRepeat: 'no-repeat', backgroundSize: '14px', appearance: 'none', paddingRight: '28px' }}>
-              <option value="" className="bg-[#001248]">Select...</option>
-              <option value="Manufacturing" className="bg-[#001248]">Manufacturing</option>
-              <option value="Retail & E-commerce" className="bg-[#001248]">Retail & E-commerce</option>
-              <option value="Healthcare" className="bg-[#001248]">Healthcare</option>
-              <option value="Finance & Banking" className="bg-[#001248]">Finance & Banking</option>
-              <option value="Technology" className="bg-[#001248]">Technology</option>
-              <option value="Professional Services" className="bg-[#001248]">Professional Services</option>
-              <option value="Other" className="bg-[#001248]">Other</option>
+              <option value="" className="bg-[var(--color-brand-dark-navy)]">Select...</option>
+              <option value="Manufacturing" className="bg-[var(--color-brand-dark-navy)]">Manufacturing</option>
+              <option value="Retail & E-commerce" className="bg-[var(--color-brand-dark-navy)]">Retail & E-commerce</option>
+              <option value="Healthcare" className="bg-[var(--color-brand-dark-navy)]">Healthcare</option>
+              <option value="Finance & Banking" className="bg-[var(--color-brand-dark-navy)]">Finance & Banking</option>
+              <option value="Technology" className="bg-[var(--color-brand-dark-navy)]">Technology</option>
+              <option value="Professional Services" className="bg-[var(--color-brand-dark-navy)]">Professional Services</option>
+              <option value="Other" className="bg-[var(--color-brand-dark-navy)]">Other</option>
             </select>
           </div>
           <div className="group">
@@ -186,15 +186,15 @@ const ContactForm = ({
             </label>
             <select name="country" value={formData.country} onChange={handleInputChange} className={selectClasses} required
               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`, backgroundPosition: 'right 8px center', backgroundRepeat: 'no-repeat', backgroundSize: '14px', appearance: 'none', paddingRight: '28px' }}>
-              <option value="" className="bg-[#001248]">Select...</option>
-              <option value="United States" className="bg-[#001248]">United States</option>
-              <option value="United Kingdom" className="bg-[#001248]">United Kingdom</option>
-              <option value="Canada" className="bg-[#001248]">Canada</option>
-              <option value="UAE" className="bg-[#001248]">UAE</option>
-              <option value="Saudi Arabia" className="bg-[#001248]">Saudi Arabia</option>
-              <option value="Egypt" className="bg-[#001248]">Egypt</option>
-              <option value="Germany" className="bg-[#001248]">Germany</option>
-              <option value="Other" className="bg-[#001248]">Other</option>
+              <option value="" className="bg-[var(--color-brand-dark-navy)]">Select...</option>
+              <option value="United States" className="bg-[var(--color-brand-dark-navy)]">United States</option>
+              <option value="United Kingdom" className="bg-[var(--color-brand-dark-navy)]">United Kingdom</option>
+              <option value="Canada" className="bg-[var(--color-brand-dark-navy)]">Canada</option>
+              <option value="UAE" className="bg-[var(--color-brand-dark-navy)]">UAE</option>
+              <option value="Saudi Arabia" className="bg-[var(--color-brand-dark-navy)]">Saudi Arabia</option>
+              <option value="Egypt" className="bg-[var(--color-brand-dark-navy)]">Egypt</option>
+              <option value="Germany" className="bg-[var(--color-brand-dark-navy)]">Germany</option>
+              <option value="Other" className="bg-[var(--color-brand-dark-navy)]">Other</option>
             </select>
           </div>
         </div>

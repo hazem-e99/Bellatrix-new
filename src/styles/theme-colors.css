@@ -282,45 +282,62 @@
    ================================================== */
 [data-theme="purple"] {
   /* Base Two-Tone Colors */
+  --purple-theme-text-main: #ffffff;
+  --purple-theme-text-secondary: rgba(255, 255, 255, 0.95);
+  --purple-theme-text-muted: rgba(255, 255, 255, 0.75);
+  --purple-theme-text-light: rgba(255, 255, 255, 0.55);
+
   --color-primary: #6c757d; /* primary main silver */
   --color-primary-light: #8b95a1; /* accent/secondary silver */
   --color-primary-dark: #495057; /* darker mid-tone silver */
 
   /* Complete Silver Scale (matching blue 50-900) */
-  --silver-50: #f8f9fa; /* lightest - for backgrounds */
-  --silver-100: #e8eaed; /* very light - for hover backgrounds */
-  --silver-200: #d1d5db; /* light - for borders/subtle accents */
-  --silver-300: #b0b8c1; /* mid-light - for secondary text */
-  --silver-400: #8b95a1; /* medium - for icons/badges */
-  --silver-500: #6c757d; /* main primary - buttons/links */
-  --silver-600: #5a6268; /* accent - primary hover */
-  --silver-700: #495057; /* darker - active states */
-  --silver-800: #343a40; /* very dark - text on light bg */
-  --silver-900: #212529; /* deepest - headings/emphasis */
+  --silver-50: #f8f9fa; /* lightest - for backgrounds in light mode */
+  --silver-100: #e8eaed; /* very light */
+  --silver-200: #d1d5db; /* light */
+  --silver-300: #b0b8c1; /* mid-light */
+  --silver-400: #8b95a1; /* medium */
+  --silver-500: #6c757d; /* main primary */
+  --silver-600: #4a4d52; /* accent */
+  --silver-700: #2d3035; /* darker */
+  --silver-800: #1a1c20; /* very dark */
+  --silver-850: #121417; /* even darker */
+  --silver-900: #0a0b0d; /* deepest */
+  --silver-darkest: #050607; /* Absolute darkest */
 
-  /* 1:1 Blue → Silver Mapping (Tailwind utilities) */
-  --tw-blue-50: var(--silver-50);
-  --tw-blue-100: var(--silver-100);
-  --tw-blue-200: var(--silver-200);
-  --tw-blue-300: var(--silver-300);
-  --tw-blue-400: var(--silver-400);
-  --tw-blue-500: var(--silver-500); /* Primary */
-  --tw-blue-600: var(--silver-600); /* Accent */
-  --tw-blue-700: var(--silver-700);
-  --tw-blue-800: var(--silver-800);
-  --tw-blue-900: var(--silver-900);
 
-  /* 1:1 Color Blue Mapping (Custom variables) */
-  --color-blue-50: var(--silver-50);
-  --color-blue-100: var(--silver-100);
-  --color-blue-200: var(--silver-200);
-  --color-blue-300: var(--silver-300);
+  /* Global Background for Theme - Force dark background when theme is purple */
+  background-color: var(--silver-darkest);
+  color: var(--purple-theme-text-main);
+
+  /* 1:1 Blue → Silver Mapping (Tailwind utilities) - DARK THEME AWARE */
+  /* Lower values (50-300) = Dark backgrounds */
+  --tw-blue-50: var(--silver-900); 
+  --tw-blue-100: var(--silver-800);
+  --tw-blue-200: var(--silver-700);
+  --tw-blue-300: var(--silver-600);
+  /* Mid to High values (400-900) = Light/White text for visibility */
+  --tw-blue-400: var(--silver-400); 
+  --tw-blue-500: var(--silver-300); 
+  --tw-blue-600: var(--silver-200); 
+  --tw-blue-700: var(--silver-100);
+  --tw-blue-800: var(--purple-theme-text-secondary);
+  --tw-blue-900: var(--purple-theme-text-main);
+
+
+
+  /* 1:1 Color Blue Mapping (Custom variables) - Visibility Aware */
+  --color-blue-50: var(--silver-900);
+  --color-blue-100: var(--silver-800);
+  --color-blue-200: var(--silver-700);
+  --color-blue-300: var(--silver-600);
   --color-blue-400: var(--silver-400);
-  --color-blue-500: var(--silver-500);
-  --color-blue-600: var(--silver-600);
-  --color-blue-700: var(--silver-700);
-  --color-blue-800: var(--silver-800);
-  --color-blue-900: var(--silver-900);
+  --color-blue-500: var(--silver-300);
+  --color-blue-600: var(--silver-200);
+  --color-blue-700: var(--silver-100);
+  --color-blue-800: var(--purple-theme-text-secondary);
+  --color-blue-900: var(--purple-theme-text-main);
+
 
   /* Cyan → White Mapping */
   --tw-cyan-300: #ffffff; /* Light accent - white */
@@ -335,31 +352,45 @@
   --color-cyan-600: #ffffff;
   --color-cyan-700: var(--silver-700);
 
-  /* Gray Scale Override - Darker for better readability on white backgrounds */
-  --tw-gray-400: #6c757d; /* Darker than default - from silver-500 */
-  --tw-gray-500: #495057; /* Much darker - from silver-700 */
-  --tw-gray-600: #343a40; /* Very dark - from silver-800 */
-  --tw-gray-700: #212529; /* Almost black - from silver-900 */
-  --tw-gray-800: #1a1d20; /* Deeper black */
-  --tw-gray-900: #0d0e10; /* Darkest */
+  /* 1:1 Gray → Silver Mapping (Tailwind utilities) - Visibility Aware */
+  --tw-gray-50: var(--silver-900);
+  --tw-gray-100: var(--silver-850);
+  --tw-gray-200: var(--silver-800);
+  --tw-gray-300: var(--silver-700);
+  --tw-gray-400: var(--silver-400);
+  --tw-gray-500: var(--silver-300);
+  --tw-gray-600: var(--silver-200);
+  --tw-gray-700: var(--silver-100);
+  --tw-gray-800: var(--purple-theme-text-secondary);
+  --tw-gray-900: var(--purple-theme-text-main);
 
-  --color-gray-400: #6c757d; /* Darker gray for better contrast */
-  --color-gray-500: #495057; /* Much darker gray */
-  --color-gray-600: #343a40; /* Very dark gray */
-  --color-gray-700: #212529; /* Almost black */
-  --color-gray-800: #1a1d20; /* Deeper */
-  --color-gray-900: #0d0e10; /* Darkest */
+  --color-gray-50: var(--silver-900);
+  --color-gray-100: var(--silver-850);
+  --color-gray-200: var(--silver-800);
+  --color-gray-300: var(--silver-700);
+  --color-gray-400: var(--purple-theme-text-light);
+  --color-gray-500: var(--purple-theme-text-muted);
+  --color-gray-600: var(--purple-theme-text-muted);
+  --color-gray-700: var(--purple-theme-text-secondary);
+  --color-gray-800: var(--purple-theme-text-secondary);
+  --color-gray-900: var(--purple-theme-text-main);
 
-  /* Cyan/Blue with Opacity → Silver with Opacity */
-  --color-blue-15: rgba(139, 149, 161, 0.15); /* Silver 400 at 15% */
-  --color-blue-20: rgba(139, 149, 161, 0.2); /* Silver 400 at 20% */
-  --color-blue-40: rgba(139, 149, 161, 0.4); /* Silver 400 at 40% */
-  --color-blue-50: rgba(139, 149, 161, 0.5); /* Silver 400 at 50% */
-  --color-blue-60: rgba(139, 149, 161, 0.6); /* Silver 400 at 60% */
+  /* CTA Section Specifics - Purple Theme */
+  --color-cta-bg: linear-gradient(to right, var(--silver-900), var(--silver-800));
+  --color-cta-text: #ffffff;
+  --color-cta-subtext: rgba(255, 255, 255, 0.8);
 
-  --color-cyan-20: rgba(139, 149, 161, 0.2); /* Silver 400 at 20% */
-  --color-cyan-40: rgba(139, 149, 161, 0.4); /* Silver 400 at 40% */
-  --color-cyan-50: rgba(139, 149, 161, 0.5); /* Silver 400 at 50% */
+
+  /* Cyan/Blue with Opacity → White with Opacity */
+  --color-blue-15: rgba(255, 255, 255, 0.1);
+  --color-blue-20: rgba(255, 255, 255, 0.15);
+  --color-blue-40: rgba(255, 255, 255, 0.2);
+  --color-blue-50: rgba(255, 255, 255, 0.3);
+  --color-blue-60: rgba(255, 255, 255, 0.4);
+
+  --color-cyan-20: rgba(255, 255, 255, 0.1);
+  --color-cyan-40: rgba(255, 255, 255, 0.2);
+  --color-cyan-50: rgba(255, 255, 255, 0.3);
 
   /* Accent Colors Override - Silver Theme */
   --color-accent-cyan: #8b95a1; /* silver-400 instead of cyan */
@@ -371,16 +402,27 @@
   ); /* silver-400 with 30% opacity */
 
   /* Semantic Aliases (UI Components) */
-  --color-primary: var(--silver-500); /* Main brand color */
-  --color-primary-light: var(--silver-400); /* Lighter variant */
-  --color-primary-dark: var(--silver-700); /* Darker variant */
-  --color-primary-bg: var(--silver-50); /* Background tint */
+  --color-primary: var(--silver-500);
+  --color-primary-light: var(--silver-400);
+  --color-primary-dark: var(--silver-700);
+  --color-primary-bg: var(--silver-800); /* Dark background even for 'light' variant */
 
-  /* Text Colors Override - Darker for better contrast on white */
-  --color-text-primary: #0d0e10; /* Almost black for primary text */
-  --color-text-secondary: #212529; /* Dark gray for secondary text */
-  --color-text-muted: #495057; /* Medium dark for muted text */
-  --color-text-light: #6c757d; /* Lighter but still readable */
+  /* Background Colors Override - CRITICAL mapping for white/light layouts to become dark */
+  --color-bg-primary: var(--silver-darkest);
+  --color-bg-secondary: var(--silver-900);
+  --color-bg-surface: var(--silver-900);
+  --color-bg-dark: #07080a;
+
+  /* Border Colors Override - Subtle borders in dark theme */
+  --color-border-primary: rgba(255, 255, 255, 0.1);
+  --color-border-secondary: rgba(255, 255, 255, 0.15);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+
+  /* Text Colors Override - Forces white for ALL text types in secondary theme */
+  --color-text-primary: var(--purple-theme-text-main);
+  --color-text-secondary: var(--purple-theme-text-secondary);
+  --color-text-muted: var(--purple-theme-text-muted);
+  --color-text-light: var(--purple-theme-text-light);
 
   /* Interactive States */
   --color-hover: var(--silver-600); /* Hover state */
@@ -394,13 +436,117 @@
   --shadow-silver-500: rgba(108, 117, 125, 0.35);
 
   /* Brand Colors Override */
-  --color-brand-dark-navy: #6c757d; /* Main primary */
-  --color-brand-midnight: #5a6268; /* Accent */
-  --color-brand-variant: #495057; /* Mid-tone */
-  --color-brand-accent: #343a40; /* Dark accent */
-  --color-brand-primary: #6c757d;
-  --color-brand-secondary: #5a6268;
+  --color-brand-dark-navy: var(--silver-900);
+  --color-brand-midnight: var(--silver-800);
+  --color-brand-variant: var(--silver-700);
+  --color-brand-accent: var(--silver-600);
+  --color-brand-primary: var(--silver-900);
+  --color-brand-secondary: var(--silver-800);
 }
+
+/* Aggressive background utility overrides for the second theme to fix all visibility issues */
+/* Catch all white, gray, and light blue backgrounds and force them to be dark silver */
+[data-theme="purple"] [class*="bg-white"],
+[data-theme="purple"] [class*="bg-gray-"],
+[data-theme="purple"] [class*="bg-blue-50"] {
+  background-color: var(--silver-900) !important;
+  color: #ffffff !important;
+}
+
+/* Force ALL cards (Mission, Vision, Differentiators, etc.) to be dark silver with white text */
+/* This catches all rounded levels (xl, 2xl, 3xl, full) and both bordered and shadowed cards */
+[data-theme="purple"] [class*="rounded-"][class*="bg-white"],
+[data-theme="purple"] [class*="rounded-"][class*="bg-gray-"],
+[data-theme="purple"] [class*="rounded-"].border,
+[data-theme="purple"] .bg-\[var\(--color-primary-bg\)\] {
+  background-color: var(--silver-800) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Force all text elements inside these themed dark containers to be white, 
+   overriding local dark-gray text utilities like text-gray-800 */
+[data-theme="purple"] [class*="bg-gray-"] *,
+[data-theme="purple"] [class*="bg-white"] *,
+[data-theme="purple"] .bg-\[var\(--color-primary-bg\)\] * {
+  color: #ffffff !important;
+}
+
+/* SAFETY GUARD: If any element still has a truly white or very light background after overrides 
+   (e.g. from inline styles we can't catch), ensure its text is black for readability */
+[data-theme="purple"] [style*="background-color: white"],
+[data-theme="purple"] [style*="background-color: #ffffff"],
+[data-theme="purple"] [style*="background-color: #f"],
+[data-theme="purple"] [style*="background-color: rgb(255, 255, 255)"] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+[data-theme="purple"] [style*="background-color: white"] *,
+[data-theme="purple"] [style*="background-color: #ffffff"] *,
+[data-theme="purple"] [style*="background-color: rgb(255, 255, 255)"] * {
+  color: #000000 !important;
+}
+
+
+
+/* Specific elevation for dropdown containers and floating cards */
+[data-theme="purple"] .absolute[class*="bg-white"],
+[data-theme="purple"] [class*="shadow-lg"][class*="bg-white"],
+[data-theme="purple"] .dropdown-content {
+  background-color: var(--silver-darkest) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Force links in dark containers to be white and handle hover states */
+[data-theme="purple"] [class*="absolute"] a,
+[data-theme="purple"] .dropdown-content a,
+[data-theme="purple"] nav a {
+  color: var(--purple-theme-text-main) !important;
+}
+
+[data-theme="purple"] [class*="absolute"] a:hover,
+[data-theme="purple"] .dropdown-content a:hover {
+  background-color: var(--silver-700) !important;
+  color: #ffffff !important;
+}
+
+/* Tuned Fix for Team expertise tags, pills and small labels */
+[data-theme="purple"] .rounded-full[class*="bg-"],
+[data-theme="purple"] span[role="status"],
+[data-theme="purple"] .badge {
+  background-color: var(--silver-700) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Ensure borders are subtle but visible in dark theme */
+[data-theme="purple"] [class*="border-gray-"],
+[data-theme="purple"] .border-white,
+[data-theme="purple"] .border {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Force hardcoded 'light-section' containers to be dark in the second theme */
+[data-theme="purple"] .light-section {
+  background-color: var(--silver-darkest) !important;
+  color: var(--purple-theme-text-main) !important;
+}
+
+[data-theme="purple"] .light-section h1,
+[data-theme="purple"] .light-section h2,
+[data-theme="purple"] .light-section h3,
+[data-theme="purple"] .light-section h4,
+[data-theme="purple"] .light-section p,
+[data-theme="purple"] .light-section span:not(.rounded-full) {
+  color: var(--purple-theme-text-main) !important;
+}
+
+
+
+
+
 
 /* ==================================================
    SMOOTH THEME TRANSITIONS

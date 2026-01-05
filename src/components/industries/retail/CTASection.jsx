@@ -85,15 +85,22 @@ const CTASection = (props) => {
       />
 
       <div className="container mx-auto px-6">
-        <div className="bg-gradient-to-r from-gray-100 to-gray-200 rounded-3xl p-12 text-gray-800 text-center border border-gray-300">
+        <div 
+          className="rounded-3xl p-12 text-center border"
+          style={{ 
+            background: 'var(--color-cta-bg)', 
+            color: 'var(--color-cta-text)',
+            borderColor: 'rgba(255, 255, 255, 0.1)'
+          }}
+        >
           <div className="max-w-4xl mx-auto">
             <header>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ color: 'inherit' }}>
                 {finalData.title}
               </h2>
 
               {finalData.subtitle && (
-                <h3 className="text-xl md:text-2xl text-gray-800 mb-4 leading-relaxed">
+                <h3 className="text-xl md:text-2xl mb-4 leading-relaxed" style={{ opacity: 0.9, color: 'inherit' }}>
                   {typeof finalData.subtitle === "string"
                     ? finalData.subtitle
                     : finalData.subtitle?.subtitle ||
@@ -102,10 +109,11 @@ const CTASection = (props) => {
                 </h3>
               )}
 
-              <p className="text-xl mb-8 leading-relaxed text-gray-700">
+              <p className="text-xl mb-8 leading-relaxed" style={{ color: 'var(--color-cta-subtext)' }}>
                 {finalData.description}
               </p>
             </header>
+
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               {finalData.features.map((feature, index) => (
@@ -126,11 +134,11 @@ const CTASection = (props) => {
                     </svg>
                   </div>
 
-                  <h4 className="text-xl font-bold mb-2 text-gray-800">
+                  <h4 className="text-xl font-bold mb-2" style={{ color: 'inherit' }}>
                     {feature.title}
                   </h4>
 
-                  <p className="text-gray-600">
+                  <p style={{ color: 'var(--color-cta-subtext)' }}>
                     {typeof feature.description === "string"
                       ? feature.description
                       : feature.description?.description ||
@@ -140,6 +148,7 @@ const CTASection = (props) => {
                 </div>
               ))}
             </div>
+
 
             <CTAButton
               variant="primary"

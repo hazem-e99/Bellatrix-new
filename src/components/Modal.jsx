@@ -11,7 +11,7 @@ const Modal = ({ isOpen, onClose, icon, title, subtitle, children }) => {
       <div
         className="w-full max-w-2xl relative shadow-2xl overflow-hidden animate-fade-in-up rounded-2xl"
         onClick={(e) => e.stopPropagation()}
-        style={{ backgroundColor: '#001248' }}
+        style={{ backgroundColor: 'var(--color-brand-dark-navy)' }}
       >
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
