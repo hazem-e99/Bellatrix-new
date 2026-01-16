@@ -57,74 +57,32 @@ const CTASection = ({
 
 
 
-  // Use merged data with fallbacks
-
+  // Use merged data with fallbacks - PRIORITIZE direct props first
   const mergedData = {
-
-    title:
-
-      finalData.title || title || "Transform Your Manufacturing Operations",
-
-    subtitle: finalData.subtitle || subtitle || "",
-
-    description:
-
-      finalData.description ||
-
-      description ||
-
+    title: title || finalData.title || "Transform Your Manufacturing Operations",
+    subtitle: subtitle || finalData.subtitle || "",
+    description: description || finalData.description || 
       "Join hundreds of manufacturing companies that have optimized their operations with our solutions.",
-
-    buttonText: finalData.buttonText || ctaButton?.text || "Get Started",
-
-    buttonLink:
-
-      finalData.buttonLink || ctaButton?.link || null,
-
-    variant: finalData.variant || ctaButton?.variant || "primary",
-
-    features: finalData.features ||
-
-      features || [
-
-        {
-
-          title: "Streamlined Operations",
-
-          description: "Optimize your manufacturing processes",
-
-          icon:
-
-            "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
-
-        },
-
-        {
-
-          title: "Real-time Insights",
-
-          description: "Get actionable data for better decisions",
-
-          icon:
-
-            "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
-
-        },
-
-        {
-
-          title: "Expert Support",
-
-          description: "24/7 support from industry experts",
-
-          icon:
-
-            "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-
-        },
-
-      ],
-
+    buttonText: ctaButton?.text || finalData.buttonText || "Get Started",
+    buttonLink: ctaButton?.link || finalData.buttonLink || null,
+    variant: ctaButton?.variant || finalData.variant || "primary",
+    features: (features && features.length > 0) ? features : (finalData.features || [
+      {
+        title: "Streamlined Operations",
+        description: "Optimize your manufacturing processes",
+        icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
+      },
+      {
+        title: "Real-time Insights",
+        description: "Get actionable data for better decisions",
+        icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+      },
+      {
+        title: "Expert Support",
+        description: "24/7 support from industry experts",
+        icon: "M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+      },
+    ]),
   };
 
 

@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import SEO from "../../SEO";
 import CTAButton from "../../CTAButton";
 
-const BenefitsSection = ({ data, activeBenefitIdx }) => {
+const BenefitsSection = ({ 
+  data, 
+  activeBenefitIdx,
+  // Direct props for Page Builder
+  title: propTitle,
+  description: propDescription,
+  ctaButton: propCtaButton,
+  features: propFeatures,
+}) => {
   const [defaultData, setDefaultData] = useState(null);
 
   useEffect(() => {
@@ -25,20 +33,37 @@ const BenefitsSection = ({ data, activeBenefitIdx }) => {
     fetchData();
   }, []);
 
-  // PRIORITIZE props data over default data for real-time preview
-  // Handle both data.data (from normalizer) and data.features formats
+  // PRIORITIZE direct props > data prop > default data for real-time preview
   const rawData = data?.data || data || {};
   const featuresData = rawData.features || rawData || {};
   
+  // Handle ctaButton as object or string
+  const getCtaButton = () => {
+    // Priority: direct prop > rawData > defaultData
+    const btn = propCtaButton || rawData.ctaButton || featuresData.ctaButton || defaultData?.ctaButton;
+    if (typeof btn === 'object' && btn !== null) {
+      return btn;
+    }
+    return { text: btn || "Contact Us", link: "/contact" };
+  };
+
+  // Get features array
+  const getFeatures = () => {
+    if (Array.isArray(propFeatures) && propFeatures.length > 0) return propFeatures;
+    if (Array.isArray(featuresData.items)) return featuresData.items;
+    if (Array.isArray(rawData.benefits)) return rawData.benefits;
+    if (Array.isArray(rawData.items)) return rawData.items;
+    if (Array.isArray(rawData.features)) return rawData.features;
+    return defaultData?.items || [];
+  };
+  
   const displayData = {
     features: {
-      title: featuresData.title || defaultData?.title || "Why Choose Our HR Solution?",
-      description: featuresData.description || defaultData?.description || "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
-      items: Array.isArray(featuresData.items) ? featuresData.items : 
-             (Array.isArray(rawData.benefits) ? rawData.benefits : 
-             (Array.isArray(rawData.items) ? rawData.items : 
-             (defaultData?.items || []))),
+      title: propTitle || featuresData.title || rawData.title || defaultData?.title || "Why Choose Our HR Solution?",
+      description: propDescription || featuresData.description || rawData.description || defaultData?.description || "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
+      items: getFeatures(),
     },
+    ctaButton: getCtaButton(),
   };
 
   // Debug logging for real-time updates
@@ -115,7 +140,7 @@ const BenefitsSection = ({ data, activeBenefitIdx }) => {
                 icon: ""
               }}
             >
-              Contact Us
+              {displayData.ctaButton?.text || "Contact Us"}
             </CTAButton>
           </div>
         </div>

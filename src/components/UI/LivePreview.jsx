@@ -147,17 +147,15 @@ const ComponentPreview = ({
 
         case "AboutHeroSection":
           return {
-            data: {
-              title: componentData.title,
-
-              subtitle: componentData.subtitle,
-
-              description: componentData.description,
-
-              backgroundVideo: componentData.backgroundVideo,
-
-              stats: componentData.stats || [],
-            },
+            title: componentData.title || "About Bellatrix",
+            subtitle: componentData.subtitle || "Your trusted partner in digital transformation",
+            description: componentData.description || "",
+            backgroundVideo: componentData.backgroundVideo || "/Videos/about-hero.mp4",
+            backgroundImage: componentData.backgroundImage || "",
+            ctaButtonText: componentData.ctaButtonText || "Discover Our Story",
+            ctaButtonLink: componentData.ctaButtonLink || "/about",
+            ctaButtonVariant: componentData.ctaButtonVariant || "primary",
+            stats: componentData.stats || [],
           };
 
         case "AboutMissionSection": {
@@ -614,55 +612,18 @@ const ComponentPreview = ({
         case "HRBenefitsSection": {
           console.log(
             " [HRBenefitsSection TRANSFORM] Input data:",
-
             componentData
           );
 
           const transformedHRBenefitsData = {
-            data: {
-              features: {
-                title: componentData.title || "Why Choose Our HR Solution?",
-
-                description:
-                  componentData.description ||
-                  "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
-
-                items: componentData.features ||
-                  componentData.items || [
-                    {
-                      title: "Automated Workflows",
-
-                      description:
-                        "Streamline HR processes with intelligent automation",
-
-                      icon: "",
-                    },
-
-                    {
-                      title: "Employee Self-Service",
-
-                      description:
-                        "Empower employees with self-service capabilities",
-
-                      icon: "",
-                    },
-
-                    {
-                      title: "Compliance Management",
-
-                      description:
-                        "Stay compliant with automated reporting and tracking",
-
-                      icon: "",
-                    },
-                  ],
-              },
-            },
+            title: componentData.title || "Why Choose Our HR Solution?",
+            description: componentData.description || "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
+            ctaButton: componentData.ctaButton || { text: "Contact Us", link: "/contact" },
+            features: componentData.features || componentData.items || [],
           };
 
           console.log(
             " [HRBenefitsSection TRANSFORM] Output data:",
-
             transformedHRBenefitsData
           );
 
@@ -2149,12 +2110,9 @@ const ComponentPreview = ({
         }
 
 
-
         default:
           // Generic prop structure for unknown components
-
           console.log(" [DEFAULT TRANSFORM] Input data:", componentData);
-
           return componentData;
       }
     } catch (error) {

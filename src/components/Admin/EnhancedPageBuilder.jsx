@@ -160,110 +160,51 @@ const EnhancedPageBuilder = () => {
 
 
 
-  // Debounced auto-save function
-
+  // Debounced auto-save function - now accepts component info directly to avoid stale closure
   const debouncedAutoSave = useCallback(
-
-    (componentIndex, componentData) => {
-
+    (componentInfo, componentData) => {
       // Clear any existing timeout
-
       if (autoSaveTimeoutRef.current) {
-
         clearTimeout(autoSaveTimeoutRef.current);
-
       }
 
-
-
       // Set new timeout for auto-save
-
       autoSaveTimeoutRef.current = setTimeout(() => {
-
-        const component = pageData.components[componentIndex];
-
-        if (!component?.id || !pageData.id) {
-
+        if (!componentInfo?.id || !pageData.id) {
           console.log(
-
             " [AUTO-SAVE] Skipping auto-save - component or page not saved yet"
-
           );
-
           return;
-
         }
 
-
-
         const updateData = {
-
-          id: component.id,
-
+          id: componentInfo.id,
           pageId: pageData.id,
-
-          componentType: component.componentType,
-
-          componentName: component.componentName || "",
-
+          componentType: componentInfo.componentType,
+          componentName: componentInfo.componentName || "",
           contentJson: JSON.stringify(componentData, null, 2),
-
-          orderIndex:
-
-            component.orderIndex !== undefined
-
-              ? component.orderIndex
-
-              : componentIndex,
-
-          // Use current component state for isVisible and theme
-
-          isVisible: Boolean(
-
-            component.isVisible === true || component.isVisible === 1
-
-          ),
-
-          theme: component.theme || 1,
-
+          orderIndex: componentInfo.orderIndex !== undefined ? componentInfo.orderIndex : 0,
+          isVisible: Boolean(componentInfo.isVisible === true || componentInfo.isVisible === 1),
+          theme: componentInfo.theme || 1,
         };
 
-
-
         console.log(" [AUTO-SAVE] Saving component:", {
-
-          componentType: component.componentType,
-
-          componentId: component.id,
-
+          componentType: componentInfo.componentType,
+          componentId: componentInfo.id,
           dataKeys: Object.keys(componentData),
-
         });
 
-
-
         pagesAPI
-
-          .updatePageComponent(component.id, updateData)
-
+          .updatePageComponent(componentInfo.id, updateData)
           .then(() => {
-
             console.log(" [AUTO-SAVE] Component saved successfully");
-
           })
-
           .catch((error) => {
-
             console.error(" [AUTO-SAVE] Failed to save component:", error);
-
           });
-
       }, 1500); // 1.5 second delay
-
     },
-
-    [pageData.components, pageData.id]
-
+    [pageData.id]
   );
 
 
@@ -2097,17 +2038,13 @@ const EnhancedPageBuilder = () => {
 
 
         // Trigger debounced auto-save for contentJson updates
-
         try {
-
           const parsedData = JSON.parse(value);
-
-          debouncedAutoSave(index, parsedData);
-
+          // Pass the updated component info directly to avoid stale closure issues
+          const updatedComponentInfo = { ...currentComponent, contentJson: value };
+          debouncedAutoSave(updatedComponentInfo, parsedData);
         } catch (e) {
-
           console.warn(" [AUTO-SAVE] Invalid JSON, skipping auto-save:", e);
-
         }
 
       } else if (

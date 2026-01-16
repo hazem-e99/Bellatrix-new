@@ -36,18 +36,24 @@ export const aboutComponentSchemas = {
           placeholder: "Contact us today to discuss how we can help you",
           formField: "textarea"
         },
-        buttonText: {
-          type: "string",
-          label: "Button Text",
-          placeholder: "Start Consultation",
-          required: true,
-          formField: "text"
-        },
-        buttonLink: {
-          type: "string",
-          label: "Button Link",
-          placeholder: "/contact",
-          formField: "text"
+        ctaButton: {
+          type: "object",
+          label: "CTA Button",
+          properties: {
+            text: {
+              type: "string",
+              label: "Button Text",
+              placeholder: "Start Consultation",
+              formField: "text"
+            },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
+              formField: "text"
+            }
+          },
+          formField: "object"
         },
         features: {
           type: "array",
@@ -84,8 +90,10 @@ export const aboutComponentSchemas = {
       title: "Ready to Build Something Great?",
       subtitle: "Let's collaborate to transform your business with innovative solutions that drive growth, efficiency, and success.",
       description: "Contact us today to discuss how we can help you optimize your operations and drive growth.",
-      buttonText: "Start Consultation",
-      buttonLink: "/contact",
+      ctaButton: {
+        text: "Start Consultation",
+        link: "/contact"
+      },
       features: [
         {
           icon: "",

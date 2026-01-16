@@ -38,6 +38,16 @@ const ProcessSection = (props) => {
   }, []);
 
   // PRIORITIZE direct props > data prop > defaultData
+  // Handle ctaButton as object or string
+  const getCtaButton = () => {
+    const btn = propCtaButton || propsData?.ctaButton || defaultData?.ctaButton;
+    if (typeof btn === 'object' && btn !== null) {
+      return btn;
+    }
+    // If it's a string, convert to object format
+    return { text: btn || "Start Your Journey", link: "/contact", variant: "primary" };
+  };
+
   const displayData = {
     title:
       propTitle ||
@@ -55,16 +65,12 @@ const ProcessSection = (props) => {
       defaultData?.image ||
       "/Videos/implementation/implementProcess.jpg",
     steps: propSteps || propsData?.steps || defaultData?.steps || [],
-    ctaButton:
-      propCtaButton ||
-      propsData?.ctaButton ||
-      defaultData?.ctaButton ||
-      "Start Your Journey",
+    ctaButton: getCtaButton(),
   };
 
   // Debug logging for real-time updates
   console.log(" [ImplementationProcessSection] Component received data:", {
-    directProps: { propTitle, propSubtitle, propImage },
+    directProps: { propTitle, propSubtitle, propImage, propCtaButton },
     propsData,
     defaultData,
     finalData: displayData,
@@ -245,7 +251,7 @@ const ProcessSection = (props) => {
               {/* Call to Action */}
               <div className="mt-6">
                 <CTAButton
-                  variant="primary"
+                  variant={displayData.ctaButton?.variant || "primary"}
                   size="lg"
                   className="w-full rounded-lg shadow-lg hover:shadow-xl"
                   modalConfig={{
@@ -255,7 +261,7 @@ const ProcessSection = (props) => {
                     icon: "",
                   }}
                 >
-                  {displayData.ctaButton}
+                  {displayData.ctaButton?.text || "Start Your Journey"}
                 </CTAButton>
               </div>
             </div>

@@ -1,7 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-const AboutHero = ({ data }) => {
+const AboutHero = ({ 
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  subtitle: propSubtitle,
+  description: propDescription,
+  ctaButtonText: propCtaButtonText,
+  ctaButtonLink: propCtaButtonLink,
+  backgroundVideo: propBackgroundVideo,
+  backgroundImage: propBackgroundImage,
+  stats: propStats,
+}) => {
   const sectionRef = useRef(null);
 
   // Scroll to next section function
@@ -43,20 +54,24 @@ const AboutHero = ({ data }) => {
     fetchData();
   }, []);
 
-  // PRIORITIZE props data over default data for real-time preview
-  const heroData = data || defaultData || {
-    title: "About Bellatrix",
-    subtitle: "Your trusted partner in digital transformation",
-    description:
+  // PRIORITIZE direct props > data prop > default data for real-time preview
+  const heroData = {
+    title: propTitle || data?.title || defaultData?.title || "About Bellatrix",
+    subtitle: propSubtitle || data?.subtitle || defaultData?.subtitle || "Your trusted partner in digital transformation",
+    description: propDescription || data?.description || defaultData?.description ||
       "We are a leading consultancy firm specializing in NetSuite implementations, business process optimization, and technology solutions that drive growth and efficiency.",
-    backgroundVideo: "/Videos/about-hero.mp4",
-    stats: [
+    backgroundVideo: propBackgroundVideo || data?.backgroundVideo || defaultData?.backgroundVideo || "/Videos/about-hero.mp4",
+    backgroundImage: propBackgroundImage || data?.backgroundImage || defaultData?.backgroundImage,
+    ctaButtonText: propCtaButtonText || data?.ctaButtonText || defaultData?.ctaButtonText || "Discover Our Story",
+    ctaButtonLink: propCtaButtonLink || data?.ctaButtonLink || defaultData?.ctaButtonLink || "/about",
+    stats: (propStats && propStats.length > 0) ? propStats : (data?.stats || defaultData?.stats || [
       { value: "500+", label: "Projects Completed" },
       { value: "15+", label: "Years Experience" },
       { value: "98%", label: "Client Satisfaction" },
       { value: "200+", label: "Happy Clients" },
-    ],
+    ]),
   };
+
 
 
 
@@ -112,7 +127,7 @@ const AboutHero = ({ data }) => {
             onClick={scrollToNextSection}
             className="theme-cta-button text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 bg-[linear-gradient(90deg,var(--color-primary),var(--color-cyan-600))] hover:scale-105 transform cursor-pointer inline-flex items-center gap-2"
           >
-            Discover Our Story
+            {heroData.ctaButtonText || "Discover Our Story"}
             <svg 
               className="w-5 h-5 animate-bounce" 
               fill="none" 

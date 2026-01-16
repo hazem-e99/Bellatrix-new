@@ -644,95 +644,102 @@ export const generalComponentSchemas = {
 
   WhyChooseSection: {
     componentName: "WhyChooseSection",
-
-    category: "implementation",
-
+    category: "training",
     icon: "",
-
     displayName: "Why Choose Section",
-
-    description: "Why choose us section for implementation service page",
-
+    description: "Why choose us section for training service page",
     schema: {
       type: "object",
-
       properties: {
-        title: {
-          type: "string",
-
-          label: "Title",
-
-          placeholder: "Why Choose Bellatrix for Implementation?",
-
-          formField: "text",
-        },
-
-        subtitle: {
-          type: "string",
-
-          label: "Subtitle",
-
-          placeholder:
-            "We bring years of expertise, proven methodologies, and cutting-edge solutions to ensure your implementation success",
-
-          formField: "text",
-        },
-
-        image: {
-          type: "string",
-
-          label: "Image URL",
-
-          placeholder: "/Videos/implementation/whyChoese.jpg",
-
-          formField: "media",
-
-          mediaType: "image",
-        },
-
-        features: {
-          type: "array",
-
-          label: "Features",
-
-          items: {
-            type: "object",
-
-            properties: {
-              title: {
-                type: "string",
-
-                label: "Feature Title",
-
-                formField: "text",
-              },
-
-              description: {
-                type: "string",
-
-                label: "Feature Description",
-
-                formField: "textarea",
-              },
-
-              icon: { type: "string", label: "Icon", formField: "text" },
+        whyChooseSection: {
+          type: "object",
+          label: "Why Choose Section",
+          properties: {
+            title: {
+              type: "string",
+              label: "Section Title",
+              placeholder: "Why Choose Our Training",
+              formField: "text",
+            },
+            description: {
+              type: "string",
+              label: "Section Description",
+              placeholder: "Professional development excellence",
+              formField: "textarea",
+            },
+            image: {
+              type: "string",
+              label: "Section Image",
+              placeholder: "/images/training-why-choose.jpg",
+              formField: "media",
+              mediaType: "image",
+            },
+            badge: {
+              type: "string",
+              label: "Professional Badge Text",
+              placeholder: "Professional Excellence",
+              formField: "text",
             },
           },
-
+          formField: "object",
+        },
+        trainingFeatures: {
+          type: "array",
+          label: "Training Features",
+          items: {
+            type: "object",
+            properties: {
+              id: {
+                type: "string",
+                label: "Feature ID",
+                placeholder: "feature-1",
+                formField: "text",
+              },
+              title: {
+                type: "string",
+                label: "Feature Title",
+                placeholder: "Expert Instructors",
+                formField: "text",
+              },
+              description: {
+                type: "string",
+                label: "Feature Description",
+                placeholder: "Learn from certified professionals",
+                formField: "textarea",
+              },
+              icon: {
+                type: "string",
+                label: "Feature Icon",
+                placeholder: "M12 14l9-5-9-5-9 5 9 5z",
+                formField: "text",
+              },
+            },
+          },
           formField: "array",
         },
       },
     },
-
     defaultData: {
-      title: "Why Choose Bellatrix for Implementation?",
-
-      subtitle:
-        "We bring years of expertise, proven methodologies, and cutting-edge solutions to ensure your implementation success",
-
-      image: "/Videos/implementation/whyChoese.jpg",
-
-      features: [],
+      whyChooseSection: {
+        title: "Why Choose Our Training",
+        description: "Professional development excellence with industry-leading programs",
+        image: "/images/training-why-choose.jpg",
+        badge: "Professional Excellence",
+      },
+      trainingFeatures: [
+        {
+          id: "feature-1",
+          title: "Expert Instructors",
+          description: "Learn from certified Oracle professionals with years of experience",
+          icon: "M12 14l9-5-9-5-9 5 9 5z",
+        },
+        {
+          id: "feature-2",
+          title: "Hands-on Learning",
+          description: "Practical exercises and real-world scenarios",
+          icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
+        },
+      ],
     },
   },
 
@@ -1370,72 +1377,67 @@ export const generalComponentSchemas = {
 
   PayrollHeroSection: {
     componentName: "PayrollHero",
-
     category: "payroll",
-
     icon: "",
-
     displayName: "Payroll Hero",
-
     description: "Hero section for payroll solution",
-
     schema: {
       type: "object",
-
       properties: {
         title: {
           type: "string",
-
           label: "Title",
-
           placeholder: "Transform Your Payroll Process",
-
           formField: "text",
         },
-
         subtitle: {
           type: "string",
-
           label: "Subtitle",
-
-          placeholder:
-            "Streamline operations with our intelligent payroll system",
-
+          placeholder: "Streamline operations with our intelligent payroll system",
           formField: "text",
         },
-
         description: {
           type: "string",
-
           label: "Description",
-
           placeholder: "Our comprehensive payroll solution...",
-
           formField: "textarea",
         },
-
+        ctaButton: {
+          type: "object",
+          label: "CTA Button",
+          properties: {
+            text: {
+              type: "string",
+              label: "Button Text",
+              placeholder: "Get Started",
+              formField: "text",
+            },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
+              formField: "text",
+            },
+          },
+          formField: "object",
+        },
         backgroundImage: {
           type: "string",
-
           label: "Background Image URL",
-
           placeholder: "/images/payroll-hero.jpg",
-
           formField: "media",
-
           mediaType: "image",
         },
       },
     },
-
     defaultData: {
       title: "Transform Your Payroll Process",
-
       subtitle: "Streamline operations with our intelligent payroll system",
-
-      description:
-        "Our comprehensive payroll solution automates complex processes and ensures accuracy.",
-
+      description: "Our comprehensive payroll solution automates complex processes and ensures accuracy.",
+      ctaButton: {
+        text: "Get Started",
+        link: "/contact",
+      },
       backgroundImage: "/images/payroll-hero.jpg",
     },
   },
@@ -2174,18 +2176,22 @@ export const generalComponentSchemas = {
 
         ctaButton: {
           type: "object",
-
           label: "CTA Button",
-
           properties: {
             text: {
               type: "string",
-
               label: "Button Text",
-
+              placeholder: "Get Started",
+              formField: "text",
+            },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
               formField: "text",
             },
           },
+          formField: "object",
         },
       },
     },
@@ -2378,85 +2384,91 @@ export const generalComponentSchemas = {
 
   HRBenefitsSection: {
     componentName: "HRBenefits",
-
     category: "hr",
-
     icon: "",
-
     displayName: "HR Benefits",
-
-    description: "HR system benefits",
-
+    description: "HR system benefits section with features cards",
     schema: {
       type: "object",
-
       properties: {
         title: {
           type: "string",
-
-          label: "Title",
-
-          placeholder: "Benefits",
-
+          label: "Section Title",
+          placeholder: "Why Choose Our HR Solution?",
           formField: "text",
         },
-
         description: {
           type: "string",
-
-          label: "Description",
-
-          placeholder: "Key benefits of our HR solution",
-
+          label: "Section Description",
+          placeholder: "Discover the key advantages that make our HR platform the smart choice",
           formField: "textarea",
         },
-
+        ctaButton: {
+          type: "object",
+          label: "CTA Button",
+          properties: {
+            text: {
+              type: "string",
+              label: "Button Text",
+              placeholder: "Contact Us",
+              formField: "text",
+            },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
+              formField: "text",
+            },
+          },
+          formField: "object",
+        },
         features: {
           type: "array",
-
-          label: "Features",
-
+          label: "Benefit Features",
           items: {
             type: "object",
-
             properties: {
               title: {
                 type: "string",
-
                 label: "Feature Title",
-
+                placeholder: "Automation",
                 formField: "text",
               },
-
-              description: {
+              desc: {
                 type: "string",
-
                 label: "Feature Description",
-
+                placeholder: "Automate routine HR tasks and save time",
                 formField: "textarea",
               },
             },
           },
+          formField: "array",
         },
       },
     },
-
     defaultData: {
-      title: "Benefits",
-
-      description: "Key benefits of our HR solution",
-
+      title: "Why Choose Our HR Solution?",
+      description: "Discover the key advantages that make our HR platform the smart choice for modern businesses.",
+      ctaButton: {
+        text: "Contact Us",
+        link: "/contact",
+      },
       features: [
         {
           title: "Automation",
-
-          description: "Automate routine HR tasks",
+          desc: "Automate routine HR tasks and free up time for strategic initiatives",
         },
-
         {
           title: "Compliance",
-
-          description: "Ensure regulatory compliance",
+          desc: "Ensure regulatory compliance with built-in compliance tracking",
+        },
+        {
+          title: "Analytics",
+          desc: "Gain insights with powerful HR analytics and reporting",
+        },
+        {
+          title: "Employee Self-Service",
+          desc: "Empower employees with self-service portals for common requests",
         },
       ],
     },
@@ -2793,18 +2805,22 @@ export const generalComponentSchemas = {
 
         ctaButton: {
           type: "object",
-
           label: "CTA Button",
-
           properties: {
             text: {
               type: "string",
-
               label: "Button Text",
-
+              placeholder: "Get Started",
+              formField: "text",
+            },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/contact",
               formField: "text",
             },
           },
+          formField: "object",
         },
       },
     },

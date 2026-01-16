@@ -250,31 +250,24 @@ const DynamicFormGenerator = ({
   const handleChange = (path, value) => {
     console.log(" [DynamicFormGenerator] handleChange:", {
       componentType,
-
       path,
-
       value,
-
       valueType: typeof value,
-
       isArray: Array.isArray(value),
-
       currentFormData: formData,
     });
 
-    const updatedData = { ...formData };
+    // Deep clone formData to avoid mutating state
+    const updatedData = JSON.parse(JSON.stringify(formData));
 
     // Handle nested path updates (e.g., "ctaButton.text")
-
     const pathArray = path.split(".");
-
     let current = updatedData;
 
     for (let i = 0; i < pathArray.length - 1; i++) {
       if (!current[pathArray[i]]) {
         current[pathArray[i]] = {};
       }
-
       current = current[pathArray[i]];
     }
 
@@ -282,14 +275,11 @@ const DynamicFormGenerator = ({
 
     console.log(" [DynamicFormGenerator] Updated data:", {
       path,
-
       updatedData,
-
       changedField: current[pathArray[pathArray.length - 1]],
     });
 
     setFormData(updatedData);
-
     onChange(updatedData);
 
     // Also trigger field-specific change for immediate preview updates
@@ -306,7 +296,7 @@ const DynamicFormGenerator = ({
   };
 
   const handleArrayAdd = (path, defaultItem = {}) => {
-    const updatedData = { ...formData };
+    const updatedData = JSON.parse(JSON.stringify(formData));
 
     const pathArray = path.split(".");
 
@@ -334,7 +324,7 @@ const DynamicFormGenerator = ({
   };
 
   const handleArrayRemove = (path, index) => {
-    const updatedData = { ...formData };
+    const updatedData = JSON.parse(JSON.stringify(formData));
 
     const pathArray = path.split(".");
 
@@ -354,7 +344,7 @@ const DynamicFormGenerator = ({
   };
 
   const handleArrayMove = (path, fromIndex, toIndex) => {
-    const updatedData = { ...formData };
+    const updatedData = JSON.parse(JSON.stringify(formData));
 
     const pathArray = path.split(".");
 
