@@ -570,48 +570,6 @@ export const componentRegistry = {
       },
     },
 
-    TrainingWhyChooseSection: {
-      componentType: "WhyChooseSection",
-
-      componentName: "Why Choose Section",
-
-      category: "benefits",
-
-      icon: "",
-
-      filePath: "src/components/Services/training/WhyChooseSection.jsx",
-
-      description: "Why choose our section with features and benefits",
-
-      dataStructure: {
-        whyChooseSection: "object", // object with title, description
-
-        trainingFeatures: "array", // array of feature objects
-      },
-
-      defaultData: {
-        whyChooseSection: {
-          title: "Why Choose Our Programs",
-
-          description: "Comprehensive solutions designed for your success.",
-        },
-
-        trainingFeatures: [
-          {
-            id: 1,
-
-            title: "Expert Instructors",
-
-            description: "Learn from certified NetSuite professionals",
-
-            icon: "",
-
-            shortDescription:
-              "Certified instructors with real-world experience",
-          },
-        ],
-      },
-    },
   },
 
   // ===========================================

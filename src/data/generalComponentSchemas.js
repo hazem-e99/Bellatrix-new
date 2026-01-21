@@ -642,106 +642,106 @@ export const generalComponentSchemas = {
     },
   },
 
-  WhyChooseSection: {
-    componentName: "WhyChooseSection",
-    category: "training",
-    icon: "",
-    displayName: "Why Choose Section",
-    description: "Why choose us section for training service page",
-    schema: {
-      type: "object",
-      properties: {
-        whyChooseSection: {
-          type: "object",
-          label: "Why Choose Section",
-          properties: {
-            title: {
-              type: "string",
-              label: "Section Title",
-              placeholder: "Why Choose Our Training",
-              formField: "text",
-            },
-            description: {
-              type: "string",
-              label: "Section Description",
-              placeholder: "Professional development excellence",
-              formField: "textarea",
-            },
-            image: {
-              type: "string",
-              label: "Section Image",
-              placeholder: "/images/training-why-choose.jpg",
-              formField: "media",
-              mediaType: "image",
-            },
-            badge: {
-              type: "string",
-              label: "Professional Badge Text",
-              placeholder: "Professional Excellence",
-              formField: "text",
-            },
-          },
-          formField: "object",
-        },
-        trainingFeatures: {
-          type: "array",
-          label: "Training Features",
-          items: {
-            type: "object",
-            properties: {
-              id: {
-                type: "string",
-                label: "Feature ID",
-                placeholder: "feature-1",
-                formField: "text",
-              },
-              title: {
-                type: "string",
-                label: "Feature Title",
-                placeholder: "Expert Instructors",
-                formField: "text",
-              },
-              description: {
-                type: "string",
-                label: "Feature Description",
-                placeholder: "Learn from certified professionals",
-                formField: "textarea",
-              },
-              icon: {
-                type: "string",
-                label: "Feature Icon",
-                placeholder: "M12 14l9-5-9-5-9 5 9 5z",
-                formField: "text",
-              },
-            },
-          },
-          formField: "array",
-        },
-      },
-    },
-    defaultData: {
-      whyChooseSection: {
-        title: "Why Choose Our Training",
-        description: "Professional development excellence with industry-leading programs",
-        image: "/images/training-why-choose.jpg",
-        badge: "Professional Excellence",
-      },
-      trainingFeatures: [
-        {
-          id: "feature-1",
-          title: "Expert Instructors",
-          description: "Learn from certified Oracle professionals with years of experience",
-          icon: "M12 14l9-5-9-5-9 5 9 5z",
-        },
-        {
-          id: "feature-2",
-          title: "Hands-on Learning",
-          description: "Practical exercises and real-world scenarios",
-          icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
-        },
-      ],
-    },
-  },
+  // WhyChooseSection: {
+  //   componentName: "WhyChooseSection",
+  //   category: "training",
+  //   icon: "",
+  //   displayName: "Why Choose Section",
+  //   description: "Why choose us section for training service page",
+  //   schema: {
+  //     type: "object",
+  //     properties: {
+  //       whyChooseSection: {
+  //         type: "object",
+  //         label: "Why Choose Section",
+  //         properties: {
+  //           title: {
+  //             type: "string",
+  //             label: "Section Title",
+  //             placeholder: "Why Choose Our Training",
+  //             formField: "text",
+  //           },
+  //           description: {
+  //             type: "string",
+  //             label: "Section Description",
+  //             placeholder: "Professional development excellence",
+  //             formField: "textarea",
+  //           },
+  //           image: {
+  //             type: "string",
+  //             label: "Section Image",
+  //             placeholder: "/images/training-why-choose.jpg",
+  //             formField: "media",
+  //             mediaType: "image",
+  //           },
+  //           badge: {
+  //             type: "string",
+  //             label: "Professional Badge Text",
+  //             placeholder: "Professional Excellence",
+  //             formField: "text",
+  //           },
+  //         },
+  //         formField: "object",
+  //       },
+  //       trainingFeatures: {
+  //         type: "array",
+  //         label: "Training Features",
+  //         items: {
+  //           type: "object",
+  //           properties: {
+  //             id: {
+  //               type: "string",
+  //               label: "Feature ID",
+  //               placeholder: "feature-1",
+  //               formField: "text",
+  //             },
+  //             title: {
+  //               type: "string",
+  //               label: "Feature Title",
+  //               placeholder: "Expert Instructors",
+  //               formField: "text",
+  //             },
+  //             description: {
+  //               type: "string",
+  //               label: "Feature Description",
+  //               placeholder: "Learn from certified professionals",
+  //               formField: "textarea",
+  //             },
+  //             icon: {
+  //               type: "string",
+  //               label: "Feature Icon",
+  //               placeholder: "M12 14l9-5-9-5-9 5 9 5z",
+  //               formField: "text",
+  //             },
+  //           },
+  //         },
+  //         formField: "array",
+  //       },
+  //     },
+  //   },
+  //   defaultData: {
+  //     whyChooseSection: {
+  //       title: "Why Choose Our Training",
+  //       description: "Professional development excellence with industry-leading programs",
+  //       image: "/images/training-why-choose.jpg",
+  //       badge: "Professional Excellence",
+  //     },
+  //     trainingFeatures: [
+  //       {
+  //         id: "feature-1",
+  //         title: "Expert Instructors",
+  //         description: "Learn from certified Oracle professionals with years of experience",
+  //         icon: "M12 14l9-5-9-5-9 5 9 5z",
+  //       },
+  //       {
+  //         id: "feature-2",
+  //         title: "Hands-on Learning",
+  //         description: "Practical exercises and real-world scenarios",
+  //         icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
+  //       },
+  //     ],
+  //   },
+  // },
 
   PricingSection: {
     componentName: "PricingSection",
