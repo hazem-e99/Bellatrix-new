@@ -25,9 +25,9 @@ import mediaAPI from "../../lib/mediaAPI";
 
 // API Constants
 
-const BASE_API = "http://bellatrix.runasp.net/api";
+const BASE_API = import.meta.env.VITE_API_BASE_URL_WITH_API;
 
-const BASE_HOST = "http://bellatrix.runasp.net";
+const BASE_HOST = import.meta.env.VITE_API_BASE_URL;
 
 // Helper function to build full URLs
 
@@ -136,7 +136,7 @@ async function fetchMedia({
     console.error("Error fetching media:", error);
 
     throw new Error(
-      error.response?.data?.message || error.message || "Failed to fetch media"
+      error.response?.data?.message || error.message || "Failed to fetch media",
     );
   }
 }
@@ -199,7 +199,9 @@ async function uploadMedia(files, token = null) {
     console.error("Error uploading media:", error);
 
     throw new Error(
-      error.response?.data?.message || error.message || "Failed to upload media"
+      error.response?.data?.message ||
+        error.message ||
+        "Failed to upload media",
     );
   }
 }
@@ -228,7 +230,7 @@ const MediaPicker = ({
   const [searchTerm, setSearchTerm] = useState("");
 
   const [currentFilter, setCurrentFilter] = useState(
-    accept === "all" ? "all" : accept
+    accept === "all" ? "all" : accept,
   );
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -314,7 +316,7 @@ const MediaPicker = ({
       }
     },
 
-    [showToast]
+    [showToast],
   );
 
   // Upload new media using new upload function
@@ -333,7 +335,7 @@ const MediaPicker = ({
             showToast(
               `Invalid file type: ${file.name}. Accepted: ${accept}`,
 
-              "error"
+              "error",
             );
 
             return false;
@@ -350,7 +352,7 @@ const MediaPicker = ({
 
         console.log(
           " Uploading files:",
-          validFiles.map((f) => f.name)
+          validFiles.map((f) => f.name),
         );
 
         // Get auth token from localStorage
@@ -368,7 +370,7 @@ const MediaPicker = ({
             uploadResults.length || validFiles.length
           } file(s)`,
 
-          "success"
+          "success",
         );
 
         // Refresh media list to show newly uploaded files
@@ -395,7 +397,7 @@ const MediaPicker = ({
       }
     },
 
-    [accept, currentFilter, searchTerm, showToast, fetchMediaData]
+    [accept, currentFilter, searchTerm, showToast, fetchMediaData],
   );
 
   // Handle file input change
@@ -415,7 +417,7 @@ const MediaPicker = ({
       }
     },
 
-    [uploadMediaFiles]
+    [uploadMediaFiles],
   );
 
   // Handle filter change
@@ -435,7 +437,7 @@ const MediaPicker = ({
       });
     },
 
-    [searchTerm, fetchMediaData]
+    [searchTerm, fetchMediaData],
   );
 
   // Handle search
@@ -455,7 +457,7 @@ const MediaPicker = ({
       });
     },
 
-    [currentFilter, fetchMediaData]
+    [currentFilter, fetchMediaData],
   );
 
   // Load more media
@@ -551,7 +553,7 @@ const MediaPicker = ({
       }
     },
 
-    [maxSelection, onSelect, onClose, showToast]
+    [maxSelection, onSelect, onClose, showToast],
   );
 
   // Handle confirm selection (for multiple selection)
@@ -728,13 +730,17 @@ const MediaPicker = ({
                 }}
                 onError={(e) => {
                   // Video failed to load, keep placeholder visible
-                  e.target.style.display = 'none';
+                  e.target.style.display = "none";
                 }}
               />
               {/* Play icon overlay */}
               <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
                 <div className="bg-black/50 rounded-full p-3">
-                  <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="h-8 w-8 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>

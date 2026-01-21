@@ -3,15 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import SEO from "./SEO";
 
 import {
-
   Bars3Icon,
-
   XMarkIcon,
-
   ChevronDownIcon,
-
   ChevronRightIcon,
-
 } from "@heroicons/react/24/outline";
 
 // eslint-disable-next-line no-unused-vars
@@ -27,10 +22,7 @@ import { useTheme } from "../context/ThemeContext";
 
 import { setupSectionThemeDetection } from "../utils/sectionThemeDetection";
 
-
-
 const Navbar = () => {
-
   // Dynamic navbar categories
 
   const [categories, setCategories] = useState([]);
@@ -40,17 +32,12 @@ const Navbar = () => {
   // Fetch navbar categories from API
 
   useEffect(() => {
-
     const fetchCategories = async () => {
-
       setLoadingCategories(true);
 
       try {
-
         const res = await fetch(
-
-          "http://bellatrix.runasp.net/api/Categories/navbar"
-
+          `${import.meta.env.VITE_API_BASE_URL_WITH_API}/Categories/navbar`,
         );
 
         const data = await res.json();
@@ -62,31 +49,19 @@ const Navbar = () => {
         let cats = [];
 
         if (Array.isArray(data)) {
-
           cats = data;
-
         } else if (Array.isArray(data.data)) {
-
           cats = data.data;
-
         } else if (Array.isArray(data.result)) {
-
           cats = data.result;
-
         }
 
         setCategories(cats);
-
       } catch {
-
         setCategories([]);
-
       } finally {
-
         setLoadingCategories(false);
-
       }
-
     };
     fetchCategories();
   }, []);
@@ -381,7 +356,9 @@ const Navbar = () => {
                         aria-expanded={openDropdown === cat.id}
                         aria-haspopup="true"
                       >
-                        <span className="truncate max-w-[100px] xl:max-w-none">{cat.name}</span>
+                        <span className="truncate max-w-[100px] xl:max-w-none">
+                          {cat.name}
+                        </span>
                         {cat.pages && cat.pages.length > 0 && (
                           <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
                         )}
@@ -404,7 +381,9 @@ const Navbar = () => {
                                   <Link
                                     key={page.id}
                                     to={
-                                      page.slug ? `/${page.slug}` : `/${page.id}`
+                                      page.slug
+                                        ? `/${page.slug}`
+                                        : `/${page.id}`
                                     }
                                     className="block px-5 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-base font-medium"
                                   >
@@ -421,12 +400,12 @@ const Navbar = () => {
                   {categories.length > 4 && (
                     <div
                       className="relative"
-                      onMouseEnter={() => handleMenuEnter('more')}
+                      onMouseEnter={() => handleMenuEnter("more")}
                       onMouseLeave={handleMenuLeave}
                     >
                       <button
                         className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${
-                          openDropdown === 'more'
+                          openDropdown === "more"
                             ? navbarTheme === "light"
                               ? "text-[var(--color-text-dark)] border-blue-400/20 shadow"
                               : "text-[var(--color-text-light)] border-blue-400/30 shadow"
@@ -434,19 +413,19 @@ const Navbar = () => {
                             ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
                             : "text-[var(--color-text-light)]/90 hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
                         }`}
-                        onClick={() => toggleDropdown('more')}
+                        onClick={() => toggleDropdown("more")}
                       >
                         <span>More</span>
                         <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
                       </button>
                       <AnimatePresence>
-                        {openDropdown === 'more' && (
+                        {openDropdown === "more" && (
                           <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             className="absolute right-0 mt-2 w-72 bg-white/80 backdrop-blur-xl border border-gray-200 rounded-xl shadow-lg z-50 py-2 overflow-hidden"
-                            onMouseEnter={() => handleMenuEnter('more')}
+                            onMouseEnter={() => handleMenuEnter("more")}
                             onMouseLeave={handleMenuLeave}
                           >
                             <div className="max-h-[70vh] overflow-y-auto px-1 custom-scrollbar">
@@ -457,11 +436,17 @@ const Navbar = () => {
                                   </div>
                                   {cat.pages && cat.pages.length > 0 ? (
                                     cat.pages
-                                      .filter((page) => page.isPublished === true)
+                                      .filter(
+                                        (page) => page.isPublished === true,
+                                      )
                                       .map((page) => (
                                         <Link
                                           key={page.id}
-                                          to={page.slug ? `/${page.slug}` : `/${page.id}`}
+                                          to={
+                                            page.slug
+                                              ? `/${page.slug}`
+                                              : `/${page.id}`
+                                          }
                                           className="block px-5 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-sm font-medium ml-2"
                                         >
                                           {page.title}
@@ -506,9 +491,7 @@ const Navbar = () => {
                   theme === "default" ? "Gray" : "Blue"
                 } theme`}
               >
-                <span className="text-lg">
-                  {theme === "default" ? "" : ""}
-                </span>
+                <span className="text-lg">{theme === "default" ? "" : ""}</span>
               </button>
 
               {/* Premium Contact button */}
@@ -604,26 +587,15 @@ const Navbar = () => {
                               {page.title}
                             </Link>
                           ))}
-
                         </motion.div>
-
                       )}
-
                   </div>
-
                 ))
-
               ) : (
-
                 <span className="block px-4 py-3 text-base text-gray-400">
-
                   No categories
-
                 </span>
-
               )}
-
-
 
               <Link
                 to="/about"
@@ -637,79 +609,42 @@ const Navbar = () => {
                 About
               </Link>
 
-
-
               {/* Mobile Theme Toggle */}
 
               <button
-
                 onClick={() =>
-
                   toggleTheme(theme === "default" ? "purple" : "default")
-
                 }
-
                 className="block w-full px-4 py-3 mt-4 text-center bg-[var(--color-white)]/10 hover:bg-[var(--color-white)]/20 text-[var(--color-white)] font-medium rounded-xl border border-[var(--color-white)]/10 transition-all duration-300"
-
               >
-
-                {theme === "default"
-
-                  ? " Switch to Gray"
-
-                  : " Switch to Blue"}
-
+                {theme === "default" ? " Switch to Gray" : " Switch to Blue"}
               </button>
-
-
 
               {/* Mobile Contact button */}
 
               <button
-
                 onClick={openContactModal}
-
                 className="block w-full px-4 py-3 mt-4 text-center bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-primary-light)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-medium rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 border border-[var(--color-white)]/10 cursor-pointer"
-
               >
-
                 Contact
-
               </button>
-
             </div>
-
           </motion.div>
-
         )}
-
       </nav>
-
-
 
       {/* Contact Modal */}
 
       <Modal
-
         isOpen={isContactModalOpen}
-
         onClose={closeContactModal}
-
         title={modalContent.title}
-
         subtitle={modalContent.subtitle}
-
       >
-
         <div className="p-2">
-
           <ContactForm onSuccess={closeContactModal} />
-
         </div>
-
       </Modal>
-
-
 
       <style>{`
 
@@ -728,13 +663,8 @@ const Navbar = () => {
         }
 
       `}</style>
-
     </>
-
   );
-
 };
-
-
 
 export default Navbar;

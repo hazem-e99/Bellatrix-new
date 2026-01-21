@@ -2,44 +2,28 @@ import axios from "axios";
 
 import { getAuthToken } from "../utils/tokenManager.js";
 
-
-
-const BASE_URL = "http://bellatrix.runasp.net/api";
-
-
+const BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API;
 
 const api = axios.create({
-
   baseURL: BASE_URL,
 
   timeout: 10000,
 
   headers: { "Content-Type": "application/json" },
-
 });
-
-
 
 // Response interceptor to handle wrapped responses and normalize errors
 
 api.interceptors.response.use(
-
   (response) => {
-
     // If the response has the wrapped format {data, success, message}, extract the data
 
     if (
-
       response.data &&
-
       typeof response.data === "object" &&
-
       "data" in response.data
-
     ) {
-
       if (response.data.success === false) {
-
         // Handle API errors wrapped in success format
 
         const error = new Error(response.data.message || "API request failed");
@@ -47,34 +31,25 @@ api.interceptors.response.use(
         error.response = { status: response.status, data: response.data };
 
         throw error;
-
       }
 
       // Return the inner data for successful requests
 
       return { ...response, data: response.data.data };
-
     }
 
     return response;
-
   },
 
   (error) => {
-
     // Handle 401 Unauthorized specifically
 
     if (error.response?.status === 401) {
-
       console.error(
-
-        " [AUTH ERROR] 401 Unauthorized - Session expired or invalid token"
-
+        " [AUTH ERROR] 401 Unauthorized - Session expired or invalid token",
       );
 
       console.error(" [AUTH ERROR] Please log in again");
-
-
 
       // Optional: Clear invalid token
 
@@ -82,85 +57,52 @@ api.interceptors.response.use(
 
       localStorage.removeItem("adminToken");
 
-
-
       // Optional: Redirect to login (uncomment if needed)
 
       // window.location.href = '/admin/login';
-
     }
 
-
-
     const normalizedError = {
-
       message:
-
         error.response?.data?.message || error.message || "An error occurred",
 
       status: error.response?.status || 0,
 
       details: error.response?.data || null,
-
     };
 
     return Promise.reject(normalizedError);
-
-  }
-
+  },
 );
-
-
 
 // Request interceptor to add auth token for ALL requests
 
 api.interceptors.request.use(
-
   (config) => {
-
     // ALWAYS try to get token from localStorage first (primary source: "authToken")
 
     let token = localStorage.getItem("authToken");
 
-
-
     // Fallback to other token storage locations
 
     if (!token) {
-
       token =
-
         localStorage.getItem("adminToken") ||
-
         sessionStorage.getItem("authToken") ||
-
         getAuthToken(); // Last resort: use tokenManager function
-
     }
-
-
 
     if (token) {
-
       config.headers.Authorization = `Bearer ${token}`;
-
     }
 
-
-
     return config;
-
   },
 
   (error) => {
-
     return Promise.reject(error);
-
-  }
-
+  },
 );
-
-
 
 /**
 
@@ -175,28 +117,18 @@ api.interceptors.request.use(
  */
 
 export const uploadForm = async (formData, url, options = {}) => {
-
   const config = {
-
     headers: {
-
       "Content-Type": "multipart/form-data",
 
       ...(options.headers || {}),
-
     },
 
     ...options,
-
   };
 
-
-
   return api.post(url, formData, config);
-
 };
-
-
 
 /**
 
@@ -209,24 +141,15 @@ export const uploadForm = async (formData, url, options = {}) => {
  */
 
 export const getAuthTokenFromState = (state) => {
-
   return state.auth?.token || null;
-
 };
 
-
-
 export default api;
-
-
 
 // Lightweight helper for JSON POSTs (returns unwrapped data due to interceptor)
 
 export const postJson = async (url, payload, options = {}) => {
-
   const res = await api.post(url, payload, options);
 
   return res.data;
-
 };
-

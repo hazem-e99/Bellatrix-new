@@ -1,4 +1,4 @@
-const BASE_HOST = "http://bellatrix.runasp.net";
+const BASE_HOST = import.meta.env.VITE_API_BASE_URL;
 
 /**
  * Build full URL from file URL
@@ -86,7 +86,7 @@ export function updatePreviewForInput(
   input,
   fullUrl,
   contentType,
-  mediaItem = {}
+  mediaItem = {},
 ) {
   // Find or create preview container
   let previewContainer = input.parentElement.querySelector(".media-preview");
@@ -159,7 +159,7 @@ export function updatePreviewForInput(
         ${
           mediaItem.fileSize
             ? `<p class="text-xs text-gray-400">${formatFileSize(
-                mediaItem.fileSize
+                mediaItem.fileSize,
               )}</p>`
             : ""
         }

@@ -1,7 +1,7 @@
-import React from 'react';
-import { PageProvider } from '../contexts/PageContext';
-import PageManagement from '../components/PageManagement';
-import SimpleApiTest from '../components/SimpleApiTest';
+import React from "react";
+import { PageProvider } from "../contexts/PageContext";
+import PageManagement from "../components/PageManagement";
+import SimpleApiTest from "../components/SimpleApiTest";
 
 /**
  * مثال سريع لبدء استخدام نظام إدارة الصفحات
@@ -38,14 +38,16 @@ export const CustomUsage = () => {
             <h1 className="text-3xl font-bold text-gray-900 mb-6">
               نظام إدارة الصفحات - Page Management System
             </h1>
-            
+
             <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <h2 className="text-lg font-semibold text-blue-800 mb-2">
                 تعليمات الاستخدام - Usage Instructions
               </h2>
               <div className="text-sm text-blue-700 space-y-2">
                 <p>1. تأكد من اتصال الإنترنت</p>
-                <p>2. تحقق من صحة API URL: http://bellatrix.runasp.net</p>
+                <p>
+                  2. تحقق من صحة API URL: {import.meta.env.VITE_API_BASE_URL}
+                </p>
                 <p>3. إذا كان هناك مصادقة، تأكد من وجود التوكن</p>
                 <p>4. استخدم مكونات الاختبار للتأكد من الاتصال</p>
               </div>
@@ -54,10 +56,12 @@ export const CustomUsage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white border border-gray-200 rounded-lg p-4">
                 <h3 className="text-lg font-semibold mb-3">اختبار الاتصال</h3>
-                <p className="text-gray-600 mb-4">اختبر الاتصال بالباك إند قبل البدء</p>
+                <p className="text-gray-600 mb-4">
+                  اختبر الاتصال بالباك إند قبل البدء
+                </p>
                 <SimpleApiTest />
               </div>
-              
+
               <div className="bg-white border border-gray-200 rounded-lg p-4">
                 <h3 className="text-lg font-semibold mb-3">إدارة الصفحات</h3>
                 <p className="text-gray-600 mb-4">نظام إدارة الصفحات الكامل</p>
@@ -78,7 +82,7 @@ export const RouterIntegrationExample = () => {
       <h2 className="text-xl font-bold mb-4">مثال التكامل مع Router</h2>
       <div className="bg-white p-4 rounded-lg">
         <pre className="text-sm overflow-x-auto">
-{`// في App.jsx أو ملف Router الرئيسي
+          {`// في App.jsx أو ملف Router الرئيسي
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FullPageManagement, ApiTestOnly } from './examples/QuickStartExample';
 
@@ -101,8 +105,8 @@ function App() {
 
 // مثال 5: استخدام مباشر للـ hooks
 export const DirectHooksUsage = () => {
-  const { usePages } = require('../hooks/usePages');
-  
+  const { usePages } = require("../hooks/usePages");
+
   return (
     <PageProvider>
       <DirectHooksComponent />
@@ -111,43 +115,37 @@ export const DirectHooksUsage = () => {
 };
 
 const DirectHooksComponent = () => {
-  const {
-    pages,
-    loading,
-    error,
-    createPageWithSlug,
-    fetchPages
-  } = usePages();
+  const { pages, loading, error, createPageWithSlug, fetchPages } = usePages();
 
   const handleCreateTestPage = async () => {
     try {
       await createPageWithSlug({
-        name: 'Test Page from Hook',
+        name: "Test Page from Hook",
         categoryId: 1,
-        slug: 'test-page-from-hook',
-        metaTitle: 'Test Page Title',
-        metaDescription: 'Test page description',
-        isPublished: false
+        slug: "test-page-from-hook",
+        metaTitle: "Test Page Title",
+        metaDescription: "Test page description",
+        isPublished: false,
       });
-      alert('Page created successfully!');
+      alert("Page created successfully!");
     } catch (error) {
-      alert('Error creating page: ' + error.message);
+      alert("Error creating page: " + error.message);
     }
   };
 
   const handleFetchPages = async () => {
     try {
       await fetchPages();
-      alert('Pages fetched successfully!');
+      alert("Pages fetched successfully!");
     } catch (error) {
-      alert('Error fetching pages: ' + error.message);
+      alert("Error fetching pages: " + error.message);
     }
   };
 
   return (
     <div className="p-6 bg-white rounded-lg shadow">
       <h2 className="text-xl font-bold mb-4">استخدام مباشر للـ Hooks</h2>
-      
+
       <div className="mb-4 space-x-2">
         <button
           onClick={handleFetchPages}
@@ -165,8 +163,8 @@ const DirectHooksComponent = () => {
 
       <div className="mb-4">
         <h3 className="font-semibold mb-2">Status:</h3>
-        <p>Loading: {loading ? 'Yes' : 'No'}</p>
-        <p>Error: {error || 'None'}</p>
+        <p>Loading: {loading ? "Yes" : "No"}</p>
+        <p>Error: {error || "None"}</p>
         <p>Pages Count: {pages.length}</p>
       </div>
 

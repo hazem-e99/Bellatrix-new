@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
 import toast from "react-hot-toast";
 
-const API_BASE = "http://bellatrix.runasp.net/api/Categories";
-const NAVBAR_API = "http://bellatrix.runasp.net/api/Categories/navbar";
+const API_BASE = `${import.meta.env.VITE_API_BASE_URL_WITH_API}/Categories`;
+const NAVBAR_API = `${
+  import.meta.env.VITE_API_BASE_URL_WITH_API
+}/Categories/navbar`;
 
 function CategoriesManagement() {
   // Delete state
@@ -26,15 +28,13 @@ function CategoriesManagement() {
       try {
         const token = localStorage.getItem("adminToken");
         const res = await fetch(
-          `http://bellatrix.runasp.net/api/Categories/search?keyword=${encodeURIComponent(
-            search
-          )}`,
+          `${API_BASE}/search?keyword=${encodeURIComponent(search)}`,
           {
             headers: {
               "Content-Type": "application/json",
               ...(token ? { Authorization: `Bearer ${token}` } : {}),
             },
-          }
+          },
         );
         const data = await res.json();
         let cats = [];
@@ -104,15 +104,15 @@ function CategoriesManagement() {
 
   // Check if category name already exists
   const isCategoryNameExists = (name) => {
-    return categories.some(cat => 
-      cat.name.toLowerCase().trim() === name.toLowerCase().trim()
+    return categories.some(
+      (cat) => cat.name.toLowerCase().trim() === name.toLowerCase().trim(),
     );
   };
 
   // Add Category
   const handleAddCategory = async (e) => {
     e.preventDefault();
-    
+
     // Validate category name
     if (!addForm.name.trim()) {
       toast.error("Category name is required");
@@ -121,7 +121,9 @@ function CategoriesManagement() {
 
     // Check for duplicate name
     if (isCategoryNameExists(addForm.name)) {
-      toast.error(`Category "${addForm.name}" already exists. Please choose a different name.`);
+      toast.error(
+        `Category "${addForm.name}" already exists. Please choose a different name.`,
+      );
       return;
     }
 
@@ -136,12 +138,12 @@ function CategoriesManagement() {
         },
         body: JSON.stringify({
           ...addForm,
-          name: addForm.name.trim() // Trim whitespace
+          name: addForm.name.trim(), // Trim whitespace
         }),
       });
-      
+
       const data = await res.json();
-      
+
       if (res.ok && data.success) {
         toast.success("Category added successfully");
         setShowAddModal(false);
@@ -150,11 +152,17 @@ function CategoriesManagement() {
       } else {
         // Handle specific error cases
         if (data.message && data.message.includes("duplicate")) {
-          toast.error(`Category "${addForm.name}" already exists. Please choose a different name.`);
+          toast.error(
+            `Category "${addForm.name}" already exists. Please choose a different name.`,
+          );
         } else if (data.message && data.message.includes("unique")) {
-          toast.error(`Category "${addForm.name}" already exists. Please choose a different name.`);
+          toast.error(
+            `Category "${addForm.name}" already exists. Please choose a different name.`,
+          );
         } else {
-          toast.error(data.message || "An error occurred while adding the category");
+          toast.error(
+            data.message || "An error occurred while adding the category",
+          );
         }
       }
     } catch (error) {
@@ -234,7 +242,7 @@ function CategoriesManagement() {
                   <td className="px-6 py-4 text-white">{cat.name}</td>
                   <td className="px-6 py-4 text-gray-300">{cat.description}</td>
                   <td className="px-6 py-4 text-white">{cat.sortOrder}</td>
-                
+
                   <td className="px-6 py-4 space-x-2">
                     <button
                       className="inline-block px-3 py-1 rounded-lg bg-[var(--color-primary)] text-white font-medium shadow hover:bg-[var(--color-primary-light)] transition"
@@ -303,7 +311,7 @@ function CategoriesManagement() {
                               setDeleting(true);
                               try {
                                 const token = localStorage.getItem(
-                                  "adminToken"
+                                  "adminToken",
                                 );
                                 const res = await fetch(
                                   `${API_BASE}/${deleteId}`,
@@ -315,12 +323,12 @@ function CategoriesManagement() {
                                         ? { Authorization: `Bearer ${token}` }
                                         : {}),
                                     },
-                                  }
+                                  },
                                 );
                                 const data = await res.json();
                                 if (data.success) {
                                   toast.success(
-                                    "Category deleted successfully"
+                                    "Category deleted successfully",
                                   );
                                   setShowDeleteModal(false);
                                   setDeleteId(null);
@@ -328,7 +336,7 @@ function CategoriesManagement() {
                                 } else {
                                   toast.error(
                                     data.message ||
-                                      "An error occurred while deleting"
+                                      "An error occurred while deleting",
                                   );
                                 }
                               } catch {
@@ -416,7 +424,7 @@ function CategoriesManagement() {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
-              
+
               // Validate category name
               if (!editForm.name.trim()) {
                 toast.error("Category name is required");
@@ -424,11 +432,19 @@ function CategoriesManagement() {
               }
 
               // Check for duplicate name (excluding current category)
-              const otherCategories = categories.filter(cat => cat.id !== editId);
-              if (otherCategories.some(cat => 
-                cat.name.toLowerCase().trim() === editForm.name.toLowerCase().trim()
-              )) {
-                toast.error(`Category "${editForm.name}" already exists. Please choose a different name.`);
+              const otherCategories = categories.filter(
+                (cat) => cat.id !== editId,
+              );
+              if (
+                otherCategories.some(
+                  (cat) =>
+                    cat.name.toLowerCase().trim() ===
+                    editForm.name.toLowerCase().trim(),
+                )
+              ) {
+                toast.error(
+                  `Category "${editForm.name}" already exists. Please choose a different name.`,
+                );
                 return;
               }
 
@@ -444,12 +460,12 @@ function CategoriesManagement() {
                   body: JSON.stringify({
                     id: editId,
                     ...editForm,
-                    name: editForm.name.trim() // Trim whitespace
+                    name: editForm.name.trim(), // Trim whitespace
                   }),
                 });
-                
+
                 const data = await res.json();
-                
+
                 if (res.ok && data.success) {
                   toast.success("Category updated successfully");
                   setShowEditModal(false);
@@ -457,11 +473,18 @@ function CategoriesManagement() {
                 } else {
                   // Handle specific error cases
                   if (data.message && data.message.includes("duplicate")) {
-                    toast.error(`Category "${editForm.name}" already exists. Please choose a different name.`);
+                    toast.error(
+                      `Category "${editForm.name}" already exists. Please choose a different name.`,
+                    );
                   } else if (data.message && data.message.includes("unique")) {
-                    toast.error(`Category "${editForm.name}" already exists. Please choose a different name.`);
+                    toast.error(
+                      `Category "${editForm.name}" already exists. Please choose a different name.`,
+                    );
                   } else {
-                    toast.error(data.message || "An error occurred while updating the category");
+                    toast.error(
+                      data.message ||
+                        "An error occurred while updating the category",
+                    );
                   }
                 }
               } catch (error) {

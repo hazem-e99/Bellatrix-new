@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const API_BASE_URL = "http://bellatrix.runasp.net/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API;
 
 // Custom hook for fetching and managing JSON data
 export const useJsonData = (filename = null) => {
@@ -21,7 +21,7 @@ export const useJsonData = (filename = null) => {
 
         if (!response.ok) {
           throw new Error(
-            `Failed to fetch ${targetFilename}: ${response.statusText}`
+            `Failed to fetch ${targetFilename}: ${response.statusText}`,
           );
         }
 
@@ -36,7 +36,7 @@ export const useJsonData = (filename = null) => {
         setLoading(false);
       }
     },
-    [filename]
+    [filename],
   );
 
   const updateData = useCallback(
@@ -60,7 +60,7 @@ export const useJsonData = (filename = null) => {
 
         if (!response.ok) {
           throw new Error(
-            `Failed to update ${targetFilename}: ${response.statusText}`
+            `Failed to update ${targetFilename}: ${response.statusText}`,
           );
         }
 
@@ -76,7 +76,7 @@ export const useJsonData = (filename = null) => {
         setLoading(false);
       }
     },
-    [filename]
+    [filename],
   );
 
   useEffect(() => {
