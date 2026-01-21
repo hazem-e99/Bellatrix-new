@@ -2,110 +2,71 @@ import React, { useState, useEffect } from "react";
 import SEO from "../../SEO";
 import CTAButton from "../../CTAButton";
 
-const BenefitsSection = ({ 
-  data, 
+const BenefitsSection = ({
+  data,
   activeBenefitIdx,
+  onShowDemo,
   // Direct props for Page Builder
   title: propTitle,
   description: propDescription,
   ctaButton: propCtaButton,
   features: propFeatures,
 }) => {
-  const [defaultData, setDefaultData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data/hr.json");
-        const jsonData = await response.json();
-        setDefaultData(jsonData.features);
-      } catch (error) {
-        console.error("Failed to load HR data:", error);
-        // Fallback data
-        setDefaultData({
-          title: "Why Choose Our HR Solution?",
-          description:
-            "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
-          items: [],
-        });
-      }
-    };
-    fetchData();
-  }, []);
-
-  // PRIORITIZE direct props > data prop > default data for real-time preview
+  // Normalize incoming data structure
   const rawData = data?.data || data || {};
   const featuresData = rawData.features || rawData || {};
-  
-  // Handle ctaButton as object or string
-  const getCtaButton = () => {
-    // Priority: direct prop > rawData > defaultData
-    const btn = propCtaButton || rawData.ctaButton || featuresData.ctaButton || defaultData?.ctaButton;
-    if (typeof btn === 'object' && btn !== null) {
-      return btn;
-    }
-    return { text: btn || "Contact Us", link: "/contact" };
-  };
 
-  // Get features array
-  const getFeatures = () => {
-    if (Array.isArray(propFeatures) && propFeatures.length > 0) return propFeatures;
-    if (Array.isArray(featuresData.items)) return featuresData.items;
-    if (Array.isArray(rawData.benefits)) return rawData.benefits;
-    if (Array.isArray(rawData.items)) return rawData.items;
-    if (Array.isArray(rawData.features)) return rawData.features;
-    return defaultData?.items || [];
-  };
-  
+  // Prioritize props > data prop > default data
   const displayData = {
-    features: {
-      title: propTitle || featuresData.title || rawData.title || defaultData?.title || "Why Choose Our HR Solution?",
-      description: propDescription || featuresData.description || rawData.description || defaultData?.description || "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
-      items: getFeatures(),
-    },
-    ctaButton: getCtaButton(),
+    title: propTitle || featuresData.title || rawData.title || "Why Choose Our HR Solution?",
+    description: propDescription || featuresData.description || rawData.description || "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
+    ctaButton: (() => {
+      const btn = propCtaButton || rawData.ctaButton || featuresData.ctaButton;
+      if (typeof btn === 'object' && btn !== null) {
+        return {
+          text: btn.text || "Contact Us",
+          link: btn.link || "/contact",
+          modalTitle: btn.modalTitle || btn.title,
+          modalSubtitle: btn.modalSubtitle || btn.subtitle,
+          variant: btn.variant || "primary"
+        };
+      }
+      return { text: btn || "Contact Us", link: "/contact" };
+    })(),
+    features: Array.isArray(propFeatures) && propFeatures.length > 0 
+      ? propFeatures 
+      : (Array.isArray(featuresData.items) ? featuresData.items : (Array.isArray(rawData.benefits) ? rawData.benefits : (Array.isArray(rawData.items) ? rawData.items : [])))
   };
 
   // Debug logging for real-time updates
-  console.log(" [HRBenefitsSection] Component received data:", {
-    hasPropsData: !!data,
-    rawData,
-    featuresData,
-    finalData: displayData,
+  console.log(" [HRBenefitsSection] Component rendered with:", {
+    displayData,
+    hasOnShowDemo: !!onShowDemo,
     timestamp: new Date().toISOString(),
   });
+
   return (
     <>
       <SEO
-        title={`Oracle NetSuite HR Benefits | ${
-          displayData.features.title || "Why Choose Our HR Solution?"
-        }`}
-        description={`${
-          displayData.features.description ||
-          "Discover key advantages of Oracle NetSuite HR platform"
-        } - Employee management, automation, compliance, and analytics benefits.`}
+        title={`Oracle NetSuite HR Benefits | ${displayData.title}`}
+        description={`${displayData.description} - Employee management, automation, compliance, and analytics benefits.`}
         keywords="Oracle NetSuite HR benefits, HR platform advantages, employee management benefits, HR automation features, NetSuite HR system benefits"
-        ogTitle={`NetSuite HR Benefits - ${
-          displayData.features.title || "HR Platform Advantages"
-        }`}
-        ogDescription={`${(
-          displayData.features.description ||
-          "Oracle NetSuite HR platform key benefits and advantages"
-        ).substring(0, 120)}... Professional ERP HR solutions.`}
+        ogTitle={`NetSuite HR Benefits - ${displayData.title}`}
+        ogDescription={`${displayData.description.substring(0, 120)}... Professional ERP HR solutions.`}
         ogImage="/images/netsuite-hr-benefits.jpg"
       />
       <section className="py-20 bg-[var(--color-bg-secondary)] animate-fade-in-up light-section">
         <div className="max-w-6xl mx-auto px-4">
           <header className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-4 text-[var(--color-primary-dark)]">
-              {displayData.features.title}
+              {displayData.title}
             </h2>
             <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-              {displayData.features.description}
+              {displayData.description}
             </p>
           </header>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {displayData.features.items.map((b, idx) => (
+            {displayData.features.map((b, idx) => (
               <article
                 key={idx}
                 className={`bg-[var(--color-bg-primary)] rounded-2xl shadow-md p-12 flex flex-col items-center text-center border border-[var(--color-primary)]/20 hover:border-[var(--color-primary)] hover:shadow-xl transition-all duration-[2500ms] animate-fade-in-up ${
@@ -131,16 +92,22 @@ const BenefitsSection = ({
           </div>
           <div className="flex justify-center mt-12">
             <CTAButton
-              variant="primary"
+              variant={displayData.ctaButton.variant || "primary"}
               size="lg"
               className="shadow-lg"
+              onClick={(e) => {
+                if (onShowDemo) {
+                  e.preventDefault();
+                  onShowDemo();
+                }
+              }}
               modalConfig={{
-                title: "See Oracle NetSuite HR in Action",
-                subtitle: "Let's show you how our HR platform can transform your operations",
+                title: displayData.ctaButton.modalTitle || "See Oracle NetSuite HR in Action",
+                subtitle: displayData.ctaButton.modalSubtitle || "Let's show you how our HR platform can transform your operations",
                 icon: ""
               }}
             >
-              {displayData.ctaButton?.text || "Contact Us"}
+              {displayData.ctaButton.text}
             </CTAButton>
           </div>
         </div>
