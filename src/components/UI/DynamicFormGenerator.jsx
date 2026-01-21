@@ -135,6 +135,7 @@ const DynamicFormGenerator = ({
   componentType,
 
   className = "",
+  disabled = false,
 }) => {
   const [formData, setFormData] = useState(data);
 
@@ -257,26 +258,41 @@ const DynamicFormGenerator = ({
       currentFormData: formData,
     });
 
-    // Deep clone formData to avoid mutating state
-    const updatedData = JSON.parse(JSON.stringify(formData));
+    const setValueAtPath = (obj, path, value) => {
+      const parts = path.split(".");
+      const newObj = { ...obj };
+      let current = newObj;
 
-    // Handle nested path updates (e.g., "ctaButton.text")
-    const pathArray = path.split(".");
-    let current = updatedData;
+      for (let i = 0; i < parts.length - 1; i++) {
+        const part = parts[i];
+        const nextPart = parts[i + 1];
 
-    for (let i = 0; i < pathArray.length - 1; i++) {
-      if (!current[pathArray[i]]) {
-        current[pathArray[i]] = {};
+        // Check if the next part is a numeric index
+        const isNextPartNumber = /^\d+$/.test(nextPart);
+
+        if (!(part in current)) {
+          current[part] = isNextPartNumber ? [] : {};
+        } else {
+          // Ensure we clone correctly
+          if (Array.isArray(current[part])) {
+            current[part] = [...current[part]];
+          } else if (typeof current[part] === 'object' && current[part] !== null) {
+            current[part] = { ...current[part] };
+          }
+        }
+        current = current[part];
       }
-      current = current[pathArray[i]];
-    }
 
-    current[pathArray[pathArray.length - 1]] = value;
+      current[parts[parts.length - 1]] = value;
+      return newObj;
+    };
+
+    const updatedData = setValueAtPath(formData, path, value);
 
     console.log(" [DynamicFormGenerator] Updated data:", {
       path,
       updatedData,
-      changedField: current[pathArray[pathArray.length - 1]],
+      changedField: getValueByPath(updatedData, path), // Use getValueByPath to get the changed field
     });
 
     setFormData(updatedData);
@@ -473,6 +489,7 @@ const DynamicFormGenerator = ({
               className={inputClasses}
               placeholder={fieldSchema.placeholder}
               required={isRequired}
+              disabled={disabled}
             />
           </div>
         );
@@ -493,6 +510,7 @@ const DynamicFormGenerator = ({
               rows="3"
               placeholder={fieldSchema.placeholder}
               required={isRequired}
+              disabled={disabled}
             />
           </div>
         );
@@ -532,6 +550,7 @@ const DynamicFormGenerator = ({
               options={fieldSchema.options}
               placeholder={`Select ${fieldSchema.label}`}
               label={fieldSchema.label}
+              disabled={disabled}
             />
           </div>
         );
@@ -851,6 +870,7 @@ const DynamicFormGenerator = ({
               }}
               placeholder={fieldSchema.placeholder}
               className={inputClasses}
+              disabled={disabled}
             />
           </div>
         );
@@ -881,6 +901,7 @@ const DynamicFormGenerator = ({
               placeholder={fieldSchema.placeholder}
               rows={3}
               className={inputClasses}
+              disabled={disabled}
             />
           </div>
         );
@@ -899,6 +920,7 @@ const DynamicFormGenerator = ({
               options={fieldSchema.options}
               placeholder={`Select ${fieldSchema.label}`}
               label={fieldSchema.label}
+              disabled={disabled}
             />
         </div>
         );

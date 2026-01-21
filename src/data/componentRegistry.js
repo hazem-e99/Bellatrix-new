@@ -972,10 +972,8 @@ export const componentRegistry = {
       description: "Manufacturing industry hero section",
 
       hasEnhancedSchema: true,
-
-      schema: "ManufacturingHeroSection",
-
-      defaultData: "ManufacturingHeroSection",
+      schema: getGeneralComponentSchema("ManufacturingHeroSection")?.schema,
+      defaultData: getGeneralComponentSchema("ManufacturingHeroSection")?.defaultData,
     },
 
     ManufacturingIndustryStats: {
@@ -992,10 +990,8 @@ export const componentRegistry = {
       description: "Manufacturing industry statistics",
 
       hasEnhancedSchema: true,
-
-      schema: "ManufacturingIndustryStats",
-
-      defaultData: "ManufacturingIndustryStats",
+      schema: getGeneralComponentSchema("ManufacturingIndustryStats")?.schema,
+      defaultData: getGeneralComponentSchema("ManufacturingIndustryStats")?.defaultData,
     },
 
     ManufacturingCTASection: {
@@ -1010,11 +1006,8 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/CTASection.jsx",
 
       hasEnhancedSchema: true,
-
-      schema: "ManufacturingCTASection",
-
-      defaultData: "ManufacturingCTASection",
-
+      schema: getGeneralComponentSchema("ManufacturingCTASection")?.schema,
+      defaultData: getGeneralComponentSchema("ManufacturingCTASection")?.defaultData,
       description: "Manufacturing CTA section",
     },
 
@@ -1030,13 +1023,9 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/ChallengesSection.jsx",
 
       description: "Manufacturing industry challenges",
-
       hasEnhancedSchema: true,
-
-      schema: "ManufacturingChallengesSection",
-
-      defaultData: "ManufacturingChallengesSection",
-
+      schema: getGeneralComponentSchema("ManufacturingChallengesSection")?.schema,
+      defaultData: getGeneralComponentSchema("ManufacturingChallengesSection")?.defaultData,
       dataStructure: {
         title: "string",
 
@@ -1062,13 +1051,9 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/SolutionsSection.jsx",
 
       description: "Manufacturing industry solutions",
-
       hasEnhancedSchema: true,
-
-      schema: "ManufacturingSolutionsSection",
-
-      defaultData: "ManufacturingSolutionsSection",
-
+      schema: getGeneralComponentSchema("ManufacturingSolutionsSection")?.schema,
+      defaultData: getGeneralComponentSchema("ManufacturingSolutionsSection")?.defaultData,
       dataStructure: {
         title: "string",
 
@@ -1094,13 +1079,9 @@ export const componentRegistry = {
       filePath: "src/components/industries/Manufacturing/CaseStudies.jsx",
 
       description: "Manufacturing case studies",
-
       hasEnhancedSchema: true,
-
-      schema: "ManufacturingCaseStudies",
-
-      defaultData: "ManufacturingCaseStudies",
-
+      schema: getGeneralComponentSchema("ManufacturingCaseStudies")?.schema,
+      defaultData: getGeneralComponentSchema("ManufacturingCaseStudies")?.defaultData,
       dataStructure: {
         title: "string",
 
@@ -1123,13 +1104,9 @@ export const componentRegistry = {
         "src/components/industries/Manufacturing/ImplementationProcess.jsx",
 
       description: "Manufacturing implementation process",
-
       hasEnhancedSchema: true,
-
-      schema: "ManufacturingImplementationProcess",
-
-      defaultData: "ManufacturingImplementationProcess",
-
+      schema: getGeneralComponentSchema("ManufacturingImplementationProcess")?.schema,
+      defaultData: getGeneralComponentSchema("ManufacturingImplementationProcess")?.defaultData,
       dataStructure: {
         title: "string",
 
