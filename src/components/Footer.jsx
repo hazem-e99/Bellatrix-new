@@ -248,7 +248,7 @@ const Footer = () => {
         setError(null);
 
         const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL_WITH_API}/Categories/navbar`,
+          `${import.meta.env.VITE_API_BASE_URL_WITH_API || "http://68.178.169.236:5000/api"}/Categories/navbar`,
         );
 
         if (!res.ok) throw new Error("Failed to fetch categories");

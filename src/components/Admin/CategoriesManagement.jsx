@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
 import toast from "react-hot-toast";
 
-const API_BASE = `${import.meta.env.VITE_API_BASE_URL_WITH_API}/Categories`;
+const API_BASE = `${import.meta.env.VITE_API_BASE_URL_WITH_API || "http://68.178.169.236:5000/api"}/Categories`;
 const NAVBAR_API = `${
-  import.meta.env.VITE_API_BASE_URL_WITH_API
+  import.meta.env.VITE_API_BASE_URL_WITH_API || "http://68.178.169.236:5000/api"
 }/Categories/navbar`;
 
 function CategoriesManagement() {

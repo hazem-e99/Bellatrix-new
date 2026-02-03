@@ -20,6 +20,9 @@ import { getFieldConfigForComponent } from "../../data/componentSchemas";
 
 import { getAvailableVariants } from "../../utils/variantSystem";
 
+// API Base URL with fallback
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://68.178.169.236:5000";
+
 // Media Picker Modal Component
 
 const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
@@ -95,7 +98,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
 
           fullUrl: (item.fileUrl || item.filePath)?.startsWith("http")
             ? item.fileUrl || item.filePath
-            : `${import.meta.env.VITE_API_BASE_URL}${
+            : `${API_BASE_URL}${
                 item.fileUrl || item.filePath
               }`,
         });
@@ -186,7 +189,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
 
         const fullUrl = fileUrl?.startsWith("http")
           ? fileUrl
-          : `${import.meta.env.VITE_API_BASE_URL}${fileUrl}`;
+          : `${API_BASE_URL}${fileUrl}`;
 
         console.log(" Final full URL:", fullUrl);
 
@@ -207,7 +210,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
 
         const fullUrl = mediaUrl?.startsWith("http")
           ? mediaUrl
-          : `${import.meta.env.VITE_API_BASE_URL}${mediaUrl}`;
+          : `${API_BASE_URL}${mediaUrl}`;
 
         console.log(" Full media URL (fallback):", fullUrl);
 
@@ -316,7 +319,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
                               const fullUrl = mediaUrl?.startsWith("http")
                                 ? mediaUrl
                                 : `${
-                                    import.meta.env.VITE_API_BASE_URL
+                                    API_BASE_URL
                                   }${mediaUrl}`;
 
                               console.log(
@@ -369,7 +372,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
                                   const fullUrl = mediaUrl?.startsWith("http")
                                     ? mediaUrl
                                     : `${
-                                        import.meta.env.VITE_API_BASE_URL
+                                        API_BASE_URL
                                       }${mediaUrl}`;
 
                                   console.log(
@@ -946,7 +949,7 @@ const DynamicContentForm = ({
                     {(() => {
                       const fullUrl = value?.startsWith("http")
                         ? value
-                        : `${import.meta.env.VITE_API_BASE_URL}${value}`;
+                        : `${API_BASE_URL}${value}`;
 
                       const fileName = value.split("/").pop() || value;
 

@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { getAuthToken } from "../utils/tokenManager.js";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API || "http://68.178.169.236:5000/api";
 
 const api = axios.create({
   baseURL: BASE_URL,

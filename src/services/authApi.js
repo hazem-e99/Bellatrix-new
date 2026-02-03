@@ -3,7 +3,7 @@ import { clearAuthData } from "../utils/tokenManager";
 
 // Create axios instance with base URL
 const authApi = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL + "/",
+  baseURL: (import.meta.env.VITE_API_BASE_URL || "http://68.178.169.236:5000") + "/",
   headers: {
     "Content-Type": "application/json",
   },
