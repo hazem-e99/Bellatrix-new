@@ -14,7 +14,7 @@ export const fetchIndustries = createAsyncThunk(
         redirect: "follow"
       };
 
-      const response = await fetch("https://68.178.169.236:5000/api/industries?page=1&limit=10/", requestOptions);
+      const response = await fetch("https://bellatrixinc.com/api/industries?page=1&limit=10/", requestOptions);
       const data = await response.json();
       console.log("Industries API result:", data);
       if (!data.success) {

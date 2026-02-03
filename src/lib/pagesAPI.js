@@ -2,7 +2,7 @@ import api from "./api.js";
 
 import pageComponentsAPI from "./pageComponentsAPI.js";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API || "https://68.178.169.236:5000/api";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api";
 
 /**
 

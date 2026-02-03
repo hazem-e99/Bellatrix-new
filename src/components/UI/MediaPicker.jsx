@@ -25,9 +25,9 @@ import mediaAPI from "../../lib/mediaAPI";
 
 // API Constants
 
-const BASE_API = import.meta.env.VITE_API_BASE_URL_WITH_API || "https://68.178.169.236:5000/api";
+const BASE_API = import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api";
 
-const BASE_HOST = import.meta.env.VITE_API_BASE_URL || "https://68.178.169.236:5000";
+const BASE_HOST = import.meta.env.VITE_API_BASE_URL || "https://bellatrixinc.com";
 
 // Helper function to build full URLs
 
