@@ -21,7 +21,7 @@ import { getFieldConfigForComponent } from "../../data/componentSchemas";
 import { getAvailableVariants } from "../../utils/variantSystem";
 
 // API Base URL with fallback
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://68.178.169.236:5000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://68.178.169.236:5000";
 
 // Media Picker Modal Component
 

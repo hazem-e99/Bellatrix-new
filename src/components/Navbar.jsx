@@ -37,7 +37,7 @@ const Navbar = () => {
 
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL_WITH_API || "http://68.178.169.236:5000/api"}/Categories/navbar`,
+          `${import.meta.env.VITE_API_BASE_URL_WITH_API || "https://68.178.169.236:5000/api"}/Categories/navbar`,
         );
 
         const data = await res.json();

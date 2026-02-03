@@ -1,5 +1,5 @@
 // src/features/services/servicesAPI.js
-const API_BASE_URL = "http://68.178.169.236:5000/api/services";
+const API_BASE_URL = "https://68.178.169.236:5000/api/services";
 
 export const fetchSolution = async () => {
   const response = await fetch(`${API_BASE_URL}`);

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API || "http://68.178.169.236:5000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API || "https://68.178.169.236:5000/api";
 
 // Custom hook for fetching and managing JSON data
 export const useJsonData = (filename = null) => {

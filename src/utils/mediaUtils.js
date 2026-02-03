@@ -1,4 +1,4 @@
-const BASE_HOST = import.meta.env.VITE_API_BASE_URL || "http://68.178.169.236:5000";
+const BASE_HOST = import.meta.env.VITE_API_BASE_URL || "https://68.178.169.236:5000";
 
 /**
  * Build full URL from file URL
