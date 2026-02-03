@@ -309,18 +309,6 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
-              {/* Home Link */}
-              <Link
-                to="/"
-                className={`px-5 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border border-transparent hover:border-white/20 ${
-                  navbarTheme === "light"
-                    ? "text-[var(--color-text-dark)] hover:text-[var(--color-primary)]"
-                    : "text-[var(--color-text-light)] hover:text-[var(--color-primary-light)]"
-                }`}
-              >
-                Home
-              </Link>
-
               {/* Dynamic Categories Dropdowns */}
               {loadingCategories ? (
                 <span className="px-5 py-3 text-sm text-gray-400">
@@ -470,17 +458,6 @@ const Navbar = () => {
                 <span style={{ display: "none" }} />
               )}
 
-              <Link
-                to="/about"
-                className={`px-5 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border border-transparent hover:border-white/20 ${
-                  navbarTheme === "light"
-                    ? "text-[var(--color-text-dark)] hover:text-[var(--color-primary)]"
-                    : "text-[var(--color-text-light)] hover:text-[var(--color-primary-light)]"
-                }`}
-              >
-                About
-              </Link>
-
               {/* Theme Toggle Button */}
               <button
                 onClick={() =>
@@ -532,19 +509,6 @@ const Navbar = () => {
             className="lg:hidden bg-gray-900/40 backdrop-blur-2xl border-t border-white/10"
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
-              {/* Mobile Home Link */}
-              <Link
-                to="/"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-3 text-base font-medium rounded-xl hover:bg-white/10 border border-white/10 transition-colors duration-300 ${
-                  navbarTheme === "light"
-                    ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)]"
-                    : "text-[var(--color-text-light)]/90 hover:text-[var(--color-text-light)]"
-                }`}
-              >
-                Home
-              </Link>
-
               {/* Dynamic Mobile Categories Dropdowns */}
               {loadingCategories ? (
                 <span className="block px-4 py-3 text-base text-gray-400">
@@ -596,18 +560,6 @@ const Navbar = () => {
                   No categories
                 </span>
               )}
-
-              <Link
-                to="/about"
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-3 text-base font-medium rounded-xl hover:bg-white/10 border border-white/10 transition-colors duration-300 ${
-                  navbarTheme === "light"
-                    ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)]"
-                    : "text-[var(--color-text-light)]/90 hover:text-[var(--color-text-light)]"
-                }`}
-              >
-                About
-              </Link>
 
               {/* Mobile Theme Toggle */}
 

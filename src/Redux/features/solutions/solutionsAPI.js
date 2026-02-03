@@ -1,5 +1,5 @@
 // src/features/solutions/solutionsAPI.js
-const API_BASE_URL = "http://localhost:5005/api/solutions";
+const API_BASE_URL = "http://68.178.169.236:5000/api/solutions";
 
 const getAuthHeaders = () => {
   const headers = new Headers();

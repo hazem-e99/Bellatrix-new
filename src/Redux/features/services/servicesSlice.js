@@ -6,7 +6,7 @@ export const fetchServices = createAsyncThunk(
   'services/fetchServices',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5005/api/services', {
+      const response = await axios.get('http://68.178.169.236:5000/api/services', {
         headers: {
           'Content-Type': 'application/json',
         },

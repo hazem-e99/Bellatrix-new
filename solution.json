@@ -476,7 +476,7 @@
   "variable": [
     {
       "key": "BASE_URL",
-      "value": "http://localhost:5005",
+      "value": "http://68.178.169.236:5000",
       "type": "string",
       "description": "Base URL for the API"
     },
