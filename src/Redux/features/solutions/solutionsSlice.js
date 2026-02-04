@@ -37,7 +37,8 @@ export const fetchAllSolutions = createAsyncThunk(
         redirect: 'follow'
       };
       console.log("JWT Token:", token);
-      const response = await fetch('https://bellatrixinc.com/api/solutions?page=1&limit=10', requestOptions);
+      const { getApiBaseUrlWithApi } = await import('../../../config/api.js');
+      const response = await fetch(`${getApiBaseUrlWithApi()}/solutions?page=1&limit=10`, requestOptions);
       console.log("Status:", response.status);
       const raw = await response.clone().text();
       if (!response.ok) {

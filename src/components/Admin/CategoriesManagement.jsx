@@ -2,11 +2,10 @@
 import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
 import toast from "react-hot-toast";
+import { getApiBaseUrlWithApi } from "../../config/api.js";
 
-const API_BASE = `${import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api"}/Categories`;
-const NAVBAR_API = `${
-  import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api"
-}/Categories/navbar`;
+const API_BASE = `${getApiBaseUrlWithApi()}/Categories`;
+const NAVBAR_API = `${getApiBaseUrlWithApi()}/Categories/navbar`;
 
 function CategoriesManagement() {
   // Delete state

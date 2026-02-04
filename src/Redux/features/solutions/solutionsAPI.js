@@ -1,5 +1,7 @@
 // src/features/solutions/solutionsAPI.js
-const API_BASE_URL = "https://bellatrixinc.com/api/solutions";
+import { getApiBaseUrlWithApi } from "../../../config/api.js";
+
+const API_BASE_URL = `${getApiBaseUrlWithApi()}/solutions`;
 
 const getAuthHeaders = () => {
   const headers = new Headers();

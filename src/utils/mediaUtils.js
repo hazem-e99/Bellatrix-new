@@ -1,4 +1,6 @@
-const BASE_HOST = import.meta.env.VITE_API_BASE_URL || "https://bellatrixinc.com";
+import { getApiBaseUrl } from "../config/api.js";
+
+const BASE_HOST = getApiBaseUrl();
 
 /**
  * Build full URL from file URL

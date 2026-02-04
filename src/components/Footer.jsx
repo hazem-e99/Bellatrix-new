@@ -14,6 +14,8 @@ import SEO from "./SEO";
 
 import { getPublicDictionary } from "../services/settingsApi";
 
+import { getApiBaseUrlWithApi } from "../config/api.js";
+
 // Add inline styles for hover effects
 
 const footerStyles = `
@@ -248,7 +250,7 @@ const Footer = () => {
         setError(null);
 
         const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api"}/Categories/navbar`,
+          `${getApiBaseUrlWithApi()}/Categories/navbar`,
         );
 
         if (!res.ok) throw new Error("Failed to fetch categories");

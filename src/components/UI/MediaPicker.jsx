@@ -23,11 +23,13 @@ import axios from "axios";
 
 import mediaAPI from "../../lib/mediaAPI";
 
+import { getApiBaseUrl, getApiBaseUrlWithApi } from "../../config/api.js";
+
 // API Constants
 
-const BASE_API = import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api";
+const BASE_API = getApiBaseUrlWithApi();
 
-const BASE_HOST = import.meta.env.VITE_API_BASE_URL || "https://bellatrixinc.com";
+const BASE_HOST = getApiBaseUrl();
 
 // Helper function to build full URLs
 

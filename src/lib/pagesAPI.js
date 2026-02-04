@@ -2,7 +2,9 @@ import api from "./api.js";
 
 import pageComponentsAPI from "./pageComponentsAPI.js";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api";
+import { getApiBaseUrlWithApi } from "../config/api.js";
+
+const BASE_URL = getApiBaseUrlWithApi();
 
 /**
 

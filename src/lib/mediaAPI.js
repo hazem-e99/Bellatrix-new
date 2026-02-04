@@ -1,8 +1,10 @@
 import api from "./api.js";
 
-const BASE_HOST = import.meta.env.VITE_API_BASE_URL || "https://bellatrixinc.com";
+import { getApiBaseUrl, getApiBaseUrlWithApi } from "../config/api.js";
 
-const BASE_API = import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api";
+const BASE_HOST = getApiBaseUrl();
+
+const BASE_API = getApiBaseUrlWithApi();
 
 /**
 

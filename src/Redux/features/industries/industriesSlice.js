@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getApiBaseUrlWithApi } from "../../../config/api.js";
 
 // Thunk to fetch all industries
 export const fetchIndustries = createAsyncThunk(
@@ -14,7 +15,7 @@ export const fetchIndustries = createAsyncThunk(
         redirect: "follow"
       };
 
-      const response = await fetch("https://bellatrixinc.com/api/industries?page=1&limit=10/", requestOptions);
+      const response = await fetch(`${getApiBaseUrlWithApi()}/industries?page=1&limit=10/`, requestOptions);
       const data = await response.json();
       console.log("Industries API result:", data);
       if (!data.success) {

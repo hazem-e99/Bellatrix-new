@@ -22,6 +22,8 @@ import { useTheme } from "../context/ThemeContext";
 
 import { setupSectionThemeDetection } from "../utils/sectionThemeDetection";
 
+import { getApiBaseUrlWithApi } from "../config/api.js";
+
 const Navbar = () => {
   // Dynamic navbar categories
 
@@ -37,7 +39,7 @@ const Navbar = () => {
 
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL_WITH_API || "https://bellatrixinc.com/api"}/Categories/navbar`,
+          `${getApiBaseUrlWithApi()}/Categories/navbar`,
         );
 
         const data = await res.json();

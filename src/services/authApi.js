@@ -2,8 +2,17 @@ import axios from "axios";
 import { clearAuthData } from "../utils/tokenManager";
 
 // Create axios instance with base URL
+// In development, use empty string to leverage Vite's proxy
+// In production, use the actual API URL
+const getBaseUrl = () => {
+  if (import.meta.env.DEV) {
+    return ""; // Use Vite proxy in development
+  }
+  return import.meta.env.VITE_API_BASE_URL || "http://68.178.169.236:5000";
+};
+
 const authApi = axios.create({
-  baseURL: (import.meta.env.VITE_API_BASE_URL || "https://bellatrixinc.com") + "/",
+  baseURL: getBaseUrl(),
   headers: {
     "Content-Type": "application/json",
   },

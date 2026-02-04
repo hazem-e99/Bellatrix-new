@@ -20,8 +20,10 @@ import { getFieldConfigForComponent } from "../../data/componentSchemas";
 
 import { getAvailableVariants } from "../../utils/variantSystem";
 
+import { getApiBaseUrl } from "../../config/api.js";
+
 // API Base URL with fallback
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://bellatrixinc.com";
+const API_BASE_URL = getApiBaseUrl();
 
 // Media Picker Modal Component
 

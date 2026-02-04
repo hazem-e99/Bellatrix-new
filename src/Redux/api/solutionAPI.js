@@ -1,5 +1,7 @@
 // src/features/services/servicesAPI.js
-const API_BASE_URL = "https://bellatrixinc.com/api/services";
+import { getApiBaseUrlWithApi } from "../../config/api.js";
+
+const API_BASE_URL = `${getApiBaseUrlWithApi()}/services`;
 
 export const fetchSolution = async () => {
   const response = await fetch(`${API_BASE_URL}`);

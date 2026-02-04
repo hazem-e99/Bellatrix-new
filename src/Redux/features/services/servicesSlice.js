@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getApiBaseUrlWithApi } from '../../../config/api.js';
 
 // Async thunk to fetch services
 export const fetchServices = createAsyncThunk(
   'services/fetchServices',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('https://bellatrixinc.com/api/services', {
+      const response = await axios.get(`${getApiBaseUrlWithApi()}/services`, {
         headers: {
           'Content-Type': 'application/json',
         },
