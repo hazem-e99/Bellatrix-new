@@ -8,7 +8,7 @@ const getBaseUrl = () => {
   if (import.meta.env.DEV) {
     return ""; // Use Vite proxy in development
   }
-  return import.meta.env.VITE_API_BASE_URL || "http://68.178.169.236:5000";
+  return import.meta.env.VITE_API_BASE_URL || "https://68.178.169.236:5000";
 };
 
 const authApi = axios.create({
