@@ -10,7 +10,7 @@ export const getApiBaseUrl = () => {
   if (import.meta.env.DEV) {
     return ""; // Use Vite proxy in development
   }
-  return import.meta.env.VITE_API_BASE_URL || "https://68.178.169.236:5000";
+  return import.meta.env.VITE_API_BASE_URL || "https://www.bellatrixinc.com";
 };
 
 /**
@@ -20,7 +20,7 @@ export const getApiBaseUrlWithApi = () => {
   if (import.meta.env.DEV) {
     return "/api"; // Use Vite proxy in development
   }
-  return import.meta.env.VITE_API_BASE_URL_WITH_API || "https://68.178.169.236:5000/api";
+  return import.meta.env.VITE_API_BASE_URL_WITH_API || "https://www.bellatrixinc.com/api";
 };
 
 // Export constants for backward compatibility

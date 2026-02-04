@@ -57,9 +57,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://68.178.169.236:5000',
+        target: 'https://www.bellatrixinc.com',
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },
