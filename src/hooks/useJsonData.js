@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-import { getApiBaseUrlWithApi } from "../config/api.js";
+import { getApiBaseUrlWithApi, getApiBaseUrl } from "../config/api.js";
 
 const API_BASE_URL = getApiBaseUrlWithApi();
 
@@ -147,7 +147,7 @@ export const useRealTimeUpdates = (onDataUpdated) => {
     // Only import socket.io client in the browser
     import("socket.io-client")
       .then(({ io }) => {
-        const newSocket = io("http://localhost:3001");
+        const newSocket = io(getApiBaseUrl());
 
         newSocket.on("connect", () => {
           console.log("Connected to real-time updates");

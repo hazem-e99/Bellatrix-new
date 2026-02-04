@@ -2,11 +2,11 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useParams, useLocation } from "react-router-dom";
 
-
+import { getApiBaseUrlWithApi } from "../config/api.js";
 
 // Base API configuration
 
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = getApiBaseUrlWithApi();
 
 
 

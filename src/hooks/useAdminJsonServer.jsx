@@ -4,9 +4,9 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { getCacheManager } from '../utils/cacheManager.js';
 
+import { getApiBaseUrlWithApi } from '../config/api.js';
 
-
-const JSON_SERVER_BASE = 'http://localhost:3001';
+const JSON_SERVER_BASE = getApiBaseUrlWithApi();
 
 
 

@@ -205,8 +205,8 @@ export const useFileChangeWatcher = () => {
       try {
 
         // فحص آخر تعديل على db.json
-
-        const response = await fetch("http://localhost:3001/db");
+        const { getApiBaseUrlWithApi } = await import("../config/api.js");
+        const response = await fetch(`${getApiBaseUrlWithApi()}/db`);
 
         if (response.ok) {
 
