@@ -16,18 +16,7 @@ const CategorySelector = ({ value, onChange }) => {
         const res = await api.get("/Categories/navbar");
         const list = Array.isArray(res.data) ? res.data : [];
 
-        const filteredList = list.filter((category) => {
-          const name = category.name?.toLowerCase();
-          const slug = category.slug?.toLowerCase();
-          return (
-            name !== "home" &&
-            name !== "about" &&
-            slug !== "home" &&
-            slug !== "about"
-          );
-        });
-
-        setCategories(filteredList);
+        setCategories(list);
       } catch (e) {
         setError(e.message || "Failed to load categories");
       } finally {
