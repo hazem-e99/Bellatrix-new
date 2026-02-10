@@ -404,16 +404,17 @@ const Footer = () => {
                   );
 
                   // Get main page URL from category data
+                  const nameSlug = cat.name?.toLowerCase().replace(/\s+/g, "-");
                   const mainPageUrl = cat.mainPageSlug
                     ? `/${cat.mainPageSlug}`
                     : cat.pages && cat.pages.length > 0
                     ? cat.pages[0].slug
                       ? `/${cat.pages[0].slug}`
                       : `/${cat.pages[0].id}`
-                    : null;
+                    : `/${nameSlug || ""}`;
 
                   // For Home/About categories - direct link to main page
-                  if (isHomeOrAbout && mainPageUrl) {
+                  if (isHomeOrAbout) {
                     return (
                       <li key={cat.id}>
                         <a
