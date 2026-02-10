@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Layout from "./components/Layout";
 import MainServices from "./components/Services/MainServices";
@@ -40,7 +40,7 @@ function App() {
 
             {/* Public Routes */}
             <Route path="/" element={<Layout />}>
-              <Route index element={<DynamicPageRenderer />} />
+              <Route index element={<Navigate to="/home" replace />} />
               <Route path="Implementation" element={<MainServices />} />
               <Route path="Training" element={<MainServices />} />
               <Route path="netsuite-consulting" element={<MainServices />} />
