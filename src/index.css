@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "./styles/theme-colors.css";
 @import "./styles/animations.css";
-
+/* ss */
 /* ==================================================
    GLOBAL CTA BUTTON STYLES - Primary Theme
    ================================================== */
@@ -41,37 +41,101 @@ a.btn-primary:hover,
 }
 
 /* Individual Gradient Stops */
-.from-blue-400 { --tw-gradient-from: var(--color-blue-400) !important; }
-.from-blue-500 { --tw-gradient-from: var(--color-blue-500) !important; }
-.from-blue-600 { --tw-gradient-from: var(--color-blue-600) !important; }
-.to-blue-600 { --tw-gradient-to: var(--color-blue-600) !important; }
-.to-blue-700 { --tw-gradient-to: var(--color-blue-700) !important; }
-.to-blue-800 { --tw-gradient-to: var(--color-blue-800) !important; }
-.to-blue-900 { --tw-gradient-to: var(--color-blue-900) !important; }
+.from-blue-400 {
+  --tw-gradient-from: var(--color-blue-400) !important;
+}
+
+.from-blue-500 {
+  --tw-gradient-from: var(--color-blue-500) !important;
+}
+
+.from-blue-600 {
+  --tw-gradient-from: var(--color-blue-600) !important;
+}
+
+.to-blue-600 {
+  --tw-gradient-to: var(--color-blue-600) !important;
+}
+
+.to-blue-700 {
+  --tw-gradient-to: var(--color-blue-700) !important;
+}
+
+.to-blue-800 {
+  --tw-gradient-to: var(--color-blue-800) !important;
+}
+
+.to-blue-900 {
+  --tw-gradient-to: var(--color-blue-900) !important;
+}
 
 /* Gray Palette Mapping */
-.bg-gray-50 { background-color: var(--tw-gray-50) !important; }
-.bg-gray-100 { background-color: var(--tw-gray-100) !important; }
-.bg-gray-200 { background-color: var(--tw-gray-200) !important; }
-.text-gray-600 { color: var(--tw-gray-600) !important; }
-.text-gray-700 { color: var(--tw-gray-700) !important; }
-.text-gray-800 { color: var(--tw-gray-800) !important; }
-.text-gray-900 { color: var(--tw-gray-900) !important; }
-.border-gray-100 { border-color: var(--tw-gray-100) !important; }
-.border-gray-200 { border-color: var(--tw-gray-200) !important; }
-.border-gray-300 { border-color: var(--tw-gray-300) !important; }
+.bg-gray-50 {
+  background-color: var(--tw-gray-50) !important;
+}
+
+.bg-gray-100 {
+  background-color: var(--tw-gray-100) !important;
+}
+
+.bg-gray-200 {
+  background-color: var(--tw-gray-200) !important;
+}
+
+.text-gray-600 {
+  color: var(--tw-gray-600) !important;
+}
+
+.text-gray-700 {
+  color: var(--tw-gray-700) !important;
+}
+
+.text-gray-800 {
+  color: var(--tw-gray-800) !important;
+}
+
+.text-gray-900 {
+  color: var(--tw-gray-900) !important;
+}
+
+.border-gray-100 {
+  border-color: var(--tw-gray-100) !important;
+}
+
+.border-gray-200 {
+  border-color: var(--tw-gray-200) !important;
+}
+
+.border-gray-300 {
+  border-color: var(--tw-gray-300) !important;
+}
 
 /* Gray Gradients */
-.from-gray-100 { --tw-gradient-from: var(--tw-gray-100) !important; }
-.from-gray-200 { --tw-gradient-from: var(--tw-gray-200) !important; }
-.to-gray-100 { --tw-gradient-to: var(--tw-gray-100) !important; }
-.to-gray-200 { --tw-gradient-to: var(--tw-gray-200) !important; }
-.to-gray-300 { --tw-gradient-to: var(--tw-gray-300) !important; }
+.from-gray-100 {
+  --tw-gradient-from: var(--tw-gray-100) !important;
+}
+
+.from-gray-200 {
+  --tw-gradient-from: var(--tw-gray-200) !important;
+}
+
+.to-gray-100 {
+  --tw-gradient-to: var(--tw-gray-100) !important;
+}
+
+.to-gray-200 {
+  --tw-gradient-to: var(--tw-gray-200) !important;
+}
+
+.to-gray-300 {
+  --tw-gradient-to: var(--tw-gray-300) !important;
+}
 
 /* Gradients - Theme aware through CSS variable mapping */
-[style*="background-color: #001248"], 
+[style*="background-color: #001248"],
 [style*="background-color:#001248"],
-.bg-navy-900, .bg-\[\#001248\] {
+.bg-navy-900,
+.bg-\[\#001248\] {
   background-color: var(--color-brand-dark-navy) !important;
 }
 
@@ -86,7 +150,8 @@ a.btn-primary:hover,
 }
 
 /* Prevent horizontal scroll */
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100%;
 }
@@ -188,30 +253,39 @@ body {
   .text-white-100 {
     color: rgba(255, 255, 255, 0.9);
   }
+
   .text-white-200 {
     color: rgba(255, 255, 255, 0.8);
   }
+
   .text-white-300 {
     color: rgba(255, 255, 255, 0.7);
   }
+
   .text-white-400 {
     color: rgba(255, 255, 255, 0.6);
   }
+
   .text-white-500 {
     color: rgba(255, 255, 255, 0.5);
   }
+
   .bg-white-100 {
     background-color: rgba(255, 255, 255, 0.9);
   }
+
   .bg-white-200 {
     background-color: rgba(255, 255, 255, 0.8);
   }
+
   .bg-white-300 {
     background-color: rgba(255, 255, 255, 0.7);
   }
+
   .bg-white-400 {
     background-color: rgba(255, 255, 255, 0.6);
   }
+
   .bg-white-500 {
     background-color: rgba(255, 255, 255, 0.5);
   }
