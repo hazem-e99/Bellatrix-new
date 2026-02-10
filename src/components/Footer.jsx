@@ -249,9 +249,7 @@ const Footer = () => {
 
         setError(null);
 
-        const res = await fetch(
-          `${getApiBaseUrlWithApi()}/Categories/navbar`,
-        );
+        const res = await fetch(`${getApiBaseUrlWithApi()}/Categories/navbar`);
 
         if (!res.ok) throw new Error("Failed to fetch categories");
 
@@ -400,6 +398,35 @@ const Footer = () => {
                 </li>
               ) : (
                 categories.map((cat) => {
+                  // Check if category is Home or About (case-insensitive)
+                  const isHomeOrAbout = ["home", "about"].includes(
+                    cat.name?.toLowerCase(),
+                  );
+
+                  // Get main page URL from category data
+                  const mainPageUrl = cat.mainPageSlug
+                    ? `/${cat.mainPageSlug}`
+                    : cat.pages && cat.pages.length > 0
+                    ? cat.pages[0].slug
+                      ? `/${cat.pages[0].slug}`
+                      : `/${cat.pages[0].id}`
+                    : null;
+
+                  // For Home/About categories - direct link to main page
+                  if (isHomeOrAbout && mainPageUrl) {
+                    return (
+                      <li key={cat.id}>
+                        <a
+                          href={mainPageUrl}
+                          className="footer-link transition-colors duration-300 cursor-pointer"
+                        >
+                          {cat.name}
+                        </a>
+                      </li>
+                    );
+                  }
+
+                  // For other categories - check for homepage in pages
                   const homePage = Array.isArray(cat.pages)
                     ? cat.pages.find((p) => p.isHomepage)
                     : null;
