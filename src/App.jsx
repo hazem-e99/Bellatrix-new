@@ -2,7 +2,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Layout from "./components/Layout";
 import MainServices from "./components/Services/MainServices";
-import HRPage from "./pages/HrPage/HR";
 import SolutionMain from "./components/solution/SolutionMain";
 import Manufacturing from "./pages/Industries/Manufacturing";
 import Retail from "./pages/Industries/Retail";
@@ -47,8 +46,7 @@ function App() {
               <Route path="customization" element={<MainServices />} />
               <Route path="integration" element={<MainServices />} />
               <Route path="Support" element={<MainServices />} />
-              <Route path="HRSolution" element={<SolutionMain />} />
-              <Route path="/hr" element={<HRPage />} />
+              <Route path="hr" element={<SolutionMain />} />
               {/* <Route path="Payroll" element={<SolutionMain />} /> */}
               <Route path="/Payroll" element={<PayrollPage />} />
               <Route
