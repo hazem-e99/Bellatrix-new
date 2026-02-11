@@ -7,17 +7,15 @@ export const useFilteredComponents = (
 ) => {
   const filteredComponents = useMemo(() => {
     // Exclude 'services' category components and specific components
-    const excludedCategories = ['services'];
+    const excludedCategories = [];
     const excludedComponentTypes = [
-      'TestimonialsSection', 
-      'IndustriesSection',
       'RetailImplementationSection',
       'RetailIndustryStats',
     ];
-    
+
     let filtered = availableComponents.filter(
-      (comp) => !excludedCategories.includes(comp.category) && 
-                !excludedComponentTypes.includes(comp.componentType)
+      (comp) => !excludedCategories.includes(comp.category) &&
+        !excludedComponentTypes.includes(comp.componentType)
     );
 
     if (selectedCategory !== "all") {

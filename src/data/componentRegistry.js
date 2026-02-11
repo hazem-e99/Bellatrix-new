@@ -21,16 +21,14 @@ export const componentRegistry = {
     Hero: {
       componentType: "Hero",
 
-      componentName: "Landing Hero",
+      componentName: "Home Hero",
 
       category: "hero",
-
-      icon: "",
 
       filePath: "src/components/Hero.jsx",
 
       description:
-        "Main hero section with video backgrounds, slides, and stats",
+        "Main Home hero section with video backgrounds, slides, and statistics",
 
       dataStructure: {
         slides: "array", // array of slide objects with title, subtitle, description, video
@@ -63,7 +61,7 @@ export const componentRegistry = {
     Services: {
       componentType: "Services",
 
-      componentName: "Services Section",
+      componentName: "Home Services Section",
 
       category: "content",
 
@@ -71,7 +69,7 @@ export const componentRegistry = {
 
       filePath: "src/components/Services.jsx",
 
-      description: "Services grid with section header and view all button",
+      description: "Home services grid with section header and view all button",
 
       dataStructure: {
         services: "array",
@@ -85,15 +83,15 @@ export const componentRegistry = {
     Testimonials: {
       componentType: "Testimonials",
 
-      componentName: "Testimonials Section",
+      componentName: "Home Testimonials Section",
 
-      category: "social-proof",
+      category: "testimonials",
 
       icon: "",
 
       filePath: "src/components/Testimonials.jsx",
 
-      description: "Customer testimonials with section header and CTA",
+      description: "Customer testimonials for Home page with section header and CTA",
 
       dataStructure: {
         testimonials: "array",
@@ -107,15 +105,15 @@ export const componentRegistry = {
     Industries: {
       componentType: "Industries",
 
-      componentName: "Industries Section",
+      componentName: "Home Industries Section",
 
-      category: "content",
+      category: "industry",
 
       icon: "",
 
       filePath: "src/components/Industries.jsx",
 
-      description: "Industry showcase with styling options",
+      description: "Home industry showcase with styling options",
 
       dataStructure: {
         industries: "array",
@@ -1439,6 +1437,7 @@ export const componentRegistry = {
   // Common/shared components cleaned: CTAButton removed from registry
 };
 
+
 /**
 
  * Get all components as a flat array for the Available Components section
@@ -1507,6 +1506,8 @@ export const componentCategories = [
   { id: "process", label: "Process", icon: "" },
 
   { id: "team", label: "Team", icon: "" },
+
+  { id: "industry", label: "Industry", icon: "" },
 
   { id: "testimonials", label: "Testimonials", icon: "" },
 

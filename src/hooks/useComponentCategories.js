@@ -10,21 +10,21 @@ export const useComponentCategories = (availableComponents, searchTerm) => {
 
       ? availableComponents.filter((comp) => {
 
-          const search = searchTerm.toLowerCase().trim();
+        const search = searchTerm.toLowerCase().trim();
 
-          return (
+        return (
 
-            comp.name.toLowerCase().includes(search) ||
+          comp.name.toLowerCase().includes(search) ||
 
-            comp.componentType.toLowerCase().includes(search) ||
+          comp.componentType.toLowerCase().includes(search) ||
 
-            comp.category.toLowerCase().includes(search) ||
+          comp.category.toLowerCase().includes(search) ||
 
-            comp.description.toLowerCase().includes(search)
+          comp.description.toLowerCase().includes(search)
 
-          );
+        );
 
-        })
+      })
 
       : availableComponents;
 
@@ -59,7 +59,7 @@ export const useComponentCategories = (availableComponents, searchTerm) => {
 
 
     // Filter out 'services' category
-    const excludedCategories = ['services'];
+    const excludedCategories = [];
     const uniqueCategories = [
       ...new Set(
         availableComponents

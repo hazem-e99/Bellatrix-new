@@ -10,7 +10,7 @@ export const generalComponentSchemas = {
   // ============================================
   // ABOUT COMPONENTS
   // ============================================
-  
+
   AboutMissionSection: {
     componentName: "AboutMissionSection",
     category: "about",
@@ -256,10 +256,10 @@ export const generalComponentSchemas = {
           formField: "text",
         },
         subtitle: {
-            type: "string",
-            label: "Subtitle",
-            placeholder: "Enter subtitle",
-            formField: "text"
+          type: "string",
+          label: "Subtitle",
+          placeholder: "Enter subtitle",
+          formField: "text"
         },
         description: {
           type: "string",
@@ -275,19 +275,19 @@ export const generalComponentSchemas = {
           mediaType: "video",
         },
         ctaButton: {
-            type: "object",
-            label: "CTA Button",
-            properties: {
-                text: { type: "string", label: "Text", formField: "text" },
-                link: { type: "string", label: "Link", formField: "text" },
-                variant: { 
-                    type: "string", 
-                    label: "Variant", 
-                    formField: "select", 
-                    options: [{value:"primary", label:"Primary"}, {value:"secondary", label:"Secondary"}] 
-                }
-            },
-            formField: "object"
+          type: "object",
+          label: "CTA Button",
+          properties: {
+            text: { type: "string", label: "Text", formField: "text" },
+            link: { type: "string", label: "Link", formField: "text" },
+            variant: {
+              type: "string",
+              label: "Variant",
+              formField: "select",
+              options: [{ value: "primary", label: "Primary" }, { value: "secondary", label: "Secondary" }]
+            }
+          },
+          formField: "object"
         }
       },
     },
@@ -297,6 +297,59 @@ export const generalComponentSchemas = {
       description: "",
       backgroundVideo: "/Videos/implementation/homepage_hero.mp4",
       ctaButton: { text: "Get Started", variant: "primary" }
+    },
+  },
+
+  Hero: {
+    componentName: "Hero",
+    category: "hero",
+    icon: "",
+    displayName: "Home Hero",
+    description: "Main Home Hero with video slides",
+    schema: {
+      type: "object",
+      properties: {
+        slides: {
+          type: "array",
+          label: "Hero Slides",
+          items: {
+            type: "object",
+            properties: {
+              title: { type: "string", label: "Title", formField: "text" },
+              subtitle: { type: "string", label: "Subtitle", formField: "text" },
+              description: { type: "string", label: "Description", formField: "textarea" },
+              video: { type: "string", label: "Video URL", formField: "media", mediaType: "video" },
+            },
+          },
+          formField: "array",
+        },
+        stats: {
+          type: "array",
+          label: "Statistics",
+          items: {
+            type: "object",
+            properties: {
+              value: { type: "string", label: "Value", formField: "text" },
+              label: { type: "string", label: "Label", formField: "text" },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      slides: [
+        {
+          title: "Strategic Business Transformation",
+          subtitle: "Oracle NetSuite Consultancy",
+          description: "Streamline operations and drive growth with our comprehensive NetSuite solutions.",
+          video: "/Videos/implementation/homepage_hero.mp4",
+        },
+      ],
+      stats: [
+        { value: "500+", label: "Projects Completed" },
+        { value: "15+", label: "Years Experience" },
+      ],
     },
   },
 
@@ -378,27 +431,27 @@ export const generalComponentSchemas = {
           type: "object",
           label: "CTA Button",
           properties: {
-            text: { 
-              type: "string", 
-              label: "Button Text", 
+            text: {
+              type: "string",
+              label: "Button Text",
               placeholder: "Start Your Journey",
-              formField: "text" 
+              formField: "text"
             },
-            link: { 
-              type: "string", 
-              label: "Button Link", 
+            link: {
+              type: "string",
+              label: "Button Link",
               placeholder: "/contact",
-              formField: "text" 
+              formField: "text"
             },
-            variant: { 
-              type: "string", 
-              label: "Button Style", 
-              formField: "select", 
+            variant: {
+              type: "string",
+              label: "Button Style",
+              formField: "select",
               options: [
-                { value: "primary", label: "Primary" }, 
+                { value: "primary", label: "Primary" },
                 { value: "secondary", label: "Secondary" },
                 { value: "outline", label: "Outline" }
-              ] 
+              ]
             }
           },
           formField: "object"
@@ -1610,7 +1663,7 @@ export const generalComponentSchemas = {
 
           formField: "array",
         },
-        
+
         image: {
           type: "string",
           label: "Section Image",
@@ -1765,14 +1818,14 @@ export const generalComponentSchemas = {
 
                 formField: "text",
               },
-              
+
               automatedLabel: {
                 type: "string",
                 label: "Automated Label",
                 placeholder: "Automated",
                 formField: "text",
               },
-              
+
               compliantLabel: {
                 type: "string",
                 label: "Compliant Label",
@@ -4025,9 +4078,9 @@ export const generalComponentSchemas = {
               },
 
               icon: { type: "string", label: "Icon", formField: "text" },
-              
+
               details: { type: "string", label: "Detailed Description", formField: "textarea" },
-              
+
               benefits: { type: "string", label: "Benefits (comma separated)", placeholder: "Benefit 1, Benefit 2", formField: "textarea" },
 
               stats: {
@@ -5776,7 +5829,7 @@ export const generalComponentSchemas = {
     },
   },
 
- 
+
   ServiceGrid: {
     componentName: "ServiceGrid",
 

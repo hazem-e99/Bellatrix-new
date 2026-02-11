@@ -117,7 +117,7 @@ const AboutHero = ({
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
             {heroData.title}
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-4 leading-relaxed max-w-4xl mx-auto font-medium">
+          <p className="text-xl md:text-2xl text-[var(--color-text-light)] mb-4 leading-relaxed max-w-4xl mx-auto font-medium">
             {heroData.subtitle}
           </p>
           <p className="text-lg text-[var(--color-text-light)] mb-8 leading-relaxed max-w-3xl mx-auto">

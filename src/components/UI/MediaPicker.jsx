@@ -332,14 +332,24 @@ const MediaPicker = ({
 
         // Validate files
 
+        const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB limit
+
         const validFiles = Array.from(files).filter((file) => {
+          // Check file size
+          if (file.size > MAX_FILE_SIZE) {
+            showToast(
+              `File too large: ${file.name} (${formatFileSize(file.size)}). Maximum size allowed is 10MB.`,
+              "error"
+            );
+            return false;
+          }
+
+          // Check file type
           if (!validateFileType(file, accept)) {
             showToast(
               `Invalid file type: ${file.name}. Accepted: ${accept}`,
-
-              "error",
+              "error"
             );
-
             return false;
           }
 

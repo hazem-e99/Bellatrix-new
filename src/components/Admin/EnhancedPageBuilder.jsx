@@ -401,37 +401,26 @@ const EnhancedPageBuilder = () => {
 
         // Convert registry components to the format expected by the builder (without icon)
 
-        const formattedComponents = registryComponents.map((comp) => ({
-
-          id: comp.componentType,
-
-          name:
-
-            comp.componentName ||
-
-            comp.componentType.replace(/([A-Z])/g, " $1").trim(),
-
-          description: comp.description,
-
-          componentType: comp.componentType,
-
-          componentName: comp.componentName,
-
-          category: comp.category,
-
-          hasEnhancedSchema: !!comp.defaultData, // Has enhanced schema if it has default data
-
-          schema: comp.schema,
-
-          defaultData: comp.defaultData,
-
-          filePath: comp.filePath,
-
-          pageType: comp.pageType,
-
-          dataStructure: comp.dataStructure,
-
-        }));
+        const formattedComponents = registryComponents.map((comp) => {
+          // Enrich registry component with enhanced schema/defaults if available
+          const generalSchema = getGeneralComponentSchema(comp.componentType);
+          
+          return {
+            id: comp.componentType,
+            name: comp.componentName || generalSchema?.displayName || comp.componentType.replace(/([A-Z])/g, " $1").trim(),
+            description: comp.description || generalSchema?.description,
+            componentType: comp.componentType,
+            componentName: comp.componentName,
+            category: comp.category,
+            // Has enhanced schema if defined in registry OR in general schemas
+            hasEnhancedSchema: !!(comp.defaultData || generalSchema?.defaultData || comp.schema || generalSchema?.schema),
+            schema: comp.schema || generalSchema?.schema,
+            defaultData: comp.defaultData || generalSchema?.defaultData,
+            filePath: comp.filePath,
+            pageType: comp.pageType,
+            dataStructure: comp.dataStructure,
+          };
+        });
 
 
 
@@ -861,12 +850,6 @@ const EnhancedPageBuilder = () => {
 
         // Filter out excluded components
         const excludedComponentTypes = [
-          'Services',
-          'ServicesSection',
-          'IndustriesSection',
-          'TestimonialsSection',
-          'Testimonials', 
-          'Industries',
           'RetailImplementationSection',
           'RetailIndustryStats',
         ];

@@ -423,11 +423,16 @@ const DynamicFormGenerator = ({
         // Recursively create default values for nested objects
 
         if (prop.type === "string") {
-          defaultItem[key] = prop.placeholder || "";
+          if (key === "id" || key === "key") {
+            // Generate a unique ID to avoid React key collisions
+            defaultItem[key] = `id_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+          } else {
+            defaultItem[key] = prop.defaultData || "";
+          }
         } else if (prop.type === "number") {
-          defaultItem[key] = 0;
+          defaultItem[key] = prop.defaultData ?? 0;
         } else if (prop.type === "boolean") {
-          defaultItem[key] = false;
+          defaultItem[key] = prop.defaultData ?? false;
         } else if (prop.type === "array") {
           defaultItem[key] = [];
         } else if (prop.type === "object" && prop.properties) {
