@@ -13,7 +13,7 @@ const CategorySelector = ({ value, onChange }) => {
       try {
         setLoading(true);
         setError(null);
-        const res = await api.get("/Categories/navbar");
+        const res = await api.get("/Categories");
         const list = Array.isArray(res.data) ? res.data : [];
 
         setCategories(list);
