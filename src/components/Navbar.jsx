@@ -343,7 +343,7 @@ const Navbar = () => {
                         key={cat.id}
                         to={mainPageUrl}
                         className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${navbarTheme === "light"
-                          ? "text-white hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
+                          ? "text-black hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
                           : "text-white hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
                           }`}
                       >
@@ -364,8 +364,8 @@ const Navbar = () => {
                     >
                       <button
                         className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${openDropdown === cat.id
-                          ? "text-white border-blue-400/20 shadow"
-                          : "text-white hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
+                          ? navbarTheme === "light" ? "text-black border-blue-400/20 shadow" : "text-white border-blue-400/20 shadow"
+                          : navbarTheme === "light" ? "text-black hover:text-[var(--color-primary)] border-transparent hover:border-black/20" : "text-white hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
                           }`}
                         onClick={() => toggleDropdown(cat.id)}
                         aria-expanded={openDropdown === cat.id}
@@ -422,8 +422,8 @@ const Navbar = () => {
                         >
                           <button
                             className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${openDropdown === "more"
-                              ? "text-white border-blue-400/20 shadow"
-                              : "text-white hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
+                              ? navbarTheme === "light" ? "text-black border-blue-400/20 shadow" : "text-white border-blue-400/20 shadow"
+                              : navbarTheme === "light" ? "text-black hover:text-[var(--color-primary)] border-transparent hover:border-black/20" : "text-white hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
                               }`}
                             onClick={() => toggleDropdown("more")}
                           >
