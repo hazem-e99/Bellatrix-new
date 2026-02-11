@@ -1661,7 +1661,9 @@ const EnhancedPageBuilder = () => {
 
           : -1;
 
-        nextOrderIndex = maxOrderIndex + 1;
+        // Start from at least 1 to avoid 0-index issues and ghost row conflicts
+
+        nextOrderIndex = Math.max(maxOrderIndex + 1, 1);
 
 
 
@@ -1869,13 +1871,13 @@ const EnhancedPageBuilder = () => {
 
               console.warn(
 
-                " [RETRY] Duplicate order index detected, refetching components..."
+                " [RETRY] Duplicate order index detected, trying higher orderIndex..."
 
               );
 
 
 
-              // Refetch latest components and recalculate order index
+              // Refetch latest components to get known indices
 
               const refreshedComponents = await pagesAPI.getPageComponents(
 
@@ -1883,21 +1885,43 @@ const EnhancedPageBuilder = () => {
 
               );
 
-              const refreshedMax = refreshedComponents.length
+              const usedIndices = refreshedComponents.map((c) => c.orderIndex ?? 0);
 
-                ? Math.max(...refreshedComponents.map((c) => c.orderIndex ?? 0))
 
-                : -1;
 
-              nextOrderIndex = refreshedMax + 1;
+              // Bump nextOrderIndex past the conflicting value
+
+              // If API returns 0 components but DB has ghost rows,
+
+              // keep incrementing past the conflicting index.
+
+              nextOrderIndex = nextOrderIndex + 1;
+
+              while (usedIndices.includes(nextOrderIndex)) {
+
+                nextOrderIndex++;
+
+              }
+
+
+
+              // If still getting conflicts after first bump, use a high value
+
+              if (attempt >= 1) {
+
+                nextOrderIndex = Math.max(nextOrderIndex, 100 + Math.floor(Date.now() % 10000));
+
+              }
 
 
 
               console.log(
 
-                " [RETRY] Recalculated nextOrderIndex:",
+                " [RETRY] New nextOrderIndex:",
 
-                nextOrderIndex
+                nextOrderIndex,
+
+                "(attempt", attempt + 2, "of", MAX_RETRIES, ")"
 
               );
 

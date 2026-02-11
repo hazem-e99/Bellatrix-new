@@ -693,7 +693,9 @@ const PageComponentsEditor = ({
 
         : -1;
 
-      let nextOrderIndex = maxOrderIndex + 1;
+      // Start from at least 1 to avoid 0-index issues, and use max+1 normally
+
+      let nextOrderIndex = Math.max(maxOrderIndex + 1, 1);
 
 
 
@@ -887,13 +889,13 @@ const PageComponentsEditor = ({
 
             console.warn(
 
-              " [RETRY] Duplicate order index detected, normalizing all order indices..."
+              " [RETRY] Duplicate order index detected, trying higher orderIndex..."
 
             );
 
 
 
-            // Refetch latest components
+            // Refetch latest components to get accurate state
 
             const refreshedComponents = await pagesAPI.getPageComponents(
 
@@ -901,37 +903,47 @@ const PageComponentsEditor = ({
 
             );
 
-            // Normalize all order indices to be unique and sequential
+            // Get all known orderIndex values
 
-            const normalized = refreshedComponents
+            const usedIndices = refreshedComponents.map((c) => c.orderIndex ?? 0);
 
-              .sort((a, b) => (a.orderIndex ?? 0) - (b.orderIndex ?? 0))
 
-              .map((c, idx) => ({ ...c, orderIndex: idx }));
 
-            // Update all components in backend
+            // Bump nextOrderIndex: try the next integer after current, 
 
-            for (const comp of normalized) {
+            // and also skip any known used indices.
 
-              await pagesAPI.updatePageComponent(comp.id, {
+            // If API returns 0 components but DB has ghost rows, 
 
-                ...comp,
+            // keep incrementing past the conflicting index.
 
-                orderIndex: comp.orderIndex,
+            nextOrderIndex = nextOrderIndex + 1;
 
-              });
+            while (usedIndices.includes(nextOrderIndex)) {
+
+              nextOrderIndex++;
 
             }
 
-            // Recalculate nextOrderIndex
 
-            nextOrderIndex = normalized.length;
+
+            // If still getting conflicts after increment, use a timestamp-based high value
+
+            if (attempt >= 1) {
+
+              nextOrderIndex = Math.max(nextOrderIndex, 100 + Math.floor(Date.now() % 10000));
+
+            }
+
+
 
             console.log(
 
-              " [RETRY] Normalized all order indices. Next orderIndex:",
+              " [RETRY] New nextOrderIndex:",
 
-              nextOrderIndex
+              nextOrderIndex,
+
+              "(attempt", attempt + 2, "of", MAX_RETRIES, ")"
 
             );
 
@@ -1315,7 +1327,7 @@ const PageComponentsEditor = ({
 
 
 
-      // Update local state immediately
+      // Update local state immediately (optimistic)
 
       setComponents((prevComponents) => {
 
@@ -1336,6 +1348,22 @@ const PageComponentsEditor = ({
         return updatedComponents;
 
       });
+
+
+
+      // Force reload from server to ensure state is in sync with DB
+
+      // This prevents ghost row issues when adding components right after delete
+
+      try {
+
+        await loadComponents(true);
+
+      } catch (reloadErr) {
+
+        console.warn(" [DELETE] Post-delete reload failed, using optimistic state:", reloadErr);
+
+      }
 
 
 
