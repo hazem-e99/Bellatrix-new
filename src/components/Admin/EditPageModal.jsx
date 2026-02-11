@@ -42,20 +42,7 @@ const EditPageModal = ({ isOpen, onClose, page, onSave, showToast }) => {
     const loadCategories = async () => {
       try {
         const cats = await pagesAPI.getCategories();
-
-        // Filter out "Home" and "About" categories
-        const filteredCats = cats.filter((category) => {
-          const name = category.name?.toLowerCase();
-          const slug = category.slug?.toLowerCase();
-          return (
-            name !== "home" &&
-            name !== "about" &&
-            slug !== "home" &&
-            slug !== "about"
-          );
-        });
-
-        setCategories(filteredCats);
+        setCategories(cats);
       } catch (error) {
         console.error("Error loading categories:", error);
         showToast("Error loading categories", "error");

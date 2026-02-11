@@ -79,7 +79,13 @@ function CategoriesManagement() {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      const res = await fetch(NAVBAR_API);
+      const token = localStorage.getItem("adminToken");
+      const res = await fetch(API_BASE, {
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+      });
       const data = await res.json();
       let cats = [];
       if (Array.isArray(data)) {
