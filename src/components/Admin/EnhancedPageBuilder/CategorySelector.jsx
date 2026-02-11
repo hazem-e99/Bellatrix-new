@@ -94,4 +94,3 @@ const CategorySelector = ({ value, onChange }) => {
 };
 
 export default CategorySelector;
-

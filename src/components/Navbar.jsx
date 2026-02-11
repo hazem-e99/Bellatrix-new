@@ -245,11 +245,10 @@ const Navbar = () => {
       />
 
       <nav
-        className={`fixed w-full top-0 left-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-gray-900/10 shadow-2xl backdrop-blur-md"
-            : "bg-transparent backdrop-blur-md"
-        }`}
+        className={`fixed w-full top-0 left-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-gray-900/10 shadow-2xl backdrop-blur-md"
+          : "bg-transparent backdrop-blur-md"
+          }`}
       >
         {/* Floating Geometric Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -315,180 +314,169 @@ const Navbar = () => {
                   Loading...
                 </span>
               ) : Array.isArray(categories) && categories.length > 0 ? (
-                <>
-                  {/* First 4 Categories */}
-                  {categories.slice(0, 4).map((cat) => {
-                    // Check if category is Home or About (case-insensitive)
-                    const isHomeOrAbout = ["home", "about"].includes(
-                      cat.name?.toLowerCase(),
-                    );
-                    // Get main page URL from category data
+                (() => {
+                  // 1. Separate Home and About from the rest
+                  const homeCategory = categories.find(cat => cat.name?.toLowerCase() === "home");
+                  const aboutCategory = categories.find(cat => cat.name?.toLowerCase() === "about");
+                  const otherCategories = categories.filter(cat =>
+                    cat.id !== homeCategory?.id && cat.id !== aboutCategory?.id
+                  );
+
+                  // 2. Define limit for main display (items between Home and More/About)
+                  const DISPLAY_LIMIT = 3;
+                  const mainOtherCategories = otherCategories.slice(0, DISPLAY_LIMIT);
+                  const moreCategories = otherCategories.slice(DISPLAY_LIMIT);
+
+                  // Helper to render a direct link (for Home/About)
+                  const renderDirectLink = (cat) => {
+                    const nameSlug = cat.name?.toLowerCase().replace(/\s+/g, '-');
                     const mainPageUrl = cat.mainPageSlug
                       ? `/${cat.mainPageSlug}`
                       : cat.pages && cat.pages.length > 0
-                      ? cat.pages[0].slug
-                        ? `/${cat.pages[0].slug}`
-                        : `/${cat.pages[0].id}`
-                      : "/";
+                        ? cat.pages[0].slug
+                          ? `/${cat.pages[0].slug}`
+                          : `/${cat.pages[0].id}`
+                        : `/${nameSlug || ""}`;
 
-                    // For Home/About categories - render as direct link without dropdown
-                    if (isHomeOrAbout) {
-                      return (
-                        <Link
-                          key={cat.id}
-                          to={mainPageUrl}
-                          className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${
-                            navbarTheme === "light"
-                              ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
-                              : "text-[var(--color-text-light)]/90 hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
-                          }`}
-                        >
-                          <span className="truncate max-w-[100px] xl:max-w-none">
-                            {cat.name}
-                          </span>
-                        </Link>
-                      );
-                    }
-
-                    // For other categories - render with dropdown
                     return (
-                      <div
-                        className="relative"
+                      <Link
                         key={cat.id}
-                        onMouseEnter={() => handleMenuEnter(cat.id)}
-                        onMouseLeave={handleMenuLeave}
-                      >
-                        <button
-                          className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${
-                            openDropdown === cat.id
-                              ? navbarTheme === "light"
-                                ? "text-[var(--color-text-dark)] border-blue-400/20 shadow"
-                                : "text-[var(--color-text-light)] border-blue-400/30 shadow"
-                              : navbarTheme === "light"
-                              ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
-                              : "text-[var(--color-text-light)]/90 hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
+                        to={mainPageUrl}
+                        className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${navbarTheme === "light"
+                          ? "text-white hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
+                          : "text-white hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
                           }`}
-                          onClick={() => toggleDropdown(cat.id)}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              e.preventDefault();
-                              toggleDropdown(cat.id);
-                            }
-                          }}
-                          aria-expanded={openDropdown === cat.id}
-                          aria-haspopup="true"
-                        >
-                          <span className="truncate max-w-[100px] xl:max-w-none">
-                            {cat.name}
-                          </span>
-                          {cat.pages && cat.pages.length > 0 && (
-                            <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
-                          )}
-                        </button>
-                        <AnimatePresence>
-                          {openDropdown === cat.id &&
-                            cat.pages &&
-                            cat.pages.length > 0 && (
-                              <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                className="absolute left-0 mt-2 w-56 bg-white/70 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg z-50 py-2"
-                                onMouseEnter={() => handleMenuEnter(cat.id)}
-                                onMouseLeave={handleMenuLeave}
-                              >
-                                {cat.pages
-                                  ?.filter((page) => page.isPublished === true)
-                                  .map((page) => (
-                                    <Link
-                                      key={page.id}
-                                      to={
-                                        page.slug
-                                          ? `/${page.slug}`
-                                          : `/${page.id}`
-                                      }
-                                      className="block px-5 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-base font-medium"
-                                    >
-                                      {page.title}
-                                    </Link>
-                                  ))}
-                              </motion.div>
-                            )}
-                        </AnimatePresence>
-                      </div>
+                      >
+                        <span className="truncate max-w-[100px] xl:max-w-none">
+                          {cat.name}
+                        </span>
+                      </Link>
                     );
-                  })}
+                  };
 
-                  {/* More Dropdown for remaining categories */}
-                  {categories.length > 4 && (
+                  // Helper to render a dropdown link
+                  const renderDropdownLink = (cat) => (
                     <div
                       className="relative"
-                      onMouseEnter={() => handleMenuEnter("more")}
+                      key={cat.id}
+                      onMouseEnter={() => handleMenuEnter(cat.id)}
                       onMouseLeave={handleMenuLeave}
                     >
                       <button
-                        className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${
-                          openDropdown === "more"
-                            ? navbarTheme === "light"
-                              ? "text-[var(--color-text-dark)] border-blue-400/20 shadow"
-                              : "text-[var(--color-text-light)] border-blue-400/30 shadow"
-                            : navbarTheme === "light"
-                            ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
-                            : "text-[var(--color-text-light)]/90 hover:text-[var(--color-primary-light)] border-transparent hover:border-white/20"
-                        }`}
-                        onClick={() => toggleDropdown("more")}
+                        className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${openDropdown === cat.id
+                          ? "text-white border-blue-400/20 shadow"
+                          : "text-white hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
+                          }`}
+                        onClick={() => toggleDropdown(cat.id)}
+                        aria-expanded={openDropdown === cat.id}
+                        aria-haspopup="true"
                       >
-                        <span>More</span>
-                        <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
+                        <span className="truncate max-w-[100px] xl:max-w-none">
+                          {cat.name}
+                        </span>
+                        {cat.pages && cat.pages.length > 0 && (
+                          <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
+                        )}
                       </button>
                       <AnimatePresence>
-                        {openDropdown === "more" && (
+                        {openDropdown === cat.id && cat.pages && cat.pages.length > 0 && (
                           <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
-                            className="absolute right-0 mt-2 w-72 bg-white/80 backdrop-blur-xl border border-gray-200 rounded-xl shadow-lg z-50 py-2 overflow-hidden"
-                            onMouseEnter={() => handleMenuEnter("more")}
+                            className="absolute left-0 mt-2 w-56 bg-white/70 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg z-50 py-2"
+                            onMouseEnter={() => handleMenuEnter(cat.id)}
                             onMouseLeave={handleMenuLeave}
                           >
-                            <div className="max-h-[70vh] overflow-y-auto px-1 custom-scrollbar">
-                              {categories.slice(4).map((cat) => (
-                                <div key={cat.id} className="mb-2 last:mb-0">
-                                  <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
-                                    {cat.name}
-                                  </div>
-                                  {cat.pages && cat.pages.length > 0 ? (
-                                    cat.pages
-                                      .filter(
-                                        (page) => page.isPublished === true,
-                                      )
-                                      .map((page) => (
-                                        <Link
-                                          key={page.id}
-                                          to={
-                                            page.slug
-                                              ? `/${page.slug}`
-                                              : `/${page.id}`
-                                          }
-                                          className="block px-5 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-sm font-medium ml-2"
-                                        >
-                                          {page.title}
-                                        </Link>
-                                      ))
-                                  ) : (
-                                    <span className="block px-5 py-2 text-gray-400 text-sm italic ml-2">
-                                      No pages
-                                    </span>
-                                  )}
-                                </div>
+                            {cat.pages
+                              ?.filter((page) => page.isPublished === true)
+                              .map((page) => (
+                                <Link
+                                  key={page.id}
+                                  to={page.slug ? `/${page.slug}` : `/${page.id}`}
+                                  className="block px-5 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-base font-medium"
+                                >
+                                  {page.title}
+                                </Link>
                               ))}
-                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
                     </div>
-                  )}
-                </>
+                  );
+
+                  return (
+                    <>
+                      {/* 1. Home always first */}
+                      {homeCategory && renderDirectLink(homeCategory)}
+
+                      {/* 2. Main other categories */}
+                      {mainOtherCategories.map(cat => renderDropdownLink(cat))}
+
+                      {/* 3. More dropdown before About */}
+                      {moreCategories.length > 0 && (
+                        <div
+                          className="relative"
+                          onMouseEnter={() => handleMenuEnter("more")}
+                          onMouseLeave={handleMenuLeave}
+                        >
+                          <button
+                            className={`flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors duration-300 border ${openDropdown === "more"
+                              ? "text-white border-blue-400/20 shadow"
+                              : "text-white hover:text-[var(--color-primary)] border-transparent hover:border-black/20"
+                              }`}
+                            onClick={() => toggleDropdown("more")}
+                          >
+                            <span>More</span>
+                            <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
+                          </button>
+                          <AnimatePresence>
+                            {openDropdown === "more" && (
+                              <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="absolute right-0 mt-2 w-72 bg-white/80 backdrop-blur-xl border border-gray-200 rounded-xl shadow-lg z-50 py-2 overflow-hidden"
+                                onMouseEnter={() => handleMenuEnter("more")}
+                                onMouseLeave={handleMenuLeave}
+                              >
+                                <div className="max-h-[70vh] overflow-y-auto px-1 custom-scrollbar">
+                                  {moreCategories.map((cat) => (
+                                    <div key={cat.id} className="mb-2 last:mb-0">
+                                      <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                        {cat.name}
+                                      </div>
+                                      {cat.pages && cat.pages.length > 0 ? (
+                                        cat.pages
+                                          .filter((page) => page.isPublished === true)
+                                          .map((page) => (
+                                            <Link
+                                              key={page.id}
+                                              to={page.slug ? `/${page.slug}` : `/${page.id}`}
+                                              className="block px-5 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-sm font-medium ml-2"
+                                            >
+                                              {page.title}
+                                            </Link>
+                                          ))
+                                      ) : (
+                                        <span className="block px-5 py-2 text-gray-400 text-sm italic ml-2">
+                                          No pages
+                                        </span>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      )}
+
+                      {/* 4. About always last */}
+                      {aboutCategory && renderDirectLink(aboutCategory)}
+                    </>
+                  );
+                })()
               ) : (
                 <span style={{ display: "none" }} />
               )}
@@ -499,9 +487,8 @@ const Navbar = () => {
                   toggleTheme(theme === "default" ? "purple" : "default")
                 }
                 className="relative ml-2 px-3 py-3 bg-[var(--color-white)]/10 hover:bg-[var(--color-white)]/20 text-[var(--color-white)] text-sm font-medium rounded-xl transition-all duration-300 border border-[var(--color-white)]/10 backdrop-blur-sm cursor-pointer"
-                title={`Switch to ${
-                  theme === "default" ? "Gray" : "Blue"
-                } theme`}
+                title={`Switch to ${theme === "default" ? "Gray" : "Blue"
+                  } theme`}
               >
                 <span className="text-lg">{theme === "default" ? "" : ""}</span>
               </button>
@@ -519,11 +506,10 @@ const Navbar = () => {
             <div className="lg:hidden flex items-center">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`inline-flex items-center justify-center p-3 rounded-xl hover:bg-white/10 focus:outline-none border border-white/10 backdrop-blur-sm transition-colors duration-300 ${
-                  navbarTheme === "light"
-                    ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)]"
-                    : "text-[var(--color-text-light)]/90 hover:text-[var(--color-text-light)]"
-                }`}
+                className={`inline-flex items-center justify-center p-3 rounded-xl hover:bg-white/10 focus:outline-none border border-white/10 backdrop-blur-sm transition-colors duration-300 ${navbarTheme === "light"
+                  ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)]"
+                  : "text-[var(--color-text-light)]/90 hover:text-[var(--color-text-light)]"
+                  }`}
               >
                 {mobileMenuOpen ? (
                   <XMarkIcon className="block h-6 w-6" />
@@ -550,48 +536,40 @@ const Navbar = () => {
                   Loading...
                 </span>
               ) : Array.isArray(categories) && categories.length > 0 ? (
-                categories.map((cat) => {
-                  // Check if category is Home or About (case-insensitive)
-                  const isHomeOrAbout = ["home", "about"].includes(
-                    cat.name?.toLowerCase(),
+                (() => {
+                  const homeCategory = categories.find(cat => cat.name?.toLowerCase() === "home");
+                  const aboutCategory = categories.find(cat => cat.name?.toLowerCase() === "about");
+                  const otherCategories = categories.filter(cat =>
+                    cat.id !== homeCategory?.id && cat.id !== aboutCategory?.id
                   );
-                  // Get main page URL from category data
-                  const mainPageUrl = cat.mainPageSlug
-                    ? `/${cat.mainPageSlug}`
-                    : cat.pages && cat.pages.length > 0
-                    ? cat.pages[0].slug
-                      ? `/${cat.pages[0].slug}`
-                      : `/${cat.pages[0].id}`
-                    : "/";
 
-                  // For Home/About categories - render as direct link without dropdown
-                  if (isHomeOrAbout) {
+                  const renderMobileDirectLink = (cat) => {
+                    const nameSlug = cat.name?.toLowerCase().replace(/\s+/g, '-');
+                    const mainPageUrl = cat.mainPageSlug
+                      ? `/${cat.mainPageSlug}`
+                      : cat.pages && cat.pages.length > 0
+                        ? cat.pages[0].slug
+                          ? `/${cat.pages[0].slug}`
+                          : `/${cat.pages[0].id}`
+                        : `/${nameSlug || ""}`;
+
                     return (
                       <Link
                         key={cat.id}
                         to={mainPageUrl}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`w-full flex justify-between items-center px-4 py-3 text-base font-medium rounded-xl hover:bg-white/10 transition-colors duration-300 border border-white/10 ${
-                          navbarTheme === "light"
-                            ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)]"
-                            : "text-[var(--color-text-light)]/90 hover:text-[var(--color-text-light)]"
-                        }`}
+                        className={`w-full flex justify-between items-center px-4 py-3 text-base font-medium rounded-xl hover:bg-white/10 transition-colors duration-300 border border-white/10 text-white`}
                       >
                         <span>{cat.name}</span>
                       </Link>
                     );
-                  }
+                  };
 
-                  // For other categories - render with dropdown
-                  return (
+                  const renderMobileDropdownLink = (cat) => (
                     <div className="relative" key={cat.id}>
                       <button
                         onClick={() => toggleDropdown(cat.id)}
-                        className={`w-full flex justify-between items-center px-4 py-3 text-base font-medium rounded-xl hover:bg-white/10 transition-colors duration-300 border border-white/10 ${
-                          navbarTheme === "light"
-                            ? "text-[var(--color-text-dark)]/90 hover:text-[var(--color-primary)]"
-                            : "text-[var(--color-text-light)]/90 hover:text-[var(--color-text-light)]"
-                        }`}
+                        className={`w-full flex justify-between items-center px-4 py-3 text-base font-medium rounded-xl hover:bg-white/10 transition-colors duration-300 border border-white/10 text-white`}
                       >
                         <span>{cat.name}</span>
                         {cat.pages && cat.pages.length > 0 && (
@@ -623,7 +601,15 @@ const Navbar = () => {
                         )}
                     </div>
                   );
-                })
+
+                  return (
+                    <>
+                      {homeCategory && renderMobileDirectLink(homeCategory)}
+                      {otherCategories.map(cat => renderMobileDropdownLink(cat))}
+                      {aboutCategory && renderMobileDirectLink(aboutCategory)}
+                    </>
+                  );
+                })()
               ) : (
                 <span className="block px-4 py-3 text-base text-gray-400">
                   No categories
