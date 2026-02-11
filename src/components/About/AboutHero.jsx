@@ -120,7 +120,7 @@ const AboutHero = ({
           <p className="text-xl md:text-2xl text-gray-200 mb-4 leading-relaxed max-w-4xl mx-auto font-medium">
             {heroData.subtitle}
           </p>
-          <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg text-[var(--color-text-light)] mb-8 leading-relaxed max-w-3xl mx-auto">
             {heroData.description}
           </p>
           <button
