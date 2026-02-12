@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const AboutJourney = ({ data = {} }) => {
-  const [defaultData, setDefaultData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data/about.json");
-        const jsonData = await response.json();
-        setDefaultData(jsonData.journey);
-      } catch (error) {
-        console.error("Failed to load About data:", error);
-        // Fallback data
-        setDefaultData({
-          title: "Our Journey",
-          description:
-            "From humble beginnings to becoming a trusted Oracle NetSuite partner, our journey has been marked by innovation, growth, and unwavering commitment to excellence.",
-          timeline: [],
-        });
-      }
-    };
-    fetchData();
-  }, []);
+  // Static fallback data (CMS data comes via props)
+  const defaultData = {
+    title: "Our Journey",
+    description:
+      "From humble beginnings to becoming a trusted Oracle NetSuite partner, our journey has been marked by innovation, growth, and unwavering commitment to excellence.",
+    timeline: [],
+  };
 
   // PRIORITIZE props data over default data for real-time preview
   // Check if data has any actual content (not just an empty object)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const AboutTeam = ({
   teamMembers = [],
@@ -8,27 +8,13 @@ const AboutTeam = ({
   isHovering = false,
   setIsHovering = () => {},
 }) => {
-  const [defaultData, setDefaultData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data/about.json");
-        const jsonData = await response.json();
-        setDefaultData(jsonData.team);
-      } catch (error) {
-        console.error("Failed to load About data:", error);
-        // Fallback data
-        setDefaultData({
-          title: "Meet Our Team",
-          description:
-            "Our diverse team of experts brings together decades of experience in enterprise software, business consulting, and digital transformation.",
-          members: [],
-        });
-      }
-    };
-    fetchData();
-  }, []);
+  // Static fallback data (CMS data comes via props)
+  const defaultData = {
+    title: "Meet Our Team",
+    description:
+      "Our diverse team of experts brings together decades of experience in enterprise software, business consulting, and digital transformation.",
+    members: [],
+  };
 
   // PRIORITIZE props data over default data for real-time preview
   const displayData = data ||

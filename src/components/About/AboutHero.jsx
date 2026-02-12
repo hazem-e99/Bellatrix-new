@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 
 const AboutHero = ({ 
@@ -25,34 +25,20 @@ const AboutHero = ({
       }
     }
   };
-  const [defaultData, setDefaultData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data/about.json");
-        const jsonData = await response.json();
-        setDefaultData(jsonData.hero);
-      } catch (error) {
-        console.error("Failed to load About data:", error);
-        // Fallback data
-        setDefaultData({
-          title: "About Bellatrix",
-          subtitle: "Your trusted partner in digital transformation",
-          description:
-            "We are a leading consultancy firm specializing in NetSuite implementations, business process optimization, and technology solutions that drive growth and efficiency.",
-          backgroundVideo: "/Videos/about-hero.mp4",
-          stats: [
-            { value: "500+", label: "Projects Completed" },
-            { value: "15+", label: "Years Experience" },
-            { value: "98%", label: "Client Satisfaction" },
-            { value: "200+", label: "Happy Clients" },
-          ],
-        });
-      }
-    };
-    fetchData();
-  }, []);
+  // Static fallback data (CMS data comes via props)
+  const defaultData = {
+    title: "About Bellatrix",
+    subtitle: "Your trusted partner in digital transformation",
+    description:
+      "We are a leading consultancy firm specializing in NetSuite implementations, business process optimization, and technology solutions that drive growth and efficiency.",
+    backgroundVideo: "/Videos/about-hero.mp4",
+    stats: [
+      { value: "500+", label: "Projects Completed" },
+      { value: "15+", label: "Years Experience" },
+      { value: "98%", label: "Client Satisfaction" },
+      { value: "200+", label: "Happy Clients" },
+    ],
+  };
 
   // PRIORITIZE direct props > data prop > default data for real-time preview
   const heroData = {

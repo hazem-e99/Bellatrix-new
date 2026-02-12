@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CTAButton from "../CTAButton";
 
 const AboutCTA = ({
@@ -9,47 +9,33 @@ const AboutCTA = ({
   features = [],
   data = {},
 }) => {
-  const [defaultData, setDefaultData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data/about.json");
-        const jsonData = await response.json();
-        setDefaultData(jsonData.cta);
-      } catch (error) {
-        console.error("Failed to load About data:", error);
-        // Fallback data
-        setDefaultData({
-          title: "Ready to Build Something Great?",
-          subtitle:
-            "Let's collaborate to transform your business with innovative solutions that drive growth, efficiency, and success.",
-          description:
-            "Contact us today to discuss how we can help you optimize your operations and drive growth.",
-          buttonText: "Start Consultation",
-          buttonLink: null,
-          features: [
-            {
-              icon: "",
-              title: "Expert Team",
-              description: "Certified professionals with deep industry knowledge",
-            },
-            {
-              icon: "",
-              title: "Proven Track Record",
-              description: "Hundreds of successful implementations",
-            },
-            {
-              icon: "",
-              title: "Ongoing Support",
-              description: "24/7 support to ensure your success",
-            },
-          ],
-        });
-      }
-    };
-    fetchData();
-  }, []);
+  // Static fallback data (CMS data comes via props)
+  const defaultData = {
+    title: "Ready to Build Something Great?",
+    subtitle:
+      "Let's collaborate to transform your business with innovative solutions that drive growth, efficiency, and success.",
+    description:
+      "Contact us today to discuss how we can help you optimize your operations and drive growth.",
+    buttonText: "Start Consultation",
+    buttonLink: null,
+    features: [
+      {
+        icon: "",
+        title: "Expert Team",
+        description: "Certified professionals with deep industry knowledge",
+      },
+      {
+        icon: "",
+        title: "Proven Track Record",
+        description: "Hundreds of successful implementations",
+      },
+      {
+        icon: "",
+        title: "Ongoing Support",
+        description: "24/7 support to ensure your success",
+      },
+    ],
+  };
 
   // PRIORITIZE props data over default data for real-time preview
   // Handle ctaButton which can be an object {text, link, variant} or a string

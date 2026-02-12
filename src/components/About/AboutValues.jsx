@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 const AboutValues = ({ values = [], data = {} }) => {
-  const [defaultData, setDefaultData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/data/about.json");
-        const jsonData = await response.json();
-        setDefaultData(jsonData.values);
-      } catch (error) {
-        console.error("Failed to load About data:", error);
-        // Fallback data
-        setDefaultData({
-          title: "Our Values",
-          description:
-            "These core values guide everything we do and shape how we interact with our clients, partners, and each other.",
-          items: [],
-        });
-      }
-    };
-    fetchData();
-  }, []);
+  // Static fallback data (CMS data comes via props)
+  const defaultData = {
+    title: "Our Values",
+    description:
+      "These core values guide everything we do and shape how we interact with our clients, partners, and each other.",
+    items: [],
+  };
 
   // PRIORITIZE props data over default data for real-time preview
   const displayData = data ||
