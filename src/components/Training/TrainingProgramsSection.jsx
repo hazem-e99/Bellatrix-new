@@ -39,7 +39,7 @@ const TrainingProgramsSection = ({
                 {/* Inner glow container */}
                 <div className="relative bg-gradient-to-br from-white/5 via-transparent to-blue-500/5 rounded-2xl p-4 border border-white/20">
                   <img
-                    src="/images/traning.jpg"
+                    src="/images/training.jpg"
                     alt="Training Programs - Advanced NetSuite Learning Solutions"
                     className="w-full h-auto rounded-xl shadow-2xl brightness-105 contrast-110 saturate-105 group-hover:brightness-110 group-hover:contrast-115 group-hover:saturate-110 transition-all duration-500 filter drop-shadow-xl"
                   />
@@ -133,11 +133,7 @@ const TrainingProgramsSection = ({
                   <p className="text-sm text-gray-600">
                     {program.shortDescription}
                   </p>
-                  <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-xs text-blue-600 font-medium">
-                      Click to learn more
-                    </span>
-                  </div>
+
                 </div>
               ))}
             </div>

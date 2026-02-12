@@ -551,7 +551,7 @@ export const componentRegistry = {
           description:
             "Comprehensive programs designed to enhance your skills and knowledge.",
 
-          image: "/images/traning.jpg",
+          image: "/images/training.jpg",
         },
 
         trainingPrograms: [

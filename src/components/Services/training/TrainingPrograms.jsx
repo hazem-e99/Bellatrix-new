@@ -78,7 +78,7 @@ const TrainingPrograms = ({ programsSection = {}, trainingPrograms = [], openPro
 
                                             <img 
 
-                                                src={programsSection.image || "/images/traning.jpg"} 
+                                                src={programsSection.image || "/images/training.jpg"} 
 
                                                 alt={programsSection.title || "Training Programs - Advanced NetSuite Learning Solutions"} 
 
@@ -90,7 +90,7 @@ const TrainingPrograms = ({ programsSection = {}, trainingPrograms = [], openPro
 
                                                     console.log(' [IMAGE ERROR] Falling back to default image');
 
-                                                    e.target.src = "/images/traning.jpg"; // fallback إذا الصورة الجديدة مش شغالة
+                                                    e.target.src = "/images/training.jpg"; // fallback إذا الصورة الجديدة مش شغالة
 
                                                 }}
 
@@ -248,11 +248,7 @@ const TrainingPrograms = ({ programsSection = {}, trainingPrograms = [], openPro
 
                                             <p className="text-sm text-gray-600">{program.shortDescription}</p>
 
-                                            <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 
-                                                <span className="text-xs text-blue-600 font-medium">Click to learn more</span>
-
-                                            </div>
 
                                         </div>
 

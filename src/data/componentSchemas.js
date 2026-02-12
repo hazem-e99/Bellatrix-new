@@ -656,7 +656,7 @@ export const componentSchemas = {
 
         "Comprehensive training solutions designed to empower your team with the skills they need to excel",
 
-      image: "/images/traning.jpg",
+      image: "/images/training.jpg",
 
       Professional_Badge: "Certified Training",
 

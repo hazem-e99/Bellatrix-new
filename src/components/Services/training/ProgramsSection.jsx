@@ -188,7 +188,7 @@ const ProgramsSection = ({
 
                     <img
 
-                      src={sectionData?.image || "/images/traning.jpg"}
+                      src={sectionData?.image || "/images/training.jpg"}
 
                       alt="Bellatrix Training Programs - Advanced ERP Learning Solutions"
 
@@ -208,11 +208,11 @@ const ProgramsSection = ({
 
                           " [IMAGE ERROR] Fallback to:",
 
-                          "/images/traning.jpg"
+                          "/images/training.jpg"
 
                         );
 
-                        e.target.src = "/images/traning.jpg";
+                        e.target.src = "/images/training.jpg";
 
                       }}
 

@@ -1083,7 +1083,7 @@ const ComponentPreview = ({
                 section.image ||
                 componentData.image ||
                 componentData.data?.image ||
-                "/images/traning.jpg",
+                "/images/training.jpg",
 
               Professional_Badge:
                 section.Professional_Badge ||

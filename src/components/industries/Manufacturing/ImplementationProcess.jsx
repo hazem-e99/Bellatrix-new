@@ -2,7 +2,7 @@ import React from "react";
 import SEO from "../../SEO";
 import ImplementationStepper from "./ImplementationStepper";
 import { useComponentData } from "../../../utils/useComponentData";
-import manufacturingData from "../../../../public/data/manufacturing-data.json";
+import manufacturingData from "../../../data/manufacturing-data.json";
 
 const ImplementationProcess = (props) => {
   // Merge props with default data from JSON

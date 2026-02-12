@@ -1660,7 +1660,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
         data.programsSection?.image || // From existing programsSection
 
-        "/images/traning.jpg"; // Final fallback
+        "/images/training.jpg"; // Final fallback
 
 
 
@@ -1684,7 +1684,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
           programsSectionImage: data.programsSection?.image,
 
-          fallbackImage: "/images/traning.jpg",
+          fallbackImage: "/images/training.jpg",
 
         },
 
@@ -1766,7 +1766,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
         subtitle: data.subtitle || "We provide world-class training solutions",
 
-        image: data.image || "/images/choose.png",
+        image: data.image || "/images/indleaders.jpg",
 
         Professional_Badge: data.badge || "Excellence Training",
 

@@ -3616,7 +3616,7 @@ const EnhancedPageBuilder = () => {
 
           "Comprehensive training solutions designed to empower your team with the skills they need to excel",
 
-        image: "/images/traning.jpg",
+        image: "/images/training.jpg",
 
         Professional_Badge: "Certified Training",
 
@@ -4796,7 +4796,7 @@ const EnhancedPageBuilder = () => {
 
             "Comprehensive training solutions designed to empower your team with the skills they need to excel",
 
-          image: "/images/traning.jpg",
+          image: "/images/training.jpg",
 
           Professional_Badge: "Certified Training",
 
@@ -4860,7 +4860,7 @@ const EnhancedPageBuilder = () => {
 
             "We provide world-class training solutions that combine expertise, innovation, and practical application to ensure your team's success",
 
-          image: "/images/chooese.png",
+          image: "/images/indleaders.jpg",
 
           Professional_Badge: "Excellence Training",
 

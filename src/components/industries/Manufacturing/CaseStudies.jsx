@@ -7,7 +7,7 @@ import SEO from "../../SEO";
 
 import { useComponentData } from "../../../utils/useComponentData";
 
-import manufacturingData from "../../../../public/data/manufacturing-data.json";
+import manufacturingData from "../../../data/manufacturing-data.json";
 
 const CaseStudies = (props) => {
   // Handle both flat props and data object

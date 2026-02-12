@@ -54,11 +54,7 @@ const TrainingProgramCard = ({ program, index, renderIcon, onClick }) => {
           {program.shortDescription ||
             "Professional Bellatrix training course"}
         </p>
-        <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="text-xs text-blue-600 font-medium">
-            Click to learn more
-          </span>
-        </div>
+
       </article>
     </>
   );
