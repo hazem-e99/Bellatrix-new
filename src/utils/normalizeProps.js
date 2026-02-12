@@ -41,13 +41,13 @@ const cleanCorruptedData = (data) => {
 const normalizeGenericCTA = (data, defaultTitle) => {
   const baseData = data.data || data;
   const features = baseData.features || baseData.items || data.features || data.items || [];
-  
-  const btnText = 
-    baseData.buttonText || 
-    baseData.ctaButton?.text || 
-    (typeof baseData.ctaButton === 'string' ? baseData.ctaButton : null) || 
-    data.buttonText || 
-    data.ctaButton?.text || 
+
+  const btnText =
+    baseData.buttonText ||
+    baseData.ctaButton?.text ||
+    (typeof baseData.ctaButton === 'string' ? baseData.ctaButton : null) ||
+    data.buttonText ||
+    data.ctaButton?.text ||
     "Get Started";
 
   return {
@@ -57,12 +57,12 @@ const normalizeGenericCTA = (data, defaultTitle) => {
     description: baseData.description || data.description || "",
     features: Array.isArray(features) ? features : [],
     ctaButton: {
-        text: btnText,
-        link: baseData.ctaButton?.link || baseData.buttonLink || null,
-        variant: baseData.ctaButton?.variant || "primary"
+      text: btnText,
+      link: baseData.ctaButton?.link || baseData.buttonLink || null,
+      variant: baseData.ctaButton?.variant || "primary"
     },
     // Include data wrapper for compatibility and pass through original fields
-    data: { ...baseData, features: Array.isArray(features) ? features : [] } 
+    data: { ...baseData, features: Array.isArray(features) ? features : [] }
   };
 };
 
@@ -114,15 +114,15 @@ export const normalizeProps = (componentType, contentJson) => {
     // Home Hero Section
     HeroSection: (data) => {
       console.log(" [HeroSection] Raw form data:", data);
-      
+
       let slides = data.slides;
       if (!slides || !Array.isArray(slides) || slides.length === 0) {
-          slides = [{
-             title: data.title || "Welcome",
-             subtitle: data.subtitle || "",
-             description: data.description || data.content || "",
-             video: data.video || data.backgroundVideo || "/Videos/implementation/homepage_hero.mp4"
-          }];
+        slides = [{
+          title: data.title || "Welcome",
+          subtitle: data.subtitle || "",
+          description: data.description || data.content || "",
+          video: data.video || data.backgroundVideo || "/Videos/implementation/homepage_hero.mp4"
+        }];
       }
 
       return {
@@ -135,18 +135,19 @@ export const normalizeProps = (componentType, contentJson) => {
 
     // HR Hero Section
     HRHeroSection: (data) => {
+      const video = data.backgroundVideo || data.bgVideo || data.backgroundImage || "/Videos/hrVideo.mp4";
       return {
         // Direct props for component compatibility
         title: data.title || "Modern HR, Payroll & People Management",
         subtitle: data.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
-        bgVideo: data.bgVideo || data.backgroundImage || "/Videos/hrVideo.mp4",
+        bgVideo: video,
         bgColor: data.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
         // Nested structure for data prop
         data: {
           hero: {
             title: data.title || "Modern HR, Payroll & People Management",
             subtitle: data.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
-            bgVideo: data.bgVideo || data.backgroundImage || "/Videos/hrVideo.mp4",
+            bgVideo: video,
             bgColor: data.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
           }
         }
@@ -155,460 +156,460 @@ export const normalizeProps = (componentType, contentJson) => {
 
     // About Team Section
     AboutTeam: (data) => {
-       const members = data.members || data.items || data.teamMembers || [];
-       return {
-           teamMembers: members,
-           data: {
-               title: data.title || "Meet Our Team",
-               description: data.description || "",
-               members: members
-           }
-       };
+      const members = data.members || data.items || data.teamMembers || [];
+      return {
+        teamMembers: members,
+        data: {
+          title: data.title || "Meet Our Team",
+          description: data.description || "",
+          members: members
+        }
+      };
     },
     AboutTeamSection: (data) => {
-       const members = data.members || data.items || data.teamMembers || [];
-       return {
-           teamMembers: members,
-           data: {
-               title: data.title || "Meet Our Team",
-               description: data.description || "",
-               members: members
-           }
-       };
+      const members = data.members || data.items || data.teamMembers || [];
+      return {
+        teamMembers: members,
+        data: {
+          title: data.title || "Meet Our Team",
+          description: data.description || "",
+          members: members
+        }
+      };
     },
 
     // Manufacturing Case Studies Section
     ManufacturingCaseStudiesSection: (data) => {
-        const items = data.items || data.caseStudies || [];
-        return {
-            title: data.title || "Success Stories",
-            description: data.description || "",
-            items: items,
-            caseStudies: items,
-            data: {
-                title: data.title || "Success Stories",
-                description: data.description || "",
-                items: items,
-                caseStudies: items
-            }
-        };
+      const items = data.items || data.caseStudies || [];
+      return {
+        title: data.title || "Success Stories",
+        description: data.description || "",
+        items: items,
+        caseStudies: items,
+        data: {
+          title: data.title || "Success Stories",
+          description: data.description || "",
+          items: items,
+          caseStudies: items
+        }
+      };
     },
     // Alias for ManufacturingCaseStudies (without Section suffix) - matches componentMap.js
     ManufacturingCaseStudies: (data) => {
-        const items = data.items || data.caseStudies || [];
-        return {
-            title: data.title || "Success Stories",
-            description: data.description || "",
-            items: items,
-            caseStudies: items,
-            data: {
-                title: data.title || "Success Stories",
-                description: data.description || "",
-                items: items,
-                caseStudies: items
-            }
-        };
+      const items = data.items || data.caseStudies || [];
+      return {
+        title: data.title || "Success Stories",
+        description: data.description || "",
+        items: items,
+        caseStudies: items,
+        data: {
+          title: data.title || "Success Stories",
+          description: data.description || "",
+          items: items,
+          caseStudies: items
+        }
+      };
     },
     CaseStudiesSection: (data) => {
-        const items = data.items || data.caseStudies || [];
-        return {
-            title: data.title || "Success Stories",
-            description: data.description || "",
-            items: items,
-            caseStudies: items,
-            data: {
-                title: data.title || "Success Stories",
-                description: data.description || "",
-                items: items,
-                caseStudies: items
-            }
-        };
+      const items = data.items || data.caseStudies || [];
+      return {
+        title: data.title || "Success Stories",
+        description: data.description || "",
+        items: items,
+        caseStudies: items,
+        data: {
+          title: data.title || "Success Stories",
+          description: data.description || "",
+          items: items,
+          caseStudies: items
+        }
+      };
     },
 
     // Retail Challenges Section
     RetailChallengesSection: (data) => {
-        const challenges = data.retailChallenges || data.challenges || data.items || [];
-        return {
-            title: data.title || "Retail Challenges",
-            subtitle: data.subtitle || "",
-            description: data.description || "",
-            challenges: challenges,
-            retailChallenges: challenges,
-            image: data.image || "",
-            data: {
-                title: data.title || "Retail Challenges",
-                subtitle: data.subtitle || "",
-                description: data.description || "",
-                challenges: challenges,
-                image: data.image || ""
-            }
-        };
+      const challenges = data.retailChallenges || data.challenges || data.items || [];
+      return {
+        title: data.title || "Retail Challenges",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        challenges: challenges,
+        retailChallenges: challenges,
+        image: data.image || "",
+        data: {
+          title: data.title || "Retail Challenges",
+          subtitle: data.subtitle || "",
+          description: data.description || "",
+          challenges: challenges,
+          image: data.image || ""
+        }
+      };
     },
 
     // Manufacturing Challenges Section
     ManufacturingChallengesSection: (data) => {
-        const challenges = data.challenges || data.items || [];
-        return {
-            title: data.title || "Manufacturing Challenges",
-            subtitle: data.subtitle || "",
-            description: data.description || "",
-            challenges: challenges,
-            image: data.image || "",
-            data: {
-                title: data.title || "Manufacturing Challenges",
-                subtitle: data.subtitle || "",
-                description: data.description || "",
-                challenges: challenges,
-                image: data.image || ""
-            }
-        };
+      const challenges = data.challenges || data.items || [];
+      return {
+        title: data.title || "Manufacturing Challenges",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        challenges: challenges,
+        image: data.image || "",
+        data: {
+          title: data.title || "Manufacturing Challenges",
+          subtitle: data.subtitle || "",
+          description: data.description || "",
+          challenges: challenges,
+          image: data.image || ""
+        }
+      };
     },
 
     // Manufacturing Solutions Section
     ManufacturingSolutionsSection: (data) => {
-        const solutions = data.solutions || data.items || [];
-        // Normalize features in each solution
-        const normalizedSolutions = solutions.map(sol => {
-            let features = sol.features;
-            if (typeof features === 'string') {
-                features = features.split(',').map(f => f.trim()).filter(f => f);
-            }
-            return {
-                ...sol,
-                features: Array.isArray(features) ? features : []
-            };
-        });
+      const solutions = data.solutions || data.items || [];
+      // Normalize features in each solution
+      const normalizedSolutions = solutions.map(sol => {
+        let features = sol.features;
+        if (typeof features === 'string') {
+          features = features.split(',').map(f => f.trim()).filter(f => f);
+        }
         return {
-            title: data.title || "NetSuite Solutions",
-            subtitle: data.subtitle || "",
-            description: data.description || "",
-            solutions: normalizedSolutions,
-            image: data.image || "",
-            data: {
-                title: data.title || "NetSuite Solutions",
-                subtitle: data.subtitle || "",
-                description: data.description || "",
-                solutions: normalizedSolutions,
-                image: data.image || ""
-            }
+          ...sol,
+          features: Array.isArray(features) ? features : []
         };
+      });
+      return {
+        title: data.title || "NetSuite Solutions",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        solutions: normalizedSolutions,
+        image: data.image || "",
+        data: {
+          title: data.title || "NetSuite Solutions",
+          subtitle: data.subtitle || "",
+          description: data.description || "",
+          solutions: normalizedSolutions,
+          image: data.image || ""
+        }
+      };
     },
 
     // Manufacturing Industry Stats
     ManufacturingIndustryStats: (data) => {
-        const stats = data.stats || data.items || [];
-        return {
-            title: data.title || "Industry Stats",
-            subtitle: data.subtitle || "",
-            description: data.description || "",
-            stats: stats,
-            backgroundImage: data.backgroundImage || "",
-            data: {
-                title: data.title || "Industry Stats",
-                subtitle: data.subtitle || "",
-                description: data.description || "",
-                stats: stats,
-                backgroundImage: data.backgroundImage || ""
-            }
-        };
+      const stats = data.stats || data.items || [];
+      return {
+        title: data.title || "Industry Stats",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        stats: stats,
+        backgroundImage: data.backgroundImage || "",
+        data: {
+          title: data.title || "Industry Stats",
+          subtitle: data.subtitle || "",
+          description: data.description || "",
+          stats: stats,
+          backgroundImage: data.backgroundImage || ""
+        }
+      };
     },
 
     // Retail Case Studies Section
     RetailCaseStudiesSection: (data) => {
-        const caseStudies = data.caseStudies || data.items || [];
-        return {
-            title: data.title || "Success Stories",
-            subtitle: data.subtitle || "",
-            description: data.description || "",
-            caseStudies: caseStudies,
-            items: caseStudies,
-            data: {
-                title: data.title || "Success Stories",
-                subtitle: data.subtitle || "",
-                description: data.description || "",
-                caseStudies: caseStudies
-            }
-        };
+      const caseStudies = data.caseStudies || data.items || [];
+      return {
+        title: data.title || "Success Stories",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        caseStudies: caseStudies,
+        items: caseStudies,
+        data: {
+          title: data.title || "Success Stories",
+          subtitle: data.subtitle || "",
+          description: data.description || "",
+          caseStudies: caseStudies
+        }
+      };
     },
 
     // HR Use Cases Section
     HRUseCasesSection: (data) => {
-        const useCases = data.useCases || data.items || [];
-        return {
-            title: data.title || "HR Use Cases",
-            description: data.description || "",
-            useCases: useCases,
-            data: {
-                title: data.title || "HR Use Cases",
-                description: data.description || "",
-                useCases: useCases
-            }
-        };
+      const useCases = data.useCases || data.items || [];
+      return {
+        title: data.title || "HR Use Cases",
+        description: data.description || "",
+        useCases: useCases,
+        data: {
+          title: data.title || "HR Use Cases",
+          description: data.description || "",
+          useCases: useCases
+        }
+      };
     },
 
     // About Milestones Section
     AboutMilestonesSection: (data) => {
-        const milestones = data.milestones || [];
-        const items = data.items || [];
-        return {
-            title: data.title || "Our Journey",
-            subtitle: data.subtitle || "",
-            description: data.description || "",
-            milestones: milestones,
-            items: items,
-            data: {
-                title: data.title || "Our Journey",
-                subtitle: data.subtitle || "",
-                description: data.description || "",
-                milestones: milestones,
-                items: items
-            }
-        };
+      const milestones = data.milestones || [];
+      const items = data.items || [];
+      return {
+        title: data.title || "Our Journey",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        milestones: milestones,
+        items: items,
+        data: {
+          title: data.title || "Our Journey",
+          subtitle: data.subtitle || "",
+          description: data.description || "",
+          milestones: milestones,
+          items: items
+        }
+      };
     },
 
     // Service Grid Section
     ServiceGrid: (data) => {
-        const services = data.services || data.items || [];
-        // Normalize features in each service
-        const normalizedServices = services.map(svc => {
-            let features = svc.features;
-            if (typeof features === 'string') {
-                features = features.split(',').map(f => f.trim()).filter(f => f);
-            }
-            return {
-                ...svc,
-                features: Array.isArray(features) ? features : []
-            };
-        });
+      const services = data.services || data.items || [];
+      // Normalize features in each service
+      const normalizedServices = services.map(svc => {
+        let features = svc.features;
+        if (typeof features === 'string') {
+          features = features.split(',').map(f => f.trim()).filter(f => f);
+        }
         return {
-            title: data.title || "Our Services",
-            subtitle: data.subtitle || "",
-            services: normalizedServices,
-            bottomCTA: data.bottomCTA || {},
-            data: {
-                title: data.title || "Our Services",
-                subtitle: data.subtitle || "",
-                services: normalizedServices,
-                bottomCTA: data.bottomCTA || {}
-            }
+          ...svc,
+          features: Array.isArray(features) ? features : []
         };
+      });
+      return {
+        title: data.title || "Our Services",
+        subtitle: data.subtitle || "",
+        services: normalizedServices,
+        bottomCTA: data.bottomCTA || {},
+        data: {
+          title: data.title || "Our Services",
+          subtitle: data.subtitle || "",
+          services: normalizedServices,
+          bottomCTA: data.bottomCTA || {}
+        }
+      };
     },
 
     // Programs Section (Training)
     ProgramsSection: (data) => {
-        const programs = data.trainingPrograms || data.programs || data.items || [];
-        const programsSection = data.programsSection || {};
-        return {
-            programsSection: {
-                title: programsSection.title || data.title || "Training Programs",
-                description: programsSection.description || data.description || "",
-                image: programsSection.image || data.image || ""
-            },
-            trainingPrograms: programs,
-            data: {
-                programsSection: {
-                    title: programsSection.title || data.title || "Training Programs",
-                    description: programsSection.description || data.description || "",
-                    image: programsSection.image || data.image || ""
-                },
-                trainingPrograms: programs
-            }
-        };
+      const programs = data.trainingPrograms || data.programs || data.items || [];
+      const programsSection = data.programsSection || {};
+      return {
+        programsSection: {
+          title: programsSection.title || data.title || "Training Programs",
+          description: programsSection.description || data.description || "",
+          image: programsSection.image || data.image || ""
+        },
+        trainingPrograms: programs,
+        data: {
+          programsSection: {
+            title: programsSection.title || data.title || "Training Programs",
+            description: programsSection.description || data.description || "",
+            image: programsSection.image || data.image || ""
+          },
+          trainingPrograms: programs
+        }
+      };
     },
 
     // Implementation Process Section
     ImplementationProcessSection: (data) => {
-        const steps = data.steps || data.items || [];
-        const defaultStats = data.defaultStats || [
-            { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
-            { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
-        ];
-        return {
-            title: data.title || "Implementation Process",
-            subtitle: data.subtitle || "",
-            image: data.image || "",
-            sectionTitle: data.sectionTitle || "Implementation Process",
-            keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
-            implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
-            defaultStats: defaultStats,
-            steps: steps,
-            ctaButton: data.ctaButton || "",
-            data: {
-                title: data.title || "Implementation Process",
-                subtitle: data.subtitle || "",
-                image: data.image || "",
-                sectionTitle: data.sectionTitle || "Implementation Process",
-                keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
-                implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
-                defaultStats: defaultStats,
-                steps: steps,
-                ctaButton: data.ctaButton || ""
-            }
-        };
+      const steps = data.steps || data.items || [];
+      const defaultStats = data.defaultStats || [
+        { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
+        { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
+      ];
+      return {
+        title: data.title || "Implementation Process",
+        subtitle: data.subtitle || "",
+        image: data.image || "",
+        sectionTitle: data.sectionTitle || "Implementation Process",
+        keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
+        implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
+        defaultStats: defaultStats,
+        steps: steps,
+        ctaButton: data.ctaButton || "",
+        data: {
+          title: data.title || "Implementation Process",
+          subtitle: data.subtitle || "",
+          image: data.image || "",
+          sectionTitle: data.sectionTitle || "Implementation Process",
+          keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
+          implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
+          defaultStats: defaultStats,
+          steps: steps,
+          ctaButton: data.ctaButton || ""
+        }
+      };
     },
 
     // Payroll How It Works Section
     PayrollHowItWorksSection: (data) => {
-        const steps = data.steps || data.items || [];
-        return {
-            title: data.title || "How It Works",
-            description: data.description || "",
-            content: data.content || "",
-            steps: steps,
-            data: {
-                title: data.title || "How It Works",
-                description: data.description || "",
-                content: data.content || "",
-                steps: steps
-            }
-        };
+      const steps = data.steps || data.items || [];
+      return {
+        title: data.title || "How It Works",
+        description: data.description || "",
+        content: data.content || "",
+        steps: steps,
+        data: {
+          title: data.title || "How It Works",
+          description: data.description || "",
+          content: data.content || "",
+          steps: steps
+        }
+      };
     },
 
     // Manufacturing Implementation Process
     ManufacturingImplementationProcess: (data) => {
-        const processSteps = data.processSteps || data.steps || data.items || [];
-        const defaultStats = data.defaultStats || [
-            { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
-            { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
-        ];
-        return {
-            title: data.title || "Manufacturing Implementation Process",
-            description: data.description || "",
-            sectionTitle: data.sectionTitle || "Implementation Process",
-            keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
-            implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
-            defaultStats: defaultStats,
-            processSteps: processSteps,
-            steps: processSteps,
-            data: {
-                title: data.title || "Manufacturing Implementation Process",
-                description: data.description || "",
-                sectionTitle: data.sectionTitle || "Implementation Process",
-                keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
-                implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
-                defaultStats: defaultStats,
-                processSteps: processSteps
-            }
-        };
+      const processSteps = data.processSteps || data.steps || data.items || [];
+      const defaultStats = data.defaultStats || [
+        { title: "Efficient", description: "Streamlined process with proven methodologies", icon: "Bolt", color: "blue" },
+        { title: "Proven", description: "Tested methodology with 98% success rate", icon: "CheckCircle", color: "green" }
+      ];
+      return {
+        title: data.title || "Manufacturing Implementation Process",
+        description: data.description || "",
+        sectionTitle: data.sectionTitle || "Implementation Process",
+        keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
+        implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
+        defaultStats: defaultStats,
+        processSteps: processSteps,
+        steps: processSteps,
+        data: {
+          title: data.title || "Manufacturing Implementation Process",
+          description: data.description || "",
+          sectionTitle: data.sectionTitle || "Implementation Process",
+          keyDeliverablesTitle: data.keyDeliverablesTitle || "Key Deliverables",
+          implementationDetailsTitle: data.implementationDetailsTitle || "Implementation Details",
+          defaultStats: defaultStats,
+          processSteps: processSteps
+        }
+      };
     },
 
     // Customization Process Section
     CustomizationProcessSection: (data) => {
-        const steps = data.steps || data.items || [];
-        return {
-            title: data.title || "Customization Process",
-            steps: steps,
-            data: {
-                title: data.title || "Customization Process",
-                steps: steps
-            }
-        };
+      const steps = data.steps || data.items || [];
+      return {
+        title: data.title || "Customization Process",
+        steps: steps,
+        data: {
+          title: data.title || "Customization Process",
+          steps: steps
+        }
+      };
     },
 
     // Implementation Why Choose Section
     ImplementationWhyChooseSection: (data) => {
-        const features = data.features || data.items || [];
-        return {
-            title: data.title || "Why Choose Us",
-            subtitle: data.subtitle || "",
-            image: data.image || "",
-            features: features,
-            data: {
-                title: data.title || "Why Choose Us",
-                subtitle: data.subtitle || "",
-                image: data.image || "",
-                features: features
-            }
-        };
+      const features = data.features || data.items || [];
+      return {
+        title: data.title || "Why Choose Us",
+        subtitle: data.subtitle || "",
+        image: data.image || "",
+        features: features,
+        data: {
+          title: data.title || "Why Choose Us",
+          subtitle: data.subtitle || "",
+          image: data.image || "",
+          features: features
+        }
+      };
     },
 
     // Why Choose Section (Generic)
     WhyChooseSection: (data) => {
-        const features = data.features || data.trainingFeatures || data.items || [];
-        const whyChooseSection = data.whyChooseSection || {};
-        return {
-            title: whyChooseSection.title || data.title || "Why Choose Us",
-            subtitle: data.subtitle || "",
-            description: whyChooseSection.description || data.description || "",
-            features: features,
-            trainingFeatures: features,
-            whyChooseSection: {
-                title: whyChooseSection.title || data.title || "Why Choose Us",
-                description: whyChooseSection.description || data.description || ""
-            },
-            data: {
-                title: whyChooseSection.title || data.title || "Why Choose Us",
-                subtitle: data.subtitle || "",
-                description: whyChooseSection.description || data.description || "",
-                features: features
-            }
-        };
+      const features = data.features || data.trainingFeatures || data.items || [];
+      const whyChooseSection = data.whyChooseSection || {};
+      return {
+        title: whyChooseSection.title || data.title || "Why Choose Us",
+        subtitle: data.subtitle || "",
+        description: whyChooseSection.description || data.description || "",
+        features: features,
+        trainingFeatures: features,
+        whyChooseSection: {
+          title: whyChooseSection.title || data.title || "Why Choose Us",
+          description: whyChooseSection.description || data.description || ""
+        },
+        data: {
+          title: whyChooseSection.title || data.title || "Why Choose Us",
+          subtitle: data.subtitle || "",
+          description: whyChooseSection.description || data.description || "",
+          features: features
+        }
+      };
     },
 
     // HR Benefits Section
     HRBenefitsSection: (data) => {
-        const benefits = data.benefits || data.items || [];
-        const features = data.features || [];
-        return {
-            title: data.title || "Benefits",
-            subtitle: data.subtitle || "",
-            description: data.description || "",
-            benefits: benefits,
-            features: features,
-            data: {
-                title: data.title || "Benefits",
-                subtitle: data.subtitle || "",
-                description: data.description || "",
-                benefits: benefits,
-                features: features
-            }
-        };
+      const benefits = data.benefits || data.items || [];
+      const features = data.features || [];
+      return {
+        title: data.title || "Benefits",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        benefits: benefits,
+        features: features,
+        data: {
+          title: data.title || "Benefits",
+          subtitle: data.subtitle || "",
+          description: data.description || "",
+          benefits: benefits,
+          features: features
+        }
+      };
     },
 
     // Implementation Pricing Section
     ImplementationPricingSection: (data) => {
-        const plans = data.plans || data.pricing || data.items || [];
-        // Normalize features in each plan
-        const normalizedPlans = plans.map(plan => {
-            let features = plan.features;
-            if (typeof features === 'string') {
-                features = features.split(',').map(f => f.trim()).filter(f => f);
-            }
-            return {
-                ...plan,
-                features: Array.isArray(features) ? features : []
-            };
-        });
+      const plans = data.plans || data.pricing || data.items || [];
+      // Normalize features in each plan
+      const normalizedPlans = plans.map(plan => {
+        let features = plan.features;
+        if (typeof features === 'string') {
+          features = features.split(',').map(f => f.trim()).filter(f => f);
+        }
         return {
-            title: data.title || "Pricing",
-            subtitle: data.subtitle || "",
-            plans: normalizedPlans,
-            data: {
-                title: data.title || "Pricing",
-                subtitle: data.subtitle || "",
-                plans: normalizedPlans
-            }
+          ...plan,
+          features: Array.isArray(features) ? features : []
         };
+      });
+      return {
+        title: data.title || "Pricing",
+        subtitle: data.subtitle || "",
+        plans: normalizedPlans,
+        data: {
+          title: data.title || "Pricing",
+          subtitle: data.subtitle || "",
+          plans: normalizedPlans
+        }
+      };
     },
 
     // Retail Features Section
     RetailFeaturesSection: (data) => {
-        const features = data.features || data.items || [];
-        return {
-            title: data.title || "Features",
-            subtitle: data.subtitle || "",
-            features: features,
-            data: {
-                title: data.title || "Features",
-                subtitle: data.subtitle || "",
-                features: features
-            }
-        };
+      const features = data.features || data.items || [];
+      return {
+        title: data.title || "Features",
+        subtitle: data.subtitle || "",
+        features: features,
+        data: {
+          title: data.title || "Features",
+          subtitle: data.subtitle || "",
+          features: features
+        }
+      };
     },
-    
+
     // Retail CTA Section
     RetailCTASection: (data) => normalizeGenericCTA(data, "Ready to Transform Your Retail Operations?"),
-    
+
     // Other CTA Sections
     AboutCTASection: (data) => normalizeGenericCTA(data, "Ready to Build Something Great?"),
     HRCTASection: (data) => normalizeGenericCTA(data, "Ready to Transform Your HR?"),
@@ -618,9 +619,9 @@ export const normalizeProps = (componentType, contentJson) => {
     // Retail Solutions Section
     RetailSolutionsSection: (data) => {
       console.log(" [RetailSolutionsSection] Raw form data:", data);
-      
+
       const solutions = Array.isArray(data.solutions) ? data.solutions : (Array.isArray(data.items) ? data.items : []);
-      
+
       // Normalize features in each solution
       const normalizedSolutions = solutions.map(sol => {
         let features = sol.features;
@@ -697,13 +698,13 @@ export const normalizeProps = (componentType, contentJson) => {
 
           : data.integrationTypes?.items
 
-          ? "nestedItems"
+            ? "nestedItems"
 
-          : data.types
+            : data.types
 
-          ? "types"
+              ? "types"
 
-          : "empty",
+              : "empty",
 
         finalItems: itemsSource,
 
@@ -1163,15 +1164,15 @@ export const normalizeProps = (componentType, contentJson) => {
 
     PayrollPainPointsSection: (data) => {
       console.log(" [PayrollPainPointsSection] Raw form data:", data);
-      
+
       // Extract painPoints array from various possible locations
-      const painPointsArray = 
+      const painPointsArray =
         data.painPoints?.painPoints ||
         data.painPoints?.items ||
         (Array.isArray(data.painPoints) ? data.painPoints : null) ||
         data.items ||
         [];
-      
+
       // Build the painPoints object that the component expects
       const painPointsData = {
         title: data.title || data.painPoints?.title || "Common Payroll Pain Points",
@@ -1179,7 +1180,7 @@ export const normalizeProps = (componentType, contentJson) => {
         painPoints: painPointsArray,
         image: data.image || data.painPoints?.image || "",
       };
-      
+
       return {
         // Component expects a `painPoints` prop
         painPoints: painPointsData,
@@ -1206,36 +1207,36 @@ export const normalizeProps = (componentType, contentJson) => {
 
     PayrollWorkflowSection: (data) => {
       console.log(" [PayrollWorkflowSection] Raw form data:", data);
-      
+
       // Extract steps from various possible locations
-      const stepsArray = 
+      const stepsArray =
         data.workflowSteps ||
         data.steps ||
         data.workflow?.steps ||
         [];
-      
+
       // Process steps to ensure proper structure
       const processedSteps = stepsArray.map((step, index) => ({
         title: step.title || step.stepTitle || `Step ${index + 1}`,
         stepTitle: step.stepTitle || step.title || `Step ${index + 1}`,
         description: step.description || step.stepDescription || "",
         stepDescription: step.stepDescription || step.description || "",
-        features: Array.isArray(step.features) 
-          ? step.features 
+        features: Array.isArray(step.features)
+          ? step.features
           : (typeof step.features === 'string' ? step.features.split(',').map(f => f.trim()) : []),
         automated: step.automated || "",
         compliant: step.compliant || "",
         automatedLabel: step.automatedLabel || "Automated",
         compliantLabel: step.compliantLabel || "Compliant",
       }));
-      
+
       // Build workflowData object that component expects
       const workflowData = {
         title: data.title || data.workflow?.title || "Payroll System Built for All Industries",
         description: data.description || data.workflow?.description || "Streamline your entire payroll lifecycle",
         steps: processedSteps,
       };
-      
+
       return {
         // Component expects a `workflowData` prop
         workflowData: workflowData,
@@ -1278,9 +1279,9 @@ export const normalizeProps = (componentType, contentJson) => {
 
     PayrollFAQSection: (data) => {
       console.log(" [PayrollFAQSection] Raw form data:", data);
-      
+
       const items = data.faqItems || data.faq?.items || data.faq?.faqs || data.faqs || data.items || [];
-      
+
       return {
         faqData: {
           title: data.faq?.title || data.title || "Payroll FAQ",
@@ -1369,10 +1370,10 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
     // About Components
-    
+
     AboutMissionSection: (data) => {
       console.log(" [AboutMissionSection] Raw form data:", data);
-      
+
       return {
         data: {
           title: data.title || "Our Mission",
@@ -1390,7 +1391,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
     AboutJourneySection: (data) => {
       console.log(" [AboutJourneySection] Raw form data:", data);
-      
+
       return {
         data: {
           title: data.title || "Our Journey",
@@ -1410,7 +1411,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
     AboutValuesSection: (data) => {
       console.log(" [AboutValuesSection] Raw form data:", data);
-      
+
       return {
         data: {
           title: data.title || "Our Values",
@@ -1423,7 +1424,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
     AboutDifferentiatorsSection: (data) => {
       console.log(" [AboutDifferentiatorsSection] Raw form data:", data);
-      
+
       return {
         data: {
           title: data.title || "What Makes Us Different",
@@ -1473,7 +1474,7 @@ export const normalizeProps = (componentType, contentJson) => {
 
     HRPricingSection: (data) => {
       console.log(" [HRPricingSection] Raw form data:", data);
-      
+
       return {
         data: {
           title: data.title || "Implementation Pricing",
@@ -1485,9 +1486,9 @@ export const normalizeProps = (componentType, contentJson) => {
 
     HRFAQSection: (data) => {
       console.log(" [HRFAQSection] Raw form data:", data);
-      
+
       const items = data.faq?.items || data.faq?.faqs || data.faqs || data.items || [];
-      
+
       return {
         data: {
           faq: {
@@ -1595,25 +1596,25 @@ export const normalizeProps = (componentType, contentJson) => {
 
           ? {
 
-              text: data.ctaButton.text || "Start Learning Today",
+            text: data.ctaButton.text || "Start Learning Today",
 
-              link: data.ctaButton.link || "/training",
+            link: data.ctaButton.link || "/training",
 
-              variant: buttonVariant,
+            variant: buttonVariant,
 
-              icon: data.ctaButton.icon,
+            icon: data.ctaButton.icon,
 
-            }
+          }
 
           : {
 
-              text: data.buttonText || "Start Learning Today",
+            text: data.buttonText || "Start Learning Today",
 
-              link: data.link || "/training",
+            link: data.link || "/training",
 
-              variant: buttonVariant,
+            variant: buttonVariant,
 
-            },
+          },
 
       };
 
@@ -1671,9 +1672,9 @@ export const normalizeProps = (componentType, contentJson) => {
 
           : data.programsSection?.image
 
-          ? "nested"
+            ? "nested"
 
-          : "fallback",
+            : "fallback",
 
         finalImage: imageSource,
 
@@ -1962,7 +1963,7 @@ export const normalizeProps = (componentType, contentJson) => {
       if (data.subtitle) normalized.subtitle = data.subtitle;
 
       if (data.description) normalized.description = data.description;
-      
+
       // Hero component specific patterns
       if (data.slides) normalized.slides = data.slides;
       if (data.stats) normalized.stats = data.stats;
@@ -1974,7 +1975,7 @@ export const normalizeProps = (componentType, contentJson) => {
       // Also try to extract image from nested section objects
       if (!normalized.image && data.programsSection?.image) normalized.image = data.programsSection.image;
       if (!normalized.image && data.heroSection?.image) normalized.image = data.heroSection.image;
-      
+
       // Common object patterns - pass through nested sections
       if (data.ctaButton) normalized.ctaButton = data.ctaButton;
       if (data.sectionHeader) normalized.sectionHeader = data.sectionHeader;
@@ -2006,23 +2007,23 @@ export const normalizeProps = (componentType, contentJson) => {
         "faqs",
 
         "painPoints",
-        
+
         "slides",
-        
+
         "stats",
-        
+
         "testimonials",
-        
+
         "industries",
-        
+
         "services",
-        
+
         "values",
-        
+
         "members",
-        
+
         "milestones",
-        
+
         "useCases",
 
       ];

@@ -2301,7 +2301,7 @@ export const generalComponentSchemas = {
           formField: "textarea",
         },
 
-        bgVideo: {
+        backgroundVideo: {
           type: "string",
 
           label: "Background Video URL",
@@ -2331,7 +2331,7 @@ export const generalComponentSchemas = {
       subtitle:
         "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
 
-      bgVideo: "/Videos/hrVideo.mp4",
+      backgroundVideo: "/Videos/hrVideo.mp4",
 
       bgColor: "bg-gradient-to-br from-[#191970] via-black to-blue-700",
     },

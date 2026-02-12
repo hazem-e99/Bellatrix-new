@@ -596,11 +596,11 @@ export const componentRegistry = {
 
         description: "string",
 
-        backgroundImage: "string",
+        backgroundVideo	: "string",
       },
 
       defaultData: {
-        title: "nada HR, Payroll & People Management",
+        title: "HR & People Management",
 
         subtitle:
           "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
@@ -608,7 +608,7 @@ export const componentRegistry = {
         description:
           "Our comprehensive HR solution simplifies employee management.",
 
-        backgroundImage: "/images/hr-hero.jpg",
+        backgroundVideo: "/Videos/hrVideo.mp4",
       },
     },
 
