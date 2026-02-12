@@ -526,7 +526,7 @@ export const componentRegistry = {
     },
 
     TrainingProgramsSection: {
-      componentType: "ProgramsSection",
+      componentType: "TrainingProgramsSection",
 
       componentName: "Programs Section",
 
@@ -600,7 +600,7 @@ export const componentRegistry = {
     },
 
     TrainingWhyChooseSection: {
-      componentType: "WhyChooseSection",
+      componentType: "TrainingWhyChooseSection",
       componentName: "Why Choose Section",
       category: "content",
       icon: "",

@@ -132,7 +132,7 @@ export const componentRegistry = {
   ImplementationHeroSection: ImplementationHero,
   ImplementationProcessSection: ImplementationProcess,
   ImplementationWhyChooseSection: ImplementationWhyChoose,
-  WhyChooseSection: ImplementationWhyChoose, // Alias
+  WhyChooseSection: TrainingWhyChoose, // Legacy alias - Training used "WhyChooseSection" as componentType
   ImplementationPricingSection: ImplementationPricing,
   ImplementationCtaSection: ImplementationCta,
   ServiceGrid: ServiceGrid,

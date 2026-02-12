@@ -2085,8 +2085,8 @@ export const generalComponentSchemas = {
   },
 
   // Programs Section Schema (Training Programs)
-  ProgramsSection: {
-    componentName: "ProgramsSection",
+  TrainingProgramsSection: {
+    componentName: "TrainingProgramsSection",
     category: "training",
     icon: "",
     displayName: "Programs Section",
