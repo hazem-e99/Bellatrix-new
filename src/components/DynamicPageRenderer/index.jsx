@@ -13,8 +13,11 @@ const DynamicPageRenderer = () => {
   const components = pageData?.components || pageData?.sections || [];
   const loadedComponents = useComponentLoader(components);
 
+  // Determine page type for skeleton loading
+  const pageType = slug === "home" || !slug ? "home" : "generic";
+
   if (loading) {
-    return <LoadingState />;
+    return <LoadingState pageType={pageType} />;
   }
 
   if (error) {

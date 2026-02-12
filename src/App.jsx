@@ -46,9 +46,9 @@ function App() {
               <Route path="customization" element={<MainServices />} />
               <Route path="integration" element={<MainServices />} />
               <Route path="Support" element={<MainServices />} />
-              <Route path="hrsolution" element={<SolutionMain />} />
+              <Route path="hrStatic" element={<SolutionMain />} />
               {/* <Route path="Payroll" element={<SolutionMain />} /> */}
-              <Route path="/Payroll" element={<PayrollPage />} />
+              <Route path="/PayrollStatic" element={<PayrollPage />} />
               <Route
                 path="/industries/manufacturing"
                 element={<Manufacturing />}
