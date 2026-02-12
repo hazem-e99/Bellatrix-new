@@ -569,7 +569,7 @@ export const componentRegistry = {
     },
 
     TrainingKeyModulesSection: {
-      componentType: "KeyModulesSection",
+      componentType: "TrainingKeyModulesSection",
       componentName: "Key Modules Section",
       category: "content",
       icon: "",
