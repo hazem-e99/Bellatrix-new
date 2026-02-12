@@ -568,6 +568,70 @@ export const componentRegistry = {
       },
     },
 
+    TrainingKeyModulesSection: {
+      componentType: "KeyModulesSection",
+      componentName: "Key Modules Section",
+      category: "content",
+      icon: "",
+      filePath: "src/components/Services/training/KeyModulesSection.jsx",
+      description: "Key training modules grid with title, description and duration",
+      dataStructure: {
+        keyModulesSection: "object",
+        keyModules: "array",
+      },
+      defaultData: {
+        keyModulesSection: {
+          title: "Key Training Modules",
+          description: "Comprehensive curriculum designed to master NetSuite from foundation to advanced implementation",
+        },
+        keyModules: [
+          {
+            title: "System Architecture",
+            description: "Core system structure, data flow, and integration patterns",
+            duration: "8 hours",
+          },
+          {
+            title: "Financial Management",
+            description: "General ledger, budgeting, financial reporting, and analytics",
+            duration: "12 hours",
+          },
+        ],
+      },
+    },
+
+    TrainingWhyChooseSection: {
+      componentType: "WhyChooseSection",
+      componentName: "Why Choose Section",
+      category: "content",
+      icon: "",
+      filePath: "src/components/Services/training/WhyChooseSection.jsx",
+      description: "Why choose our training section with feature cards and image",
+      dataStructure: {
+        whyChooseSection: "object",
+        trainingFeatures: "array",
+      },
+      defaultData: {
+        whyChooseSection: {
+          title: "Why Choose Our Training?",
+          description: "We provide world-class training solutions that combine expertise, innovation, and practical application to ensure your team's success",
+          image: "/images/indleaders.jpg",
+          Professional_Badge: "Excellence Training",
+        },
+        trainingFeatures: [
+          {
+            id: 1,
+            title: "Expert Instructors",
+            shortDescription: "Certified professionals with years of experience",
+          },
+          {
+            id: 2,
+            title: "Hands-on Learning",
+            shortDescription: "Practical exercises with real-world scenarios",
+          },
+        ],
+      },
+    },
+
   },
 
   // ===========================================
@@ -596,7 +660,7 @@ export const componentRegistry = {
 
         description: "string",
 
-        backgroundVideo	: "string",
+        backgroundVideo: "string",
       },
 
       defaultData: {

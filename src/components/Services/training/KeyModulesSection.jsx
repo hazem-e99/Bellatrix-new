@@ -3,7 +3,7 @@ import React from "react";
 import SEO from "../../SEO";
 import ModuleCard from "./ModuleCard";
 
-const KeyModulesSection = ({ keyModulesSection, keyModules, renderIcon }) => {
+const KeyModulesSection = ({ keyModulesSection, keyModules }) => {
   return (
     <>
       <SEO
@@ -15,16 +15,11 @@ const KeyModulesSection = ({ keyModulesSection, keyModules, renderIcon }) => {
         ogImage="/images/netsuite-training-modules.jpg"
       />
       <section
-        className="py-12 relative overflow-hidden animate-background-glow"
+        className="py-12"
         style={{
           backgroundColor: "#001038",
         }}
       >
-        {/* Background Effects */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* ... (keep all background effects) ... */}
-        </div>
-
         <div className="container mx-auto px-6 relative z-10">
           <header className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -44,7 +39,6 @@ const KeyModulesSection = ({ keyModulesSection, keyModules, renderIcon }) => {
                 key={index}
                 module={module}
                 index={index}
-                renderIcon={renderIcon}
               />
             ))}
           </div>

@@ -119,7 +119,6 @@ const Training = ({ data: propsData = null }) => {
           <ProgramsSection
             programsSection={data.programsSection}
             trainingPrograms={data.trainingPrograms}
-            renderIcon={renderIcon}
           />
         </section>
 
@@ -128,7 +127,6 @@ const Training = ({ data: propsData = null }) => {
           <KeyModulesSection
             keyModulesSection={data.keyModulesSection}
             keyModules={data.keyModules}
-            renderIcon={renderIcon}
           />
         </section>
 
@@ -137,7 +135,6 @@ const Training = ({ data: propsData = null }) => {
           <WhyChooseSection
             whyChooseSection={data.whyChooseSection}
             trainingFeatures={data.trainingFeatures}
-            renderIcon={renderIcon}
           />
         </section>
       </main>

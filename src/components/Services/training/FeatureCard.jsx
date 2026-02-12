@@ -2,7 +2,7 @@
 import React from "react";
 import SEO from "../../SEO";
 
-const FeatureCard = ({ feature, renderIcon, openFeatureModal, index }) => {
+const FeatureCard = ({ feature, openFeatureModal, index }) => {
   // Add null checks for feature data
   if (!feature) {
     return (
@@ -45,18 +45,6 @@ const FeatureCard = ({ feature, renderIcon, openFeatureModal, index }) => {
         style={{ animationDelay: `${0.1 * (index + 1)}s` }}
       >
         <div className="relative z-10">
-          {/* Icon - Blue square icon in top-left corner */}
-          <div
-            className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-all duration-300 shadow-md"
-            role="img"
-            aria-label={`${feature.title || "Feature"} icon`}
-          >
-            {renderIcon &&
-              renderIcon(
-                feature.icon || "M12 4v16m8-8H4",
-                "w-6 h-6 text-white"
-              )}
-          </div>
 
           {/* Title */}
           <h3 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
