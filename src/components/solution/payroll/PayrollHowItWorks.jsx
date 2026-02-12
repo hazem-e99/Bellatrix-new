@@ -154,15 +154,15 @@ const PayrollHowItWorks = ({ data }) => {
 
 
 
-          <div className="bg-gradient-to-br from-[var(--color-text-secondary)]/90 via-[var(--color-text-secondary)]/80 to-[var(--color-text-secondary)]/90 rounded-xl p-12 shadow-2xl max-w-6xl mx-auto border border-[var(--color-text-secondary)]/50 backdrop-blur-sm hover:shadow-[var(--color-primary)]/20 hover:shadow-2xl transition-all duration-500 relative overflow-hidden group">
+          <div className="bg-gradient-to-br from-[var(--color-bg-dark)]/90 via-[var(--color-bg-dark)]/80 to-[var(--color-bg-dark)]/90 rounded-xl p-12 shadow-2xl max-w-6xl mx-auto border border-[var(--color-primary)]/30 backdrop-blur-sm hover:shadow-[var(--color-primary)]/20 hover:shadow-2xl transition-all duration-500 relative overflow-hidden group">
 
             {/* Background Effects */}
 
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-full opacity-20 transform translate-x-16 -translate-y-16 group-hover:opacity-40 transition-opacity duration-500"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[var(--color-primary)]/30 to-[var(--color-primary-light)]/30 rounded-full opacity-20 transform translate-x-16 -translate-y-16 group-hover:opacity-40 transition-opacity duration-500"></div>
 
-            <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-purple-500/30 to-blue-500/30 rounded-full opacity-20 transform -translate-x-10 translate-y-10 group-hover:opacity-40 transition-opacity duration-500"></div>
+            <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-[var(--color-primary-dark)]/30 to-[var(--color-primary)]/30 rounded-full opacity-20 transform -translate-x-10 translate-y-10 group-hover:opacity-40 transition-opacity duration-500"></div>
 
-            <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-full opacity-15 transform -translate-x-8 -translate-y-8 group-hover:opacity-30 transition-opacity duration-500"></div>
+            <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-gradient-to-r from-[var(--color-primary-light)]/20 to-[var(--color-primary)]/20 rounded-full opacity-15 transform -translate-x-8 -translate-y-8 group-hover:opacity-30 transition-opacity duration-500"></div>
 
 
 
@@ -172,9 +172,9 @@ const PayrollHowItWorks = ({ data }) => {
 
               <div className="relative">
 
-                <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-pulse shadow-lg"></div>
+                <div className="w-3 h-3 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-light)] rounded-full animate-pulse shadow-lg"></div>
 
-                <div className="absolute inset-0 w-3 h-3 bg-blue-400/30 rounded-full animate-ping"></div>
+                <div className="absolute inset-0 w-3 h-3 bg-[var(--color-primary)]/30 rounded-full animate-ping"></div>
 
               </div>
 
@@ -184,9 +184,9 @@ const PayrollHowItWorks = ({ data }) => {
 
               <div className="relative">
 
-                <div className="w-2 h-2 bg-gradient-to-r from-cyan-300 to-blue-400 rounded-full animate-pulse shadow-md"></div>
+                <div className="w-2 h-2 bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)] rounded-full animate-pulse shadow-md"></div>
 
-                <div className="absolute -inset-1 w-4 h-4 bg-cyan-400/20 rounded-full animate-ping"></div>
+                <div className="absolute -inset-1 w-4 h-4 bg-[var(--color-primary-light)]/20 rounded-full animate-ping"></div>
 
               </div>
 
@@ -196,9 +196,9 @@ const PayrollHowItWorks = ({ data }) => {
 
             {/* Data visualization lines */}
 
-            <div className="absolute top-6 left-1/4 w-16 h-0.5 bg-gradient-to-r from-transparent via-blue-300/40 to-transparent"></div>
+            <div className="absolute top-6 left-1/4 w-16 h-0.5 bg-gradient-to-r from-transparent via-[var(--color-primary-light)]/40 to-transparent"></div>
 
-            <div className="absolute bottom-6 right-1/4 w-20 h-0.5 bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent"></div>
+            <div className="absolute bottom-6 right-1/4 w-20 h-0.5 bg-gradient-to-r from-transparent via-[var(--color-primary)]/40 to-transparent"></div>
 
 
 
@@ -208,7 +208,7 @@ const PayrollHowItWorks = ({ data }) => {
 
               {sectionData.description && (
 
-                <p className="text-xl text-[var(--color-text-light)] leading-relaxed mb-10">
+                <p className="text-xl text-[var(--color-text-inverse)] leading-relaxed mb-10">
 
                   {sectionData.description}
 
