@@ -72,11 +72,11 @@ const FeaturesSection = ({
   return (
     <section className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]">
       <SEO
-        title="Retail Features | Oracle NetSuite E-commerce & POS Capabilities"
-        description="Explore comprehensive Oracle NetSuite retail features for e-commerce, POS, inventory management, customer experience, and omnichannel retail operations."
-        keywords="Oracle NetSuite retail features, e-commerce features, POS system features, retail inventory features, omnichannel retail capabilities, NetSuite commerce features"
-        ogTitle="Retail Features | Oracle NetSuite E-commerce & POS Capabilities"
-        ogDescription="Comprehensive Oracle NetSuite retail features designed for modern e-commerce and retail operations optimization."
+        title="Retail Features | Bellatrix E-commerce & POS Capabilities"
+        description="Explore comprehensive Bellatrix retail features for e-commerce, POS, inventory management, customer experience, and omnichannel retail operations."
+        keywords="Bellatrix retail features, e-commerce features, POS system features, retail inventory features, omnichannel retail capabilities, NetSuite commerce features"
+        ogTitle="Retail Features | Bellatrix E-commerce & POS Capabilities"
+        ogDescription="Comprehensive Bellatrix retail features designed for modern e-commerce and retail operations optimization."
         ogImage="/images/retail-features.jpg"
       />
 

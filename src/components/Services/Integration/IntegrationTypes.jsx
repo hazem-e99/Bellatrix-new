@@ -166,15 +166,15 @@ const IntegrationTypes = ({ title, items, types }) => {
 
       <SEO
 
-        title="Oracle NetSuite Integration Solutions | ERP System Connectivity Types"
+        title="Bellatrix Integration Solutions | ERP System Connectivity Types"
 
-        description="Comprehensive Oracle NetSuite integration solutions including e-commerce, CRM, payment gateway, and custom API integrations for enhanced business operations and data synchronization."
+        description="Comprehensive Bellatrix integration solutions including e-commerce, CRM, payment gateway, and custom API integrations for enhanced business operations and data synchronization."
 
-        keywords="Oracle NetSuite integration types, ERP integration solutions, e-commerce integration, CRM connectivity, NetSuite API integration, Oracle consulting services"
+        keywords="Bellatrix integration types, ERP integration solutions, e-commerce integration, CRM connectivity, NetSuite API integration, Oracle consulting services"
 
         ogTitle="NetSuite Integration Solutions - Oracle ERP Connectivity Services"
 
-        ogDescription="Expert Oracle NetSuite integration solutions for e-commerce, CRM, payment systems, and custom applications. Professional ERP consulting for seamless business operations."
+        ogDescription="Expert Bellatrix integration solutions for e-commerce, CRM, payment systems, and custom applications. Professional ERP consulting for seamless business operations."
 
         ogImage="/images/netsuite-integration-types.jpg"
 

@@ -15,10 +15,10 @@ const Support = () => {
   return (
     <>
       <SEO
-        title="Bellatrix Support Services | Oracle NetSuite ERP Support & Consulting"
-        description="Comprehensive Bellatrix support services with 85+ certified professionals. Get expert Oracle NetSuite ERP support, 24/7 assistance, and flexible pricing solutions."
-        keywords="Bellatrix support, Oracle NetSuite support, ERP consulting, certified professionals, 24/7 support, flexible pricing, implementation support, customization"
-        ogTitle="Bellatrix Support Services | Oracle NetSuite ERP Support & Consulting"
+        title="Bellatrix Support Services | ERP Support & Consulting"
+        description="Comprehensive Bellatrix support services with 85+ certified professionals. Get expert ERP support, 24/7 assistance, and flexible pricing solutions."
+        keywords="Bellatrix support, ERP support, ERP consulting, certified professionals, 24/7 support, flexible pricing, implementation support, customization"
+        ogTitle="Bellatrix Support Services | ERP Support & Consulting"
         ogDescription="Professional Bellatrix support with certified experts, flexible pricing, and comprehensive ERP solutions for your business success."
         ogImage="/images/Support/bellatrix-support-main.jpg"
       />

@@ -6,14 +6,14 @@ const TrainingProgramCard = ({ program, index, renderIcon, onClick }) => {
   return (
     <>
       <SEO
-        title={`Oracle NetSuite Training Program | ${
+        title={`Bellatrix Training Program | ${
           program.title || "ERP Training Course"
         }`}
         description={`${
-          program.title || "Oracle NetSuite training program"
+          program.title || "Bellatrix training program"
         }: ${(
           program.shortDescription || "Professional ERP training course"
-        ).substring(0, 120)}... Expert-led Oracle NetSuite education.`}
+        ).substring(0, 120)}... Expert-led Bellatrix education.`}
         keywords={`NetSuite training program, ${
           program.title || "ERP training"
         }, Oracle training course, NetSuite education, ERP certification program`}
@@ -21,7 +21,7 @@ const TrainingProgramCard = ({ program, index, renderIcon, onClick }) => {
           program.title || "Oracle ERP Education"
         }`}
         ogDescription={`Enroll in ${
-          program.title || "Oracle NetSuite training program"
+          program.title || "Bellatrix training program"
         }. ${(program.shortDescription || "").substring(
           0,
           100
@@ -48,11 +48,11 @@ const TrainingProgramCard = ({ program, index, renderIcon, onClick }) => {
           {renderIcon(program.icon)}
         </div>
         <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-          {program.title || "Oracle NetSuite Training Program"}
+          {program.title || "Bellatrix Training Program"}
         </h3>
         <p className="text-sm text-gray-600">
           {program.shortDescription ||
-            "Professional Oracle NetSuite training course"}
+            "Professional Bellatrix training course"}
         </p>
         <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <span className="text-xs text-blue-600 font-medium">

@@ -102,11 +102,11 @@ const SolutionsSection = ({
   return (
     <section className="bg-gray-50 py-20 light-section">
       <SEO
-        title="Oracle NetSuite Retail Solutions | E-commerce & Omnichannel Platform"
-        description="Comprehensive Oracle NetSuite retail solutions for unified commerce operations. E-commerce integration, inventory management, and customer experience optimization."
-        keywords="Oracle NetSuite retail solutions, e-commerce platform, omnichannel retail, NetSuite commerce, retail inventory management, unified commerce solutions"
-        ogTitle="Oracle NetSuite Retail Solutions | E-commerce & Omnichannel Platform"
-        ogDescription="Advanced Oracle NetSuite retail solutions for comprehensive e-commerce and omnichannel retail operations."
+        title="Bellatrix Retail Solutions | E-commerce & Omnichannel Platform"
+        description="Comprehensive Bellatrix retail solutions for unified commerce operations. E-commerce integration, inventory management, and customer experience optimization."
+        keywords="Bellatrix retail solutions, e-commerce platform, omnichannel retail, NetSuite commerce, retail inventory management, unified commerce solutions"
+        ogTitle="Bellatrix Retail Solutions | E-commerce & Omnichannel Platform"
+        ogDescription="Advanced Bellatrix retail solutions for comprehensive e-commerce and omnichannel retail operations."
         ogImage="/images/retail-solutions-platform.jpg"
       />
 

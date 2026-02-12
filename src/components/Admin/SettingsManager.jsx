@@ -33,7 +33,7 @@ const SettingsManager = () => {
   const [settings, setSettings] = useState({
     general: {
       siteName: "Bellatrix",
-      siteDescription: "Oracle NetSuite Consultancy",
+      siteDescription: "Bellatrix Consultancy",
       adminEmail: "admin@bellatrix.com",
       timezone: "UTC",
     },
@@ -48,7 +48,7 @@ const SettingsManager = () => {
       showPreview: true,
     },
     seo: {
-      defaultTitle: "Bellatrix - Oracle NetSuite Consultancy",
+      defaultTitle: "Bellatrix - Bellatrix Consultancy",
       defaultDescription:
         "Professional NetSuite implementation and consulting services",
       defaultKeywords: "NetSuite, Oracle, ERP, Implementation, Consulting",

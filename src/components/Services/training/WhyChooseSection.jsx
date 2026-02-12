@@ -134,7 +134,7 @@ const WhyChooseSection = ({
 
       <SEO
 
-        title={`Why Choose Oracle NetSuite Training | ${
+        title={`Why Choose Bellatrix Training | ${
 
           whyChooseSection.title || "Professional ERP Education"
 
@@ -144,13 +144,13 @@ const WhyChooseSection = ({
 
           whyChooseSection.description ||
 
-          "Discover why our Oracle NetSuite training is the best choice for professional ERP education"
+          "Discover why our Bellatrix training is the best choice for professional ERP education"
 
         } - Expert instructors, hands-on learning, industry recognition.`}
 
         keywords="why choose NetSuite training, Oracle ERP education benefits, professional NetSuite certification, ERP training advantages, NetSuite learning benefits"
 
-        ogTitle={`Why Choose Our Oracle NetSuite Training - ${
+        ogTitle={`Why Choose Our Bellatrix Training - ${
 
           whyChooseSection.title || "Professional ERP Education"
 
@@ -160,7 +160,7 @@ const WhyChooseSection = ({
 
           whyChooseSection.description ||
 
-          "Professional Oracle NetSuite training with industry-leading benefits"
+          "Professional Bellatrix training with industry-leading benefits"
 
         ).substring(0, 120)}... Discover training excellence.`}
 

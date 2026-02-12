@@ -134,13 +134,13 @@ const Testimonials = ({ testimonials: propsTestimonials = [], sectionHeader: pro
 
         title="Client Testimonials & Success Stories | Bellatrix NetSuite Solutions"
 
-        description="Read testimonials from industry leaders who trust Bellatrix for Oracle NetSuite implementation and consulting. Real client success stories and reviews."
+        description="Read testimonials from industry leaders who trust Bellatrix for Bellatrix implementation and consulting. Real client success stories and reviews."
 
         keywords="client testimonials, NetSuite reviews, success stories, industry leaders, customer feedback, ERP implementation reviews, consulting testimonials"
 
         ogTitle="Trusted by Industry Leaders | Bellatrix Client Testimonials"
 
-        ogDescription="See why industry leaders choose Bellatrix for Oracle NetSuite solutions. Real testimonials and success stories from satisfied clients."
+        ogDescription="See why industry leaders choose Bellatrix for Bellatrix solutions. Real testimonials and success stories from satisfied clients."
 
         ogImage="/images/client-testimonials.jpg"
 

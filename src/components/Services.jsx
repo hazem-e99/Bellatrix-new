@@ -162,15 +162,15 @@ const Services = ({
 
       <SEO
 
-        title="Oracle NetSuite Services | Implementation, Training & Support | Bellatrix"
+        title="Bellatrix Services | Implementation, Training & Support | Bellatrix"
 
-        description="Comprehensive Oracle NetSuite services including implementation, customization, training, and technical support. Expert consulting for digital transformation."
+        description="Comprehensive Bellatrix services including implementation, customization, training, and technical support. Expert consulting for digital transformation."
 
         keywords="NetSuite services, Oracle implementation, ERP training, NetSuite customization, technical support, business consulting, integration services"
 
-        ogTitle="Oracle NetSuite Services | Implementation & Consulting | Bellatrix"
+        ogTitle="Bellatrix Services | Implementation & Consulting | Bellatrix"
 
-        ogDescription="Expert Oracle NetSuite services: implementation, training, support, and customization. Transform your business with our comprehensive consulting solutions."
+        ogDescription="Expert Bellatrix services: implementation, training, support, and customization. Transform your business with our comprehensive consulting solutions."
 
         ogImage="/images/netsuite-services.jpg"
 

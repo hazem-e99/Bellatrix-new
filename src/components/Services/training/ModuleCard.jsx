@@ -6,10 +6,10 @@ const ModuleCard = ({ module, index, renderIcon }) => {
   return (
     <>
       <SEO
-        title={`Oracle NetSuite Training Module | ${
+        title={`Bellatrix Training Module | ${
           module.title || "ERP Learning Module"
         }`}
-        description={`${module.title || "Oracle NetSuite training module"}: ${(
+        description={`${module.title || "Bellatrix training module"}: ${(
           module.description || "Professional ERP training module"
         ).substring(0, 120)}... Duration: ${module.duration || "Variable"}.`}
         keywords={`NetSuite training module, ${
@@ -19,7 +19,7 @@ const ModuleCard = ({ module, index, renderIcon }) => {
           module.title || "Oracle ERP Learning"
         }`}
         ogDescription={`Master ${
-          module.title || "Oracle NetSuite concepts"
+          module.title || "Bellatrix concepts"
         } in this training module. ${(module.description || "").substring(
           0,
           100

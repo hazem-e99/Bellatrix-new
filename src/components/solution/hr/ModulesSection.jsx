@@ -50,7 +50,7 @@ const ModulesSection = ({ data = {} }) => {
 
         description={description}
 
-        keywords="Oracle NetSuite HR modules, HR platform components, employee management module, payroll processing, HR compliance, NetSuite HR features"
+        keywords="Bellatrix HR modules, HR platform components, employee management module, payroll processing, HR compliance, NetSuite HR features"
 
         ogTitle={title}
 

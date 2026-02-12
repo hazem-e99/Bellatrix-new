@@ -51,7 +51,7 @@ const UseCasesSection = (props) => {
       <SEO
         title={title}
         description={description}
-        keywords="Oracle NetSuite HR use cases, HR platform for small business, enterprise HR management, NetSuite HR for medium business, HR system benefits"
+        keywords="Bellatrix HR use cases, HR platform for small business, enterprise HR management, NetSuite HR for medium business, HR system benefits"
         ogTitle={title}
         ogDescription={description}
         ogImage="/images/netsuite-hr-use-cases.jpg"

@@ -228,7 +228,7 @@ const PayrollWorkflow = ({ workflowData = {} }) => {
 
       <SEO
 
-        title={`Oracle NetSuite Payroll Workflow | ${
+        title={`Bellatrix Payroll Workflow | ${
 
           displayData.title || "Complete Payroll System"
 
@@ -238,11 +238,11 @@ const PayrollWorkflow = ({ workflowData = {} }) => {
 
           displayData.description ||
 
-          "Comprehensive Oracle NetSuite payroll workflow"
+          "Comprehensive Bellatrix payroll workflow"
 
         } - Step-by-step payroll processing, automation, and ERP integration for streamlined operations.`}
 
-        keywords="Oracle NetSuite payroll workflow, payroll system lifecycle, automated payroll steps, ERP payroll integration, NetSuite payroll management"
+        keywords="Bellatrix payroll workflow, payroll system lifecycle, automated payroll steps, ERP payroll integration, NetSuite payroll management"
 
         ogTitle={`NetSuite Payroll Workflow - ${
 
@@ -254,7 +254,7 @@ const PayrollWorkflow = ({ workflowData = {} }) => {
 
           displayData.description ||
 
-          "Oracle NetSuite complete payroll workflow system"
+          "Bellatrix complete payroll workflow system"
 
         ).substring(0, 120)}... Professional ERP payroll lifecycle management.`}
 

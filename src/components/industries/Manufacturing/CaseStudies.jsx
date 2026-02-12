@@ -69,11 +69,11 @@ const CaseStudies = (props) => {
       style={{ backgroundColor: "var(--color-brand-dark-navy)" }}
     >
       <SEO
-        title="Manufacturing Success Stories | Oracle NetSuite Case Studies"
-        description="Real manufacturing success stories with Oracle NetSuite ERP. Discover how manufacturing companies achieved remarkable results with NetSuite implementations."
-        keywords="manufacturing case studies, Oracle NetSuite success stories, manufacturing ERP results, NetSuite manufacturing implementations, manufacturing transformation"
-        ogTitle="Manufacturing Success Stories | Oracle NetSuite Case Studies"
-        ogDescription="Proven manufacturing success stories and case studies showcasing Oracle NetSuite ERP transformations in manufacturing operations."
+        title="Manufacturing Success Stories | Bellatrix Case Studies"
+        description="Real manufacturing success stories with Bellatrix ERP. Discover how manufacturing companies achieved remarkable results with NetSuite implementations."
+        keywords="manufacturing case studies, Bellatrix success stories, manufacturing ERP results, NetSuite manufacturing implementations, manufacturing transformation"
+        ogTitle="Manufacturing Success Stories | Bellatrix Case Studies"
+        ogDescription="Proven manufacturing success stories and case studies showcasing Bellatrix ERP transformations in manufacturing operations."
         ogImage="/images/manufacturing-case-studies.jpg"
       />
 

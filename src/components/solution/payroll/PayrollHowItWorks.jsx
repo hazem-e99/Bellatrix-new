@@ -78,7 +78,7 @@ const PayrollHowItWorks = ({ data }) => {
 
       <SEO
 
-        title={`Oracle NetSuite Payroll Process | ${
+        title={`Bellatrix Payroll Process | ${
 
           sectionData.title || "How Our Payroll System Works"
 
@@ -88,11 +88,11 @@ const PayrollHowItWorks = ({ data }) => {
 
           sectionData.description ||
 
-          "Discover how Oracle NetSuite payroll system works"
+          "Discover how Bellatrix payroll system works"
 
         } - Automated processing, compliance management, and seamless ERP integration for efficient payroll operations.`}
 
-        keywords="Oracle NetSuite payroll process, how payroll system works, automated payroll workflow, ERP payroll processing, NetSuite payroll automation"
+        keywords="Bellatrix payroll process, how payroll system works, automated payroll workflow, ERP payroll processing, NetSuite payroll automation"
 
         ogTitle={`NetSuite Payroll Process - ${
 
@@ -104,7 +104,7 @@ const PayrollHowItWorks = ({ data }) => {
 
           sectionData.description ||
 
-          "Oracle NetSuite automated payroll process workflow"
+          "Bellatrix automated payroll process workflow"
 
         ).substring(0, 120)}... Professional ERP payroll management.`}
 

@@ -3796,7 +3796,7 @@ const EnhancedPageBuilder = () => {
 
             title: "Strategic Business Transformations",
 
-            subtitle: "Oracle NetSuite Consultancy",
+            subtitle: "Bellatrix Consultancy",
 
             description:
 

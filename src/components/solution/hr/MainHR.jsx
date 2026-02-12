@@ -208,15 +208,15 @@ const HRSolution = ({ data: propsData = null }) => {
 
       <SEO
 
-        title="Oracle NetSuite HR Management Solutions | Bellatrix Consulting"
+        title="HR Management Solutions | Bellatrix"
 
-        description="Transform your HR operations with Oracle NetSuite's comprehensive HR management platform. Employee management, payroll automation, compliance, and analytics in one solution."
+        description="Transform your HR operations with Bellatrix's comprehensive HR management platform. Employee management, payroll automation, compliance, and analytics in one solution."
 
-        keywords="Oracle NetSuite HR, HR management system, employee management software, NetSuite human resources, ERP HR solutions, payroll automation, HR compliance"
+        keywords="Bellatrix HR, HR management system, employee management software, human resources, ERP HR solutions, payroll automation, HR compliance"
 
-        ogTitle="Oracle NetSuite HR Management - Complete Human Resources Solutions"
+        ogTitle="Bellatrix HR Management - Complete Human Resources Solutions"
 
-        ogDescription="Streamline HR operations with Oracle NetSuite's integrated HR management platform. Employee lifecycle management, payroll, compliance, and analytics."
+        ogDescription="Streamline HR operations with Bellatrix's integrated HR management platform. Employee lifecycle management, payroll, compliance, and analytics."
 
         ogImage="/images/netsuite-hr-management.jpg"
 

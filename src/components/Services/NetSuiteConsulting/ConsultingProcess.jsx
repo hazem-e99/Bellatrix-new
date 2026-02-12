@@ -11,11 +11,11 @@ const ConsultingProcess = ({
   return (
     <>
       <SEO
-        title="Oracle NetSuite Consulting Process | Proven ERP Implementation Methodology"
-        description="Proven Oracle NetSuite consulting process with structured methodology for successful ERP implementation including discovery, design, development, testing, and go-live phases."
+        title="Bellatrix Consulting Process | Proven ERP Implementation Methodology"
+        description="Proven Bellatrix consulting process with structured methodology for successful ERP implementation including discovery, design, development, testing, and go-live phases."
         keywords="NetSuite consulting process, Oracle ERP implementation methodology, NetSuite project phases, ERP consulting steps, NetSuite implementation timeline"
         ogTitle="NetSuite Consulting Process - Proven Oracle ERP Implementation"
-        ogDescription="Structured Oracle NetSuite consulting process ensuring successful ERP implementation with proven methodology and expert guidance through every project phase."
+        ogDescription="Structured Bellatrix consulting process ensuring successful ERP implementation with proven methodology and expert guidance through every project phase."
         ogImage="/images/netsuite-consulting-process.jpg"
       />
       <section className="container mx-auto px-6">
@@ -42,7 +42,7 @@ const ConsultingProcess = ({
                 <div className="relative bg-gradient-to-br from-[var(--color-text-inverse)]/5 via-transparent to-[var(--color-primary)]/5 rounded-2xl p-4 border border-[var(--color-text-inverse)]/20">
                   <img
                     src={image}
-                    alt="Oracle NetSuite Consulting Process - Strategic ERP Implementation Solutions"
+                    alt="Bellatrix Consulting Process - Strategic ERP Implementation Solutions"
                     className="w-full h-auto rounded-xl shadow-2xl brightness-105 contrast-110 saturate-105 group-hover:brightness-110 group-hover:contrast-115 group-hover:saturate-110 transition-all duration-500 filter drop-shadow-xl"
                   />{" "}
                   <div className="absolute inset-4 rounded-xl bg-gradient-to-tr from-[var(--color-primary)]/5 via-transparent via-transparent to-[var(--color-accent-light)]/5 pointer-events-none"></div>
@@ -159,7 +159,7 @@ const ConsultingProcess = ({
               <button
                 onClick={openContactModal}
                 className="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-[var(--color-text-inverse)] px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
-                aria-label="Start Your Oracle NetSuite Consulting Journey"
+                aria-label="Start Your Bellatrix Consulting Journey"
               >
                 Start Your Consulting Journey
               </button>

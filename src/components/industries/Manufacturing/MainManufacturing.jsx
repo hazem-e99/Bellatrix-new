@@ -72,11 +72,11 @@ const Manufacturing = ({ data: propsData = null }) => {
   return (
     <main className="min-h-screen bg-gray-50">
       <SEO
-        title="Oracle NetSuite Manufacturing Solutions | Bellatrix ERP Consulting"
-        description="Transform your manufacturing operations with Oracle NetSuite ERP solutions. Expert manufacturing consulting, implementation, and optimization services for production efficiency."
-        keywords="Oracle NetSuite manufacturing, NetSuite ERP manufacturing, manufacturing software, production management, ERP manufacturing solutions, NetSuite manufacturing consulting"
-        ogTitle="Oracle NetSuite Manufacturing Solutions | Bellatrix ERP Consulting"
-        ogDescription="Expert Oracle NetSuite manufacturing solutions for streamlined production, inventory management, and manufacturing operations optimization."
+        title="Bellatrix Manufacturing Solutions | Bellatrix ERP Consulting"
+        description="Transform your manufacturing operations with Bellatrix ERP solutions. Expert manufacturing consulting, implementation, and optimization services for production efficiency."
+        keywords="Bellatrix manufacturing, NetSuite ERP manufacturing, manufacturing software, production management, ERP manufacturing solutions, NetSuite manufacturing consulting"
+        ogTitle="Bellatrix Manufacturing Solutions | Bellatrix ERP Consulting"
+        ogDescription="Expert Bellatrix manufacturing solutions for streamlined production, inventory management, and manufacturing operations optimization."
         ogImage="/images/manufacturing-solutions.jpg"
         canonicalUrl="https://bellatrix.com/industries/manufacturing"
       />

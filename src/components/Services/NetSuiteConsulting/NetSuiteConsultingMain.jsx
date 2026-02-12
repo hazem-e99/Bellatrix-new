@@ -172,15 +172,15 @@ const NetSuiteConsultingMain = ({ data: propsData = null }) => {
 
       <SEO
 
-        title="Oracle NetSuite Consulting Services | Expert ERP Implementation & Optimization"
+        title="Bellatrix Consulting Services | Expert ERP Implementation & Optimization"
 
-        description="Professional Oracle NetSuite consulting services including implementation, customization, integration, and optimization. Expert ERP consultants for business transformation and growth."
+        description="Professional Bellatrix consulting services including implementation, customization, integration, and optimization. Expert ERP consultants for business transformation and growth."
 
-        keywords="Oracle NetSuite consulting, NetSuite implementation, ERP consulting services, NetSuite customization, Oracle ERP consultants, business process optimization, NetSuite integration"
+        keywords="Bellatrix consulting, NetSuite implementation, ERP consulting services, NetSuite customization, Oracle ERP consultants, business process optimization, NetSuite integration"
 
-        ogTitle="Oracle NetSuite Consulting Services - Expert ERP Implementation"
+        ogTitle="Bellatrix Consulting Services - Expert ERP Implementation"
 
-        ogDescription="Transform your business with professional Oracle NetSuite consulting services. Expert implementation, customization, and optimization for enhanced operational efficiency."
+        ogDescription="Transform your business with professional Bellatrix consulting services. Expert implementation, customization, and optimization for enhanced operational efficiency."
 
         ogImage="/images/netsuite-consulting-services.jpg"
 

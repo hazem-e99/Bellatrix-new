@@ -207,7 +207,7 @@ const ComponentPreview = ({
           const transformedJourneyData = {
             data: {
               title: componentData.title || "Our Journey",
-              description: componentData.description || "From humble beginnings to becoming a trusted Oracle NetSuite partner.",
+              description: componentData.description || "From humble beginnings to becoming a trusted Bellatrix partner.",
               beginningTitle: componentData.beginningTitle || "The Beginning",
               beginningText: componentData.beginningText || "",
               growthTitle: componentData.growthTitle || "Growth & Evolution",
@@ -318,7 +318,7 @@ const ComponentPreview = ({
 
               description:
                 componentData.description ||
-                "Our unique combination of expertise, methodology, and commitment to excellence makes us the preferred choice for Oracle NetSuite implementations.",
+                "Our unique combination of expertise, methodology, and commitment to excellence makes us the preferred choice for Bellatrix implementations.",
             },
           };
 
@@ -997,12 +997,12 @@ const ComponentPreview = ({
 
           const transformedTrainingHeroData = {
             heroContent: componentData.heroContent || {
-              title: "Transform Your Career with Oracle NetSuite Training",
+              title: "Transform Your Career with Bellatrix Training",
 
               subtitle: "Professional ERP Education & Skills Development",
 
               description:
-                "Master Oracle NetSuite with comprehensive training programs designed for professionals at all levels.",
+                "Master Bellatrix with comprehensive training programs designed for professionals at all levels.",
             },
 
             backgroundVideo:

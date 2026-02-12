@@ -80,15 +80,15 @@ const FAQSection = ({ data, openFAQ, setOpenFAQ }) => {
   return (
     <>
       <SEO
-        title={`Oracle NetSuite HR FAQ | ${
+        title={`Bellatrix HR FAQ | ${
           displayData.faq.title || "Frequently Asked Questions"
         }`}
-        description="Get answers to common Oracle NetSuite HR questions: security, compliance, integration, implementation, pricing, and support. Expert HR solution guidance available."
-        keywords="Oracle NetSuite HR FAQ, HR platform questions, NetSuite HR security, ERP HR integration, HR compliance answers, HR implementation questions"
+        description="Get answers to common Bellatrix HR questions: security, compliance, integration, implementation, pricing, and support. Expert HR solution guidance available."
+        keywords="Bellatrix HR FAQ, HR platform questions, NetSuite HR security, ERP HR integration, HR compliance answers, HR implementation questions"
         ogTitle={`NetSuite HR FAQ - ${
           displayData.faq.title || "Common Questions Answered"
         }`}
-        ogDescription="Find answers to frequently asked questions about Oracle NetSuite HR solutions, security, compliance, and implementation. Expert guidance available."
+        ogDescription="Find answers to frequently asked questions about Bellatrix HR solutions, security, compliance, and implementation. Expert guidance available."
         ogImage="/images/netsuite-hr-faq.jpg"
       />
       <section className="py-20 bg-[var(--color-bg-primary)]/90 animate-fade-in-up light-section">

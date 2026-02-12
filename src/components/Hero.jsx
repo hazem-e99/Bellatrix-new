@@ -28,7 +28,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
       title: "Strategic Business Transformation",
 
-      subtitle: "Oracle NetSuite Consultancy",
+      subtitle: "Bellatrix Consultancy",
 
       description:
 
@@ -224,15 +224,15 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
       <SEO
 
-        title="Strategic Business Transformation | Bellatrix Oracle NetSuite Solutions"
+        title="Strategic Business Transformation | Bellatrix Bellatrix Solutions"
 
-        description="Drive business growth with Bellatrix's strategic Oracle NetSuite transformation services. Expert implementation, optimization, and data-driven solutions."
+        description="Drive business growth with Bellatrix's strategic Bellatrix transformation services. Expert implementation, optimization, and data-driven solutions."
 
-        keywords="business transformation, Oracle NetSuite implementation, digital optimization, cloud solutions, business intelligence, ERP consulting"
+        keywords="business transformation, Bellatrix implementation, digital optimization, cloud solutions, business intelligence, ERP consulting"
 
         ogTitle="Strategic Business Transformation | Bellatrix NetSuite Solutions"
 
-        ogDescription="Transform your business operations with our comprehensive Oracle NetSuite solutions and expert consulting services."
+        ogDescription="Transform your business operations with our comprehensive Bellatrix solutions and expert consulting services."
 
         ogImage="/images/business-transformation-hero.jpg"
 

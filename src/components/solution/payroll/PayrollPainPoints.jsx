@@ -68,7 +68,7 @@ const PayrollPainPoints = ({ painPoints, image }) => {
                   <div className="bg-gradient-to-br from-[var(--color-primary)]/5 to-[var(--color-primary)]/10 rounded-2xl p-4 border border-[var(--color-primary)]/20">
                     <img
                       src={sectionImage}
-                      alt="Oracle NetSuite Payroll Management Dashboard - Professional ERP payroll automation interface"
+                      alt="Bellatrix Payroll Management Dashboard - Professional ERP payroll automation interface"
                       className="w-full h-auto rounded-xl shadow-lg"
                     />
                   </div>

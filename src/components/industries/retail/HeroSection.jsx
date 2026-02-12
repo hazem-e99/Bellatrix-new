@@ -48,11 +48,11 @@ const HeroSection = ({
       }}
     >
       <SEO
-        title="Oracle NetSuite Retail Platform | E-commerce & Omnichannel Solutions"
-        description="Modern Oracle NetSuite retail platform for e-commerce, POS, inventory management, and omnichannel retail operations. Transform your retail business today."
-        keywords="Oracle NetSuite retail platform, e-commerce solutions, omnichannel retail, NetSuite POS, retail inventory management, retail ERP system"
-        ogTitle="Oracle NetSuite Retail Platform | E-commerce & Omnichannel Solutions"
-        ogDescription="Comprehensive Oracle NetSuite retail platform for modern e-commerce and omnichannel retail operations."
+        title="Bellatrix Retail Platform | E-commerce & Omnichannel Solutions"
+        description="Modern Bellatrix retail platform for e-commerce, POS, inventory management, and omnichannel retail operations. Transform your retail business today."
+        keywords="Bellatrix retail platform, e-commerce solutions, omnichannel retail, NetSuite POS, retail inventory management, retail ERP system"
+        ogTitle="Bellatrix Retail Platform | E-commerce & Omnichannel Solutions"
+        ogDescription="Comprehensive Bellatrix retail platform for modern e-commerce and omnichannel retail operations."
         ogImage="/images/retail-hero.jpg"
       />
       {/* Decorative Background Elements */}

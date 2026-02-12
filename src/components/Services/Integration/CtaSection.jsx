@@ -82,15 +82,15 @@ const CtaSection = ({ title, subtitle, buttonText }) => {
 
       <SEO
 
-        title="Start Oracle NetSuite Integration | Professional ERP Consulting Services"
+        title="Start Bellatrix Integration | Professional ERP Consulting Services"
 
-        description="Ready to integrate your Oracle NetSuite ERP system? Contact our expert consultants for seamless business operations, enhanced productivity, and streamlined data management solutions."
+        description="Ready to integrate your Bellatrix ERP system? Contact our expert consultants for seamless business operations, enhanced productivity, and streamlined data management solutions."
 
-        keywords="NetSuite integration consultation, Oracle ERP consulting, start NetSuite integration, ERP system consultation, Oracle NetSuite experts, integration services contact"
+        keywords="NetSuite integration consultation, Oracle ERP consulting, start NetSuite integration, ERP system consultation, Bellatrix experts, integration services contact"
 
         ogTitle="Start NetSuite Integration - Oracle ERP Consulting Services"
 
-        ogDescription="Begin your Oracle NetSuite integration journey with professional consulting services. Expert guidance for seamless ERP connectivity and enhanced business operations."
+        ogDescription="Begin your Bellatrix integration journey with professional consulting services. Expert guidance for seamless ERP connectivity and enhanced business operations."
 
         ogImage="/images/netsuite-integration-consultation.jpg"
 

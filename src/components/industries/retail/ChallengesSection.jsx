@@ -86,11 +86,11 @@ const ChallengesSection = ({
   return (
     <section className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]">
       <SEO
-        title="Retail Challenges | Oracle NetSuite Solutions for Modern Retail"
-        description="Overcome retail challenges with Oracle NetSuite solutions. Address omnichannel complexity, inventory management, customer experience, and profitability issues."
-        keywords="retail challenges, omnichannel retail, retail inventory management, customer experience retail, Oracle NetSuite retail solutions, retail profitability"
-        ogTitle="Retail Challenges | Oracle NetSuite Solutions for Modern Retail"
-        ogDescription="Comprehensive Oracle NetSuite solutions to address critical retail challenges and modern commerce complexities."
+        title="Retail Challenges | Bellatrix Solutions for Modern Retail"
+        description="Overcome retail challenges with Bellatrix solutions. Address omnichannel complexity, inventory management, customer experience, and profitability issues."
+        keywords="retail challenges, omnichannel retail, retail inventory management, customer experience retail, Bellatrix retail solutions, retail profitability"
+        ogTitle="Retail Challenges | Bellatrix Solutions for Modern Retail"
+        ogDescription="Comprehensive Bellatrix solutions to address critical retail challenges and modern commerce complexities."
         ogImage="/images/retail-challenges.jpg"
       />
 

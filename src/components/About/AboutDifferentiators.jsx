@@ -6,7 +6,7 @@ const AboutDifferentiators = ({ differentiators = [], data = {} }) => {
   const defaultData = {
     title: "What Sets Us Apart",
     description:
-      "Our unique combination of expertise, methodology, and commitment to excellence makes us the preferred choice for Oracle NetSuite implementations.",
+      "Our unique combination of expertise, methodology, and commitment to excellence makes us the preferred choice for Bellatrix implementations.",
     items: [],
   };
 
@@ -14,7 +14,7 @@ const AboutDifferentiators = ({ differentiators = [], data = {} }) => {
   const displayData = data || defaultData || {
     title: "What Sets Us Apart",
     description:
-      "Our unique combination of expertise, methodology, and commitment to excellence makes us the preferred choice for Oracle NetSuite implementations.",
+      "Our unique combination of expertise, methodology, and commitment to excellence makes us the preferred choice for Bellatrix implementations.",
     items: [],
   };
 

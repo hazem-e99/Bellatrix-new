@@ -106,15 +106,15 @@ const DemoModal = ({
 
       <SEO
 
-        title="Oracle NetSuite HR Platform Demo | Interactive HR System Preview"
+        title="Bellatrix HR Platform Demo | Interactive HR System Preview"
 
-        description="Explore Oracle NetSuite HR platform with our interactive demo. See employee management, payroll automation, compliance features, and analytics in action."
+        description="Explore Bellatrix HR platform with our interactive demo. See employee management, payroll automation, compliance features, and analytics in action."
 
-        keywords="Oracle NetSuite HR demo, HR platform preview, NetSuite HR screenshots, employee management demo, HR system walkthrough"
+        keywords="Bellatrix HR demo, HR platform preview, NetSuite HR screenshots, employee management demo, HR system walkthrough"
 
         ogTitle="NetSuite HR Platform Demo - Interactive System Preview"
 
-        ogDescription="Interactive Oracle NetSuite HR platform demo showcasing employee management, payroll, compliance, and analytics features."
+        ogDescription="Interactive Bellatrix HR platform demo showcasing employee management, payroll, compliance, and analytics features."
 
         ogImage="/images/netsuite-hr-demo.jpg"
 
@@ -150,7 +150,7 @@ const DemoModal = ({
 
             <h2 id="demo-modal-title" className="sr-only">
 
-              Oracle NetSuite HR Platform Demo
+              Bellatrix HR Platform Demo
 
             </h2>
 
@@ -204,7 +204,7 @@ const DemoModal = ({
 
               src={displayDemoImages[demoIdx]}
 
-              alt={`Oracle NetSuite HR Platform Demo Screenshot ${
+              alt={`Bellatrix HR Platform Demo Screenshot ${
 
                 demoIdx + 1
 

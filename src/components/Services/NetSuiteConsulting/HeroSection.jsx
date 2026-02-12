@@ -14,15 +14,15 @@ const HeroSection = ({ title, description, ctaText, ctaIcon }) => {
 
       <SEO
 
-        title="Oracle NetSuite Consulting Hero | Expert ERP Implementation Services"
+        title="Bellatrix Consulting Hero | Expert ERP Implementation Services"
 
-        description="Leading Oracle NetSuite consulting services with proven expertise in ERP implementation, customization, and business transformation for enhanced operational efficiency and growth."
+        description="Leading Bellatrix consulting services with proven expertise in ERP implementation, customization, and business transformation for enhanced operational efficiency and growth."
 
-        keywords="Oracle NetSuite consulting hero, NetSuite ERP implementation, Oracle consulting experts, ERP business transformation, NetSuite customization services"
+        keywords="Bellatrix consulting hero, NetSuite ERP implementation, Oracle consulting experts, ERP business transformation, NetSuite customization services"
 
-        ogTitle="Oracle NetSuite Consulting Services - Expert ERP Implementation"
+        ogTitle="Bellatrix Consulting Services - Expert ERP Implementation"
 
-        ogDescription="Transform your business with expert Oracle NetSuite consulting services. Professional ERP implementation and customization for operational excellence."
+        ogDescription="Transform your business with expert Bellatrix consulting services. Professional ERP implementation and customization for operational excellence."
 
         ogImage="/images/netsuite-consulting-hero.jpg"
 

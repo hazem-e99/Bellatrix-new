@@ -166,15 +166,15 @@ const PayrollFAQ = ({ faqData = {} }) => {
 
       <SEO
 
-        title={`Oracle NetSuite Payroll FAQ | ${
+        title={`Bellatrix Payroll FAQ | ${
 
           displayFaqData.title || "Frequently Asked Questions"
 
         }`}
 
-        description="Get answers to common Oracle NetSuite payroll questions: security, integration, compliance, pricing, and implementation. Expert payroll solution guidance and support."
+        description="Get answers to common Bellatrix payroll questions: security, integration, compliance, pricing, and implementation. Expert payroll solution guidance and support."
 
-        keywords="Oracle NetSuite payroll FAQ, payroll system questions, NetSuite payroll security, ERP payroll integration, payroll compliance answers"
+        keywords="Bellatrix payroll FAQ, payroll system questions, NetSuite payroll security, ERP payroll integration, payroll compliance answers"
 
         ogTitle={`NetSuite Payroll FAQ - ${
 
@@ -182,7 +182,7 @@ const PayrollFAQ = ({ faqData = {} }) => {
 
         }`}
 
-        ogDescription="Find answers to frequently asked questions about Oracle NetSuite payroll solutions, security, integration, and implementation. Expert guidance available."
+        ogDescription="Find answers to frequently asked questions about Bellatrix payroll solutions, security, integration, and implementation. Expert guidance available."
 
         ogImage="/images/netsuite-payroll-faq.jpg"
 

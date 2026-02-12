@@ -89,8 +89,8 @@ const ContactForm = ({
   return (
     <>
       <SEO
-        title="Contact Bellatrix | Oracle NetSuite Consultation"
-        description="Contact Bellatrix for Oracle NetSuite consulting services."
+        title="Contact Bellatrix | Bellatrix Consultation"
+        description="Contact Bellatrix for Bellatrix consulting services."
       />
 
       <form className="space-y-4" onSubmit={handleSubmit}>

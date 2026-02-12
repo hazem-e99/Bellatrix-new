@@ -34,20 +34,20 @@ const CTASection = ({
   return (
     <>
       <SEO
-        title={`Get Started with Oracle NetSuite HR | ${
+        title={`Get Started with Bellatrix HR | ${
           finalData.title || "Ready to Transform Your HR Operations?"
         }`}
         description={`${
           finalData.description ||
-          "Ready to transform your HR operations with Oracle NetSuite? Join thousands of companies automating HR processes"
+          "Ready to transform your HR operations with Bellatrix? Join thousands of companies automating HR processes"
         } - Start now.`}
-        keywords="Oracle NetSuite HR, get started NetSuite HR, HR platform demo, ERP HR implementation, NetSuite HR pricing, HR automation"
+        keywords="Bellatrix HR, get started NetSuite HR, HR platform demo, ERP HR implementation, NetSuite HR pricing, HR automation"
         ogTitle={`Get Started with NetSuite HR - ${
           finalData.title || "Transform Your HR Today"
         }`}
         ogDescription={`${(
           finalData.description ||
-          "Start your Oracle NetSuite HR transformation today"
+          "Start your Bellatrix HR transformation today"
         ).substring(0, 120)}... Professional ERP HR solutions and support.`}
         ogImage="/images/netsuite-hr-cta.jpg"
       />
@@ -73,7 +73,7 @@ const CTASection = ({
               className="shadow-lg"
               modalConfig={{
                 title: "Transform Your HR Operations",
-                subtitle: "Let's discuss how Oracle NetSuite HR can automate your processes and reduce administrative workload",
+                subtitle: "Let's discuss how Bellatrix HR can automate your processes and reduce administrative workload",
                 icon: ""
               }}
             >

@@ -46,13 +46,13 @@ const IntegrationMain = ({ data: propsData = null }) => {
 
       <SEO
 
-        title="Oracle NetSuite Integration Services | Enterprise ERP Consulting Solutions"
+        title="Bellatrix Integration Services | Enterprise ERP Consulting Solutions"
 
-        description="Professional Oracle NetSuite integration services connecting your ERP system with CRM, e-commerce, and third-party platforms for seamless business operations and enhanced productivity."
+        description="Professional Bellatrix integration services connecting your ERP system with CRM, e-commerce, and third-party platforms for seamless business operations and enhanced productivity."
 
-        keywords="Oracle NetSuite integration, ERP integration services, NetSuite consulting, CRM integration, e-commerce integration, Oracle consulting, enterprise integration solutions"
+        keywords="Bellatrix integration, ERP integration services, NetSuite consulting, CRM integration, e-commerce integration, Oracle consulting, enterprise integration solutions"
 
-        ogTitle="Oracle NetSuite Integration Services - Enterprise ERP Solutions"
+        ogTitle="Bellatrix Integration Services - Enterprise ERP Solutions"
 
         ogDescription="Expert NetSuite integration services for seamless business operations. Connect your ERP, CRM, and e-commerce systems with professional Oracle consulting support."
 

@@ -70,11 +70,11 @@ const CaseStudiesSection = ({
   return (
     <section className="py-20 relative overflow-hidden theme-bg-primary bg-[var(--color-brand-dark-navy)]">
       <SEO
-        title="Retail Success Stories | Oracle NetSuite E-commerce Case Studies"
-        description="Real retail success stories with Oracle NetSuite e-commerce solutions. Discover how retail companies achieved remarkable growth with NetSuite implementations."
-        keywords="retail case studies, Oracle NetSuite success stories, e-commerce success stories, retail transformation, NetSuite retail implementations, retail growth stories"
-        ogTitle="Retail Success Stories | Oracle NetSuite E-commerce Case Studies"
-        ogDescription="Proven retail success stories and case studies showcasing Oracle NetSuite e-commerce transformations in retail operations."
+        title="Retail Success Stories | Bellatrix E-commerce Case Studies"
+        description="Real retail success stories with Bellatrix e-commerce solutions. Discover how retail companies achieved remarkable growth with NetSuite implementations."
+        keywords="retail case studies, Bellatrix success stories, e-commerce success stories, retail transformation, NetSuite retail implementations, retail growth stories"
+        ogTitle="Retail Success Stories | Bellatrix E-commerce Case Studies"
+        ogDescription="Proven retail success stories and case studies showcasing Bellatrix e-commerce transformations in retail operations."
         ogImage="/images/retail-case-studies.jpg"
       />
 

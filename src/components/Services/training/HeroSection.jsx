@@ -17,12 +17,12 @@ const HeroSection = ({
 
   const heroContent = propsHeroContent ||
     data?.heroContent || {
-      title: "Transform Your Career with Oracle NetSuite Training",
+      title: "Transform Your Career with Bellatrix Training",
 
       subtitle: "Professional ERP Education & Skills Development",
 
       description:
-        "Master Oracle NetSuite with comprehensive training programs designed for professionals at all levels.",
+        "Master Bellatrix with comprehensive training programs designed for professionals at all levels.",
     };
 
   const backgroundVideo =
@@ -101,11 +101,11 @@ const HeroSection = ({
   return (
     <>
       <SEO
-        title="Oracle NetSuite Training Hero | Professional ERP Education & Skills Development"
-        description="Transform your career with Oracle NetSuite training programs. Expert-led education covering ERP implementation, customization, and advanced system management for business success."
-        keywords="Oracle NetSuite training hero, NetSuite education programs, ERP training courses, NetSuite skill development, Oracle training certification, professional ERP education"
-        ogTitle="Oracle NetSuite Training - Professional ERP Education Programs"
-        ogDescription="Master Oracle NetSuite with comprehensive training programs. Expert-led education for implementation, customization, and advanced ERP management skills."
+        title="Bellatrix Training Hero | Professional ERP Education & Skills Development"
+        description="Transform your career with Bellatrix training programs. Expert-led education covering ERP implementation, customization, and advanced system management for business success."
+        keywords="Bellatrix training hero, NetSuite education programs, ERP training courses, NetSuite skill development, Oracle training certification, professional ERP education"
+        ogTitle="Bellatrix Training - Professional ERP Education Programs"
+        ogDescription="Master Bellatrix with comprehensive training programs. Expert-led education for implementation, customization, and advanced ERP management skills."
         ogImage="/images/netsuite-training-hero.jpg"
       />
 

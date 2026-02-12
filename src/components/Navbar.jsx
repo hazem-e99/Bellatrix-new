@@ -235,11 +235,11 @@ const Navbar = () => {
   return (
     <>
       <SEO
-        title="Bellatrix Navigation | Oracle NetSuite Consulting Services"
-        description="Navigate Bellatrix's comprehensive Oracle NetSuite services including implementation, training, support, and industry-specific solutions."
+        title="Bellatrix Navigation | Bellatrix Consulting Services"
+        description="Navigate Bellatrix's comprehensive Bellatrix services including implementation, training, support, and industry-specific solutions."
         keywords="NetSuite navigation, Oracle consulting menu, implementation services, training programs, technical support, industry solutions"
-        ogTitle="Bellatrix Services Navigation | Oracle NetSuite Solutions"
-        ogDescription="Explore Bellatrix's full range of Oracle NetSuite consulting services, training programs, and industry-specific solutions."
+        ogTitle="Bellatrix Services Navigation | Bellatrix Solutions"
+        ogDescription="Explore Bellatrix's full range of Bellatrix consulting services, training programs, and industry-specific solutions."
         ogImage="/images/bellatrix-services-navigation.jpg"
         twitterCard="summary_large_image"
       />

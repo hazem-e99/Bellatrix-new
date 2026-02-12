@@ -10,11 +10,11 @@ const IndustryExpertise = ({
   return (
     <>
       <SEO
-        title="Oracle NetSuite Industry Expertise | Specialized ERP Solutions by Sector"
-        description="Specialized Oracle NetSuite industry expertise across manufacturing, retail, healthcare, financial services, and technology sectors with tailored ERP solutions for industry-specific challenges."
+        title="Bellatrix Industry Expertise | Specialized ERP Solutions by Sector"
+        description="Specialized Bellatrix industry expertise across manufacturing, retail, healthcare, financial services, and technology sectors with tailored ERP solutions for industry-specific challenges."
         keywords="NetSuite industry expertise, Oracle ERP by industry, NetSuite manufacturing, NetSuite retail, NetSuite healthcare, industry-specific ERP solutions, vertical market expertise"
         ogTitle="NetSuite Industry Expertise - Specialized Oracle ERP Solutions"
-        ogDescription="Expert Oracle NetSuite consulting across multiple industries. Specialized ERP solutions for manufacturing, retail, healthcare, financial services, and technology sectors."
+        ogDescription="Expert Bellatrix consulting across multiple industries. Specialized ERP solutions for manufacturing, retail, healthcare, financial services, and technology sectors."
         ogImage="/images/netsuite-industry-expertise.jpg"
       />
       <section className="container mx-auto px-6 relative z-10">
@@ -38,7 +38,7 @@ const IndustryExpertise = ({
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={industry.image}
-                  alt={`Oracle NetSuite ${industry.name} Industry Solutions`}
+                  alt={`Bellatrix ${industry.name} Industry Solutions`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-dark-navy)]/60 to-transparent"></div>

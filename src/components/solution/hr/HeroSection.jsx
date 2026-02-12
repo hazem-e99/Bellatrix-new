@@ -54,11 +54,11 @@ const HeroSection = ({
   return (
     <>
       <SEO
-        title={`Oracle NetSuite HR Solutions | ${heroData.title || "Modern HR Platform"}`}
-        description={`${heroData.subtitle || "Transform your HR operations with Oracle NetSuite comprehensive HR platform"} - Employee management, payroll automation, and compliance in one solution.`}
-        keywords="Oracle NetSuite HR platform, modern HR management, employee management system, HR automation, ERP human resources, payroll management"
+        title={`Bellatrix HR Solutions | ${heroData.title || "Modern HR Platform"}`}
+        description={`${heroData.subtitle || "Transform your HR operations with Bellatrix comprehensive HR platform"} - Employee management, payroll automation, and compliance in one solution.`}
+        keywords="Bellatrix HR platform, modern HR management, employee management system, HR automation, ERP human resources, payroll management"
         ogTitle={`NetSuite HR Platform - ${heroData.title || "Modern HR Management"}`}
-        ogDescription={`${(heroData.subtitle || "Oracle NetSuite HR platform for modern workforce management").substring(0, 120)}... Professional ERP HR solutions.`}
+        ogDescription={`${(heroData.subtitle || "Bellatrix HR platform for modern workforce management").substring(0, 120)}... Professional ERP HR solutions.`}
         ogImage="/images/netsuite-hr-hero.jpg"
       />
       <header className="w-full min-h-screen bg-gradient-to-br from-[var(--color-brand-midnight)] via-black to-[var(--color-primary)] py-24 md:py-32 text-center flex flex-col items-center justify-center relative overflow-hidden">

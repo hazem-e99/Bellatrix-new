@@ -88,11 +88,11 @@ const SolutionsSection = (props) => {
   return (
     <section className="manufacturing-solutions bg-gray-50 py-20 light-section">
       <SEO
-        title="Oracle NetSuite Manufacturing Solutions | Production Management ERP"
-        description="Comprehensive Oracle NetSuite manufacturing solutions for production management, inventory control, and quality assurance. Streamline manufacturing operations."
-        keywords="Oracle NetSuite manufacturing solutions, production management ERP, manufacturing inventory control, NetSuite manufacturing modules, ERP manufacturing software"
-        ogTitle="Oracle NetSuite Manufacturing Solutions | Production Management ERP"
-        ogDescription="Advanced Oracle NetSuite manufacturing solutions for comprehensive production management and operational optimization."
+        title="Bellatrix Manufacturing Solutions | Production Management ERP"
+        description="Comprehensive Bellatrix manufacturing solutions for production management, inventory control, and quality assurance. Streamline manufacturing operations."
+        keywords="Bellatrix manufacturing solutions, production management ERP, manufacturing inventory control, NetSuite manufacturing modules, ERP manufacturing software"
+        ogTitle="Bellatrix Manufacturing Solutions | Production Management ERP"
+        ogDescription="Advanced Bellatrix manufacturing solutions for comprehensive production management and operational optimization."
         ogImage="/images/manufacturing-solutions.jpg"
       />
 

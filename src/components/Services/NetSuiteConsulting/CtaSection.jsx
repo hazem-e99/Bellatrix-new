@@ -26,15 +26,15 @@ const CtaSection = ({
 
       <SEO
 
-        title="Start Oracle NetSuite Consulting | Expert ERP Implementation & Support"
+        title="Start Bellatrix Consulting | Expert ERP Implementation & Support"
 
-        description="Ready to transform your business with Oracle NetSuite? Contact our expert consultants for comprehensive ERP implementation, customization, and ongoing support services."
+        description="Ready to transform your business with Bellatrix? Contact our expert consultants for comprehensive ERP implementation, customization, and ongoing support services."
 
-        keywords="start NetSuite consulting, Oracle ERP consultation, NetSuite implementation contact, ERP consulting services, Oracle NetSuite experts, business transformation"
+        keywords="start NetSuite consulting, Oracle ERP consultation, NetSuite implementation contact, ERP consulting services, Bellatrix experts, business transformation"
 
         ogTitle="Start NetSuite Consulting - Oracle ERP Expert Implementation"
 
-        ogDescription="Begin your Oracle NetSuite transformation journey with expert consulting services. Professional ERP implementation and customization for business success."
+        ogDescription="Begin your Bellatrix transformation journey with expert consulting services. Professional ERP implementation and customization for business success."
 
         ogImage="/images/netsuite-consulting-contact.jpg"
 

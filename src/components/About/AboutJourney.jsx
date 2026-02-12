@@ -5,7 +5,7 @@ const AboutJourney = ({ data = {} }) => {
   const defaultData = {
     title: "Our Journey",
     description:
-      "From humble beginnings to becoming a trusted Oracle NetSuite partner, our journey has been marked by innovation, growth, and unwavering commitment to excellence.",
+      "From humble beginnings to becoming a trusted Bellatrix partner, our journey has been marked by innovation, growth, and unwavering commitment to excellence.",
     timeline: [],
   };
 
@@ -25,7 +25,7 @@ const AboutJourney = ({ data = {} }) => {
   const displayData = hasPropsData ? data : (defaultData || {
     title: "Our Journey",
     description:
-      "From humble beginnings to becoming a trusted Oracle NetSuite partner, our journey has been marked by innovation, growth, and unwavering commitment to excellence.",
+      "From humble beginnings to becoming a trusted Bellatrix partner, our journey has been marked by innovation, growth, and unwavering commitment to excellence.",
     timeline: [],
   });
 

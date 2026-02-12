@@ -37,11 +37,11 @@ const HeroSection = (props) => {
   return (
     <header className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <SEO
-        title="Oracle NetSuite Manufacturing ERP Solutions | Transform Your Production"
-        description="Streamline manufacturing operations with Oracle NetSuite ERP. Expert manufacturing consulting for production planning, inventory control, and operational efficiency."
-        keywords="Oracle NetSuite manufacturing, manufacturing ERP, production management, NetSuite manufacturing solutions, manufacturing software, ERP consulting"
-        ogTitle="Oracle NetSuite Manufacturing ERP Solutions | Professional Manufacturing Platform"
-        ogDescription="Professional Oracle NetSuite manufacturing platform for comprehensive production management and operational excellence."
+        title="Bellatrix Manufacturing ERP Solutions | Transform Your Production"
+        description="Streamline manufacturing operations with Bellatrix ERP. Expert manufacturing consulting for production planning, inventory control, and operational efficiency."
+        keywords="Bellatrix manufacturing, manufacturing ERP, production management, NetSuite manufacturing solutions, manufacturing software, ERP consulting"
+        ogTitle="Bellatrix Manufacturing ERP Solutions | Professional Manufacturing Platform"
+        ogDescription="Professional Bellatrix manufacturing platform for comprehensive production management and operational excellence."
         ogImage="/images/manufacturing-hero.jpg"
       />
 

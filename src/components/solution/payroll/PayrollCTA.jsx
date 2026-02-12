@@ -34,20 +34,20 @@ const PayrollCTA = ({
   return (
     <>
       <SEO
-        title={`Get Started with Oracle NetSuite Payroll | ${
+        title={`Get Started with Bellatrix Payroll | ${
           finalData.title || "Ready to Simplify Your Payroll?"
         }`}
         description={`${
           finalData.description ||
-          "Ready to transform your payroll operations with Oracle NetSuite? Start now"
+          "Ready to transform your payroll operations with Bellatrix? Start now"
         } - Expert implementation support and comprehensive ERP payroll solutions.`}
-        keywords="Oracle NetSuite payroll, get started NetSuite payroll, payroll system demo, ERP payroll implementation, NetSuite payroll pricing"
+        keywords="Bellatrix payroll, get started NetSuite payroll, payroll system demo, ERP payroll implementation, NetSuite payroll pricing"
         ogTitle={`Get Started with NetSuite Payroll - ${
           finalData.title || "Transform Your Payroll Today"
         }`}
         ogDescription={`${(
           finalData.description ||
-          "Start your Oracle NetSuite payroll transformation today"
+          "Start your Bellatrix payroll transformation today"
         ).substring(
           0,
           120
@@ -100,7 +100,7 @@ const PayrollCTA = ({
               className="shadow-2xl hover:shadow-3xl"
               modalConfig={{
                 title: "Start Your Payroll Transformation",
-                subtitle: "Let's discuss how Oracle NetSuite Payroll can streamline your operations",
+                subtitle: "Let's discuss how Bellatrix Payroll can streamline your operations",
                 icon: ""
               }}
             >

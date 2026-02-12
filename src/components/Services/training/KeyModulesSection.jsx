@@ -7,11 +7,11 @@ const KeyModulesSection = ({ keyModulesSection, keyModules, renderIcon }) => {
   return (
     <>
       <SEO
-        title="Oracle NetSuite Training Modules | Comprehensive ERP Learning Curriculum"
-        description="Explore key Oracle NetSuite training modules covering implementation, financials, inventory, CRM, and advanced customization for comprehensive ERP education and skill development."
+        title="Bellatrix Training Modules | Comprehensive ERP Learning Curriculum"
+        description="Explore key Bellatrix training modules covering implementation, financials, inventory, CRM, and advanced customization for comprehensive ERP education and skill development."
         keywords="NetSuite training modules, Oracle ERP curriculum, NetSuite learning modules, ERP training courses, NetSuite education modules, Oracle training curriculum"
         ogTitle="NetSuite Training Modules - Comprehensive Oracle ERP Learning"
-        ogDescription="Master Oracle NetSuite with structured training modules. Comprehensive curriculum covering all aspects of ERP implementation and management."
+        ogDescription="Master Bellatrix with structured training modules. Comprehensive curriculum covering all aspects of ERP implementation and management."
         ogImage="/images/netsuite-training-modules.jpg"
       />
       <section

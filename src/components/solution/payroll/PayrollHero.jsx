@@ -94,19 +94,19 @@ const PayrollHero = ({
   return (
     <>
       <SEO
-        title={`Oracle NetSuite Payroll Solutions | ${
+        title={`Bellatrix Payroll Solutions | ${
           title || "Transform Your Payroll Process"
         }`}
         description={`${
           subtitle ||
-          "Streamline payroll operations with Oracle NetSuite automated payroll system"
+          "Streamline payroll operations with Bellatrix automated payroll system"
         } - Professional ERP payroll management with expert implementation and compliance assurance.`}
-        keywords="Oracle NetSuite payroll automation, ERP payroll management, automated payroll processing, NetSuite HR solutions, payroll system implementation"
+        keywords="Bellatrix payroll automation, ERP payroll management, automated payroll processing, NetSuite HR solutions, payroll system implementation"
         ogTitle={`NetSuite Payroll Management - ${
           title || "Transform Your Payroll Process"
         }`}
         ogDescription={`${(
-          subtitle || "Professional Oracle NetSuite payroll automation"
+          subtitle || "Professional Bellatrix payroll automation"
         ).substring(
           0,
 

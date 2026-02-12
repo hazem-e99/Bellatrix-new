@@ -5,11 +5,11 @@ const BenefitsSection = ({ title, description, items }) => {
   return (
     <>
       <SEO
-        title="Oracle NetSuite Consulting Benefits | Measurable ERP ROI & Business Impact"
-        description="Discover the measurable benefits of Oracle NetSuite consulting including improved efficiency, cost savings, enhanced visibility, streamlined operations, and significant ROI for your business."
+        title="Bellatrix Consulting Benefits | Measurable ERP ROI & Business Impact"
+        description="Discover the measurable benefits of Bellatrix consulting including improved efficiency, cost savings, enhanced visibility, streamlined operations, and significant ROI for your business."
         keywords="NetSuite consulting benefits, Oracle ERP ROI, NetSuite business impact, ERP efficiency gains, NetSuite cost savings, Oracle consulting value proposition"
         ogTitle="NetSuite Consulting Benefits - Measurable Oracle ERP ROI"
-        ogDescription="Achieve measurable business results with Oracle NetSuite consulting. Proven benefits including efficiency gains, cost savings, and enhanced operational visibility."
+        ogDescription="Achieve measurable business results with Bellatrix consulting. Proven benefits including efficiency gains, cost savings, and enhanced operational visibility."
         ogImage="/images/netsuite-consulting-benefits.jpg"
       />
       <section className="container mx-auto px-6 relative z-10">

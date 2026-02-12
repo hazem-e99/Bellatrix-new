@@ -143,11 +143,11 @@ const ChallengesSection = (props) => {
       style={{ backgroundColor: "var(--color-brand-dark-navy)" }}
     >
       <SEO
-        title="Manufacturing Challenges | Oracle NetSuite Solutions for Complex Operations"
-        description="Overcome manufacturing challenges with Oracle NetSuite ERP. Address supply chain complexity, quality control, cost management, and operational inefficiencies."
-        keywords="manufacturing challenges, supply chain complexity, quality control, manufacturing cost management, Oracle NetSuite manufacturing solutions"
-        ogTitle="Manufacturing Challenges | Oracle NetSuite Solutions for Complex Operations"
-        ogDescription="Comprehensive Oracle NetSuite solutions to address critical manufacturing challenges and operational complexities."
+        title="Manufacturing Challenges | Bellatrix Solutions for Complex Operations"
+        description="Overcome manufacturing challenges with Bellatrix ERP. Address supply chain complexity, quality control, cost management, and operational inefficiencies."
+        keywords="manufacturing challenges, supply chain complexity, quality control, manufacturing cost management, Bellatrix manufacturing solutions"
+        ogTitle="Manufacturing Challenges | Bellatrix Solutions for Complex Operations"
+        ogDescription="Comprehensive Bellatrix solutions to address critical manufacturing challenges and operational complexities."
         ogImage="/images/manufacturing-challenges.jpg"
       />
 

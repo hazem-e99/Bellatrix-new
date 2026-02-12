@@ -48,10 +48,10 @@ const BenefitsSection = ({
   return (
     <>
       <SEO
-        title={`Oracle NetSuite HR Benefits | ${displayData.title}`}
+        title={`${displayData.title} | Bellatrix`}
         description={`${displayData.description} - Employee management, automation, compliance, and analytics benefits.`}
-        keywords="Oracle NetSuite HR benefits, HR platform advantages, employee management benefits, HR automation features, NetSuite HR system benefits"
-        ogTitle={`NetSuite HR Benefits - ${displayData.title}`}
+        keywords="Bellatrix HR benefits, HR platform advantages, employee management benefits, HR automation features, NetSuite HR system benefits"
+        ogTitle={`${displayData.title} | Bellatrix`}
         ogDescription={`${displayData.description.substring(0, 120)}... Professional ERP HR solutions.`}
         ogImage="/images/netsuite-hr-benefits.jpg"
       />
@@ -102,7 +102,7 @@ const BenefitsSection = ({
                 }
               }}
               modalConfig={{
-                title: displayData.ctaButton.modalTitle || "See Oracle NetSuite HR in Action",
+                title: displayData.ctaButton.modalTitle || "See Bellatrix HR in Action",
                 subtitle: displayData.ctaButton.modalSubtitle || "Let's show you how our HR platform can transform your operations",
                 icon: ""
               }}

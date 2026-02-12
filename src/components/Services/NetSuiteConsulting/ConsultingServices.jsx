@@ -12,11 +12,11 @@ const ConsultingServices = ({
   return (
     <>
       <SEO
-        title="Oracle NetSuite Consulting Services | Comprehensive ERP Solutions Portfolio"
-        description="Comprehensive Oracle NetSuite consulting services including implementation, customization, integration, training, and ongoing support for optimal ERP performance and business growth."
+        title="Bellatrix Consulting Services | Comprehensive ERP Solutions Portfolio"
+        description="Comprehensive Bellatrix consulting services including implementation, customization, integration, training, and ongoing support for optimal ERP performance and business growth."
         keywords="NetSuite consulting services, Oracle ERP implementation, NetSuite customization, ERP integration services, NetSuite training, Oracle consulting portfolio"
         ogTitle="NetSuite Consulting Services - Comprehensive Oracle ERP Solutions"
-        ogDescription="Expert Oracle NetSuite consulting services portfolio including implementation, customization, integration, and training for business transformation success."
+        ogDescription="Expert Bellatrix consulting services portfolio including implementation, customization, integration, and training for business transformation success."
         ogImage="/images/netsuite-consulting-services-portfolio.jpg"
       />
       <section className="container mx-auto px-6">
@@ -87,7 +87,7 @@ const ConsultingServices = ({
               <div className="relative bg-gradient-to-br from-[var(--color-text-primary)]/10 via-[var(--color-primary-dark)]/5 to-[var(--color-text-primary)]/10 rounded-3xl p-6 backdrop-blur-md border border-[var(--color-text-inverse)]/30 shadow-2xl">
                 <img
                   src={image}
-                  alt="Oracle NetSuite Consulting Services - Professional ERP Implementation"
+                  alt="Bellatrix Consulting Services - Professional ERP Implementation"
                   className="w-full h-auto rounded-xl shadow-2xl brightness-105 contrast-110 saturate-105 group-hover:brightness-110 transition-all duration-500"
                 />
               </div>

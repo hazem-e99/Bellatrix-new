@@ -40,11 +40,11 @@ const PopularIntegrations = ({ title, platforms }) => {
   return (
     <>
       <SEO
-        title="Popular Oracle NetSuite Integrations | Leading Platform Connectivity"
-        description="Explore the most popular Oracle NetSuite integrations including Shopify, Magento, Salesforce, HubSpot, PayPal, Stripe, Amazon, eBay, QuickBooks, and Microsoft Office for enhanced business operations."
-        keywords="popular NetSuite integrations, Oracle NetSuite platforms, Shopify NetSuite integration, Salesforce NetSuite connectivity, e-commerce ERP integration, CRM NetSuite integration"
+        title="Popular Bellatrix Integrations | Leading Platform Connectivity"
+        description="Explore the most popular Bellatrix integrations including Shopify, Magento, Salesforce, HubSpot, PayPal, Stripe, Amazon, eBay, QuickBooks, and Microsoft Office for enhanced business operations."
+        keywords="popular NetSuite integrations, Bellatrix platforms, Shopify NetSuite integration, Salesforce NetSuite connectivity, e-commerce ERP integration, CRM NetSuite integration"
         ogTitle="Popular NetSuite Integrations - Oracle ERP Platform Connectivity"
-        ogDescription="Connect Oracle NetSuite with leading business platforms including Shopify, Salesforce, PayPal, Amazon, and more. Professional integration services for seamless operations."
+        ogDescription="Connect Bellatrix with leading business platforms including Shopify, Salesforce, PayPal, Amazon, and more. Professional integration services for seamless operations."
         ogImage="/images/popular-netsuite-integrations.jpg"
       />
       <section className="max-w-6xl mx-auto px-4">

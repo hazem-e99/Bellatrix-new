@@ -17,14 +17,14 @@ const FeatureCard = ({ feature, renderIcon, openFeatureModal, index }) => {
   return (
     <>
       <SEO
-        title={`Oracle NetSuite Training Feature | ${
+        title={`Bellatrix Training Feature | ${
           feature.title || "Training Feature"
         }`}
         description={`Discover ${feature.title || "training feature"}: ${(
           feature.shortDescription ||
           feature.description ||
           "Feature description"
-        ).substring(0, 120)}... Professional Oracle NetSuite training.`}
+        ).substring(0, 120)}... Professional Bellatrix training.`}
         keywords={`NetSuite training feature, ${
           feature.title || "training"
         }, Oracle ERP training, NetSuite education, ERP skill development`}
@@ -33,7 +33,7 @@ const FeatureCard = ({ feature, renderIcon, openFeatureModal, index }) => {
         }`}
         ogDescription={`Learn about ${
           feature.title || "training feature"
-        } in our Oracle NetSuite training program. ${(
+        } in our Bellatrix training program. ${(
           feature.shortDescription ||
           feature.description ||
           ""
@@ -60,14 +60,14 @@ const FeatureCard = ({ feature, renderIcon, openFeatureModal, index }) => {
 
           {/* Title */}
           <h3 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-            {feature.title || "Oracle NetSuite Training Feature"}
+            {feature.title || "Bellatrix Training Feature"}
           </h3>
 
           {/* Description */}
           <p className="text-gray-600 leading-relaxed mb-4 text-sm">
             {feature.shortDescription ||
               feature.description ||
-              "Professional Oracle NetSuite training feature description"}
+              "Professional Bellatrix training feature description"}
           </p>
 
           {/* Learn More Link */}

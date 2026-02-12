@@ -92,15 +92,15 @@ const ImplementationModal = ({ isOpen, onClose, data }) => {
 
       <SEO
 
-        title="Oracle NetSuite ERP Implementation Contact | Technology Consulting Inquiry"
+        title="Bellatrix ERP Implementation Contact | Technology Consulting Inquiry"
 
-        description="Contact our Oracle NetSuite ERP implementation specialists for your technology transformation project. Get expert consulting, certified support, and comprehensive enterprise solutions."
+        description="Contact our Bellatrix ERP implementation specialists for your technology transformation project. Get expert consulting, certified support, and comprehensive enterprise solutions."
 
-        keywords="Oracle NetSuite implementation contact, ERP consulting inquiry, technology transformation contact, NetSuite certified consultants, enterprise software contact, IT consulting services"
+        keywords="Bellatrix implementation contact, ERP consulting inquiry, technology transformation contact, NetSuite certified consultants, enterprise software contact, IT consulting services"
 
-        ogTitle="Oracle NetSuite ERP Implementation Contact | Technology Consulting Inquiry"
+        ogTitle="Bellatrix ERP Implementation Contact | Technology Consulting Inquiry"
 
-        ogDescription="Contact certified Oracle NetSuite ERP implementation specialists for expert technology consulting and enterprise transformation solutions."
+        ogDescription="Contact certified Bellatrix ERP implementation specialists for expert technology consulting and enterprise transformation solutions."
 
         ogImage="/images/implementation-contact.jpg"
 

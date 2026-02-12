@@ -78,11 +78,11 @@ const WhyChooseSection = (props) => {
   return (
     <>
       <SEO
-        title="Why Choose Bellatrix | Oracle NetSuite ERP Implementation Excellence"
-        description="Choose Bellatrix for Oracle NetSuite ERP implementation with 18+ years expertise, certified technology consultants, proven methodologies, and cutting-edge enterprise solutions for guaranteed success."
-        keywords="Oracle NetSuite certified consultants, ERP implementation expertise, enterprise technology solutions, Oracle consulting company, IT implementation excellence, CRM deployment specialists, business transformation experts"
-        ogTitle="Why Choose Bellatrix | Oracle NetSuite ERP Implementation Excellence"
-        ogDescription="Leading Oracle NetSuite ERP implementation company with certified consultants, proven methodologies, and 18+ years of enterprise technology expertise."
+        title="Why Choose Bellatrix | Bellatrix ERP Implementation Excellence"
+        description="Choose Bellatrix for Bellatrix ERP implementation with 18+ years expertise, certified technology consultants, proven methodologies, and cutting-edge enterprise solutions for guaranteed success."
+        keywords="Bellatrix certified consultants, ERP implementation expertise, enterprise technology solutions, Oracle consulting company, IT implementation excellence, CRM deployment specialists, business transformation experts"
+        ogTitle="Why Choose Bellatrix | Bellatrix ERP Implementation Excellence"
+        ogDescription="Leading Bellatrix ERP implementation company with certified consultants, proven methodologies, and 18+ years of enterprise technology expertise."
         ogImage="/Videos/implementation/whyChoese.jpg"
       />
 

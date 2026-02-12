@@ -47,11 +47,11 @@ const PricingSection = ({ data = {} }) => {
   return (
     <>
       <SEO
-        title="Oracle NetSuite HR Pricing | Implementation Plans & Cost"
-        description="Explore Oracle NetSuite HR implementation pricing plans. Flexible pricing options for small businesses to enterprises. Get the perfect plan for your HR needs and budget."
-        keywords="Oracle NetSuite HR pricing, HR implementation cost, NetSuite HR plans, HR platform pricing, ERP HR implementation pricing"
+        title="Bellatrix HR Pricing | Implementation Plans & Cost"
+        description="Explore Bellatrix HR implementation pricing plans. Flexible pricing options for small businesses to enterprises. Get the perfect plan for your HR needs and budget."
+        keywords="Bellatrix HR pricing, HR implementation cost, NetSuite HR plans, HR platform pricing, ERP HR implementation pricing"
         ogTitle="NetSuite HR Pricing - Implementation Plans for Every Business"
-        ogDescription="Flexible Oracle NetSuite HR pricing plans for businesses of all sizes. Professional implementation with transparent costs and expert support."
+        ogDescription="Flexible Bellatrix HR pricing plans for businesses of all sizes. Professional implementation with transparent costs and expert support."
         ogImage="/images/netsuite-hr-pricing.jpg"
       />
       <section

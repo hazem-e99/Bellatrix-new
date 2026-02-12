@@ -6,11 +6,11 @@ const BellatrixSupportHero = () => {
   return (
     <>
       <SEO
-        title="Bellatrix Support Hero | Oracle NetSuite Expert Support Services"
-        description="Get access to expert Oracle NetSuite support knowledge and ongoing assistance after your go-live. Professional ERP implementation support from certified consultants."
-        keywords="Oracle NetSuite support, ERP support services, NetSuite consultants, post-implementation support, Oracle NetSuite experts, business system support"
-        ogTitle="Bellatrix Support Hero | Oracle NetSuite Expert Support Services"
-        ogDescription="Professional Oracle NetSuite support services with expert consultants for ongoing ERP system assistance and optimization."
+        title="Bellatrix Support Hero | Bellatrix Expert Support Services"
+        description="Get access to expert Bellatrix support knowledge and ongoing assistance after your go-live. Professional ERP implementation support from certified consultants."
+        keywords="Bellatrix support, ERP support services, NetSuite consultants, post-implementation support, Bellatrix experts, business system support"
+        ogTitle="Bellatrix Support Hero | Bellatrix Expert Support Services"
+        ogDescription="Professional Bellatrix support services with expert consultants for ongoing ERP system assistance and optimization."
         ogImage="/images/Support/HeroSection.png"
       />
       <header
@@ -89,7 +89,7 @@ const BellatrixSupportHero = () => {
               }}
               className="text-white animate-slide-up"
             >
-              Oracle NetSuite Support
+              Bellatrix Support
             </h1>
 
             {/* Description */}

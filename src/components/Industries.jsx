@@ -111,13 +111,13 @@ const Industries = ({ industries: propsIndustries = [], sectionHeader: propsSect
 
         title="Industry-Specific NetSuite Solutions | Manufacturing, Retail & More | Bellatrix"
 
-        description="Specialized Oracle NetSuite solutions for manufacturing, retail, e-commerce, and other industries. Tailored ERP implementations for sector-specific needs."
+        description="Specialized Bellatrix solutions for manufacturing, retail, e-commerce, and other industries. Tailored ERP implementations for sector-specific needs."
 
         keywords="industry NetSuite solutions, manufacturing ERP, retail NetSuite, e-commerce solutions, sector-specific implementation, industry consulting"
 
         ogTitle="Industry Solutions | NetSuite for Manufacturing, Retail & More | Bellatrix"
 
-        ogDescription="Discover industry-specific Oracle NetSuite solutions tailored for manufacturing, retail, e-commerce and other sectors. Expert implementation and consulting."
+        ogDescription="Discover industry-specific Bellatrix solutions tailored for manufacturing, retail, e-commerce and other sectors. Expert implementation and consulting."
 
         ogImage="/images/industry-solutions.jpg"
 

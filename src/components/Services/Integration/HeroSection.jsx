@@ -66,7 +66,7 @@ const HeroSection = ({ title: propsTitle, subtitle: propsSubtitle, data }) => {
 
         description="Transform your business operations with expert NetSuite integration services. Connect Oracle ERP systems with CRM, e-commerce platforms, and third-party applications for streamlined workflows."
 
-        keywords="NetSuite integration services, Oracle ERP connectivity, NetSuite consulting, ERP system integration, Oracle NetSuite hero, business transformation"
+        keywords="NetSuite integration services, Oracle ERP connectivity, NetSuite consulting, ERP system integration, Bellatrix hero, business transformation"
 
         ogTitle="NetSuite Integration Services - Oracle ERP Connectivity Solutions"
 

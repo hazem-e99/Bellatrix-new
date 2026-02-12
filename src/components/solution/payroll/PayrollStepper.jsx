@@ -310,7 +310,7 @@ const PayrollStepper = ({ steps = [], title, description }) => {
 
       <SEO
 
-        title={`Oracle NetSuite Payroll Steps | ${
+        title={`Bellatrix Payroll Steps | ${
 
           displayTitle || "Payroll Process Workflow"
 
@@ -320,11 +320,11 @@ const PayrollStepper = ({ steps = [], title, description }) => {
 
           displayDescription ||
 
-          "Step-by-step Oracle NetSuite payroll process workflow"
+          "Step-by-step Bellatrix payroll process workflow"
 
         } - Interactive payroll stepper with detailed process stages and benefits.`}
 
-        keywords="Oracle NetSuite payroll steps, payroll workflow process, step-by-step payroll guide, NetSuite payroll implementation steps"
+        keywords="Bellatrix payroll steps, payroll workflow process, step-by-step payroll guide, NetSuite payroll implementation steps"
 
         ogTitle={`NetSuite Payroll Process Steps - ${
 
@@ -336,7 +336,7 @@ const PayrollStepper = ({ steps = [], title, description }) => {
 
           displayDescription ||
 
-          "Oracle NetSuite interactive payroll process steps"
+          "Bellatrix interactive payroll process steps"
 
         ).substring(0, 120)}... Professional ERP payroll workflow.`}
 

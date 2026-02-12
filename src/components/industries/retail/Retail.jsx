@@ -204,15 +204,15 @@ const Retail = ({ data: propsData = null }) => {
 
       <SEO
 
-        title="Oracle NetSuite Retail Solutions | Complete E-commerce & Retail Management"
+        title="Bellatrix Retail Solutions | Complete E-commerce & Retail Management"
 
-        description="Transform your retail operations with Oracle NetSuite retail solutions. Comprehensive e-commerce, inventory management, and omnichannel retail platform for modern retailers."
+        description="Transform your retail operations with Bellatrix retail solutions. Comprehensive e-commerce, inventory management, and omnichannel retail platform for modern retailers."
 
-        keywords="Oracle NetSuite retail, NetSuite e-commerce, retail management software, omnichannel retail, NetSuite retail solutions, e-commerce ERP, retail POS system"
+        keywords="Bellatrix retail, NetSuite e-commerce, retail management software, omnichannel retail, NetSuite retail solutions, e-commerce ERP, retail POS system"
 
-        ogTitle="Oracle NetSuite Retail Solutions | Complete E-commerce & Retail Management"
+        ogTitle="Bellatrix Retail Solutions | Complete E-commerce & Retail Management"
 
-        ogDescription="Complete Oracle NetSuite retail platform for e-commerce, inventory management, and omnichannel retail operations."
+        ogDescription="Complete Bellatrix retail platform for e-commerce, inventory management, and omnichannel retail operations."
 
         ogImage="/images/retail-solutions.jpg"
 

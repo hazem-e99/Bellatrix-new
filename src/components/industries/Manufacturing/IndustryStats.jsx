@@ -137,15 +137,15 @@ const IndustryStats = (props) => {
 
       <SEO
 
-        title="Manufacturing Industry Statistics | Oracle NetSuite Performance Metrics"
+        title="Manufacturing Industry Statistics | Bellatrix Performance Metrics"
 
-        description="Discover proven manufacturing statistics with Oracle NetSuite ERP. Real performance metrics showing efficiency gains and cost reductions in manufacturing operations."
+        description="Discover proven manufacturing statistics with Bellatrix ERP. Real performance metrics showing efficiency gains and cost reductions in manufacturing operations."
 
         keywords="manufacturing statistics, NetSuite manufacturing metrics, manufacturing performance, ERP manufacturing results, manufacturing industry data"
 
-        ogTitle="Manufacturing Industry Statistics | Oracle NetSuite Performance Metrics"
+        ogTitle="Manufacturing Industry Statistics | Bellatrix Performance Metrics"
 
-        ogDescription="Real manufacturing performance data and industry statistics with Oracle NetSuite ERP solutions."
+        ogDescription="Real manufacturing performance data and industry statistics with Bellatrix ERP solutions."
 
         ogImage="/images/manufacturing-stats.jpg"
 

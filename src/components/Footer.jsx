@@ -278,11 +278,11 @@ const Footer = () => {
       <style>{footerStyles}</style>
 
       <SEO
-        title="Contact Bellatrix | Oracle NetSuite Consulting & Support Information"
-        description="Get in touch with Bellatrix for Oracle NetSuite consulting, implementation, and support services. Contact information and company details."
+        title="Contact Bellatrix | Bellatrix Consulting & Support Information"
+        description="Get in touch with Bellatrix for Bellatrix consulting, implementation, and support services. Contact information and company details."
         keywords="contact Bellatrix, NetSuite support contact, Oracle consulting contact, business hours, company information, get in touch"
-        ogTitle="Contact Bellatrix | Oracle NetSuite Consulting Company"
-        ogDescription="Contact Bellatrix for expert Oracle NetSuite consulting and implementation services. Get in touch with our team of specialists."
+        ogTitle="Contact Bellatrix | Bellatrix Consulting Company"
+        ogDescription="Contact Bellatrix for expert Bellatrix consulting and implementation services. Get in touch with our team of specialists."
         ogImage="/images/bellatrix-contact-footer.jpg"
         twitterCard="summary_large_image"
       />

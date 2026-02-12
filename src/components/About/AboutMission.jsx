@@ -60,7 +60,7 @@ const AboutMission = ({ data }) => {
           <p
             className="text-lg leading-relaxed max-w-3xl mx-auto text-[var(--color-text-secondary)] transition-colors duration-600 ease-in-out"
           >
-            {missionData.description || "We are a leading Oracle NetSuite consultancy dedicated to transforming businesses through innovative technology solutions and strategic digital transformation initiatives."}
+            {missionData.description || "We are a leading Bellatrix consultancy dedicated to transforming businesses through innovative technology solutions and strategic digital transformation initiatives."}
           </p>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-12">
@@ -129,7 +129,7 @@ const AboutMission = ({ data }) => {
             <p
               className="leading-relaxed text-lg text-[var(--color-text-secondary)] transition-colors duration-600 ease-in-out"
             >
-              {missionData.description || "To empower businesses worldwide with cutting-edge Oracle NetSuite solutions that drive operational excellence, enhance productivity, and accelerate growth. We believe in creating lasting partnerships that deliver measurable value and sustainable success."}
+              {missionData.description || "To empower businesses worldwide with cutting-edge Bellatrix solutions that drive operational excellence, enhance productivity, and accelerate growth. We believe in creating lasting partnerships that deliver measurable value and sustainable success."}
             </p>
             {missionData.vision && (
               <div className="mt-6 p-4 rounded-xl border bg-[var(--color-primary-bg)] border-[var(--color-border-light)] transition-all duration-600 ease-in-out">

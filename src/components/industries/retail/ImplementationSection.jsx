@@ -66,11 +66,11 @@ const ImplementationSection = ({
   return (
     <section className="py-20 bg-white light-section">
       <SEO
-        title="Retail Implementation Process | Oracle NetSuite E-commerce Setup"
-        description="Proven Oracle NetSuite retail implementation process from discovery to go-live. Secure methodology for e-commerce and retail ERP implementation success."
+        title="Retail Implementation Process | Bellatrix E-commerce Setup"
+        description="Proven Bellatrix retail implementation process from discovery to go-live. Secure methodology for e-commerce and retail ERP implementation success."
         keywords="NetSuite retail implementation, e-commerce implementation process, retail implementation methodology, NetSuite e-commerce setup, Oracle ERP retail implementation"
-        ogTitle="Retail Implementation Process | Oracle NetSuite E-commerce Setup"
-        ogDescription="Comprehensive Oracle NetSuite retail implementation process designed for e-commerce and retail industry success."
+        ogTitle="Retail Implementation Process | Bellatrix E-commerce Setup"
+        ogDescription="Comprehensive Bellatrix retail implementation process designed for e-commerce and retail industry success."
         ogImage="/images/retail-implementation.jpg"
       />
 

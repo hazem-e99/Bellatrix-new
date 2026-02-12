@@ -62,15 +62,15 @@ const ProgramsSection = ({
 
       <SEO
 
-        title="Oracle NetSuite Training Programs | Comprehensive ERP Education Courses"
+        title="Bellatrix Training Programs | Comprehensive ERP Education Courses"
 
-        description="Explore comprehensive Oracle NetSuite training programs including implementation, customization, advanced modules, and certification courses designed for business professionals."
+        description="Explore comprehensive Bellatrix training programs including implementation, customization, advanced modules, and certification courses designed for business professionals."
 
         keywords="NetSuite training programs, Oracle ERP training courses, NetSuite education, ERP certification programs, NetSuite learning paths, Oracle training modules"
 
         ogTitle="NetSuite Training Programs - Comprehensive Oracle ERP Education"
 
-        ogDescription="Master Oracle NetSuite with specialized training programs. Comprehensive courses for implementation, customization, and advanced ERP management skills."
+        ogDescription="Master Bellatrix with specialized training programs. Comprehensive courses for implementation, customization, and advanced ERP management skills."
 
         ogImage="/images/netsuite-training-programs.jpg"
 
@@ -190,7 +190,7 @@ const ProgramsSection = ({
 
                       src={sectionData?.image || "/images/traning.jpg"}
 
-                      alt="Oracle NetSuite Training Programs - Advanced ERP Learning Solutions"
+                      alt="Bellatrix Training Programs - Advanced ERP Learning Solutions"
 
                       className="w-full h-auto rounded-xl shadow-2xl brightness-105 contrast-110 saturate-105 group-hover:brightness-110 group-hover:contrast-115 group-hover:saturate-110 transition-all duration-500 filter drop-shadow-xl"
 

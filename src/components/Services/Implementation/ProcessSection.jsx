@@ -80,11 +80,11 @@ const ProcessSection = (props) => {
   return (
     <>
       <SEO
-        title="Oracle NetSuite ERP Implementation Process | Proven Technology Consulting Methodology"
-        description="Our proven Oracle NetSuite ERP implementation methodology ensures seamless business transformation. Expert-guided process with certified consultants for successful enterprise technology deployment."
-        keywords="Oracle NetSuite implementation process, ERP methodology, enterprise technology consulting, implementation steps, Oracle deployment, IT project management, business process optimization, CRM integration"
-        ogTitle="Oracle NetSuite ERP Implementation Process | Proven Technology Consulting Methodology"
-        ogDescription="Expert Oracle NetSuite ERP implementation methodology with certified consultants and proven steps for successful enterprise technology transformation."
+        title="Bellatrix ERP Implementation Process | Proven Technology Consulting Methodology"
+        description="Our proven Bellatrix ERP implementation methodology ensures seamless business transformation. Expert-guided process with certified consultants for successful enterprise technology deployment."
+        keywords="Bellatrix implementation process, ERP methodology, enterprise technology consulting, implementation steps, Oracle deployment, IT project management, business process optimization, CRM integration"
+        ogTitle="Bellatrix ERP Implementation Process | Proven Technology Consulting Methodology"
+        ogDescription="Expert Bellatrix ERP implementation methodology with certified consultants and proven steps for successful enterprise technology transformation."
         ogImage="/Videos/implementation/implementProcess.jpg"
       />
       <section className="bg-gray-50 py-12 light-section">

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
 const SEO = ({
-  title = "Bellatrix - Oracle NetSuite Consulting Services",
-  description = "Expert Oracle NetSuite consulting and implementation services",
-  keywords = "Oracle NetSuite, consulting, implementation, ERP",
+  title = "Bellatrix - ERP Consulting Services",
+  description = "Expert ERP consulting and implementation services",
+  keywords = "Bellatrix, consulting, implementation, ERP",
   ogTitle,
   ogDescription,
   ogImage = "/images/bellatrix-default.jpg",

@@ -25,11 +25,11 @@ const ImplementationProcess = (props) => {
   return (
     <section className="py-20 bg-white light-section">
       <SEO
-        title="Manufacturing Implementation Process | Oracle NetSuite ERP Methodology"
-        description="Proven Oracle NetSuite manufacturing implementation process from discovery to go-live. Secure methodology for manufacturing ERP implementation success."
+        title="Manufacturing Implementation Process | Bellatrix ERP Methodology"
+        description="Proven Bellatrix manufacturing implementation process from discovery to go-live. Secure methodology for manufacturing ERP implementation success."
         keywords="NetSuite manufacturing implementation, ERP implementation process, manufacturing implementation methodology, NetSuite manufacturing setup, Oracle ERP implementation"
-        ogTitle="Manufacturing Implementation Process | Oracle NetSuite ERP Methodology"
-        ogDescription="Comprehensive Oracle NetSuite manufacturing implementation process designed for manufacturing industry success."
+        ogTitle="Manufacturing Implementation Process | Bellatrix ERP Methodology"
+        ogDescription="Comprehensive Bellatrix manufacturing implementation process designed for manufacturing industry success."
         ogImage="/images/manufacturing-implementation.jpg"
       />
 

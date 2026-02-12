@@ -130,11 +130,11 @@ const HeroSection = (props) => {
   return (
     <>
       <SEO
-        title="Oracle NetSuite ERP Implementation | Where Vision Meets Technology Reality"
-        description="Transform your business operations with expert Oracle NetSuite ERP implementation. Our certified consultants craft enterprise solutions that revolutionize how you do business with proven technology."
-        keywords="Oracle NetSuite ERP implementation, enterprise technology solutions, certified Oracle consultants, business transformation, ERP deployment, CRM integration, IT consulting services"
-        ogTitle="Oracle NetSuite ERP Implementation | Where Vision Meets Technology Reality"
-        ogDescription="Expert Oracle NetSuite ERP implementation services with certified consultants. Transform your business operations with enterprise technology solutions."
+        title="Bellatrix ERP Implementation | Where Vision Meets Technology Reality"
+        description="Transform your business operations with expert Bellatrix ERP implementation. Our certified consultants craft enterprise solutions that revolutionize how you do business with proven technology."
+        keywords="Bellatrix ERP implementation, enterprise technology solutions, certified Oracle consultants, business transformation, ERP deployment, CRM integration, IT consulting services"
+        ogTitle="Bellatrix ERP Implementation | Where Vision Meets Technology Reality"
+        ogDescription="Expert Bellatrix ERP implementation services with certified consultants. Transform your business operations with enterprise technology solutions."
         ogImage="/Videos/HomeHeroSectionV.mp4"
       />
 

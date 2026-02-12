@@ -6,7 +6,7 @@ const AboutMilestones = ({ milestones = [], data = {} }) => {
   const defaultData = {
     title: "Our Journey in Numbers",
     description:
-      "Key milestones that mark our growth and success in delivering exceptional Oracle NetSuite solutions.",
+      "Key milestones that mark our growth and success in delivering exceptional Bellatrix solutions.",
     items: [],
   };
 
@@ -14,7 +14,7 @@ const AboutMilestones = ({ milestones = [], data = {} }) => {
   const displayData = data || defaultData || {
     title: "Our Journey in Numbers",
     description:
-      "Key milestones that mark our growth and success in delivering exceptional Oracle NetSuite solutions.",
+      "Key milestones that mark our growth and success in delivering exceptional Bellatrix solutions.",
     items: [],
   };
 

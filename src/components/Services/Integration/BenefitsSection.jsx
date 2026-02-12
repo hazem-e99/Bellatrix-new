@@ -124,15 +124,15 @@ const BenefitsSection = ({ title, items }) => {
 
       <SEO
 
-        title="Oracle NetSuite Integration Benefits | ERP System Advantages & ROI"
+        title="Bellatrix Integration Benefits | ERP System Advantages & ROI"
 
-        description="Discover the key benefits of Oracle NetSuite integration including automated data sync, improved accuracy, enhanced productivity, better visibility, scalable solutions, and significant cost savings."
+        description="Discover the key benefits of Bellatrix integration including automated data sync, improved accuracy, enhanced productivity, better visibility, scalable solutions, and significant cost savings."
 
         keywords="NetSuite integration benefits, Oracle ERP advantages, automated data sync, business productivity, ERP ROI, NetSuite consulting benefits, integration cost savings"
 
         ogTitle="NetSuite Integration Benefits - Oracle ERP System Advantages"
 
-        ogDescription="Maximize your business potential with Oracle NetSuite integration benefits. Automated processes, improved accuracy, enhanced productivity, and measurable ROI for your enterprise."
+        ogDescription="Maximize your business potential with Bellatrix integration benefits. Automated processes, improved accuracy, enhanced productivity, and measurable ROI for your enterprise."
 
         ogImage="/images/netsuite-integration-benefits.jpg"
 

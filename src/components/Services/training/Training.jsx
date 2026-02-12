@@ -96,11 +96,11 @@ const Training = ({ data: propsData = null }) => {
   return (
     <>
       <SEO
-        title="Oracle NetSuite Training Services | Professional ERP Education & Certification Programs"
-        description="Comprehensive Oracle NetSuite training programs including implementation, customization, and advanced ERP education. Expert-led courses for business transformation and skill development."
-        keywords="Oracle NetSuite training, NetSuite education, ERP training programs, NetSuite certification, Oracle training courses, ERP skill development, NetSuite learning"
-        ogTitle="Oracle NetSuite Training Services - Professional ERP Education Programs"
-        ogDescription="Master Oracle NetSuite with comprehensive training programs. Expert-led education for implementation, customization, and advanced ERP management skills."
+        title="Bellatrix Training Services | Professional ERP Education & Certification Programs"
+        description="Comprehensive Bellatrix training programs including implementation, customization, and advanced ERP education. Expert-led courses for business transformation and skill development."
+        keywords="Bellatrix training, NetSuite education, ERP training programs, NetSuite certification, Oracle training courses, ERP skill development, NetSuite learning"
+        ogTitle="Bellatrix Training Services - Professional ERP Education Programs"
+        ogDescription="Master Bellatrix with comprehensive training programs. Expert-led education for implementation, customization, and advanced ERP management skills."
         ogImage="/images/netsuite-training-services.jpg"
       />
       <main className="custom-scrollbar" style={{ backgroundColor: "#001038" }}>

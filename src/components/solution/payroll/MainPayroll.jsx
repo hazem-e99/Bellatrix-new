@@ -68,11 +68,11 @@ export default function PayrollPage({ data }) {
   return (
     <>
       <SEO
-        title="Oracle NetSuite Payroll Management Solutions | Bellatrix Consulting"
-        description="Transform your payroll operations with Oracle NetSuite's automated payroll management system. Expert implementation, compliance assurance, and streamlined HR processes for modern businesses."
-        keywords="Oracle NetSuite payroll, payroll management system, automated payroll solutions, NetSuite HR implementation, ERP payroll processing, payroll compliance automation"
-        ogTitle="Oracle NetSuite Payroll Management - Complete Automation Solutions"
-        ogDescription="Streamline payroll operations with Oracle NetSuite's comprehensive payroll management system. Automated processing, compliance, and expert implementation services."
+        title="Payroll Management Solutions | Bellatrix"
+        description="Transform your payroll operations with Bellatrix's automated payroll management system. Expert implementation, compliance assurance, and streamlined HR processes for modern businesses."
+        keywords="Bellatrix payroll, payroll management system, automated payroll solutions, HR implementation, ERP payroll processing, payroll compliance automation"
+        ogTitle="Bellatrix Payroll Management - Complete Automation Solutions"
+        ogDescription="Streamline payroll operations with Bellatrix's comprehensive payroll management system. Automated processing, compliance, and expert implementation services."
         ogImage="/images/netsuite-payroll-management.jpg"
       />
       <main className="bg-[var(--color-bg-secondary)] min-h-screen">
