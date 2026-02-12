@@ -2084,6 +2084,102 @@ export const generalComponentSchemas = {
     },
   },
 
+  // Training Hero Section Schema
+  TrainingHeroSection: {
+    componentName: "TrainingHeroSection",
+    category: "hero",
+    icon: "",
+    displayName: "Training Hero Section",
+    description: "Hero section for training pages with background image",
+    schema: {
+      type: "object",
+      properties: {
+        heroContent: {
+          type: "object",
+          label: "Hero Content",
+          properties: {
+            title: {
+              type: "string",
+              label: "Title",
+              placeholder: "Professional Training Programs",
+              formField: "text",
+            },
+            subtitle: {
+              type: "string",
+              label: "Subtitle",
+              placeholder: "Professional ERP Education & Skills Development",
+              formField: "text",
+            },
+            description: {
+              type: "string",
+              label: "Description",
+              placeholder: "Empower your team with comprehensive training solutions",
+              formField: "textarea",
+            },
+          },
+          formField: "object",
+        },
+        backgroundImage: {
+          type: "string",
+          label: "Background Image",
+          placeholder: "/images/training.jpg",
+          formField: "media",
+          mediaType: "image",
+        },
+        ctaButton: {
+          type: "object",
+          label: "CTA Button",
+          properties: {
+            text: {
+              type: "string",
+              label: "Button Text",
+              placeholder: "Start Learning Today",
+              formField: "text",
+            },
+            link: {
+              type: "string",
+              label: "Button Link",
+              placeholder: "/training",
+              formField: "text",
+            },
+            variant: {
+              type: "string",
+              label: "Button Variant",
+              placeholder: "primary",
+              formField: "select",
+              options: [
+                { value: "primary", label: "Primary" },
+                { value: "secondary", label: "Secondary" },
+                { value: "outline", label: "Outline" },
+              ],
+            },
+            icon: {
+              type: "string",
+              label: "Button Icon",
+              placeholder: "",
+              formField: "text",
+            },
+          },
+          formField: "object",
+        },
+      },
+    },
+    defaultData: {
+      heroContent: {
+        title: "Professional Training Programs",
+        subtitle: "Professional ERP Education & Skills Development",
+        description: "Empower your team with comprehensive training solutions designed to enhance skills and drive success",
+      },
+      backgroundImage: "/images/training.jpg",
+      ctaButton: {
+        text: "Start Learning Today",
+        link: "/training",
+        variant: "primary",
+        icon: "",
+      },
+    },
+  },
+
   // Programs Section Schema (Training Programs)
   TrainingProgramsSection: {
     componentName: "TrainingProgramsSection",
@@ -2132,7 +2228,7 @@ export const generalComponentSchemas = {
                 placeholder: "NetSuite Fundamentals",
                 formField: "text",
               },
-              description: {
+              shortDescription: {
                 type: "string",
                 label: "Program Description",
                 placeholder: "Learn the basics of NetSuite",
@@ -2155,12 +2251,6 @@ export const generalComponentSchemas = {
                   { value: "Advanced", label: "Advanced" },
                 ],
               },
-              icon: {
-                type: "string",
-                label: "Program Icon",
-                placeholder: "Icon name",
-                formField: "text",
-              },
             },
           },
           formField: "array",
@@ -2174,8 +2264,202 @@ export const generalComponentSchemas = {
         image: "/images/training.jpg",
       },
       trainingPrograms: [
-        { title: "NetSuite Fundamentals", description: "Core concepts and navigation", duration: "2 weeks", level: "Beginner", icon: "" },
-        { title: "Advanced NetSuite", description: "Advanced features and customization", duration: "3 weeks", level: "Advanced", icon: "" },
+        { title: "NetSuite Fundamentals", shortDescription: "Core concepts and navigation", duration: "2 weeks", level: "Beginner" },
+        { title: "Advanced NetSuite", shortDescription: "Advanced features and customization", duration: "3 weeks", level: "Advanced" },
+      ],
+    },
+  },
+
+  // Key Modules Section Schema (Training Key Modules)
+  TrainingKeyModulesSection: {
+    componentName: "TrainingKeyModulesSection",
+    category: "training",
+    icon: "",
+    displayName: "Key Modules Section",
+    description:
+      "Key training modules grid with title, description and duration",
+    schema: {
+      type: "object",
+      properties: {
+        keyModulesSection: {
+          type: "object",
+          label: "Section Header",
+          properties: {
+            title: {
+              type: "string",
+              label: "Section Title",
+              placeholder: "Key Training Modules",
+              formField: "text",
+            },
+            description: {
+              type: "string",
+              label: "Section Description",
+              placeholder:
+                "Comprehensive curriculum designed to master NetSuite from foundation to advanced implementation",
+              formField: "textarea",
+            },
+          },
+          formField: "object",
+        },
+        keyModules: {
+          type: "array",
+          label: "Key Modules",
+          items: {
+            type: "object",
+            properties: {
+              title: {
+                type: "string",
+                label: "Module Title",
+                placeholder: "System Architecture",
+                formField: "text",
+              },
+              description: {
+                type: "string",
+                label: "Module Description",
+                placeholder:
+                  "Core system structure, data flow, and integration patterns",
+                formField: "textarea",
+              },
+              duration: {
+                type: "string",
+                label: "Duration",
+                placeholder: "8 hours",
+                formField: "text",
+              },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      keyModulesSection: {
+        title: "Key Training Modules",
+        description:
+          "Comprehensive curriculum designed to master NetSuite from foundation to advanced implementation",
+      },
+      keyModules: [
+        {
+          title: "System Architecture",
+          description:
+            "Core system structure, data flow, and integration patterns",
+          duration: "8 hours",
+        },
+        {
+          title: "Financial Management",
+          description:
+            "General ledger, budgeting, financial reporting, and analytics",
+          duration: "12 hours",
+        },
+      ],
+    },
+  },
+
+  // Training Why Choose Section Schema
+  TrainingWhyChooseSection: {
+    componentName: "TrainingWhyChooseSection",
+    category: "training",
+    icon: "",
+    displayName: "Training Why Choose Section",
+    description:
+      "Why choose our training section with feature cards and image",
+    schema: {
+      type: "object",
+      properties: {
+        whyChooseSection: {
+          type: "object",
+          label: "Section Header",
+          properties: {
+            title: {
+              type: "string",
+              label: "Section Title",
+              placeholder: "Why Choose Our Training",
+              formField: "text",
+            },
+            description: {
+              type: "string",
+              label: "Section Description",
+              placeholder: "Professional development excellence",
+              formField: "textarea",
+            },
+            image: {
+              type: "string",
+              label: "Section Image",
+              placeholder: "/images/training-why-choose.jpg",
+              formField: "media",
+              mediaType: "image",
+            },
+            badge: {
+              type: "string",
+              label: "Professional Badge Text",
+              placeholder: "Professional Excellence",
+              formField: "text",
+            },
+          },
+          formField: "object",
+        },
+        trainingFeatures: {
+          type: "array",
+          label: "Training Features",
+          items: {
+            type: "object",
+            properties: {
+              id: {
+                type: "string",
+                label: "Feature ID",
+                placeholder: "feature-1",
+                formField: "text",
+              },
+              title: {
+                type: "string",
+                label: "Feature Title",
+                placeholder: "Expert Instructors",
+                formField: "text",
+              },
+              shortDescription: {
+                type: "string",
+                label: "Short Description",
+                placeholder: "Learn from certified professionals",
+                formField: "textarea",
+              },
+              description: {
+                type: "string",
+                label: "Detailed Description (optional)",
+                placeholder: "Add more detail about this feature",
+                formField: "textarea",
+              },
+              icon: {
+                type: "string",
+                label: "Feature Icon (optional)",
+                placeholder: "Icon path or SVG",
+                formField: "text",
+              },
+            },
+          },
+          formField: "array",
+        },
+      },
+    },
+    defaultData: {
+      whyChooseSection: {
+        title: "Why Choose Our Training",
+        description:
+          "Professional development excellence with industry-leading programs",
+        image: "/images/training-why-choose.jpg",
+        badge: "Professional Excellence",
+      },
+      trainingFeatures: [
+        {
+          id: "feature-1",
+          title: "Expert Instructors",
+          shortDescription:
+            "Learn from certified Oracle professionals with years of experience",
+        },
+        {
+          id: "feature-2",
+          title: "Hands-on Learning",
+          shortDescription: "Practical exercises and real-world scenarios",
+        },
       ],
     },
   },

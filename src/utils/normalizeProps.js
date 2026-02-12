@@ -1580,15 +1580,23 @@ export const normalizeProps = (componentType, contentJson) => {
 
         },
 
+        backgroundImage:
+
+          data.backgroundImage ||
+
+          data.bgImage ||
+
+          data.heroContent?.backgroundImage ||
+
+          "/images/training.jpg",
+
         backgroundVideo:
 
           data.backgroundVideo ||
 
           data.bgVideo ||
 
-          data.heroContent?.backgroundVideo ||
-
-          "/trainingHeroSectionTwo.mp4",
+          null,
 
         // Proper CTA button handling with form data
 
@@ -1754,6 +1762,59 @@ export const normalizeProps = (componentType, contentJson) => {
 
       return normalized;
 
+    },
+
+    TrainingKeyModulesSection: (data) => {
+      console.log(
+        " [NORMALIZE DEBUG] TrainingKeyModulesSection RAW DATA:",
+        data,
+      );
+
+      const section =
+        data.keyModulesSection ||
+        data.section || {
+          title:
+            data.title ||
+            "Key Training Modules",
+          description:
+            data.description ||
+            data.content ||
+            "Comprehensive curriculum designed to master NetSuite from foundation to advanced implementation",
+        };
+
+      const rawModules =
+        data.keyModules ||
+        data.modules ||
+        data.items ||
+        [];
+
+      const keyModules = Array.isArray(rawModules)
+        ? rawModules
+        : typeof rawModules === "string"
+          ? rawModules
+
+            .split(/[;\n,]+/)
+
+            .map((s, i) => ({
+              id: i,
+              title: s.trim(),
+              description: "",
+            }))
+
+            .filter((m) => m.title)
+          : [];
+
+      const normalized = {
+        keyModulesSection: section,
+        keyModules,
+      };
+
+      console.log(
+        " [NORMALIZE DEBUG] TrainingKeyModulesSection normalized data:",
+        normalized,
+      );
+
+      return normalized;
     },
 
 

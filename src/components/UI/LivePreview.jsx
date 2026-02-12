@@ -5,13 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { EyeIcon } from "@heroicons/react/24/outline";
 
-
-
 import Card, { CardContent, CardHeader, CardTitle } from "../UI/Card";
 
-import {
-  componentRegistry,
-} from "../../config/previewComponentRegistry";
+import { componentRegistry } from "../../config/previewComponentRegistry";
 
 import PreviewError from "./LivePreview/PreviewError";
 
@@ -76,7 +72,7 @@ const ComponentPreview = ({
             console.log(
               " [PayrollHowItWorksSection TRANSFORM] Input data:",
 
-              componentData
+              componentData,
             );
 
             const transformedPayrollHowItWorksData = {
@@ -96,7 +92,7 @@ const ComponentPreview = ({
             console.log(
               " [PayrollHowItWorksSection TRANSFORM] Output data:",
 
-              transformedPayrollHowItWorksData
+              transformedPayrollHowItWorksData,
             );
 
             return transformedPayrollHowItWorksData;
@@ -105,52 +101,61 @@ const ComponentPreview = ({
 
         case "Hero":
         case "HeroSection": {
-            console.log(" [Hero/HeroSection TRANSFORM] Input:", componentData);
-            const baseData = componentData.data || componentData;
-            
-            // If slides exist, use them. Otherwise create one slide from flat props.
-            let slides = baseData.slides;
-            if (!slides || !Array.isArray(slides) || slides.length === 0) {
-                 slides = [{
-                     title: baseData.title || "Welcome",
-                     subtitle: baseData.subtitle || "",
-                     description: baseData.description || baseData.content || "",
-                     video: baseData.video || baseData.backgroundVideo || "/Videos/implementation/homepage_hero.mp4",
-                 }];
-            }
-            
-            const transformedData = {
-                 slides,
-                 stats: baseData.stats || [],
-                 data: baseData
-            };
-            
-            console.log(" [Hero/HeroSection TRANSFORM] Output:", transformedData);
-            return transformedData;
+          console.log(" [Hero/HeroSection TRANSFORM] Input:", componentData);
+          const baseData = componentData.data || componentData;
+
+          // If slides exist, use them. Otherwise create one slide from flat props.
+          let slides = baseData.slides;
+          if (!slides || !Array.isArray(slides) || slides.length === 0) {
+            slides = [
+              {
+                title: baseData.title || "Welcome",
+                subtitle: baseData.subtitle || "",
+                description: baseData.description || baseData.content || "",
+                video:
+                  baseData.video ||
+                  baseData.backgroundVideo ||
+                  "/Videos/implementation/homepage_hero.mp4",
+              },
+            ];
+          }
+
+          const transformedData = {
+            slides,
+            stats: baseData.stats || [],
+            data: baseData,
+          };
+
+          console.log(" [Hero/HeroSection TRANSFORM] Output:", transformedData);
+          return transformedData;
         }
 
         case "AboutTeam":
         case "AboutTeamSection": {
-             console.log(" [AboutTeam TRANSFORM] Input:", componentData);
-             const baseData = componentData.data || componentData;
-             const members = baseData.members || baseData.items || baseData.teamMembers || [];
-             
-             return {
-                 teamMembers: members,
-                 data: {
-                     title: baseData.title || "Meet Our Team",
-                     description: baseData.description || "",
-                     members: members
-                 }
-             };
+          console.log(" [AboutTeam TRANSFORM] Input:", componentData);
+          const baseData = componentData.data || componentData;
+          const members =
+            baseData.members || baseData.items || baseData.teamMembers || [];
+
+          return {
+            teamMembers: members,
+            data: {
+              title: baseData.title || "Meet Our Team",
+              description: baseData.description || "",
+              members: members,
+            },
+          };
         }
 
         case "AboutHeroSection":
           return {
             title: componentData.title || "About Bellatrix",
-            subtitle: componentData.subtitle || "Your trusted partner in digital transformation",
+            subtitle:
+              componentData.subtitle ||
+              "Your trusted partner in digital transformation",
             description: componentData.description || "",
-            backgroundVideo: componentData.backgroundVideo || "/Videos/about-hero.mp4",
+            backgroundVideo:
+              componentData.backgroundVideo || "/Videos/about-hero.mp4",
             backgroundImage: componentData.backgroundImage || "",
             ctaButtonText: componentData.ctaButtonText || "Discover Our Story",
             ctaButtonLink: componentData.ctaButtonLink || "/about",
@@ -162,7 +167,7 @@ const ComponentPreview = ({
           console.log(
             " [AboutMissionSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedMissionData = {
@@ -179,7 +184,9 @@ const ComponentPreview = ({
 
               image: componentData.image || "/images/ourProServices.png",
 
-              imageAlt: componentData.imageAlt || "About Bellatrix - Professional Services",
+              imageAlt:
+                componentData.imageAlt ||
+                "About Bellatrix - Professional Services",
 
               stats: Array.isArray(componentData.stats)
                 ? componentData.stats
@@ -194,62 +201,76 @@ const ComponentPreview = ({
           console.log(
             " [AboutMissionSection TRANSFORM] Output data:",
 
-            transformedMissionData
+            transformedMissionData,
           );
 
           return transformedMissionData;
         }
 
         case "AboutJourneySection": {
-          console.log(" [AboutJourneySection TRANSFORM] Input data:", componentData);
-          
+          console.log(
+            " [AboutJourneySection TRANSFORM] Input data:",
+            componentData,
+          );
+
           // AboutJourney component expects { data: { title, description, imageUrl, ... } }
           const transformedJourneyData = {
             data: {
               title: componentData.title || "Our Journey",
-              description: componentData.description || "From humble beginnings to becoming a trusted Bellatrix partner.",
+              description:
+                componentData.description ||
+                "From humble beginnings to becoming a trusted Bellatrix partner.",
               beginningTitle: componentData.beginningTitle || "The Beginning",
               beginningText: componentData.beginningText || "",
               growthTitle: componentData.growthTitle || "Growth & Evolution",
               growthText: componentData.growthText || "",
               todayTitle: componentData.todayTitle || "Today",
               todayText: componentData.todayText || "",
-              imageUrl: componentData.imageUrl || componentData.image || "/images/solution.jpg",
+              imageUrl:
+                componentData.imageUrl ||
+                componentData.image ||
+                "/images/solution.jpg",
               milestones: componentData.milestones || [],
               timeline: componentData.timeline || [],
             },
           };
-          
-          console.log(" [AboutJourneySection TRANSFORM] Output data:", transformedJourneyData);
+
+          console.log(
+            " [AboutJourneySection TRANSFORM] Output data:",
+            transformedJourneyData,
+          );
           return transformedJourneyData;
         }
 
         // Manufacturing Case Studies Section
         case "ManufacturingCaseStudiesSection":
         case "CaseStudiesSection": {
-            console.log(" [ManufacturingCaseStudies TRANSFORM] Input:", componentData);
-            const baseData = componentData.data || componentData;
-            const items = baseData.items || baseData.caseStudies || [];
-            
-            return {
-                title: baseData.title || "Success Stories",
-                description: baseData.description || "",
-                items: items,
-                caseStudies: items,
-                data: {
-                    title: baseData.title || "Success Stories",
-                    description: baseData.description || "",
-                    items: items,
-                    caseStudies: items
-                }
-            };
+          console.log(
+            " [ManufacturingCaseStudies TRANSFORM] Input:",
+            componentData,
+          );
+          const baseData = componentData.data || componentData;
+          const items = baseData.items || baseData.caseStudies || [];
+
+          return {
+            title: baseData.title || "Success Stories",
+            description: baseData.description || "",
+            items: items,
+            caseStudies: items,
+            data: {
+              title: baseData.title || "Success Stories",
+              description: baseData.description || "",
+              items: items,
+              caseStudies: items,
+            },
+          };
         }
 
         case "AboutValuesSection": {
           console.log(
             " [AboutValuesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedValuesData = {
@@ -267,7 +288,7 @@ const ComponentPreview = ({
           console.log(
             " [AboutValuesSection TRANSFORM] Output data:",
 
-            transformedValuesData
+            transformedValuesData,
           );
 
           return transformedValuesData;
@@ -279,7 +300,7 @@ const ComponentPreview = ({
           console.log(
             " [AboutMilestonesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedMilestonesData = {
@@ -297,7 +318,7 @@ const ComponentPreview = ({
           console.log(
             " [AboutMilestonesSection TRANSFORM] Output data:",
 
-            transformedMilestonesData
+            transformedMilestonesData,
           );
 
           return transformedMilestonesData;
@@ -307,7 +328,7 @@ const ComponentPreview = ({
           console.log(
             " [AboutDifferentiatorsSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedDifferentiatorsData = {
@@ -325,13 +346,11 @@ const ComponentPreview = ({
           console.log(
             " [AboutDifferentiatorsSection TRANSFORM] Output data:",
 
-            transformedDifferentiatorsData
+            transformedDifferentiatorsData,
           );
 
           return transformedDifferentiatorsData;
         }
-
-
 
         // General Components
 
@@ -339,7 +358,7 @@ const ComponentPreview = ({
           console.log(
             " [PayrollHeroSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedPayrollHeroData = {
@@ -370,38 +389,52 @@ const ComponentPreview = ({
           console.log(
             " [PayrollHeroSection TRANSFORM] Output data:",
 
-            transformedPayrollHeroData
+            transformedPayrollHeroData,
           );
 
           return transformedPayrollHeroData;
         }
 
         case "HRHeroSection": {
-          console.log(
-            " [HRHeroSection TRANSFORM] Input data:",
-            componentData
-          );
+          console.log(" [HRHeroSection TRANSFORM] Input data:", componentData);
 
           const transformedHRHeroData = {
             // Direct props for component compatibility
-            title: componentData.title || "Modern HR, Payroll & People Management",
-            subtitle: componentData.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
-            bgVideo: componentData.bgVideo || componentData.backgroundImage || "/Videos/hrVideo.mp4",
-            bgColor: componentData.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
+            title:
+              componentData.title || "Modern HR, Payroll & People Management",
+            subtitle:
+              componentData.subtitle ||
+              "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
+            bgVideo:
+              componentData.bgVideo ||
+              componentData.backgroundImage ||
+              "/Videos/hrVideo.mp4",
+            bgColor:
+              componentData.bgColor ||
+              "bg-gradient-to-br from-[#191970] via-black to-blue-700",
             // Nested structure for data prop
             data: {
               hero: {
-                title: componentData.title || "Modern HR, Payroll & People Management",
-                subtitle: componentData.subtitle || "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
-                bgVideo: componentData.bgVideo || componentData.backgroundImage || "/Videos/hrVideo.mp4",
-                bgColor: componentData.bgColor || "bg-gradient-to-br from-[#191970] via-black to-blue-700",
+                title:
+                  componentData.title ||
+                  "Modern HR, Payroll & People Management",
+                subtitle:
+                  componentData.subtitle ||
+                  "Automate HR, empower employees, and stay compliant—on one secure platform designed for the future of work.",
+                bgVideo:
+                  componentData.bgVideo ||
+                  componentData.backgroundImage ||
+                  "/Videos/hrVideo.mp4",
+                bgColor:
+                  componentData.bgColor ||
+                  "bg-gradient-to-br from-[#191970] via-black to-blue-700",
               },
             },
           };
 
           console.log(
             " [HRHeroSection TRANSFORM] Output data:",
-            transformedHRHeroData
+            transformedHRHeroData,
           );
 
           return transformedHRHeroData;
@@ -413,7 +446,7 @@ const ComponentPreview = ({
           console.log(
             " [PayrollStepperSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedPayrollStepperData = {
@@ -425,7 +458,7 @@ const ComponentPreview = ({
           console.log(
             " [PayrollStepperSection TRANSFORM] Output data:",
 
-            transformedPayrollStepperData
+            transformedPayrollStepperData,
           );
 
           return transformedPayrollStepperData;
@@ -438,7 +471,7 @@ const ComponentPreview = ({
             console.log(
               " [PayrollFAQSection TRANSFORM] Input data:",
 
-              componentData
+              componentData,
             );
 
             // Accept multiple possible shapes saved by the builder:
@@ -458,7 +491,8 @@ const ComponentPreview = ({
               componentData.data?.items ||
               componentData.data?.faqs ||
               componentData.data?.faqItems ||
-              (componentData.faq && (componentData.faq.items || componentData.faq.faqs)) ||
+              (componentData.faq &&
+                (componentData.faq.items || componentData.faq.faqs)) ||
               [];
 
             const items = Array.isArray(rawItems)
@@ -490,7 +524,7 @@ const ComponentPreview = ({
             console.log(
               " [PayrollFAQSection TRANSFORM] Output data:",
 
-              transformedPayrollFAQData
+              transformedPayrollFAQData,
             );
 
             return transformedPayrollFAQData;
@@ -502,7 +536,7 @@ const ComponentPreview = ({
             console.log(
               " [PayrollCTASection TRANSFORM] Input data:",
 
-              componentData
+              componentData,
             );
 
             // Normalize features into array of strings to avoid runtime errors
@@ -525,14 +559,14 @@ const ComponentPreview = ({
                   return f.title || f.text || f.description || String(f);
                 })
               : typeof rawFeatures === "string"
-              ? rawFeatures
+                ? rawFeatures
 
-                  .split(/[;\n,]+/)
+                    .split(/[;\n,]+/)
 
-                  .map((s) => s.trim())
+                    .map((s) => s.trim())
 
-                  .filter(Boolean)
-              : [];
+                    .filter(Boolean)
+                : [];
 
             const transformedPayrollCTAData = {
               title: componentData.title || "Ready to Transform Your Payroll?",
@@ -567,7 +601,7 @@ const ComponentPreview = ({
             console.log(
               " [PayrollCTASection TRANSFORM] Output data:",
 
-              transformedPayrollCTAData
+              transformedPayrollCTAData,
             );
 
             return transformedPayrollCTAData;
@@ -578,7 +612,7 @@ const ComponentPreview = ({
           console.log(
             " [HRModulesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           // Ensure all fields are passed and use correct keys
@@ -603,7 +637,7 @@ const ComponentPreview = ({
           console.log(
             " [HRModulesSection TRANSFORM] Output data:",
 
-            transformedHRModulesData
+            transformedHRModulesData,
           );
 
           return transformedHRModulesData;
@@ -612,19 +646,24 @@ const ComponentPreview = ({
         case "HRBenefitsSection": {
           console.log(
             " [HRBenefitsSection TRANSFORM] Input data:",
-            componentData
+            componentData,
           );
 
           const transformedHRBenefitsData = {
             title: componentData.title || "Why Choose Our HR Solution?",
-            description: componentData.description || "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
-            ctaButton: componentData.ctaButton || { text: "Contact Us", link: "/contact" },
+            description:
+              componentData.description ||
+              "Discover the key advantages that make our HR platform the smart choice for modern businesses of all sizes and industries.",
+            ctaButton: componentData.ctaButton || {
+              text: "Contact Us",
+              link: "/contact",
+            },
             features: componentData.features || componentData.items || [],
           };
 
           console.log(
             " [HRBenefitsSection TRANSFORM] Output data:",
-            transformedHRBenefitsData
+            transformedHRBenefitsData,
           );
 
           return transformedHRBenefitsData;
@@ -634,42 +673,46 @@ const ComponentPreview = ({
           console.log(
             " [HRUseCasesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           // Handle nested data structure - check both componentData and componentData.data
           const rawData = componentData.data || componentData;
-          
+
           // Ensure all fields are passed and use correct keys
           const transformedHRUseCasesData = {
             data: {
               title: rawData.title || componentData.title || "Who Is It For?",
 
-              description: rawData.description || componentData.description || "",
+              description:
+                rawData.description || componentData.description || "",
 
               useCases: Array.isArray(rawData.useCases)
                 ? rawData.useCases.map((uc) => ({
                     ...uc,
-                    description: uc.description || uc.desc || "Use case description",
+                    description:
+                      uc.description || uc.desc || "Use case description",
                   }))
                 : Array.isArray(componentData.useCases)
-                ? componentData.useCases.map((uc) => ({
-                    ...uc,
-                    description: uc.description || uc.desc || "Use case description",
-                  }))
-                : Array.isArray(rawData.items)
-                ? rawData.items.map((uc) => ({
-                    ...uc,
-                    description: uc.description || uc.desc || "Use case description",
-                  }))
-                : [],
+                  ? componentData.useCases.map((uc) => ({
+                      ...uc,
+                      description:
+                        uc.description || uc.desc || "Use case description",
+                    }))
+                  : Array.isArray(rawData.items)
+                    ? rawData.items.map((uc) => ({
+                        ...uc,
+                        description:
+                          uc.description || uc.desc || "Use case description",
+                      }))
+                    : [],
             },
           };
 
           console.log(
             " [HRUseCasesSection TRANSFORM] Output data:",
 
-            transformedHRUseCasesData
+            transformedHRUseCasesData,
           );
 
           return transformedHRUseCasesData;
@@ -679,7 +722,7 @@ const ComponentPreview = ({
           console.log(
             " [HRPricingSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           // Normalize incoming component data: support stringified contentJson, nested data, or direct pricing array
@@ -716,7 +759,7 @@ const ComponentPreview = ({
 
                 err,
 
-                componentData
+                componentData,
               );
 
               return componentData || {};
@@ -788,7 +831,7 @@ const ComponentPreview = ({
           console.log(
             " [HRPricingSection TRANSFORM] Output data:",
 
-            transformedHRPricingData
+            transformedHRPricingData,
           );
 
           return transformedHRPricingData;
@@ -797,16 +840,16 @@ const ComponentPreview = ({
         case "HRFAQSection": {
           console.log(" [HRFAQSection TRANSFORM] Input data:", componentData);
 
-          const rawItems = 
-             componentData.items || 
-             componentData.faqs || 
-             componentData.faqItems || 
-             componentData.data?.items || 
-             componentData.data?.faqs || 
-             componentData.data?.faqItems || 
-             componentData.faq?.items || 
-             componentData.faq?.faqs || 
-             [];
+          const rawItems =
+            componentData.items ||
+            componentData.faqs ||
+            componentData.faqItems ||
+            componentData.data?.items ||
+            componentData.data?.faqs ||
+            componentData.data?.faqItems ||
+            componentData.faq?.items ||
+            componentData.faq?.faqs ||
+            [];
 
           let items = [];
 
@@ -820,22 +863,19 @@ const ComponentPreview = ({
               {
                 q: "What HR modules are included?",
 
-                a:
-                  "Our HR solution includes employee management, payroll processing, benefits administration, and performance tracking modules.",
+                a: "Our HR solution includes employee management, payroll processing, benefits administration, and performance tracking modules.",
               },
 
               {
                 q: "How long does implementation take?",
 
-                a:
-                  "Typical implementation takes 4-8 weeks depending on your organization size and requirements.",
+                a: "Typical implementation takes 4-8 weeks depending on your organization size and requirements.",
               },
 
               {
                 q: "Is training provided?",
 
-                a:
-                  "Yes, we provide comprehensive training for all users including administrators and end-users.",
+                a: "Yes, we provide comprehensive training for all users including administrators and end-users.",
               },
             ];
           }
@@ -863,23 +903,19 @@ const ComponentPreview = ({
           console.log(
             " [HRFAQSection TRANSFORM] Output data:",
 
-            transformedHRFAQData
+            transformedHRFAQData,
           );
 
           return transformedHRFAQData;
         }
 
-
-
         // Landing Page Components
-
-
 
         case "ServicesSection": {
           console.log(
             " [ServicesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedServicesData = {
@@ -895,7 +931,7 @@ const ComponentPreview = ({
           console.log(
             " [ServicesSection TRANSFORM] Output data:",
 
-            transformedServicesData
+            transformedServicesData,
           );
 
           return transformedServicesData;
@@ -905,7 +941,7 @@ const ComponentPreview = ({
           console.log(
             " [TestimonialsSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedTestimonialsData = {
@@ -919,7 +955,7 @@ const ComponentPreview = ({
           console.log(
             " [TestimonialsSection TRANSFORM] Output data:",
 
-            transformedTestimonialsData
+            transformedTestimonialsData,
           );
 
           return transformedTestimonialsData;
@@ -929,7 +965,7 @@ const ComponentPreview = ({
           console.log(
             " [IndustriesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedIndustriesData = {
@@ -943,7 +979,7 @@ const ComponentPreview = ({
           console.log(
             " [IndustriesSection TRANSFORM] Output data:",
 
-            transformedIndustriesData
+            transformedIndustriesData,
           );
 
           return transformedIndustriesData;
@@ -954,7 +990,7 @@ const ComponentPreview = ({
         case "ImplementationHeroSection": {
           console.log(
             " [ImplementationHeroSection TRANSFORM] Input data:",
-            componentData
+            componentData,
           );
 
           const transformedImplementationHeroData = {
@@ -982,7 +1018,7 @@ const ComponentPreview = ({
 
           console.log(
             " [ImplementationHeroSection TRANSFORM] Output data:",
-            transformedImplementationHeroData
+            transformedImplementationHeroData,
           );
 
           return transformedImplementationHeroData;
@@ -992,7 +1028,7 @@ const ComponentPreview = ({
           console.log(
             " [TrainingHeroSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedTrainingHeroData = {
@@ -1005,8 +1041,10 @@ const ComponentPreview = ({
                 "Master Bellatrix with comprehensive training programs designed for professionals at all levels.",
             },
 
-            backgroundVideo:
-              componentData.backgroundVideo || "/Videos/training-hero.mp4",
+            backgroundImage:
+              componentData.backgroundImage || "/images/training.jpg",
+
+            backgroundVideo: componentData.backgroundVideo || null,
 
             ctaButton: componentData.ctaButton || {
               text: "Start Learning",
@@ -1020,7 +1058,7 @@ const ComponentPreview = ({
           console.log(
             " [TrainingHeroSection TRANSFORM] Output data:",
 
-            transformedTrainingHeroData
+            transformedTrainingHeroData,
           );
 
           return transformedTrainingHeroData;
@@ -1033,7 +1071,7 @@ const ComponentPreview = ({
           console.log(
             " [TrainingProgramsSection/ProgramsSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           // Normalize section metadata (programsSection) and the list of programs
@@ -1056,14 +1094,14 @@ const ComponentPreview = ({
           const programs = Array.isArray(rawPrograms)
             ? rawPrograms
             : typeof rawPrograms === "string"
-            ? rawPrograms
+              ? rawPrograms
 
-                .split(/[;\n,]+/)
+                  .split(/[;\n,]+/)
 
-                .map((s, i) => ({ id: i, title: s.trim() }))
+                  .map((s, i) => ({ id: i, title: s.trim() }))
 
-                .filter(Boolean)
-            : [];
+                  .filter(Boolean)
+              : [];
 
           const transformedProgramsData = {
             programsSection: {
@@ -1107,10 +1145,131 @@ const ComponentPreview = ({
           console.log(
             " [TrainingProgramsSection/ProgramsSection TRANSFORM] Output data:",
 
-            transformedProgramsData
+            transformedProgramsData,
           );
 
           return transformedProgramsData;
+        }
+
+        // Key Modules Section (Training)
+
+        case "TrainingKeyModulesSection":
+        case "KeyModulesSection": {
+          console.log(
+            " [TrainingKeyModulesSection TRANSFORM] Input data:",
+
+            componentData,
+          );
+
+          const section = componentData.keyModulesSection ||
+            componentData.section || {
+              title: componentData.title || "Key Training Modules",
+              description:
+                componentData.description ||
+                componentData.content ||
+                "Comprehensive curriculum designed to master NetSuite from foundation to advanced implementation",
+            };
+
+          const rawModules =
+            componentData.keyModules ||
+            componentData.modules ||
+            componentData.items ||
+            [];
+
+          const keyModules = Array.isArray(rawModules)
+            ? rawModules
+            : typeof rawModules === "string"
+              ? rawModules
+
+                  .split(/[;\n,]+/)
+
+                  .map((s, i) => ({
+                    id: i,
+                    title: s.trim(),
+                    description: "",
+                  }))
+
+                  .filter((m) => m.title)
+              : [];
+
+          const transformedKeyModulesData = {
+            keyModulesSection: section,
+            keyModules,
+            data: componentData,
+          };
+
+          console.log(
+            " [TrainingKeyModulesSection TRANSFORM] Output data:",
+
+            transformedKeyModulesData,
+          );
+
+          return transformedKeyModulesData;
+        }
+
+        // Why Choose Section (Training)
+
+        case "TrainingWhyChooseSection":
+        case "WhyChooseSection": {
+          console.log(
+            " [TrainingWhyChooseSection TRANSFORM] Input data:",
+
+            componentData,
+          );
+
+          const baseData = componentData.data || componentData;
+
+          const section = baseData.whyChooseSection || {
+            title: baseData.title || "Why Choose Our Training?",
+            description:
+              baseData.description ||
+              baseData.content ||
+              "Professional development excellence",
+            image: baseData.image || "/images/indleaders.jpg",
+            Professional_Badge:
+              baseData.Professional_Badge ||
+              baseData.badge ||
+              "Excellence Training",
+          };
+
+          const rawFeatures =
+            baseData.trainingFeatures ||
+            baseData.features ||
+            baseData.items ||
+            [];
+
+          const trainingFeatures = Array.isArray(rawFeatures)
+            ? rawFeatures
+            : typeof rawFeatures === "string"
+              ? rawFeatures
+
+                  .split(/[;\n,]+/)
+
+                  .map((s, i) => ({
+                    id: i,
+                    title: s.trim(),
+                    description: "",
+                  }))
+
+                  .filter((f) => f.title)
+              : [];
+
+          const transformedWhyChooseData = {
+            whyChooseSection: section,
+            trainingFeatures,
+            openFeatureModal:
+              baseData.openFeatureModal ||
+              (() => console.log("Open feature modal")),
+            data: baseData,
+          };
+
+          console.log(
+            " [TrainingWhyChooseSection TRANSFORM] Output data:",
+
+            transformedWhyChooseData,
+          );
+
+          return transformedWhyChooseData;
         }
 
         // Industries Components
@@ -1119,7 +1278,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingHeroSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedManufacturingHeroData = {
@@ -1155,7 +1314,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingHeroSection TRANSFORM] Output data:",
 
-            transformedManufacturingHeroData
+            transformedManufacturingHeroData,
           );
 
           return transformedManufacturingHeroData;
@@ -1165,7 +1324,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailHeroSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedRetailHeroData = {
@@ -1188,7 +1347,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailHeroSection TRANSFORM] Output data:",
 
-            transformedRetailHeroData
+            transformedRetailHeroData,
           );
 
           return transformedRetailHeroData;
@@ -1199,7 +1358,7 @@ const ComponentPreview = ({
         case "ImplementationProcessSection": {
           console.log(
             " [ImplementationProcessSection TRANSFORM] Input data:",
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1216,7 +1375,7 @@ const ComponentPreview = ({
 
           console.log(
             " [ImplementationProcessSection TRANSFORM] Output data:",
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1226,7 +1385,7 @@ const ComponentPreview = ({
           console.log(
             " [ImplementationWhyChooseSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           // Normalize features/benefits into `data.features` as array of objects
@@ -1295,7 +1454,7 @@ const ComponentPreview = ({
 
           console.log(
             " [ImplementationWhyChooseSection TRANSFORM] Output data:",
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1304,7 +1463,7 @@ const ComponentPreview = ({
         case "ImplementationPricingSection": {
           console.log(
             " [ImplementationPricingSection TRANSFORM] Input data:",
-            componentData
+            componentData,
           );
 
           // Normalize plans and ensure each plan.features is an array
@@ -1339,7 +1498,7 @@ const ComponentPreview = ({
 
           console.log(
             " [ImplementationPricingSection TRANSFORM] Output data:",
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1404,13 +1563,11 @@ const ComponentPreview = ({
           console.log(
             " [ServiceGrid TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
         }
-
-
 
         // Manufacturing Industry Components
 
@@ -1418,7 +1575,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingSolutionsSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1485,7 +1642,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingSolutionsSection TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1495,7 +1652,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingChallengesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1538,7 +1695,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingChallengesSection TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1548,7 +1705,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingIndustryStats TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1591,7 +1748,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingIndustryStats TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1601,7 +1758,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingImplementationProcess TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1637,20 +1794,26 @@ const ComponentPreview = ({
                 { title: "Training", description: "Train users", step: "04" },
               ],
 
-            title: componentData.title || componentData.data?.title || "Manufacturing Implementation Built for All Industries",
+            title:
+              componentData.title ||
+              componentData.data?.title ||
+              "Manufacturing Implementation Built for All Industries",
 
             subtitle:
               componentData.subtitle ||
               componentData.data?.subtitle ||
               "A proven methodology for manufacturing implementations",
 
-            description: componentData.description || componentData.data?.description || "Streamline your entire NetSuite implementation lifecycle — from discovery to go-live — with a proven, secure methodology.",
+            description:
+              componentData.description ||
+              componentData.data?.description ||
+              "Streamline your entire NetSuite implementation lifecycle — from discovery to go-live — with a proven, secure methodology.",
           };
 
           console.log(
             " [ManufacturingImplementationProcess TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1660,7 +1823,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingCaseStudies TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1732,7 +1895,7 @@ const ComponentPreview = ({
           console.log(
             " [ManufacturingCaseStudies TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           console.log(
@@ -1746,42 +1909,46 @@ const ComponentPreview = ({
               outputTitle: transformedData.title,
 
               outputDescription: transformedData.description,
-            }
+            },
           );
 
           return transformedData;
         }
 
-
-
         case "RetailFeaturesSection": {
-          console.log(" [RetailFeaturesSection TRANSFORM] Input data:", componentData);
-          
-          let rawFeatures = 
-            componentData.retailFeatures || 
-            componentData.features || 
-            componentData.items || 
-            componentData.data?.retailFeatures || 
-            componentData.data?.features || 
-            componentData.data?.items || 
+          console.log(
+            " [RetailFeaturesSection TRANSFORM] Input data:",
+            componentData,
+          );
+
+          let rawFeatures =
+            componentData.retailFeatures ||
+            componentData.features ||
+            componentData.items ||
+            componentData.data?.retailFeatures ||
+            componentData.data?.features ||
+            componentData.data?.items ||
             [];
-            
+
           if (!Array.isArray(rawFeatures)) rawFeatures = [];
 
-          const features = rawFeatures.map(f => {
-              let benefits = f.benefits;
-              if (typeof benefits === 'string') {
-                  benefits = benefits.split(',').map(b => b.trim()).filter(b => b);
-              }
-              return { ...f, benefits: Array.isArray(benefits) ? benefits : [] };
-           });
+          const features = rawFeatures.map((f) => {
+            let benefits = f.benefits;
+            if (typeof benefits === "string") {
+              benefits = benefits
+                .split(",")
+                .map((b) => b.trim())
+                .filter((b) => b);
+            }
+            return { ...f, benefits: Array.isArray(benefits) ? benefits : [] };
+          });
 
           const transformedData = {
-              data: {
-                  title: componentData.title || "Retail Features",
-                  subtitle: componentData.subtitle || "Comprehensive features",
-                  retailFeatures: features
-              }
+            data: {
+              title: componentData.title || "Retail Features",
+              subtitle: componentData.subtitle || "Comprehensive features",
+              retailFeatures: features,
+            },
           };
           return transformedData;
         }
@@ -1790,7 +1957,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailSolutionsSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1848,7 +2015,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailSolutionsSection TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1858,7 +2025,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailChallengesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1885,19 +2052,17 @@ const ComponentPreview = ({
           console.log(
             " [RetailChallengesSection TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
         }
 
-
-
         case "RetailCaseStudies": {
           console.log(
             " [RetailCaseStudies TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1912,7 +2077,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailCaseStudies TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1922,7 +2087,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailCaseStudiesSection TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1937,7 +2102,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailCaseStudiesSection TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -1947,7 +2112,7 @@ const ComponentPreview = ({
           console.log(
             " [RetailIndustryStats TRANSFORM] Input data:",
 
-            componentData
+            componentData,
           );
 
           const transformedData = {
@@ -1965,13 +2130,12 @@ const ComponentPreview = ({
           console.log(
             " [RetailIndustryStats TRANSFORM] Output data:",
 
-            transformedData
+            transformedData,
           );
 
           return transformedData;
         }
 
-       
         case "CtaSection":
         case "ImplementationCtaSection":
         case "AboutCTASection":
@@ -1981,31 +2145,36 @@ const ComponentPreview = ({
         case "RetailCTASection": {
           console.log(
             " [GenericCTASection TRANSFORM] Input data:",
-            componentData
+            componentData,
           );
 
           const baseData = componentData.data || componentData;
-          
-          const features = 
-              baseData.features || 
-              baseData.items || 
-              componentData.features || 
-              componentData.items || 
-              [];
+
+          const features =
+            baseData.features ||
+            baseData.items ||
+            componentData.features ||
+            componentData.items ||
+            [];
 
           // Button logic: check multiple sources
-          const btnText = 
-              baseData.buttonText || 
-              baseData.ctaButton?.text || 
-              (typeof baseData.ctaButton === 'string' ? baseData.ctaButton : null) ||
-              componentData.buttonText || 
-              componentData.ctaButton?.text || 
-              "Get Started";
+          const btnText =
+            baseData.buttonText ||
+            baseData.ctaButton?.text ||
+            (typeof baseData.ctaButton === "string"
+              ? baseData.ctaButton
+              : null) ||
+            componentData.buttonText ||
+            componentData.ctaButton?.text ||
+            "Get Started";
 
           const transformedData = {
-            title: baseData.title || componentData.title || "Ready to Transform?",
+            title:
+              baseData.title || componentData.title || "Ready to Transform?",
             subtitle:
-              baseData.subtitle || componentData.subtitle || "Let's discuss your needs",
+              baseData.subtitle ||
+              componentData.subtitle ||
+              "Let's discuss your needs",
             description:
               baseData.description ||
               componentData.description ||
@@ -2014,15 +2183,18 @@ const ComponentPreview = ({
             ctaButton: {
               text: btnText,
               link: baseData.ctaButton?.link || baseData.buttonLink || null, // Force modal opening usually
-              variant: baseData.ctaButton?.variant || componentData.ctaButton?.variant || "primary",
+              variant:
+                baseData.ctaButton?.variant ||
+                componentData.ctaButton?.variant ||
+                "primary",
             },
             // Pass through any other props just in case
-            ...baseData
+            ...baseData,
           };
 
           console.log(
             " [GenericCTASection TRANSFORM] Output data:",
-            transformedData
+            transformedData,
           );
 
           return transformedData;
@@ -2047,68 +2219,94 @@ const ComponentPreview = ({
         }
 
         case "PayrollWorkflowSection": {
-          console.log(" [PayrollWorkflowSection TRANSFORM] Input data:", componentData);
-          
+          console.log(
+            " [PayrollWorkflowSection TRANSFORM] Input data:",
+            componentData,
+          );
+
           // Extract steps from various possible field names
-          const stepsArray = 
+          const stepsArray =
             componentData.workflowSteps ||
             componentData.steps ||
             componentData.workflow?.steps ||
             [];
-          
+
           // Process steps to ensure proper structure
           const processedSteps = stepsArray.map((step, index) => ({
             title: step.title || step.stepTitle || `Step ${index + 1}`,
             stepTitle: step.stepTitle || step.title || `Step ${index + 1}`,
             description: step.description || step.stepDescription || "",
             stepDescription: step.stepDescription || step.description || "",
-            features: Array.isArray(step.features) 
-              ? step.features 
-              : (typeof step.features === 'string' ? step.features.split(',').map(f => f.trim()) : []),
+            features: Array.isArray(step.features)
+              ? step.features
+              : typeof step.features === "string"
+                ? step.features.split(",").map((f) => f.trim())
+                : [],
             automated: step.automated || "",
             compliant: step.compliant || "",
             automatedLabel: step.automatedLabel || "Automated",
             compliantLabel: step.compliantLabel || "Compliant",
           }));
-          
+
           // Build workflowData object that component expects
           const transformedData = {
             workflowData: {
-              title: componentData.title || "Payroll System Built for All Industries",
-              description: componentData.description || "Streamline your entire payroll lifecycle",
+              title:
+                componentData.title ||
+                "Payroll System Built for All Industries",
+              description:
+                componentData.description ||
+                "Streamline your entire payroll lifecycle",
               steps: processedSteps,
             },
           };
-          
-          console.log(" [PayrollWorkflowSection TRANSFORM] Output data:", transformedData);
+
+          console.log(
+            " [PayrollWorkflowSection TRANSFORM] Output data:",
+            transformedData,
+          );
           return transformedData;
         }
 
         // AboutMissionSection case already defined earlier in the switch at line ~121
 
         case "PayrollPainPointsSection": {
-          console.log(" [PayrollPainPointsSection TRANSFORM] Input data:", componentData);
-          
-          const painPointsArray = 
+          console.log(
+            " [PayrollPainPointsSection TRANSFORM] Input data:",
+            componentData,
+          );
+
+          const painPointsArray =
             componentData.painPoints?.painPoints ||
             componentData.painPoints?.items ||
-            (Array.isArray(componentData.painPoints) ? componentData.painPoints : null) ||
+            (Array.isArray(componentData.painPoints)
+              ? componentData.painPoints
+              : null) ||
             componentData.items ||
             [];
-          
+
           const transformedData = {
             painPoints: {
-              title: componentData.title || componentData.painPoints?.title || "Common Payroll Pain Points",
-              description: componentData.description || componentData.painPoints?.description || "Problems we solve",
+              title:
+                componentData.title ||
+                componentData.painPoints?.title ||
+                "Common Payroll Pain Points",
+              description:
+                componentData.description ||
+                componentData.painPoints?.description ||
+                "Problems we solve",
               painPoints: painPointsArray,
-              image: componentData.image || componentData.painPoints?.image || "",
+              image:
+                componentData.image || componentData.painPoints?.image || "",
             },
           };
-          
-          console.log(" [PayrollPainPointsSection TRANSFORM] Output data:", transformedData);
+
+          console.log(
+            " [PayrollPainPointsSection TRANSFORM] Output data:",
+            transformedData,
+          );
           return transformedData;
         }
-
 
         default:
           // Generic prop structure for unknown components
@@ -2224,7 +2422,7 @@ const LivePreview = ({
   // Filter visible components
 
   const visibleComponents = components.filter(
-    (component) => component.isVisible === true || component.isVisible === 1
+    (component) => component.isVisible === true || component.isVisible === 1,
   );
 
   console.log(" [LIVE PREVIEW] Received components:", {
@@ -2346,13 +2544,13 @@ const LivePreview = ({
 
                           ":",
 
-                          rawData
+                          rawData,
                         );
                       } catch (err) {
                         console.error(
                           " [REALTIME EXTRACTION] JSON parse error for contentJson:",
 
-                          err
+                          err,
                         );
 
                         rawData = {};
@@ -2369,7 +2567,7 @@ const LivePreview = ({
 
                         ":",
 
-                        rawData
+                        rawData,
                       );
                     } else {
                       console.warn(
@@ -2377,7 +2575,7 @@ const LivePreview = ({
 
                         component.componentType,
 
-                        typeof component.contentJson
+                        typeof component.contentJson,
                       );
                     }
                   } else if (component.content) {
@@ -2394,13 +2592,13 @@ const LivePreview = ({
 
                           ":",
 
-                          rawData
+                          rawData,
                         );
                       } catch (err) {
                         console.error(
                           " [REALTIME EXTRACTION] JSON parse error for content fallback:",
 
-                          err
+                          err,
                         );
 
                         rawData = {};
@@ -2415,14 +2613,14 @@ const LivePreview = ({
 
                         ":",
 
-                        rawData
+                        rawData,
                       );
                     }
                   } else {
                     console.warn(
                       " [REALTIME EXTRACTION] No contentJson or content found for",
 
-                      component.componentType
+                      component.componentType,
                     );
                   }
 
@@ -2455,7 +2653,7 @@ const LivePreview = ({
                           statsCount: rawData.stats?.length || 0,
 
                           hasMissionPoints: Array.isArray(
-                            rawData.missionPoints
+                            rawData.missionPoints,
                           ),
 
                           missionPointsCount:
@@ -2463,7 +2661,7 @@ const LivePreview = ({
                         },
 
                         timestamp: new Date().toISOString(),
-                      }
+                      },
                     );
                   }
 
@@ -2487,7 +2685,7 @@ const LivePreview = ({
                           hasImage: !!rawData.image,
                         },
                         timestamp: new Date().toISOString(),
-                      }
+                      },
                     );
                   }
 
@@ -2542,7 +2740,7 @@ const LivePreview = ({
                         rawKeys: Object.keys(rawData),
 
                         mergedKeys: Object.keys(mergedData),
-                      }
+                      },
                     );
                   }
 
@@ -2569,7 +2767,7 @@ const LivePreview = ({
                       extractedKeys: Object.keys(componentData),
 
                       timestamp: new Date().toISOString(),
-                    }
+                    },
                   );
                 }
 
@@ -2618,7 +2816,7 @@ const LivePreview = ({
                       }-${refreshKey}-${JSON.stringify(componentData).slice(
                         0,
 
-                        100
+                        100,
                       )}`}
                     />
                   </div>

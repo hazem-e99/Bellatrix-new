@@ -12,7 +12,7 @@ const TrainingProgramCard = ({ program, index, onClick }) => {
         description={`${
           program.title || "Bellatrix training program"
         }: ${(
-          program.shortDescription || "Professional ERP training course"
+          program.shortDescription || program.description || "Professional ERP training course"
         ).substring(0, 120)}... Expert-led Bellatrix education.`}
         keywords={`NetSuite training program, ${
           program.title || "ERP training"
@@ -22,7 +22,7 @@ const TrainingProgramCard = ({ program, index, onClick }) => {
         }`}
         ogDescription={`Enroll in ${
           program.title || "Bellatrix training program"
-        }. ${(program.shortDescription || "").substring(
+        }. ${(program.shortDescription || program.description || "").substring(
           0,
           100
         )}... Professional ERP education.`}
@@ -36,7 +36,7 @@ const TrainingProgramCard = ({ program, index, onClick }) => {
           {program.title || "Bellatrix Training Program"}
         </h3>
         <p className="text-sm text-gray-600">
-          {program.shortDescription ||
+          {program.shortDescription || program.description ||
             "Professional Bellatrix training course"}
         </p>
       </article>

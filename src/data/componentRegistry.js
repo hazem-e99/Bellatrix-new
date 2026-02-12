@@ -525,6 +525,34 @@ export const componentRegistry = {
       },
     },
 
+    TrainingHeroSection: {
+      componentType: "TrainingHeroSection",
+      componentName: "Training Hero Section",
+      category: "hero",
+      icon: "",
+      filePath: "src/components/Services/training/HeroSection.jsx",
+      description: "Hero section for training pages with background image",
+      dataStructure: {
+        heroContent: "object",
+        backgroundImage: "string",
+        ctaButton: "object",
+      },
+      defaultData: {
+        heroContent: {
+          title: "Professional Training Programs",
+          subtitle: "Professional ERP Education & Skills Development",
+          description: "Empower your team with comprehensive training solutions designed to enhance skills and drive success",
+        },
+        backgroundImage: "/images/training.jpg",
+        ctaButton: {
+          text: "Start Learning Today",
+          link: "/training",
+          variant: "primary",
+          icon: "",
+        },
+      },
+    },
+
     TrainingProgramsSection: {
       componentType: "TrainingProgramsSection",
 
@@ -558,7 +586,7 @@ export const componentRegistry = {
           {
             title: "Basic User Training",
 
-            description: "Learn the fundamentals of NetSuite",
+            shortDescription: "Learn the fundamentals of NetSuite",
 
             duration: "2 days",
 

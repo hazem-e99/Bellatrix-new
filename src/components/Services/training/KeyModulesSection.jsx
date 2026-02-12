@@ -4,6 +4,18 @@ import SEO from "../../SEO";
 import ModuleCard from "./ModuleCard";
 
 const KeyModulesSection = ({ keyModulesSection, keyModules }) => {
+  // Ensure we always have a valid section object and modules array to avoid runtime errors
+  const section = keyModulesSection || {
+    title: "Key Training Modules",
+    description:
+      "Comprehensive curriculum designed to master NetSuite from foundation to advanced implementation",
+  };
+
+  const safeTitle = section.title || "Key Training Modules";
+  const [firstWord, ...restWords] = safeTitle.split(" ");
+  const highlightedTitle = restWords.join(" ");
+
+  const modules = Array.isArray(keyModules) ? keyModules : [];
   return (
     <>
       <SEO
@@ -23,23 +35,17 @@ const KeyModulesSection = ({ keyModulesSection, keyModules }) => {
         <div className="container mx-auto px-6 relative z-10">
           <header className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              {keyModulesSection.title.split(" ")[0]}{" "}
-              <span className="text-blue-400">
-                {keyModulesSection.title.split(" ").slice(1).join(" ")}
-              </span>
+              {firstWord}{" "}
+              <span className="text-blue-400">{highlightedTitle}</span>
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              {keyModulesSection.description}
+              {section.description}
             </p>
           </header>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {keyModules.map((module, index) => (
-              <ModuleCard
-                key={index}
-                module={module}
-                index={index}
-              />
+            {modules.map((module, index) => (
+              <ModuleCard key={index} module={module} index={index} />
             ))}
           </div>
         </div>

@@ -628,7 +628,7 @@ export const componentSchemas = {
 
     },
 
-    backgroundVideo: "/trainingHeroSectionTwo.mp4",
+    backgroundImage: "/images/training.jpg",
 
     ctaButton: {
 
@@ -2256,13 +2256,13 @@ export const getFieldConfigForComponent = (componentType) => {
 
             ? Object.keys(value[0]).map((subKey) => ({
 
-                key: subKey,
+              key: subKey,
 
-                type: typeof value[0][subKey] === "string" ? "text" : "text",
+              type: typeof value[0][subKey] === "string" ? "text" : "text",
 
-                label: subKey.replace(/([A-Z])/g, " $1").trim(),
+              label: subKey.replace(/([A-Z])/g, " $1").trim(),
 
-              }))
+            }))
 
             : [{ key: "value", type: "text", label: "Value" }],
 

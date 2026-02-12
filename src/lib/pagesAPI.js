@@ -225,21 +225,33 @@ const pagesAPI = {
         name: dataToSend.name,
         categoryId: dataToSend.categoryId,
         slug: dataToSend.slug,
+        isPublished: dataToSend.isPublished,
+        isHomepage: dataToSend.isHomepage,
         componentsCount: dataToSend.components?.length || 0,
         componentTypes:
           dataToSend.components?.map((c) => c.componentType) || [],
+        fullPayload: JSON.stringify(dataToSend, null, 2),
       });
 
       const response = await api.post(endpoint, dataToSend);
 
       return response.data;
     } catch (error) {
+      // Error here is the normalizedError from api.js interceptor
+      console.error(" [PAGES API] Create page error:", {
+        status: error.status,
+        details: error.details,
+        message: error.message,
+      });
+
+      const status = error.status;
+      const details = error.details || {};
+
       if (
-        error.response?.status === 400 &&
-        error.response?.data?.message?.includes("duplicate key") &&
-        error.response?.data?.message?.includes(
-          "IX_PageComponents_PageId_OrderIndex",
-        )
+        status === 400 &&
+        typeof details === "object" &&
+        details.message?.includes("duplicate key") &&
+        details.message?.includes("IX_PageComponents_PageId_OrderIndex")
       ) {
         throw new Error(
           "Duplicate order index in components. Please try again.",
@@ -672,7 +684,7 @@ const pagesAPI = {
       }
 
       const response = await api.get(
-        `/Pages/check-slug?${queryParams.toString()}`,
+        `/Pages/slug-exists?${queryParams.toString()}`,
       );
 
       return response.data;

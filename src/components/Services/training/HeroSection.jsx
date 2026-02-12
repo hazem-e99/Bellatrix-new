@@ -9,6 +9,7 @@ import CTAButton from "../../CTAButton";
 
 const HeroSection = ({
   heroContent: propsHeroContent,
+  backgroundImage: propsBackgroundImage,
   backgroundVideo: propsBackgroundVideo,
   ctaButton: propsCtaButton,
   data,
@@ -25,10 +26,11 @@ const HeroSection = ({
         "Master Bellatrix with comprehensive training programs designed for professionals at all levels.",
     };
 
-  const backgroundVideo =
-    propsBackgroundVideo ||
-    data?.backgroundVideo ||
-    "/Videos/training-hero.mp4";
+  // Support both backgroundImage (preferred) and backgroundVideo (fallback)
+  const backgroundImage =
+    propsBackgroundImage || data?.backgroundImage || "/images/training.jpg";
+
+  const backgroundVideo = propsBackgroundVideo || data?.backgroundVideo || null;
 
   const ctaButton = propsCtaButton ||
     data?.ctaButton || {
@@ -44,6 +46,10 @@ const HeroSection = ({
 
     propsHeroContent: propsHeroContent,
 
+    hasPropsBackgroundImage: !!propsBackgroundImage,
+
+    propsBackgroundImage: propsBackgroundImage,
+
     hasPropsBackgroundVideo: !!propsBackgroundVideo,
 
     propsBackgroundVideo: propsBackgroundVideo,
@@ -57,6 +63,8 @@ const HeroSection = ({
     data: data,
 
     finalHeroContent: heroContent,
+
+    finalBackgroundImage: backgroundImage,
 
     finalBackgroundVideo: backgroundVideo,
 
@@ -110,48 +118,18 @@ const HeroSection = ({
       />
 
       <header className="min-h-screen relative overflow-hidden pt-20">
-        {/* Background Video and Effects */}
+        {/* Pure CSS background (no image or video) */}
 
         <div
-          className="absolute inset-0 w-full h-full"
-          onContextMenu={(e) => e.preventDefault()}
-          onDrop={(e) => e.preventDefault()}
-          style={{ userSelect: "none", WebkitUserSelect: "none" }}
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            controlsList="nodownload nofullscreen noremoteplayback"
-            disablePictureInPicture
-            disableRemotePlayback
-            onContextMenu={(e) => e.preventDefault()}
-            onDragStart={(e) => e.preventDefault()}
-            onDrop={(e) => e.preventDefault()}
-            className="absolute inset-0 w-full h-full object-cover transform scale-105 hover:scale-110 transition-transform duration-[8s] ease-in-out pointer-events-none"
-            style={{
-              filter:
-                "brightness(0.7) contrast(1.2) saturate(1.3) hue-rotate(10deg)",
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at top, #1f2937 0%, #020617 55%, #020617 100%)",
+          }}
+        />
 
-              animation: "video-enhance 20s ease-in-out infinite",
-
-              userSelect: "none",
-
-              WebkitUserSelect: "none",
-            }}
-          >
-            <source
-              src={backgroundVideo || "/trainingHeroSectionTwo.mp4"}
-              type="video/mp4"
-            />
-            Your browser does not support the video tag.
-          </video>
-
-          {/* All the video overlay effects */}
-
-          {/* ... (keep all the existing video effects) ... */}
-        </div>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40" />
 
         {/* Content */}
 

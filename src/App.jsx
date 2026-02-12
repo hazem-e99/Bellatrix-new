@@ -41,7 +41,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route index element={<Navigate to="/home" replace />} />
               <Route path="Implementation" element={<MainServices />} />
-              <Route path="Training" element={<MainServices />} />
+              <Route path="TrainingStatic" element={<MainServices />} />
               <Route path="netsuite-consulting" element={<MainServices />} />
               <Route path="customization" element={<MainServices />} />
               <Route path="integration" element={<MainServices />} />
