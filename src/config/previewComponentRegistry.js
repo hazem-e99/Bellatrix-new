@@ -144,6 +144,7 @@ export const componentRegistry = {
   ProgramsSection: TrainingPrograms, // Alias
   ProgramsSectionSection: TrainingPrograms, // Alias
   TrainingKeyModulesSection: TrainingKeyModules,
+  PayrollKeyModulesSection: TrainingKeyModules, // Alias for componentType
   TrainingWhyChooseSection: TrainingWhyChoose,
 
   // Integration Components
