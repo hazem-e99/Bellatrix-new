@@ -368,6 +368,16 @@ const EnhancedPageBuilder = () => {
 
           "HRCTASection",
 
+          // Training components (enhanced schemas)
+
+          "TrainingHeroSection",
+
+          "TrainingProgramsSection",
+
+          "TrainingKeyModulesSection",
+
+          "TrainingWhyChooseSection",
+
           // Retail components (enhanced schemas)
 
           "RetailFeaturesSection",
