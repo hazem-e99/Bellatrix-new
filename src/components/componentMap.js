@@ -57,12 +57,10 @@ export const idToPathMap = {
   TrainingProgramsSection: "Services/training/TrainingPrograms",
   TrainingKeyModulesSection: "Services/training/KeyModulesSection",
   TrainingWhyChooseSection: "Services/training/WhyChooseSection",
-  // TrainingWhyChooseSection: "Services/training/WhyChooseSection",
   // Aliases without "Training" prefix
   ProgramsSection: "Services/training/ProgramsSection",
   KeyModulesSection: "Services/training/KeyModulesSection",
-  WhyChooseSection: "Services/training/WhyChooseSection",
-  // WhyChooseSection: "Services/training/WhyChooseSection",
+  // WhyChooseSection alias removed - use TrainingWhyChooseSection explicitly
 
   // ===========================================
   // MANUFACTURING INDUSTRY COMPONENTS
