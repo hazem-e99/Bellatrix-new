@@ -91,10 +91,10 @@ const ServiceGrid = ({ data = {} }) => {
   const title = (hasData && data.title) ? data.title : "Our Services";
   const subtitle = (hasData && data.subtitle) ? data.subtitle : "Comprehensive NetSuite solutions to drive your business forward";
   
-  const bottomCTA = (hasData && data.bottomCTA) ? data.bottomCTA : {
-    text: "Ready to transform your business with NetSuite?",
-    buttonText: "Get Started Today"
-  };
+  // const bottomCTA = (hasData && data.bottomCTA) ? data.bottomCTA : {
+  //   text: "Ready to transform your business with NetSuite?",
+  //   buttonText: "Get Started Today"
+  // };
 
 
 
@@ -225,15 +225,15 @@ const ServiceGrid = ({ data = {} }) => {
 
         {/* Bottom CTA */}
 
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16"> */}
 
-          <p className="text-gray-600 mb-6">
+          {/* <p className="text-gray-600 mb-6">
 
             {bottomCTA.text}
 
-          </p>
+          </p> */}
 
-          <CTAButton
+          {/* <CTAButton
             variant="primary"
             size="lg"
             className="rounded-lg shadow-lg hover:shadow-xl"
@@ -244,11 +244,11 @@ const ServiceGrid = ({ data = {} }) => {
             }}
           >
             {bottomCTA.buttonText}
-          </CTAButton>
+          </CTAButton> */}
 
         </div>
 
-      </div>
+      {/* </div> */}
 
     </section>
 
