@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useCTAModal } from '../contexts/CTAModalContext';
-import { shouldOpenContactModal, autoGenerateModalConfig } from '../utils/ctaUtils';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useCTAModal } from "../contexts/CTAModalContext";
+import { autoGenerateModalConfig } from "../utils/ctaUtils";
 
 /**
  * Global CTA Interceptor Component
- * 
+ *
  * This component intercepts clicks on any button, link, or element
  * that contains CTA text patterns (like "Get Started", "Contact Us", etc.)
  * and opens the contact modal instead of navigating or doing nothing.
- * 
+ *
  * This ensures consistent behavior across:
  * - Dynamically created buttons by admins
  * - Static buttons in the codebase
@@ -25,12 +25,13 @@ const GlobalCTAInterceptor = ({ children }) => {
      */
     const getElementText = (element) => {
       // Try different ways to get the button text
-      const text = element.textContent || 
-                   element.innerText || 
-                   element.getAttribute('aria-label') ||
-                   element.getAttribute('title') ||
-                   element.value || // for input buttons
-                   '';
+      const text =
+        element.textContent ||
+        element.innerText ||
+        element.getAttribute("aria-label") ||
+        element.getAttribute("title") ||
+        element.value || // for input buttons
+        "";
       return text.trim();
     };
 
@@ -40,19 +41,20 @@ const GlobalCTAInterceptor = ({ children }) => {
     const isClickableCTAElement = (element) => {
       // Check if it's a button or link
       const tagName = element.tagName.toLowerCase();
-      const isButton = tagName === 'button';
-      const isLink = tagName === 'a';
-      const isInputButton = tagName === 'input' && 
-                           (element.type === 'button' || element.type === 'submit');
-      
+      const isButton = tagName === "button";
+      const isLink = tagName === "a";
+      const isInputButton =
+        tagName === "input" &&
+        (element.type === "button" || element.type === "submit");
+
       // Check for button-like roles
-      const role = element.getAttribute('role');
-      const isButtonRole = role === 'button' || role === 'link';
-      
+      const role = element.getAttribute("role");
+      const isButtonRole = role === "button" || role === "link";
+
       // Check for CTA-related classes
-      const className = element.className || '';
+      const className = element.className || "";
       const hasCTAClass = /cta|btn|button/i.test(className);
-      
+
       return isButton || isLink || isInputButton || isButtonRole || hasCTAClass;
     };
 
@@ -62,7 +64,7 @@ const GlobalCTAInterceptor = ({ children }) => {
     const findClickableParent = (element, maxDepth = 5) => {
       let current = element;
       let depth = 0;
-      
+
       while (current && depth < maxDepth) {
         if (isClickableCTAElement(current)) {
           return current;
@@ -70,7 +72,7 @@ const GlobalCTAInterceptor = ({ children }) => {
         current = current.parentElement;
         depth++;
       }
-      
+
       return null;
     };
 
@@ -81,49 +83,66 @@ const GlobalCTAInterceptor = ({ children }) => {
       // Find the clickable element (might be a child of the button)
       const clickedElement = event.target;
       const ctaElement = findClickableParent(clickedElement);
-      
+
       if (!ctaElement) return;
 
       // Skip interception on Admin routes
-      if (location.pathname.toLowerCase().startsWith('/admin')) {
+      if (location.pathname.toLowerCase().startsWith("/admin")) {
         return;
       }
 
       // Skip interception if manually disabled
-      if (ctaElement.hasAttribute('data-no-cta-intercept') || ctaElement.closest('[data-no-cta-intercept]')) {
+      if (
+        ctaElement.hasAttribute("data-no-cta-intercept") ||
+        ctaElement.closest("[data-no-cta-intercept]")
+      ) {
         return;
       }
-      
+
+      // Skip interception for form submission controls so forms still work
+      const tagName = ctaElement.tagName.toLowerCase();
+      const typeAttr = (ctaElement.getAttribute("type") || "").toLowerCase();
+      const isSubmitButton =
+        (tagName === "button" &&
+          (typeAttr === "submit" || typeAttr === "reset")) ||
+        (tagName === "input" &&
+          (typeAttr === "submit" || typeAttr === "reset"));
+
+      if (
+        isSubmitButton ||
+        (ctaElement.closest("form") &&
+          (tagName === "button" || tagName === "input"))
+      ) {
+        return;
+      }
+
       // Get the text content
       const buttonText = getElementText(ctaElement);
-      
-      // Check if this text should open the contact modal
-      if (shouldOpenContactModal(buttonText)) {
-        // Prevent default navigation/action
-        event.preventDefault();
-        event.stopPropagation();
-        
-        // Generate modal config based on button text
-        const modalConfig = autoGenerateModalConfig(buttonText);
-        
-        // Open the contact modal
-        openCTAModal(modalConfig);
-        
-        console.log('[GlobalCTAInterceptor] Intercepted CTA click:', buttonText);
-      }
+
+      // At this point, any non-admin, non-opted-out clickable element
+      // should open the Contact Us modal instead of its default behavior.
+      event.preventDefault();
+      event.stopPropagation();
+
+      // Generate modal config based on button text (falls back to default)
+      const modalConfig = autoGenerateModalConfig(buttonText || "");
+
+      // Open the contact modal
+      openCTAModal(modalConfig);
+
+      console.log("[GlobalCTAInterceptor] Intercepted CTA click:", buttonText);
     };
 
     // Add global click listener (capture phase to intercept before other handlers)
-    document.addEventListener('click', handleGlobalClick, true);
+    document.addEventListener("click", handleGlobalClick, true);
 
     // Cleanup
     return () => {
-      document.removeEventListener('click', handleGlobalClick, true);
+      document.removeEventListener("click", handleGlobalClick, true);
     };
   }, [openCTAModal, location]); // Re-bind if location changes
 
   return children;
 };
-
 
 export default GlobalCTAInterceptor;
