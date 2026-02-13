@@ -1819,23 +1819,39 @@ export const normalizeProps = (componentType, contentJson) => {
 
 
 
-    TrainingWhyChooseSection: (data) => ({
+    TrainingWhyChooseSection: (data) => {
+      const existingSection = data.whyChooseSection || {};
 
-      whyChooseSection: data.whyChooseSection || {
-
-        title: data.title || "Why Choose Our Training?",
-
-        subtitle: data.subtitle || "We provide world-class training solutions",
-
-        image: data.image || "/images/indleaders.jpg",
-
-        Professional_Badge: data.badge || "Excellence Training",
-
-      },
-
-      trainingFeatures: data.trainingFeatures || data.features || [],
-
-    }),
+      return {
+        whyChooseSection: {
+          title:
+            existingSection.title ||
+            data.title ||
+            "Why Choose Our Training?",
+          description:
+            existingSection.description ||
+            data.description ||
+            data.subtitle ||
+            "We provide world-class training solutions",
+          image:
+            existingSection.image ||
+            data.image ||
+            "/images/indleaders.jpg",
+          Professional_Badge:
+            existingSection.Professional_Badge ||
+            existingSection.badge ||
+            data.Professional_Badge ||
+            data.badge ||
+            "Excellence Training",
+        },
+        trainingFeatures: (data.trainingFeatures || data.features || []).map(
+          (f, i) => ({
+            ...f,
+            id: f.id || f.featureId || `feature-${i}`,
+          })
+        ),
+      };
+    },
 
 
 

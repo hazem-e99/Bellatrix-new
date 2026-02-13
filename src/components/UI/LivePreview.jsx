@@ -1218,15 +1218,26 @@ const ComponentPreview = ({
           );
 
           const baseData = componentData.data || componentData;
+          const existingSection = baseData.whyChooseSection || {};
 
-          const section = baseData.whyChooseSection || {
-            title: baseData.title || "Why Choose Our Training?",
+          // Merge existing section with safe defaults for every property
+          const section = {
+            title:
+              existingSection.title ||
+              baseData.title ||
+              "Why Choose Our Training?",
             description:
+              existingSection.description ||
               baseData.description ||
               baseData.content ||
               "Professional development excellence",
-            image: baseData.image || "/images/indleaders.jpg",
+            image:
+              existingSection.image ||
+              baseData.image ||
+              "/images/indleaders.jpg",
             Professional_Badge:
+              existingSection.Professional_Badge ||
+              existingSection.badge ||
               baseData.Professional_Badge ||
               baseData.badge ||
               "Excellence Training",
@@ -1239,14 +1250,17 @@ const ComponentPreview = ({
             [];
 
           const trainingFeatures = Array.isArray(rawFeatures)
-            ? rawFeatures
+            ? rawFeatures.map((f, i) => ({
+                ...f,
+                id: f.id || f.featureId || `feature-${i}`,
+              }))
             : typeof rawFeatures === "string"
               ? rawFeatures
 
                   .split(/[;\n,]+/)
 
                   .map((s, i) => ({
-                    id: i,
+                    id: `feature-${i}`,
                     title: s.trim(),
                     description: "",
                   }))

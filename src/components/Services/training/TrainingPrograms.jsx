@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const TrainingPrograms = ({
   programsSection = {},
   trainingPrograms = [],
@@ -150,21 +149,28 @@ const TrainingPrograms = ({
         <div className="flex-1">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {(trainingPrograms.programs || trainingPrograms || []).map(
-              (program) => (
-                <div
-                  key={program.id}
-                  onClick={() => openProgramModal(program)}
-                  className="text-center p-5 bg-white rounded-xl border-2 border-blue-100 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer group transform hover:scale-105"
-                >
-                  <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                    {program.title}
-                  </h3>
+              (program, index) => {
+                const key =
+                  program && (program.id || program.programId || program.title)
+                    ? `${program.id || program.programId || program.title}-${index}`
+                    : `program-${index}`;
 
-                  <p className="text-sm text-gray-600">
-                    {program.shortDescription}
-                  </p>
-                </div>
-              ),
+                return (
+                  <div
+                    key={key}
+                    onClick={() => openProgramModal(program)}
+                    className="text-center p-5 bg-white rounded-xl border-2 border-blue-100 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer group transform hover:scale-105"
+                  >
+                    <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                      {program.title}
+                    </h3>
+
+                    <p className="text-sm text-gray-600">
+                      {program.shortDescription}
+                    </p>
+                  </div>
+                );
+              },
             )}
           </div>
         </div>
