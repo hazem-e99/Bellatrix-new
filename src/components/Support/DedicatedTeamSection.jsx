@@ -1,6 +1,35 @@
 import React from "react";
 
-const DedicatedTeamSection = () => {
+const DedicatedTeamSection = ({
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  items: propItems,
+  image: propImage,
+}) => {
+  // Default data
+  const defaultData = {
+    title: "Your Own Dedicated Team of Bellatrix",
+    items: [
+      "A team will be assigned to you that is familiar with your organization, how you do things, and most importantly, your goals for your Bellatrix system",
+      "A committed team familiar with your Bellatrix environment",
+      "Experienced professionals, including a project lead and solution consultants",
+      "Structured collaboration to avoid knowledge silos",
+      "Access to the collective expertise of a broad team of Bellatrix specialists",
+    ],
+    image: "/public/images/Support/team.jpeg",
+  };
+
+  // PRIORITIZE direct props > data prop > default data
+  const sectionData = {
+    title: propTitle || data?.title || defaultData.title,
+    items:
+      propItems && propItems.length > 0
+        ? propItems
+        : data?.items || defaultData.items,
+    image: propImage || data?.image || defaultData.image,
+  };
+
   return (
     <section
       style={{
@@ -71,8 +100,15 @@ const DedicatedTeamSection = () => {
             color: "white",
           }}
         >
-          Your Own Dedicated Team of{" "}
-          <span style={{ color: "#22D3EE" }}>Bellatrix</span>
+          {sectionData.title.includes("Bellatrix") ? (
+            <>
+              {sectionData.title.split("Bellatrix")[0]}
+              <span style={{ color: "#22D3EE" }}>Bellatrix</span>
+              {sectionData.title.split("Bellatrix")[1] || ""}
+            </>
+          ) : (
+            sectionData.title
+          )}
         </h2>
 
         {/* Content Layout */}
@@ -95,139 +131,37 @@ const DedicatedTeamSection = () => {
                 lineHeight: "1.8",
               }}
             >
-              <li
-                style={{
-                  marginBottom: "20px",
-                  position: "relative",
-                  paddingLeft: "25px",
-                  display: "flex",
-                  alignItems: "flex-start",
-                }}
-              >
-                <span
+              {sectionData.items.map((item, index) => (
+                <li
+                  key={index}
                   style={{
-                    content: "",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "#22D3EE",
-                    borderRadius: "50%",
-                    position: "absolute",
-                    left: "0",
-                    top: "12px",
+                    marginBottom:
+                      index === sectionData.items.length - 1 ? "0" : "20px",
+                    position: "relative",
+                    paddingLeft: "25px",
+                    display: "flex",
+                    alignItems: "flex-start",
                   }}
-                ></span>
-                <span style={{ color: "#D1D5DB" }}>
-                  A team will be assigned to you that is familiar with your
-                  organization, how you do things, and most importantly, your
-                  goals for your Bellatrix system
-                </span>
-              </li>
-
-              <li
-                style={{
-                  marginBottom: "20px",
-                  position: "relative",
-                  paddingLeft: "25px",
-                  display: "flex",
-                  alignItems: "flex-start",
-                }}
-              >
-                <span
-                  style={{
-                    content: "",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "#22D3EE",
-                    borderRadius: "50%",
-                    position: "absolute",
-                    left: "0",
-                    top: "12px",
-                  }}
-                ></span>
-                <span style={{ color: "#D1D5DB" }}>
-                  A committed team familiar with your Bellatrix environment
-                </span>
-              </li>
-
-              <li
-                style={{
-                  marginBottom: "20px",
-                  position: "relative",
-                  paddingLeft: "25px",
-                  display: "flex",
-                  alignItems: "flex-start",
-                }}
-              >
-                <span
-                  style={{
-                    content: "",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "#22D3EE",
-                    borderRadius: "50%",
-                    position: "absolute",
-                    left: "0",
-                    top: "12px",
-                  }}
-                ></span>
-                <span style={{ color: "#D1D5DB" }}>
-                  Experienced professionals, including a project lead and
-                  solution consultants
-                </span>
-              </li>
-
-              <li
-                style={{
-                  marginBottom: "20px",
-                  position: "relative",
-                  paddingLeft: "25px",
-                  display: "flex",
-                  alignItems: "flex-start",
-                }}
-              >
-                <span
-                  style={{
-                    content: "",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "#22D3EE",
-                    borderRadius: "50%",
-                    position: "absolute",
-                    left: "0",
-                    top: "12px",
-                  }}
-                ></span>
-                <span style={{ color: "#D1D5DB" }}>
-                  Structured collaboration to avoid knowledge silos
-                </span>
-              </li>
-
-              <li
-                style={{
-                  marginBottom: "0",
-                  position: "relative",
-                  paddingLeft: "25px",
-                  display: "flex",
-                  alignItems: "flex-start",
-                }}
-              >
-                <span
-                  style={{
-                    content: "",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "#22D3EE",
-                    borderRadius: "50%",
-                    position: "absolute",
-                    left: "0",
-                    top: "12px",
-                  }}
-                ></span>
-                <span style={{ color: "#D1D5DB" }}>
-                  Access to the collective expertise of a broad team of
-                  Bellatrix specialists
-                </span>
-              </li>
+                >
+                  <span
+                    style={{
+                      content: "",
+                      width: "8px",
+                      height: "8px",
+                      backgroundColor: "#22D3EE",
+                      borderRadius: "50%",
+                      position: "absolute",
+                      left: "0",
+                      top: "12px",
+                    }}
+                  ></span>
+                  <span style={{ color: "#D1D5DB" }}>
+                    {typeof item === "string"
+                      ? item
+                      : item.text || item.label || ""}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -246,7 +180,7 @@ const DedicatedTeamSection = () => {
               }}
             >
               <img
-                src="/public/images/Support/team.jpeg"
+                src={sectionData.image}
                 alt="ERP Implementation Team"
                 style={{
                   width: "100%",

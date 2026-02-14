@@ -1,7 +1,26 @@
 import React from "react";
 import SEO from "../SEO";
 
-const PrePackagedSection = () => {
+const PrePackagedSection = ({
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  description: propDescription,
+}) => {
+  // Default data
+  const defaultData = {
+    title: "Pre-Packaged, Yet Flexible",
+    description:
+      "By leveraging our 18 years of experience, we've come up with the perfect package that allows you to rely on our expertise to schedule the required resources while keeping you in control over how the resources are spent, and for what.",
+  };
+
+  // PRIORITIZE direct props > data prop > default data
+  const sectionData = {
+    title: propTitle || data?.title || defaultData.title,
+    description:
+      propDescription || data?.description || defaultData.description,
+  };
+
   return (
     <>
       <SEO
@@ -42,14 +61,11 @@ const PrePackagedSection = () => {
                 fontFamily: "Gotham A , san-saif",
               }}
             >
-              Pre-Packaged, Yet Flexible
+              {sectionData.title}
             </h2>
           </header>
           <p style={{ fontSize: "19px", lineHeight: "1.6" }}>
-            By leveraging our 18 years of experience, we’ve come up with the
-            perfect package that allows you to rely on our expertise to schedule
-            the required resources while keeping you in control over how the
-            resources are spent, and for what.
+            {sectionData.description}
           </p>
         </div>
       </section>

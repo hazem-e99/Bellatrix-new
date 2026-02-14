@@ -1,6 +1,40 @@
 import React from "react";
 
-const WhyChoeseBellatrix = () => {
+const WhyChoeseBellatrix = ({
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  description: propDescription,
+  items: propItems,
+  image: propImage,
+}) => {
+  // Default data
+  const defaultData = {
+    title: "Why Choose Bellatrix for Support?",
+    description:
+      "At Bellatrix, we strive to offer the highest level of quality when it comes to our solutions. Over the years, we have mastered the ins and outs of NetSuite. We've worked with companies in multiple verticals and are familiar with their best practices.",
+    items: [
+      "18 years of experience",
+      "85 NetSuite Consultants",
+      "800 Active Customers",
+      "2500+ Completed Projects",
+    ],
+    image:
+      "https://i.pinimg.com/736x/35/81/47/3581470fff3844922bc4865f41268080.jpg",
+  };
+
+  // PRIORITIZE direct props > data prop > default data
+  const sectionData = {
+    title: propTitle || data?.title || defaultData.title,
+    description:
+      propDescription || data?.description || defaultData.description,
+    items:
+      propItems && propItems.length > 0
+        ? propItems
+        : data?.items || defaultData.items,
+    image: propImage || data?.image || defaultData.image,
+  };
+
   return (
     <div
       className="light-section"
@@ -42,16 +76,22 @@ const WhyChoeseBellatrix = () => {
               transition: "color 0.6s ease",
             }}
           >
-            Why Choose{" "}
-            <span
-              style={{
-                color: "var(--color-primary)",
-                transition: "color 0.6s ease",
-              }}
-            >
-              Bellatrix
-            </span>{" "}
-            for Support?
+            {sectionData.title.includes("Bellatrix") ? (
+              <>
+                {sectionData.title.split("Bellatrix")[0]}
+                <span
+                  style={{
+                    color: "var(--color-primary)",
+                    transition: "color 0.6s ease",
+                  }}
+                >
+                  Bellatrix
+                </span>
+                {sectionData.title.split("Bellatrix")[1] || ""}
+              </>
+            ) : (
+              sectionData.title
+            )}
           </h2>
         </div>
 
@@ -73,10 +113,7 @@ const WhyChoeseBellatrix = () => {
                 transition: "color 0.6s ease",
               }}
             >
-              At Bellatrix, we strive to offer the highest level of quality when
-              it comes to our solutions. Over the years, we have mastered the
-              ins and outs of NetSuite. We've worked with companies in multiple
-              verticals and are familiar with their best practices.
+              {sectionData.description}
             </p>
 
             <ul
@@ -86,106 +123,46 @@ const WhyChoeseBellatrix = () => {
                 listStyle: "none",
               }}
             >
-              <li
-                style={{
-                  position: "relative",
-                  paddingLeft: "25px",
-                  marginBottom: "12px",
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "var(--color-text-secondary)", // theme-aware text
-                  transition: "color 0.6s ease",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: "0",
-                    top: "8px",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "var(--color-primary)", // theme-aware primary color
-                    borderRadius: "50%",
-                    transition: "background-color 0.6s ease",
-                  }}
-                ></span>
-                18 years of experience
-              </li>
-              <li
-                style={{
-                  position: "relative",
-                  paddingLeft: "25px",
-                  marginBottom: "12px",
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "var(--color-text-secondary)", // theme-aware text
-                  transition: "color 0.6s ease",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: "0",
-                    top: "8px",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "var(--color-primary-light)", // theme-aware primary light
-                    borderRadius: "50%",
-                    transition: "background-color 0.6s ease",
-                  }}
-                ></span>
-                85 NetSuite Consultants
-              </li>
-              <li
-                style={{
-                  position: "relative",
-                  paddingLeft: "25px",
-                  marginBottom: "12px",
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "var(--color-text-secondary)", // theme-aware text
-                  transition: "color 0.6s ease",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: "0",
-                    top: "8px",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "var(--color-primary-dark)", // theme-aware primary dark
-                    borderRadius: "50%",
-                    transition: "background-color 0.6s ease",
-                  }}
-                ></span>
-                800 Active Customers
-              </li>
-              <li
-                style={{
-                  position: "relative",
-                  paddingLeft: "25px",
-                  marginBottom: "12px",
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "var(--color-text-secondary)", // theme-aware text
-                  transition: "color 0.6s ease",
-                }}
-              >
-                <span
-                  style={{
-                    position: "absolute",
-                    left: "0",
-                    top: "8px",
-                    width: "8px",
-                    height: "8px",
-                    backgroundColor: "var(--color-active)", // theme-aware active color
-                    borderRadius: "50%",
-                    transition: "background-color 0.6s ease",
-                  }}
-                ></span>
-                2500+ Completed Projects
-              </li>
+              {sectionData.items.map((item, index) => {
+                const itemText =
+                  typeof item === "string"
+                    ? item
+                    : item.text || item.label || "";
+                const colors = [
+                  "var(--color-primary)",
+                  "var(--color-primary-light)",
+                  "var(--color-primary-dark)",
+                  "var(--color-active)",
+                ];
+                return (
+                  <li
+                    key={index}
+                    style={{
+                      position: "relative",
+                      paddingLeft: "25px",
+                      marginBottom: "12px",
+                      fontSize: "16px",
+                      lineHeight: "24px",
+                      color: "var(--color-text-secondary)",
+                      transition: "color 0.6s ease",
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: "absolute",
+                        left: "0",
+                        top: "8px",
+                        width: "8px",
+                        height: "8px",
+                        backgroundColor: colors[index % colors.length],
+                        borderRadius: "50%",
+                        transition: "background-color 0.6s ease",
+                      }}
+                    ></span>
+                    {itemText}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -310,7 +287,7 @@ const WhyChoeseBellatrix = () => {
                     }}
                   >
                     <img
-                      src="https://i.pinimg.com/736x/35/81/47/3581470fff3844922bc4865f41268080.jpg"
+                      src={sectionData.image}
                       alt="Industry Leaders - Strategic NetSuite Solutions"
                       style={{
                         width: "100%",

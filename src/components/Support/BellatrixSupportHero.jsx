@@ -2,7 +2,37 @@ import React from "react";
 import SEO from "../SEO";
 import CTAButton from "../CTAButton";
 
-const BellatrixSupportHero = () => {
+const BellatrixSupportHero = ({
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  description: propDescription,
+  ctaButtonText: propCtaButtonText,
+  backgroundImage: propBackgroundImage,
+}) => {
+  // Default data
+  const defaultData = {
+    title: "Bellatrix Support",
+    description:
+      "Get access to expert knowledge and ongoing NetSuite support after your initial go-live phase.",
+    ctaButtonText: "Talk to an Expert",
+    backgroundImage: "/images/Support/HeroSection.png",
+  };
+
+  // PRIORITIZE direct props > data prop > default data for real-time preview
+  const heroData = {
+    title: propTitle || data?.title || defaultData.title,
+    description:
+      propDescription || data?.description || defaultData.description,
+    ctaButtonText:
+      propCtaButtonText || data?.ctaButtonText || defaultData.ctaButtonText,
+    backgroundImage:
+      propBackgroundImage ||
+      data?.backgroundImage ||
+      data?.image ||
+      defaultData.backgroundImage,
+  };
+
   return (
     <>
       <SEO
@@ -11,7 +41,7 @@ const BellatrixSupportHero = () => {
         keywords="Bellatrix support, ERP support services, NetSuite consultants, post-implementation support, Bellatrix experts, business system support"
         ogTitle="Bellatrix Support Hero | Bellatrix Expert Support Services"
         ogDescription="Professional Bellatrix support services with expert consultants for ongoing ERP system assistance and optimization."
-        ogImage="/images/Support/HeroSection.png"
+        ogImage={heroData.backgroundImage}
       />
       <header
         className="py-12 relative overflow-hidden animate-background-glow theme-bg-animated text-white"
@@ -89,7 +119,7 @@ const BellatrixSupportHero = () => {
               }}
               className="text-white animate-slide-up"
             >
-              Bellatrix Support
+              {heroData.title}
             </h1>
 
             {/* Description */}
@@ -100,10 +130,9 @@ const BellatrixSupportHero = () => {
                 textAlign: "center",
                 margin: 0,
               }}
-              className="text-gray-300 animate-fade-in"
+              className="text-white animate-fade-in"
             >
-              Get access to expert knowledge and ongoing NetSuite support after
-              your initial go-live phase.
+              {heroData.description}
             </p>
 
             {/* CTA Button */}
@@ -118,7 +147,7 @@ const BellatrixSupportHero = () => {
                   icon: "",
                 }}
               >
-                Talk to an Expert
+                {heroData.ctaButtonText}
               </CTAButton>
             </div>
           </div>

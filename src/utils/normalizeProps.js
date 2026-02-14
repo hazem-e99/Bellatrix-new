@@ -2017,8 +2017,127 @@ export const normalizeProps = (componentType, contentJson) => {
     // AboutDifferentiatorsSection, and AboutMilestonesSection are defined earlier in the file
     // Do not add duplicate definitions here.
 
+    // Support Components
+    SupportHeroSection: (data) => {
+      return {
+        title: data.title || "Bellatrix Support",
+        description: data.description || "Get access to expert knowledge and ongoing NetSuite support after your initial go-live phase.",
+        ctaButtonText: data.ctaButtonText || "Talk to an Expert",
+        backgroundImage: data.backgroundImage || data.image || "/images/Support/HeroSection.png",
+        data: {
+          title: data.title || "Bellatrix Support",
+          description: data.description || "Get access to expert knowledge and ongoing NetSuite support after your initial go-live phase.",
+          ctaButtonText: data.ctaButtonText || "Talk to an Expert",
+          backgroundImage: data.backgroundImage || data.image || "/images/Support/HeroSection.png",
+        },
+      };
+    },
 
+    SupportCustomerSection: (data) => {
+      const items = data.items || [];
+      return {
+        title: data.title || "Bellatrix Customer Support",
+        subtitle: data.subtitle || "When and How You Need It",
+        description: data.description || "Our dedicated support team is here to ensure your success with comprehensive assistance and expert guidance.",
+        image: data.image || "https://i.pinimg.com/1200x/c4/3b/47/c43b47b28329114afa50028b00c829b8.jpg",
+        items: items,
+        contentDescription: data.contentDescription || "For Bellatrix technical support concerning unexpected ERP implementation issues or keeping an eye on customizations and configurations, our team of Bellatrix consultants are available for as much or as little support as you need.",
+        supportInfoTitle: data.supportInfoTitle || "24/7 Support Available",
+        supportInfoDescription: data.supportInfoDescription || "Our support team is available around the clock to ensure your business operations run smoothly without interruption.",
+        data: {
+          title: data.title || "Bellatrix Customer Support",
+          subtitle: data.subtitle || "When and How You Need It",
+          description: data.description || "Our dedicated support team is here to ensure your success with comprehensive assistance and expert guidance.",
+          image: data.image || "https://i.pinimg.com/1200x/c4/3b/47/c43b47b28329114afa50028b00c829b8.jpg",
+          items: items,
+          contentDescription: data.contentDescription,
+          supportInfoTitle: data.supportInfoTitle || "24/7 Support Available",
+          supportInfoDescription: data.supportInfoDescription,
+        },
+      };
+    },
 
+    SupportSecondSection: (data) => {
+      return {
+        title: data.title || "",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        image: data.image || "",
+        items: data.items || [],
+        data: { ...data },
+      };
+    },
+
+    SupportSherpaCareSection: (data) => {
+      return {
+        title: data.title || "",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        items: data.items || data.services || [],
+        data: { ...data, items: data.items || data.services || [] },
+      };
+    },
+
+    SupportWhatWeOfferSection: (data) => {
+      return {
+        title: data.title || "",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        items: data.items || data.offerings || [],
+        data: { ...data, items: data.items || data.offerings || [] },
+      };
+    },
+
+    SupportDedicatedTeamSection: (data) => {
+      return {
+        title: data.title || "",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        image: data.image || "",
+        items: data.items || [],
+        data: { ...data },
+      };
+    },
+
+    SupportPrePackagedSection: (data) => {
+      return {
+        title: data.title || "",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        items: data.items || data.packages || [],
+        data: { ...data, items: data.items || data.packages || [] },
+      };
+    },
+
+    SupportBellatrixSection: (data) => {
+      return {
+        title: data.title || "",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        items: data.items || [],
+        data: { ...data },
+      };
+    },
+
+    SupportPayPerUseSection: (data) => {
+      return {
+        title: data.title || "",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        items: data.items || data.features || [],
+        data: { ...data, items: data.items || data.features || [] },
+      };
+    },
+
+    SupportWhyChooseSection: (data) => {
+      return {
+        title: data.title || "",
+        subtitle: data.subtitle || "",
+        description: data.description || "",
+        items: data.items || data.reasons || [],
+        data: { ...data, items: data.items || data.reasons || [] },
+      };
+    },
 
 
 

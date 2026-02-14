@@ -1,5 +1,6 @@
 import { getGeneralComponentSchema } from "../data/generalComponentSchemas";
 import { getAboutComponentSchema } from "../data/aboutComponentSchemas";
+import { getSupportComponentSchema } from "../data/supportComponentSchemas";
 import { categorizeComponent, getComponentIcon } from "./componentHelpers";
 
 /**
@@ -55,6 +56,22 @@ export const loadAvailableComponents = async () => {
             .map((componentType) => {
                 const path = idToPathMap[componentType];
                 const category = categorizeComponent(componentType, path);
+
+                // Support-page specific enhanced schemas
+                const supportSchema = getSupportComponentSchema(componentType);
+                if (supportSchema) {
+                    return {
+                        id: componentType,
+                        name: supportSchema.displayName,
+                        description: supportSchema.description,
+                        componentType,
+                        componentName: supportSchema.componentName,
+                        category: supportSchema.category,
+                        hasEnhancedSchema: true,
+                        schema: supportSchema.schema,
+                        defaultData: supportSchema.defaultData,
+                    };
+                }
 
                 // About-page specific enhanced schemas
                 const aboutSchema = getAboutComponentSchema(componentType);

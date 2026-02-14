@@ -116,98 +116,98 @@ const pagesAPI = {
         componentsCount: pageData.components?.length || 0,
       });
 
-      // Prepare the data to send - remove any id/pageId for new page creation
+      // CRITICAL: Explicitly construct dataToSend with ONLY the fields
+      // allowed by CreatePageWithComponentsDTOcs (additionalProperties: false).
+      // Spreading pageData could leak extra fields that cause 400 errors.
 
-      let dataToSend = { ...pageData };
+      // Ensure categoryId is a proper integer
+      const categoryId =
+        typeof pageData.categoryId === "string"
+          ? parseInt(pageData.categoryId, 10)
+          : pageData.categoryId;
 
-      // Remove id fields for new page creation to avoid backend treating it as update
+      // Enforce metaTitle max 60 chars, metaDescription max 160 chars
+      const metaTitle = (pageData.metaTitle || "").substring(0, 60);
+      const metaDescription = (pageData.metaDescription || "").substring(
+        0,
+        160,
+      );
 
-      delete dataToSend.id;
-
-      delete dataToSend.pageId;
+      let dataToSend = {
+        name: (pageData.name || "Untitled Page").substring(0, 100),
+        categoryId: categoryId || 1,
+        slug: (pageData.slug || "").substring(0, 200) || null,
+        metaTitle: metaTitle || null,
+        metaDescription: metaDescription || null,
+        isHomepage: Boolean(pageData.isHomepage),
+        isPublished: Boolean(pageData.isPublished),
+      };
 
       // Ensure proper component data formatting for API
 
-      if (dataToSend.components && dataToSend.components.length > 0) {
-        dataToSend.components = dataToSend.components.map(
+      if (
+        pageData.components &&
+        Array.isArray(pageData.components) &&
+        pageData.components.length > 0
+      ) {
+        dataToSend.components = pageData.components.map(
           (component, index) => {
-            // Remove any existing id or pageId from components for new creation
-
-            const cleanComponent = { ...component };
-
-            delete cleanComponent.id;
-
-            delete cleanComponent.pageId;
-
             console.log(` [PAGES API] Processing component ${index + 1}:`, {
-              componentType: cleanComponent.componentType,
-              hasContent: !!cleanComponent.content,
-              hasContentJson: !!cleanComponent.contentJson,
-              contentType: typeof cleanComponent.content,
-              contentJsonType: typeof cleanComponent.contentJson,
+              componentType: component.componentType,
+              hasContent: !!component.content,
+              hasContentJson: !!component.contentJson,
+              contentType: typeof component.content,
+              contentJsonType: typeof component.contentJson,
             });
 
-            // Create properly formatted component object
-
-            const formattedComponent = {
-              componentType: cleanComponent.componentType || "Generic",
-
-              componentName:
-                cleanComponent.componentName || `Component ${index + 1}`,
-
-              orderIndex: index + 1, // Always use sequential 1-based index to avoid duplicates
-
-              contentJson: "",
-
-              // Add isVisible and theme from component data
-
-              isVisible:
-                cleanComponent.isVisible !== undefined
-                  ? cleanComponent.isVisible
-                  : true,
-
-              theme:
-                cleanComponent.theme !== undefined ? cleanComponent.theme : 1,
-            };
+            // Build contentJson string
+            let contentJson = "{}";
 
             // Handle contentJson serialization properly - PRIORITY ORDER:
             // 1. First check contentJson (string) - this is the primary source from UI
             // 2. Then check content (object) - this is from applyDefaultValues
             // 3. Default to empty object
 
-            if (cleanComponent.contentJson) {
-              // Use existing contentJson (ensure it's a string)
-
-              if (typeof cleanComponent.contentJson === "string") {
+            if (component.contentJson) {
+              if (typeof component.contentJson === "string") {
                 // Validate it's valid JSON
                 try {
-                  JSON.parse(cleanComponent.contentJson);
-                  formattedComponent.contentJson = cleanComponent.contentJson;
+                  JSON.parse(component.contentJson);
+                  contentJson = component.contentJson;
                 } catch {
                   console.warn(
                     ` [PAGES API] Invalid JSON in contentJson, using empty object`,
                   );
-                  formattedComponent.contentJson = JSON.stringify({});
                 }
               } else {
-                formattedComponent.contentJson = JSON.stringify(
-                  cleanComponent.contentJson,
-                );
+                contentJson = JSON.stringify(component.contentJson);
               }
             } else if (
-              cleanComponent.content &&
-              typeof cleanComponent.content === "object"
+              component.content &&
+              typeof component.content === "object"
             ) {
               // Convert content object to JSON string
-
-              formattedComponent.contentJson = JSON.stringify(
-                cleanComponent.content,
-              );
-            } else {
-              // Default empty content
-
-              formattedComponent.contentJson = JSON.stringify({});
+              contentJson = JSON.stringify(component.content);
             }
+
+            // Create properly formatted component object matching NewPageComponentDTO
+            // ONLY include fields defined in the swagger schema (additionalProperties: false)
+            const formattedComponent = {
+              componentType: (
+                component.componentType || "Generic"
+              ).substring(0, 50),
+              componentName: (
+                component.componentName || `Component ${index + 1}`
+              ).substring(0, 100),
+              orderIndex: index + 1, // Always use sequential 1-based index to avoid duplicates
+              contentJson: contentJson,
+              isVisible:
+                component.isVisible !== undefined
+                  ? Boolean(component.isVisible)
+                  : true,
+              theme:
+                component.theme === 2 ? 2 : 1, // ThemeMode enum: only 1 or 2
+            };
 
             console.log(` [PAGES API] Formatted component ${index + 1}:`, {
               componentType: formattedComponent.componentType,
@@ -225,6 +225,8 @@ const pagesAPI = {
         name: dataToSend.name,
         categoryId: dataToSend.categoryId,
         slug: dataToSend.slug,
+        metaTitle: dataToSend.metaTitle,
+        metaDescription: dataToSend.metaDescription,
         isPublished: dataToSend.isPublished,
         isHomepage: dataToSend.isHomepage,
         componentsCount: dataToSend.components?.length || 0,
@@ -240,9 +242,13 @@ const pagesAPI = {
       // Error here is the normalizedError from api.js interceptor
       console.error(" [PAGES API] Create page error:", {
         status: error.status,
-        details: error.details,
         message: error.message,
       });
+      // Stringify details to see the actual ASP.NET validation errors
+      console.error(" [PAGES API] Error details (stringified):", JSON.stringify(error.details, null, 2));
+      if (error.details?.errors) {
+        console.error(" [PAGES API] Validation errors:", JSON.stringify(error.details.errors, null, 2));
+      }
 
       const status = error.status;
       const details = error.details || {};
@@ -653,7 +659,8 @@ const pagesAPI = {
 
   async getPublicPageBySlug(slug) {
     try {
-      const response = await api.get(`/Pages/public/${slug}`);
+      const cacheBuster = Date.now();
+      const response = await api.get(`/Pages/public/${slug}?cb=${cacheBuster}`);
 
       return response.data;
     } catch (error) {

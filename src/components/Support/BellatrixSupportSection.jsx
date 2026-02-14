@@ -8,7 +8,7 @@ const SupportCard = ({ title, items }) => (
     <ul style={styles.list}>
       {items.map((item, index) => (
         <li key={index} style={styles.listItem}>
-          {item}
+          {typeof item === "string" ? item : item.text || item.label || ""}
         </li>
       ))}
     </ul>
@@ -16,8 +16,18 @@ const SupportCard = ({ title, items }) => (
 );
 
 // Main component
-const BellatrixSupportSection = () => {
-  const adminSupport = [
+const BellatrixSupportSection = ({
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  description1: propDescription1,
+  description2: propDescription2,
+  adminSupport: propAdminSupport,
+  functionalSupport: propFunctionalSupport,
+  developmentSupport: propDevelopmentSupport,
+}) => {
+  // Default data
+  const defaultAdminSupport = [
     "Ongoing Bellatrix administration",
     "Maintain secure access",
     "Data cleansing and upload",
@@ -31,7 +41,7 @@ const BellatrixSupportSection = () => {
     "Upgrades and testing",
   ];
 
-  const functionalSupport = [
+  const defaultFunctionalSupport = [
     "End User Support",
     "Answer How To Questions",
     "Provide solutions for business requirements",
@@ -44,7 +54,7 @@ const BellatrixSupportSection = () => {
     "Year and month end processes",
   ];
 
-  const developmentSupport = [
+  const defaultDevelopmentSupport = [
     "Create New reports",
     "Create New dashboards",
     "Create or manage automated processes with Bellatrix SuiteFlows",
@@ -53,6 +63,38 @@ const BellatrixSupportSection = () => {
     "Integrations",
     "Installation of Suite Bundle as required",
   ];
+
+  const defaultData = {
+    title: "Your One-Stop-Shop for Bellatrix Support",
+    description1:
+      "Your business, and how you run it, is very unique. So is your Bellatrix instance and required support. Our consultants are well versed in a multitude of different areas to ensure that regardless of the level of support that you require, we can assist you.",
+    description2:
+      "Whether you're in need of functional support, administrator support, development support, or all the above, SherpaCare is the answer.",
+    adminSupport: defaultAdminSupport,
+    functionalSupport: defaultFunctionalSupport,
+    developmentSupport: defaultDevelopmentSupport,
+  };
+
+  // PRIORITIZE direct props > data prop > default data
+  const sectionData = {
+    title: propTitle || data?.title || defaultData.title,
+    description1:
+      propDescription1 || data?.description1 || defaultData.description1,
+    description2:
+      propDescription2 || data?.description2 || defaultData.description2,
+    adminSupport:
+      propAdminSupport && propAdminSupport.length > 0
+        ? propAdminSupport
+        : data?.adminSupport || defaultData.adminSupport,
+    functionalSupport:
+      propFunctionalSupport && propFunctionalSupport.length > 0
+        ? propFunctionalSupport
+        : data?.functionalSupport || defaultData.functionalSupport,
+    developmentSupport:
+      propDevelopmentSupport && propDevelopmentSupport.length > 0
+        ? propDevelopmentSupport
+        : data?.developmentSupport || defaultData.developmentSupport,
+  };
 
   return (
     <>
@@ -100,27 +142,36 @@ const BellatrixSupportSection = () => {
         <div style={styles.container}>
           <header>
             <h2 style={styles.heading}>
-              Your One-Stop-Shop for{" "}
-              <span style={styles.headingSpan}>Bellatrix Support</span>
+              {sectionData.title.includes("Bellatrix") ? (
+                <>
+                  {sectionData.title.split("Bellatrix")[0]}
+                  <span style={styles.headingSpan}>Bellatrix Support</span>
+                  {sectionData.title.split("Bellatrix Support")[1] ||
+                    sectionData.title
+                      .split("Bellatrix")[1]
+                      ?.replace(" Support", "") ||
+                    ""}
+                </>
+              ) : (
+                sectionData.title
+              )}
             </h2>
           </header>
-          <p style={styles.paragraph}>
-            Your business, and how you run it, is very unique. So is your
-            Bellatrix instance and required support. Our consultants are well
-            versed in a multitude of different areas to ensure that regardless
-            of the level of support that you require, we can assist you.
-          </p>
-          <p style={styles.paragraph}>
-            Whether you're in need of functional support, administrator support,
-            development support, or all the above, SherpaCare is the answer.
-          </p>
+          <p style={styles.paragraph}>{sectionData.description1}</p>
+          <p style={styles.paragraph}>{sectionData.description2}</p>
 
           <div style={styles.cardsContainer}>
-            <SupportCard title="Admin Support" items={adminSupport} />
-            <SupportCard title="Functional Support" items={functionalSupport} />
+            <SupportCard
+              title="Admin Support"
+              items={sectionData.adminSupport}
+            />
+            <SupportCard
+              title="Functional Support"
+              items={sectionData.functionalSupport}
+            />
             <SupportCard
               title="Development Support"
-              items={developmentSupport}
+              items={sectionData.developmentSupport}
             />
           </div>
         </div>

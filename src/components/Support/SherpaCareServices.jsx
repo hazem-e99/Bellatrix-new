@@ -1,7 +1,59 @@
 import React from "react";
 import SEO from "../SEO";
 
-const SherpaCareServices = () => {
+const SherpaCareServices = ({
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  subtitle: propSubtitle,
+  column1: propColumn1,
+  column2: propColumn2,
+  column3: propColumn3,
+}) => {
+  // Default data
+  const defaultData = {
+    title:
+      "No matter what kind of assistance you are looking for, our team can help you.",
+    subtitle: "Here are some of the ways Bellatrix helped other organizations:",
+    column1: [
+      "Ad hoc assistance",
+      "Solution design",
+      "Updates assistance",
+      "Integrating Bellatrix with different tools",
+      "Implementing eCommerce applications",
+    ],
+    column2: [
+      "Creating workflows & process mapping",
+      "Developing custom KPI",
+      "Writing custom scripts",
+      "Designing portals and their modification",
+      "Bellatrix Advanced Modules Implementation",
+    ],
+    column3: [
+      "Customizing Bellatrix dashboards",
+      "Customizing business processes",
+      "Building reports and visualizations",
+    ],
+  };
+
+  // PRIORITIZE direct props > data prop > default data
+  const sectionData = {
+    title: propTitle || data?.title || defaultData.title,
+    subtitle: propSubtitle || data?.subtitle || defaultData.subtitle,
+    column1:
+      propColumn1 && propColumn1.length > 0
+        ? propColumn1
+        : data?.column1 || defaultData.column1,
+    column2:
+      propColumn2 && propColumn2.length > 0
+        ? propColumn2
+        : data?.column2 || defaultData.column2,
+    column3:
+      propColumn3 && propColumn3.length > 0
+        ? propColumn3
+        : data?.column3 || defaultData.column3,
+  };
+
   return (
     <>
       <SEO
@@ -37,11 +89,10 @@ const SherpaCareServices = () => {
             {/* Title */}
             <header className="relative z-10">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-6">
-                No matter what kind of assistance you are looking for, our team
-                can help you.
+                {sectionData.title}
               </h2>
               <p className="text-lg text-gray-300 text-center mb-10 max-w-2xl mx-auto leading-relaxed">
-                Here are some of the ways Bellatrix helped other organizations:
+                {sectionData.subtitle}
               </p>
 
               {/* Service Columns */}
@@ -49,57 +100,48 @@ const SherpaCareServices = () => {
                 {/* Column 1 */}
                 <div className="bg-gradient-to-br from-gray-700/90 via-gray-600/80 to-gray-700/90 rounded-xl shadow-lg p-6 border border-gray-500/50 hover:bg-gradient-to-br hover:from-gray-600/90 hover:via-gray-500/80 hover:to-gray-600/90 hover:border-blue-500/30 transition-all duration-300 group/card">
                   <ul className="list-disc list-inside space-y-3 text-gray-200 text-base">
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Ad hoc assistance
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Solution design
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Updates assistance
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Integrating Bellatrix with different tools
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Implementing eCommerce applications
-                    </li>
+                    {sectionData.column1.map((item, idx) => (
+                      <li
+                        key={idx}
+                        className="hover:text-blue-300 transition-colors duration-300"
+                      >
+                        {typeof item === "string"
+                          ? item
+                          : item.text || item.label || ""}
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
                 {/* Column 2 */}
                 <div className="bg-gradient-to-br from-gray-700/90 via-gray-600/80 to-gray-700/90 rounded-xl shadow-lg p-6 border border-gray-500/50 hover:bg-gradient-to-br hover:from-gray-600/90 hover:via-gray-500/80 hover:to-gray-600/90 hover:border-blue-500/30 transition-all duration-300 group/card">
                   <ul className="list-disc list-inside space-y-3 text-gray-200 text-base">
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Creating workflows &amp; process mapping
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Developing custom KPI
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Writing custom scripts
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Designing portals and their modification
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Bellatrix Advanced Modules Implementation
-                    </li>
+                    {sectionData.column2.map((item, idx) => (
+                      <li
+                        key={idx}
+                        className="hover:text-blue-300 transition-colors duration-300"
+                      >
+                        {typeof item === "string"
+                          ? item
+                          : item.text || item.label || ""}
+                      </li>
+                    ))}
                   </ul>
                 </div>
 
                 {/* Column 3 */}
                 <div className="bg-gradient-to-br from-gray-700/90 via-gray-600/80 to-gray-700/90 rounded-xl shadow-lg p-6 border border-gray-500/50 hover:bg-gradient-to-br hover:from-gray-600/90 hover:via-gray-500/80 hover:to-gray-600/90 hover:border-blue-500/30 transition-all duration-300 group/card">
                   <ul className="list-disc list-inside space-y-3 text-gray-200 text-base">
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Customizing Bellatrix dashboards
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Customizing business processes
-                    </li>
-                    <li className="hover:text-blue-300 transition-colors duration-300">
-                      Building reports and visualizations
-                    </li>
+                    {sectionData.column3.map((item, idx) => (
+                      <li
+                        key={idx}
+                        className="hover:text-blue-300 transition-colors duration-300"
+                      >
+                        {typeof item === "string"
+                          ? item
+                          : item.text || item.label || ""}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

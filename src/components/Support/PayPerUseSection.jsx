@@ -1,7 +1,34 @@
 import React from "react";
 import SEO from "../SEO";
 
-const PayPerUseSection = () => {
+const PayPerUseSection = ({
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  description1: propDescription1,
+  description2: propDescription2,
+  image: propImage,
+}) => {
+  // Default data
+  const defaultData = {
+    title: "Only Pay for the Hours you Use",
+    description1:
+      "Stop paying a lot of money for support that you may not use! How many real hours do you get to take advantage of in your support contract? If you don't use them, do you lose them?",
+    description2:
+      "Our approach is different. Our monthly reviews focus on the realignment of time/hours not used and outlines new ways to leverage unused support hours in order to optimize your system.",
+    image: "/images/Support/pay2.jpeg",
+  };
+
+  // PRIORITIZE direct props > data prop > default data
+  const sectionData = {
+    title: propTitle || data?.title || defaultData.title,
+    description1:
+      propDescription1 || data?.description1 || defaultData.description1,
+    description2:
+      propDescription2 || data?.description2 || defaultData.description2,
+    image: propImage || data?.image || defaultData.image,
+  };
+
   return (
     <>
       <SEO
@@ -16,7 +43,7 @@ const PayPerUseSection = () => {
         <div className="max-w-6xl mx-auto px-4">
           <header className="mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-blue-900 text-center">
-              Only Pay for the Hours you Use
+              {sectionData.title}
             </h2>
           </header>
 
@@ -24,14 +51,10 @@ const PayPerUseSection = () => {
             {/* Text Section */}
             <div className="order-1 md:order-1">
               <p className="text-lg text-gray-700 mb-4">
-                Stop paying a lot of money for support that you may not use! How
-                many real hours do you get to take advantage of in your support
-                contract? If you don't use them, do you lose them?
+                {sectionData.description1}
               </p>
               <p className="text-lg text-gray-700">
-                Our approach is different. Our monthly reviews focus on the
-                realignment of time/hours not used and outlines new ways to
-                leverage unused support hours in order to optimize your system.
+                {sectionData.description2}
               </p>
             </div>
 
@@ -39,7 +62,7 @@ const PayPerUseSection = () => {
             <div className="order-2 md:order-2">
               <img
                 alt="Bellatrix dashboard"
-                src="/images/Support/pay2.jpeg"
+                src={sectionData.image}
                 className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
               />
             </div>

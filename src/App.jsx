@@ -47,8 +47,8 @@ function App() {
               <Route path="customization" element={<MainServices />} />
               <Route path="integration" element={<MainServices />} />
               {/* Support static routes (both cases) */}
-              <Route path="Support" element={<Support />} />
-              <Route path="support" element={<Support />} />
+              <Route path="SupportStatic" element={<Support />} />
+              <Route path="supportStatic" element={<Support />} />
               <Route path="hrStatic" element={<SolutionMain />} />
               {/* <Route path="Payroll" element={<SolutionMain />} /> */}
               <Route path="/PayrollStatic" element={<PayrollPage />} />

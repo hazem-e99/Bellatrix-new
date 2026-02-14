@@ -4530,7 +4530,17 @@ const EnhancedPageBuilder = () => {
       return componentData;
     }
 
-    // PRIORITY 3: Return placeholder data if nothing found
+    // PRIORITY 3: Use Support component schemas (richly defined defaults)
+    const supportSchema = getSupportComponentSchema(componentType);
+    if (supportSchema?.defaultData) {
+      console.log(
+        ` [DEFAULT DATA] Using Support schema defaults for ${componentType}:`,
+        Object.keys(supportSchema.defaultData),
+      );
+      return supportSchema.defaultData;
+    }
+
+    // PRIORITY 4: Return placeholder data if nothing found
     console.warn(
       `No default data defined for component: ${componentType}. Available in registry:`,
 
@@ -5306,6 +5316,18 @@ const EnhancedPageBuilder = () => {
         return validateAndReturn("Page name is required - اسم الصفحة مطلوب");
       }
 
+      if (createPageDTO.name.trim().length < 2) {
+        return validateAndReturn(
+          "Page name must be at least 2 characters - اسم الصفحة يجب أن يكون حرفين على الأقل",
+        );
+      }
+
+      if (createPageDTO.name.trim().length > 100) {
+        return validateAndReturn(
+          "Page name must be 100 characters or less - اسم الصفحة يجب أن يكون 100 حرف أو أقل",
+        );
+      }
+
       console.log(" Page name validated");
 
       console.log(" Validating category...");
@@ -5326,6 +5348,12 @@ const EnhancedPageBuilder = () => {
         );
       }
 
+      if (createPageDTO.metaTitle.trim().length > 60) {
+        return validateAndReturn(
+          "SEO Meta Title must be 60 characters or less - عنوان الميتا يجب أن يكون 60 حرفاً أو أقل",
+        );
+      }
+
       console.log(" SEO Meta Title validated");
 
       // SEO Meta Description required validation
@@ -5338,6 +5366,12 @@ const EnhancedPageBuilder = () => {
       ) {
         return validateAndReturn(
           "SEO Meta Description is required - وصف الميتا مطلوب",
+        );
+      }
+
+      if (createPageDTO.metaDescription.trim().length > 160) {
+        return validateAndReturn(
+          "SEO Meta Description must be 160 characters or less - وصف الميتا يجب أن يكون 160 حرفاً أو أقل",
         );
       }
 
@@ -5593,8 +5627,18 @@ const EnhancedPageBuilder = () => {
         message: error.message,
         // From api.js normalized error
         status: error.status,
-        details: error.details,
       });
+      // Stringify details to see the full server response
+      console.error(
+        " Error details (stringified):",
+        JSON.stringify(error.details, null, 2),
+      );
+      if (error.details?.errors) {
+        console.error(
+          " Validation errors:",
+          JSON.stringify(error.details.errors, null, 2),
+        );
+      }
 
       // Better error message extraction
       let errorMessage = "Failed to save page - فشل حفظ الصفحة";

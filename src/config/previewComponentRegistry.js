@@ -76,6 +76,18 @@ import CustomizationServicesSection from "../components/Services/Customization/S
 import CustomizationProcessSection from "../components/Services/Customization/ProcessSection";
 import CustomizationCtaSection from "../components/Services/Customization/CtaSection";
 
+// Support Components
+import BellatrixSupportHero from "../components/Support/BellatrixSupportHero";
+import SupportSecondSec from "../components/Support/SupportSecondSec";
+import SherpaCareServices from "../components/Support/SherpaCareServices";
+import WhatWeOfferSection from "../components/Support/WhatWeOfferSection";
+import DedicatedTeamSection from "../components/Support/DedicatedTeamSection";
+import PrePackagedSection from "../components/Support/PrePackagedSection";
+import BellatrixSupportSection from "../components/Support/BellatrixSupportSection";
+import PayPerUseSection from "../components/Support/PayPerUseSection";
+import CustomerSupport from "../components/Support/CustomerSupport";
+import WhyChoeseBellatrix from "../components/Support/WhyChoeseBellatrix";
+
 // Common/Shared Components
 import CTAButton from "../components/CTAButton";
 
@@ -185,6 +197,20 @@ export const componentRegistry = {
   CustomizationProcessSection: CustomizationProcessSection,
   CustomizationCTASection: CustomizationCtaSection,
   CustomizationCtaSection: CustomizationCtaSection,
+
+  // ===========================================
+  // SUPPORT COMPONENTS
+  // ===========================================
+  SupportHeroSection: BellatrixSupportHero,
+  SupportSecondSection: SupportSecondSec,
+  SupportSherpaCareSection: SherpaCareServices,
+  SupportWhatWeOfferSection: WhatWeOfferSection,
+  SupportDedicatedTeamSection: DedicatedTeamSection,
+  SupportPrePackagedSection: PrePackagedSection,
+  SupportBellatrixSection: BellatrixSupportSection,
+  SupportPayPerUseSection: PayPerUseSection,
+  SupportCustomerSection: CustomerSupport,
+  SupportWhyChooseSection: WhyChoeseBellatrix,
 
   // ===========================================
   // COMMON/SHARED COMPONENTS

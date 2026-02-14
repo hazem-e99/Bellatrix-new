@@ -1,7 +1,61 @@
 import React from "react";
 import SEO from "../SEO";
 
-const CustomerSupport = () => {
+const CustomerSupport = ({
+  data,
+  // Direct props for Page Builder
+  title: propTitle,
+  subtitle: propSubtitle,
+  description: propDescription,
+  image: propImage,
+  items: propItems,
+  supportInfoTitle: propSupportInfoTitle,
+  supportInfoDescription: propSupportInfoDescription,
+}) => {
+  // Default data
+  const defaultData = {
+    title: "Bellatrix Customer Support",
+    subtitle: "When and How You Need It",
+    description:
+      "Our dedicated support team is here to ensure your success with comprehensive assistance and expert guidance.",
+    image:
+      "https://i.pinimg.com/1200x/c4/3b/47/c43b47b28329114afa50028b00c829b8.jpg",
+    items: [
+      "Always be in the loop with weekly status update calls with your designated project manager.",
+      "Get a peek into what is being done with access to JIRA, giving you a real-time view into progress.",
+      "Remain in direct communication throughout the day with your designated team through Slack.",
+      "Whether you prefer tickets, calls, or emails, communicating with us is a breeze.",
+    ],
+    contentDescription:
+      "For Bellatrix technical support concerning unexpected ERP implementation issues or keeping an eye on customizations and configurations, our team of Bellatrix consultants are available for as much or as little support as you need.",
+    supportInfoTitle: "24/7 Support Available",
+    supportInfoDescription:
+      "Our support team is available around the clock to ensure your business operations run smoothly without interruption.",
+  };
+
+  // PRIORITIZE direct props > data prop > default data for real-time preview
+  const sectionData = {
+    title: propTitle || data?.title || defaultData.title,
+    subtitle: propSubtitle || data?.subtitle || defaultData.subtitle,
+    description:
+      propDescription || data?.description || defaultData.description,
+    image: propImage || data?.image || defaultData.image,
+    items:
+      propItems && propItems.length > 0
+        ? propItems
+        : data?.items || defaultData.items,
+    contentDescription:
+      data?.contentDescription || defaultData.contentDescription,
+    supportInfoTitle:
+      propSupportInfoTitle ||
+      data?.supportInfoTitle ||
+      defaultData.supportInfoTitle,
+    supportInfoDescription:
+      propSupportInfoDescription ||
+      data?.supportInfoDescription ||
+      defaultData.supportInfoDescription,
+  };
+
   return (
     <>
       <SEO
@@ -10,7 +64,7 @@ const CustomerSupport = () => {
         keywords="Bellatrix customer support, 24/7 ERP support, technical assistance, project management, JIRA access, Slack communication, ERP consulting"
         ogTitle="Bellatrix Customer Support | 24/7 ERP Technical Support Services"
         ogDescription="Comprehensive customer support for Bellatrix ERP with dedicated project managers, real-time communication, and expert technical assistance."
-        ogImage="https://i.pinimg.com/1200x/c4/3b/47/c43b47b28329114afa50028b00c829b8.jpg"
+        ogImage={sectionData.image}
       />
       <section
         className="py-20 relative overflow-hidden animate-background-glow theme-bg-animated"
@@ -44,12 +98,11 @@ const CustomerSupport = () => {
           {/* Title Section */}
           <header className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight tracking-tight">
-              Bellatrix <span className="text-cyan-400">Customer Support</span>:
-              When and How You Need It
+              {sectionData.title}:{" "}
+              <span className="text-white">{sectionData.subtitle}</span>
             </h2>
-            <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              Our dedicated support team is here to ensure your success with
-              comprehensive assistance and expert guidance.
+            <p className="text-lg text-white leading-relaxed max-w-3xl mx-auto">
+              {sectionData.description}
             </p>
           </header>
 
@@ -61,7 +114,7 @@ const CustomerSupport = () => {
                 <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-4 backdrop-blur-sm border border-white/20 shadow-2xl">
                   <img
                     alt="Bellatrix Customer Support"
-                    src="https://i.pinimg.com/1200x/c4/3b/47/c43b47b28329114afa50028b00c829b8.jpg"
+                    src={sectionData.image}
                     className="w-full h-64 lg:h-80 object-cover rounded-xl shadow-lg brightness-110 contrast-110 saturate-110 group-hover:scale-105 transition-all duration-500"
                   />
                   <div className="absolute inset-4 rounded-xl bg-gradient-to-t from-transparent via-transparent to-white/10 pointer-events-none"></div>
@@ -71,52 +124,30 @@ const CustomerSupport = () => {
 
             {/* Content Section */}
             <div className="order-1 lg:order-2 space-y-6">
-              <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
-                For Bellatrix technical support concerning unexpected ERP
-                implementation issues or keeping an eye on customizations and
-                configurations, our team of Bellatrix consultants are available
-                for as much or as little support as you need.
+              <p className="text-base lg:text-lg text-white leading-relaxed">
+                {sectionData.contentDescription}
               </p>
 
-              <ul className="space-y-4 text-gray-300">
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-4"></div>
-                  <span className="leading-relaxed">
-                    Always be in the loop with weekly status update calls with
-                    your designated project manager.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-4"></div>
-                  <span className="leading-relaxed">
-                    Get a peek into what is being done with access to JIRA,
-                    giving you a real-time view into progress.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-4"></div>
-                  <span className="leading-relaxed">
-                    Remain in direct communication throughout the day with your
-                    designated team through Slack.
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-4"></div>
-                  <span className="leading-relaxed">
-                    Whether you prefer tickets, calls, or emails, communicating
-                    with us is a breeze.
-                  </span>
-                </li>
+              <ul className="space-y-4 text-white">
+                {sectionData.items.map((item, index) => (
+                  <li key={index} className="flex items-start">
+                    <div className="flex-shrink-0 w-2 h-2 bg-white rounded-full mt-2 mr-4"></div>
+                    <span className="leading-relaxed">
+                      {typeof item === "string"
+                        ? item
+                        : item.text || item.label || ""}
+                    </span>
+                  </li>
+                ))}
               </ul>
 
               {/* Additional Support Info */}
               <div className="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 p-6 rounded-xl border border-blue-400/30 backdrop-blur-sm">
-                <h4 className="font-bold text-cyan-300 mb-2">
-                  24/7 Support Available
+                <h4 className="font-bold text-white mb-2">
+                  {sectionData.supportInfoTitle}
                 </h4>
-                <p className="text-gray-300">
-                  Our support team is available around the clock to ensure your
-                  business operations run smoothly without interruption.
+                <p className="text-white">
+                  {sectionData.supportInfoDescription}
                 </p>
               </div>
             </div>
