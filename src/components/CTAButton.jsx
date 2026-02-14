@@ -51,9 +51,7 @@ const CTAButton = ({
     }
     
     // Always open the contact modal
-    if (!e.defaultPrevented) {
-      openCTAModal(modalConfig);
-    }
+    openCTAModal(modalConfig);
   };
 
   // Always render as button (ignore href, always open modal)

@@ -113,8 +113,8 @@ const BellatrixSupportHero = () => {
                 size="lg"
                 className="group relative inline-block min-w-[180px] min-h-[56px] font-bold text-sm uppercase leading-5 rounded-md px-4 py-4 mt-8 mb-0 no-underline transition-all duration-300 transform hover:scale-105 text-white border-2 theme-cta-button"
                 modalConfig={{
-                  title: "NetSuite Support Request",
-                  subtitle: "Let's discuss your support needs",
+                  title: "Contact Us",
+                  subtitle: "Let's discuss your project",
                   icon: "",
                 }}
               >
