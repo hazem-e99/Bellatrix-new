@@ -53,6 +53,8 @@ import { getAboutComponentSchema } from "../../data/aboutComponentSchemas";
 
 import { getGeneralComponentSchema } from "../../data/generalComponentSchemas";
 
+import { getSupportComponentSchema } from "../../data/supportComponentSchemas";
+
 import {} from "../../utils/dynamicSchemaGenerator";
 
 import pagesAPI from "../../lib/pagesAPI";

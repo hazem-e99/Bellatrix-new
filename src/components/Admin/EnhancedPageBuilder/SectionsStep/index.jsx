@@ -8,6 +8,7 @@ import ComponentConfigurationSection from "./ComponentConfigurationSection";
 import ComponentInputModal from "./ComponentInputModal";
 import { getAboutComponentSchema } from "../../../../data/aboutComponentSchemas";
 import { getGeneralComponentSchema } from "../../../../data/generalComponentSchemas";
+import { getSupportComponentSchema } from "../../../../data/supportComponentSchemas";
 import { generateDynamicSchema } from "../../../../utils/dynamicSchemaGenerator";
 
 const SectionsStep = ({
@@ -31,7 +32,7 @@ const SectionsStep = ({
   const filteredComponents = useFilteredComponents(
     availableComponents,
     selectedCategory,
-    searchTerm
+    searchTerm,
   );
 
   const handleModalInputChange = (field, value, componentIndex) => {
@@ -50,7 +51,12 @@ const SectionsStep = ({
     onUpdateComponent(componentIndex, "contentJson", newContentJson);
   };
 
-  const renderDynamicInputs = (data, fieldPath = "", level = 0, componentIndex) => {
+  const renderDynamicInputs = (
+    data,
+    fieldPath = "",
+    level = 0,
+    componentIndex,
+  ) => {
     if (!data || typeof data !== "object") {
       return <div>No configuration available for this component</div>;
     }
@@ -59,7 +65,9 @@ const SectionsStep = ({
       <div className="space-y-4">
         {Object.entries(data).map(([key, value]) => (
           <div key={key} className="border border-gray-200 p-3 rounded">
-            <label className="block text-sm font-medium text-white mb-1">{key}</label>
+            <label className="block text-sm font-medium text-white mb-1">
+              {key}
+            </label>
             {typeof value === "string" && (
               <input
                 type="text"
@@ -98,7 +106,7 @@ const SectionsStep = ({
                     value,
                     `${fieldPath}.${key}`,
                     level + 1,
-                    componentIndex
+                    componentIndex,
                   )}
                 </div>
               )}
@@ -140,19 +148,23 @@ const SectionsStep = ({
         componentSchemas={componentSchemas}
         getAboutComponentSchema={getAboutComponentSchema}
         getGeneralComponentSchema={getGeneralComponentSchema}
+        getSupportComponentSchema={getSupportComponentSchema}
         generateDynamicSchema={generateDynamicSchema}
         validateAndFormatJSON={validateAndFormatJSON}
       />
 
       <LivePreview
         components={pageData.components.filter(
-          (comp) => comp.isVisible !== false && comp.isVisible !== 0
+          (comp) => comp.isVisible !== false && comp.isVisible !== 0,
         )}
         previewMode="desktop"
         showDebugInfo={false}
         className="mt-6"
         key={`preview-${pageData.components
-          .map((c) => `${c.componentType}-${c.contentJson?.length || 0}-${c.contentJson?.slice(-50) || ''}`)
+          .map(
+            (c) =>
+              `${c.componentType}-${c.contentJson?.length || 0}-${c.contentJson?.slice(-50) || ""}`,
+          )
           .join("|")}`}
       />
 
@@ -170,4 +182,3 @@ const SectionsStep = ({
 };
 
 export default SectionsStep;
-

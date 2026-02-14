@@ -8,6 +8,7 @@ const ComponentFormRenderer = ({
   componentSchemas,
   getAboutComponentSchema,
   getGeneralComponentSchema,
+  getSupportComponentSchema,
   generateDynamicSchema,
   validateAndFormatJSON,
   onUpdate,
@@ -22,7 +23,10 @@ const ComponentFormRenderer = ({
   const componentSchema =
     getAboutComponentSchema(component.componentType) ||
     getGeneralComponentSchema(component.componentType) ||
-    (componentSchemas[component.componentType]?.schema ? componentSchemas[component.componentType] : null);
+    getSupportComponentSchema(component.componentType) ||
+    (componentSchemas[component.componentType]?.schema
+      ? componentSchemas[component.componentType]
+      : null);
 
   if (viewMode === "json") {
     return (
@@ -56,12 +60,16 @@ const ComponentFormRenderer = ({
           className="block w-full rounded-lg bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder-white/50 focus:border-blue-400 focus:ring-blue-400/20 shadow-sm font-mono text-sm resize-none"
         />
         <div className="flex items-center justify-between mt-2">
-          <p className="text-xs text-gray-400">Enter valid JSON data for this component</p>
+          <p className="text-xs text-gray-400">
+            Enter valid JSON data for this component
+          </p>
           <Button
             size="sm"
             variant="outline"
             onClick={() => {
-              const formatted = validateAndFormatJSON(component.contentJson || "{}");
+              const formatted = validateAndFormatJSON(
+                component.contentJson || "{}",
+              );
               onUpdate(index, "contentJson", formatted);
             }}
             className="bg-white/5 backdrop-blur-sm border-white/20 text-white hover:bg-blue-500/20 hover:border-blue-400 transition-all duration-200 text-xs px-2 py-1"
@@ -113,13 +121,17 @@ const ComponentFormRenderer = ({
               const currentData = component.contentJson
                 ? JSON.parse(component.contentJson)
                 : {};
-              
+
               // Handle nested paths like "slides.0.image" or "ctaButton.text"
               const pathParts = field.split(".");
               if (pathParts.length === 1) {
                 // Simple field
                 const updated = { ...currentData, [field]: value };
-                onUpdate(index, "contentJson", JSON.stringify(updated, null, 2));
+                onUpdate(
+                  index,
+                  "contentJson",
+                  JSON.stringify(updated, null, 2),
+                );
               } else {
                 // Nested path - update deep object
                 const updated = JSON.parse(JSON.stringify(currentData)); // Deep clone
@@ -132,7 +144,11 @@ const ComponentFormRenderer = ({
                   current = current[key];
                 }
                 current[pathParts[pathParts.length - 1]] = value;
-                onUpdate(index, "contentJson", JSON.stringify(updated, null, 2));
+                onUpdate(
+                  index,
+                  "contentJson",
+                  JSON.stringify(updated, null, 2),
+                );
               }
             }}
             componentType={component.componentType}
@@ -142,10 +158,12 @@ const ComponentFormRenderer = ({
             schema={
               generateDynamicSchema(
                 component.contentJson ? JSON.parse(component.contentJson) : {},
-                component.componentType
+                component.componentType,
               ).schema
             }
-            data={component.contentJson ? JSON.parse(component.contentJson) : {}}
+            data={
+              component.contentJson ? JSON.parse(component.contentJson) : {}
+            }
             onChange={(formData) => {
               onUpdate(index, "contentJson", JSON.stringify(formData, null, 2));
             }}
@@ -159,4 +177,3 @@ const ComponentFormRenderer = ({
 };
 
 export default ComponentFormRenderer;
-

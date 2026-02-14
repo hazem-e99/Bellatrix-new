@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Layout from "./components/Layout";
 import MainServices from "./components/Services/MainServices";
+import Support from "./components/Support/Support";
 import SolutionMain from "./components/solution/SolutionMain";
 import Manufacturing from "./pages/Industries/Manufacturing";
 import Retail from "./pages/Industries/Retail";
@@ -45,7 +46,9 @@ function App() {
               <Route path="netsuite-consulting" element={<MainServices />} />
               <Route path="customization" element={<MainServices />} />
               <Route path="integration" element={<MainServices />} />
-              <Route path="Support" element={<MainServices />} />
+              {/* Support static routes (both cases) */}
+              <Route path="Support" element={<Support />} />
+              <Route path="support" element={<Support />} />
               <Route path="hrStatic" element={<SolutionMain />} />
               {/* <Route path="Payroll" element={<SolutionMain />} /> */}
               <Route path="/PayrollStatic" element={<PayrollPage />} />
@@ -93,7 +96,10 @@ function App() {
               <Route path="messages" element={<MessagesPage />} />
               <Route path="settings" element={<SettingsManagement />} />
               <Route path="change-password" element={<ChangePassword />} />
-              <Route path="components-showcase" element={<ComponentsShowcase />} />
+              <Route
+                path="components-showcase"
+                element={<ComponentsShowcase />}
+              />
             </Route>
 
             {/* Legacy Admin Routes (keep for compatibility) - Also Protected */}

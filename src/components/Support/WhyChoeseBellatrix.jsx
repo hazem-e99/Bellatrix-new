@@ -187,59 +187,6 @@ const WhyChoeseBellatrix = () => {
                 2500+ Completed Projects
               </li>
             </ul>
-
-            <blockquote
-              style={{
-                borderLeft: "4px solid var(--color-primary)", // theme-aware border
-                padding: "20px 25px",
-                margin: "0",
-                fontSize: "17px",
-                fontStyle: "italic",
-                backgroundColor: "var(--color-bg-primary)",
-                borderRadius: "0 8px 8px 0",
-                boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-                transition:
-                  "border-color 0.6s ease, background-color 0.6s ease",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: 'Georgia, "Times New Roman", Times, serif',
-                  fontSize: "16px",
-                  lineHeight: "26px",
-                  margin: 0,
-                  color: "var(--color-text-secondary)", // theme-aware text
-                  transition: "color 0.6s ease",
-                }}
-              >
-                <span style={{ fontSize: "18px" }}>
-                  Don't take our word for it, check our{" "}
-                  <strong>
-                    <a
-                      href="/testimonials"
-                      target="_blank"
-                      rel="noopener"
-                      style={{
-                        color: "var(--color-primary)", // theme-aware primary color
-                        textDecoration: "none",
-                        transition: "all 0.3s ease-in-out",
-                        borderBottom: "1px solid transparent",
-                      }}
-                      onMouseOver={(e) => {
-                        e.target.style.borderBottom = `1px solid var(--color-primary)`;
-                      }}
-                      onMouseOut={(e) => {
-                        e.target.style.borderBottom = "1px solid transparent";
-                      }}
-                    >
-                      client page
-                    </a>
-                  </strong>{" "}
-                  to see how we supported, helped, and guided NetSuite users to
-                  success.
-                </span>
-              </p>
-            </blockquote>
           </div>
 
           {/* Right Column: Image */}
@@ -263,17 +210,15 @@ const WhyChoeseBellatrix = () => {
                   transition: "all 0.3s ease-in-out",
                 }}
                 onMouseEnter={(e) => {
-                  const glowElements = e.currentTarget.querySelectorAll(
-                    ".glow-bg"
-                  );
+                  const glowElements =
+                    e.currentTarget.querySelectorAll(".glow-bg");
                   glowElements.forEach((el) => {
                     el.style.opacity = "0.6";
                   });
                 }}
                 onMouseLeave={(e) => {
-                  const glowElements = e.currentTarget.querySelectorAll(
-                    ".glow-bg"
-                  );
+                  const glowElements =
+                    e.currentTarget.querySelectorAll(".glow-bg");
                   glowElements.forEach((el) => {
                     el.style.opacity = "0.3";
                   });

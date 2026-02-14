@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { 
-  DocumentTextIcon, 
-  TrashIcon, 
-  ChevronLeftIcon, 
+import {
+  DocumentTextIcon,
+  TrashIcon,
+  ChevronLeftIcon,
   ChevronRightIcon,
   CheckCircleIcon,
-  Bars3Icon 
+  Bars3Icon,
 } from "@heroicons/react/24/outline";
 import {
   DndContext,
@@ -30,14 +30,14 @@ import { ComponentToggles } from "../../../UI/FancyToggle";
 import ComponentFormRenderer from "./ComponentFormRenderer";
 
 // Sortable Component Tab Item
-const SortableComponentTab = ({ 
-  id, 
-  index, 
-  comp, 
-  isActive, 
-  isCompleted, 
-  componentIcon, 
-  onClick 
+const SortableComponentTab = ({
+  id,
+  index,
+  comp,
+  isActive,
+  isCompleted,
+  componentIcon,
+  onClick,
 }) => {
   const {
     attributes,
@@ -62,12 +62,13 @@ const SortableComponentTab = ({
       className={`
         flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200
         min-w-fit whitespace-nowrap cursor-grab active:cursor-grabbing
-        ${isDragging ? 'shadow-lg scale-105' : ''}
-        ${isActive 
-          ? 'bg-blue-500/30 border-2 border-blue-400 text-white' 
-          : isCompleted
-            ? 'bg-green-500/20 border border-green-400/50 text-green-300'
-            : 'bg-white/5 border border-white/20 text-gray-400 hover:bg-white/10 hover:text-white'
+        ${isDragging ? "shadow-lg scale-105" : ""}
+        ${
+          isActive
+            ? "bg-blue-500/30 border-2 border-blue-400 text-white"
+            : isCompleted
+              ? "bg-green-500/20 border border-green-400/50 text-green-300"
+              : "bg-white/5 border border-white/20 text-gray-400 hover:bg-white/10 hover:text-white"
         }
       `}
       {...attributes}
@@ -101,12 +102,13 @@ const ComponentConfigurationSection = ({
   componentSchemas,
   getAboutComponentSchema,
   getGeneralComponentSchema,
+  getSupportComponentSchema,
   generateDynamicSchema,
   validateAndFormatJSON,
 }) => {
   // Current component step (0-indexed)
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
-  
+
   // Track completed components for progress indicator
   const [completedComponents, setCompletedComponents] = useState(new Set());
 
@@ -119,7 +121,7 @@ const ComponentConfigurationSection = ({
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   // Handle drag end for reordering
@@ -127,13 +129,17 @@ const ComponentConfigurationSection = ({
     const { active, over } = event;
 
     if (active.id !== over?.id) {
-      const oldIndex = components.findIndex((_, i) => `component-${i}` === active.id);
-      const newIndex = components.findIndex((_, i) => `component-${i}` === over.id);
+      const oldIndex = components.findIndex(
+        (_, i) => `component-${i}` === active.id,
+      );
+      const newIndex = components.findIndex(
+        (_, i) => `component-${i}` === over.id,
+      );
 
       if (oldIndex !== -1 && newIndex !== -1) {
         // Create new order
         const newComponents = arrayMove(components, oldIndex, newIndex);
-        
+
         // Update orderIndex for all components
         const updatedComponents = newComponents.map((comp, idx) => ({
           ...comp,
@@ -149,12 +155,12 @@ const ComponentConfigurationSection = ({
         if (currentComponentIndex === oldIndex) {
           setCurrentComponentIndex(newIndex);
         } else if (
-          currentComponentIndex > oldIndex && 
+          currentComponentIndex > oldIndex &&
           currentComponentIndex <= newIndex
         ) {
           setCurrentComponentIndex(currentComponentIndex - 1);
         } else if (
-          currentComponentIndex < oldIndex && 
+          currentComponentIndex < oldIndex &&
           currentComponentIndex >= newIndex
         ) {
           setCurrentComponentIndex(currentComponentIndex + 1);
@@ -172,17 +178,19 @@ const ComponentConfigurationSection = ({
     } else {
       onUpdateComponent(index, field, value);
     }
-    
+
     // Mark component as modified (for progress tracking)
     if (field === "contentJson") {
-      setCompletedComponents(prev => new Set([...prev, index]));
+      setCompletedComponents((prev) => new Set([...prev, index]));
     }
   };
 
   const handleNext = () => {
     if (currentComponentIndex < components.length - 1) {
       // Mark current as completed before moving
-      setCompletedComponents(prev => new Set([...prev, currentComponentIndex]));
+      setCompletedComponents(
+        (prev) => new Set([...prev, currentComponentIndex]),
+      );
       setCurrentComponentIndex(currentComponentIndex + 1);
     }
   };
@@ -200,11 +208,14 @@ const ComponentConfigurationSection = ({
   const handleRemoveCurrentComponent = () => {
     onRemoveComponent(currentComponentIndex);
     // Adjust current index if needed
-    if (currentComponentIndex >= components.length - 1 && currentComponentIndex > 0) {
+    if (
+      currentComponentIndex >= components.length - 1 &&
+      currentComponentIndex > 0
+    ) {
       setCurrentComponentIndex(currentComponentIndex - 1);
     }
     // Remove from completed set
-    setCompletedComponents(prev => {
+    setCompletedComponents((prev) => {
       const newSet = new Set(prev);
       newSet.delete(currentComponentIndex);
       return newSet;
@@ -254,12 +265,14 @@ const ComponentConfigurationSection = ({
             Step {currentComponentIndex + 1} of {components.length}
           </div>
         </div>
-        
+
         {/* Progress Steps Indicator with Drag & Drop */}
         <div className="mt-4">
           <div className="flex items-center gap-2 mb-2">
             <Bars3Icon className="h-4 w-4 text-gray-400" />
-            <span className="text-xs text-gray-400">Drag to reorder components</span>
+            <span className="text-xs text-gray-400">
+              Drag to reorder components
+            </span>
           </div>
           <DndContext
             sensors={sensors}
@@ -274,10 +287,11 @@ const ComponentConfigurationSection = ({
                 {components.map((comp, index) => {
                   const isActive = index === currentComponentIndex;
                   const isCompleted = completedComponents.has(index);
-                  const componentIcon = availableComponents.find(
-                    (c) => c.componentType === comp.componentType
-                  )?.icon || "📦";
-                  
+                  const componentIcon =
+                    availableComponents.find(
+                      (c) => c.componentType === comp.componentType,
+                    )?.icon || "📦";
+
                   return (
                     <SortableComponentTab
                       key={`component-${index}`}
@@ -296,7 +310,7 @@ const ComponentConfigurationSection = ({
           </DndContext>
         </div>
       </CardHeader>
-      
+
       <CardContent className="flex flex-col">
         {/* Current Component Configuration */}
         <div
@@ -304,8 +318,8 @@ const ComponentConfigurationSection = ({
             !isVisible
               ? "border-red-400/40 bg-red-500/5 opacity-60"
               : component?.theme === 1
-              ? "border-yellow-400/30 bg-yellow-500/5"
-              : "border-gray-400/30 bg-gray-500/5"
+                ? "border-yellow-400/30 bg-yellow-500/5"
+                : "border-gray-400/30 bg-gray-500/5"
           }`}
           data-theme={themeClass}
           data-component-visible={isVisible}
@@ -315,14 +329,18 @@ const ComponentConfigurationSection = ({
             <div className="flex items-center space-x-3">
               <div className="text-2xl">
                 {availableComponents.find(
-                  (c) => c.componentType === component?.componentType
+                  (c) => c.componentType === component?.componentType,
                 )?.icon || "📦"}
               </div>
               <div>
                 <h4 className="text-lg font-semibold text-white">
-                  {component?.componentName || component?.componentType || `Component #${currentComponentIndex + 1}`}
+                  {component?.componentName ||
+                    component?.componentType ||
+                    `Component #${currentComponentIndex + 1}`}
                 </h4>
-                <p className="text-sm text-gray-400">{component?.componentType}</p>
+                <p className="text-sm text-gray-400">
+                  {component?.componentType}
+                </p>
               </div>
             </div>
             <Button
@@ -348,7 +366,11 @@ const ComponentConfigurationSection = ({
                   type="text"
                   value={component?.componentType || ""}
                   onChange={(e) =>
-                    handleComponentUpdate(currentComponentIndex, "componentType", e.target.value)
+                    handleComponentUpdate(
+                      currentComponentIndex,
+                      "componentType",
+                      e.target.value,
+                    )
                   }
                   placeholder="e.g., HeroSection, CtaButton"
                   className="block w-full rounded-lg bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder-white/50 focus:border-blue-400 focus:ring-blue-400/20 shadow-sm"
@@ -364,7 +386,11 @@ const ComponentConfigurationSection = ({
                   type="text"
                   value={component?.componentName || ""}
                   onChange={(e) =>
-                    handleComponentUpdate(currentComponentIndex, "componentName", e.target.value)
+                    handleComponentUpdate(
+                      currentComponentIndex,
+                      "componentName",
+                      e.target.value,
+                    )
                   }
                   placeholder="e.g., Main Hero, Footer CTA"
                   className="block w-full rounded-lg bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder-white/50 focus:border-blue-400 focus:ring-blue-400/20 shadow-sm"
@@ -377,7 +403,11 @@ const ComponentConfigurationSection = ({
                   isVisible={isVisible}
                   theme={component?.theme || 1}
                   onVisibilityChange={(val) =>
-                    handleComponentUpdate(currentComponentIndex, "isVisible", val)
+                    handleComponentUpdate(
+                      currentComponentIndex,
+                      "isVisible",
+                      val,
+                    )
                   }
                   onThemeChange={(val) =>
                     handleComponentUpdate(currentComponentIndex, "theme", val)
@@ -396,6 +426,7 @@ const ComponentConfigurationSection = ({
                 componentSchemas={componentSchemas}
                 getAboutComponentSchema={getAboutComponentSchema}
                 getGeneralComponentSchema={getGeneralComponentSchema}
+                getSupportComponentSchema={getSupportComponentSchema}
                 generateDynamicSchema={generateDynamicSchema}
                 validateAndFormatJSON={validateAndFormatJSON}
                 onUpdate={handleComponentUpdate}
@@ -410,12 +441,13 @@ const ComponentConfigurationSection = ({
             onClick={handlePrevious}
             disabled={currentComponentIndex === 0}
             style={{
-              backgroundColor: currentComponentIndex === 0 ? '#374151' : '#4B5563',
-              color: currentComponentIndex === 0 ? '#9CA3AF' : '#FFFFFF',
-              border: '2px solid',
-              borderColor: currentComponentIndex === 0 ? '#4B5563' : '#6B7280',
+              backgroundColor:
+                currentComponentIndex === 0 ? "#374151" : "#4B5563",
+              color: currentComponentIndex === 0 ? "#9CA3AF" : "#FFFFFF",
+              border: "2px solid",
+              borderColor: currentComponentIndex === 0 ? "#4B5563" : "#6B7280",
               opacity: currentComponentIndex === 0 ? 0.6 : 1,
-              cursor: currentComponentIndex === 0 ? 'not-allowed' : 'pointer',
+              cursor: currentComponentIndex === 0 ? "not-allowed" : "pointer",
             }}
             className="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-200 font-semibold hover:opacity-90"
           >
@@ -430,11 +462,12 @@ const ComponentConfigurationSection = ({
                 onClick={() => handleGoToComponent(index)}
                 className={`
                   w-2.5 h-2.5 rounded-full transition-all duration-200
-                  ${index === currentComponentIndex 
-                    ? 'bg-blue-500 w-8' 
-                    : completedComponents.has(index)
-                      ? 'bg-green-500'
-                      : 'bg-gray-500 hover:bg-gray-400'
+                  ${
+                    index === currentComponentIndex
+                      ? "bg-blue-500 w-8"
+                      : completedComponents.has(index)
+                        ? "bg-green-500"
+                        : "bg-gray-500 hover:bg-gray-400"
                   }
                 `}
               />
@@ -445,12 +478,22 @@ const ComponentConfigurationSection = ({
             onClick={handleNext}
             disabled={currentComponentIndex === components.length - 1}
             style={{
-              backgroundColor: currentComponentIndex === components.length - 1 ? '#059669' : '#2563EB',
-              color: '#FFFFFF',
-              border: '2px solid',
-              borderColor: currentComponentIndex === components.length - 1 ? '#10B981' : '#3B82F6',
-              opacity: currentComponentIndex === components.length - 1 ? 0.7 : 1,
-              cursor: currentComponentIndex === components.length - 1 ? 'not-allowed' : 'pointer',
+              backgroundColor:
+                currentComponentIndex === components.length - 1
+                  ? "#059669"
+                  : "#2563EB",
+              color: "#FFFFFF",
+              border: "2px solid",
+              borderColor:
+                currentComponentIndex === components.length - 1
+                  ? "#10B981"
+                  : "#3B82F6",
+              opacity:
+                currentComponentIndex === components.length - 1 ? 0.7 : 1,
+              cursor:
+                currentComponentIndex === components.length - 1
+                  ? "not-allowed"
+                  : "pointer",
             }}
             className="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-200 font-semibold hover:opacity-90"
           >
