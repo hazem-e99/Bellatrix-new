@@ -10,7 +10,13 @@ export const getApiBaseUrl = () => {
   if (import.meta.env.DEV) {
     return ""; // Use Vite proxy in development
   }
-  return import.meta.env.VITE_API_BASE_URL || "https://www.bellatrixinc.com";
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return window.location.origin; // Match deployed origin to avoid CORS mismatches
+  }
+  return "https://bellatrixinc.com";
 };
 
 /**
@@ -20,7 +26,13 @@ export const getApiBaseUrlWithApi = () => {
   if (import.meta.env.DEV) {
     return "/api"; // Use Vite proxy in development
   }
-  return import.meta.env.VITE_API_BASE_URL_WITH_API || "https://www.bellatrixinc.com/api";
+  if (import.meta.env.VITE_API_BASE_URL_WITH_API) {
+    return import.meta.env.VITE_API_BASE_URL_WITH_API;
+  }
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return `${window.location.origin}/api`;
+  }
+  return "https://bellatrixinc.com/api";
 };
 
 // Export constants for backward compatibility

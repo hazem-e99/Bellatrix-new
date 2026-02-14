@@ -5,7 +5,13 @@ const getBaseUrl = () => {
   if (import.meta.env.DEV) {
     return ""; // Use Vite proxy in development
   }
-  return import.meta.env.VITE_API_BASE_URL || "https://www.bellatrixinc.com";
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return window.location.origin; // Match current origin to avoid CORS mismatches
+  }
+  return "https://bellatrixinc.com";
 };
 
 const api = axios.create({
@@ -25,7 +31,7 @@ api.interceptors.response.use(
       details: error.response?.data || null,
     };
     return Promise.reject(normalizedError);
-  }
+  },
 );
 
 // Request interceptor to add auth token if available
@@ -34,7 +40,7 @@ api.interceptors.request.use(
     // Token will be added by individual thunks when needed
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 /**
@@ -46,7 +52,7 @@ api.interceptors.request.use(
 export const uploadForm = async (
   formData: FormData,
   url: string,
-  options: any = {}
+  options: any = {},
 ) => {
   const config = {
     headers: {
