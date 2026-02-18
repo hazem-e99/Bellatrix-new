@@ -41,6 +41,15 @@ function toFullUrl(fileUrl) {
   return host + (fileUrl.startsWith("/") ? fileUrl : "/" + fileUrl);
 }
 
+// NEW: Helper function to build public media URL using API endpoint
+function toPublicMediaUrl(mediaId) {
+  if (!mediaId) return "";
+
+  const host = BASE_HOST.replace(/\/$/, "");
+
+  return `${host}/api/Media/public/${mediaId}`;
+}
+
 // Utility functions
 
 function formatFileSize(bytes) {
@@ -517,20 +526,16 @@ const MediaPicker = ({
 
         console.log(" Media details response:", mediaDetails);
 
-        // Extract fileUrl from the response
+        // Use public Media API endpoint for the URL
 
-        const fileUrl = mediaDetails.fileUrl;
+        const publicUrl = toPublicMediaUrl(mediaItem.id);
 
-        console.log(" Media fileUrl:", fileUrl);
+        console.log(" Final public URL:", publicUrl);
 
         if (maxSelection === 1) {
-          // Single selection - build full URL and call onSelect
+          // Single selection - use public API URL and call onSelect
 
-          const fullUrl = toFullUrl(fileUrl);
-
-          console.log(" Final full URL:", fullUrl);
-
-          onSelect(fullUrl, mediaDetails);
+          onSelect(publicUrl, mediaDetails);
 
           onClose();
         } else {
@@ -553,12 +558,12 @@ const MediaPicker = ({
 
         showToast("Failed to fetch media details. Please try again.", "error");
 
-        // Fallback to original behavior if API call fails
+        // Fallback to public API URL if API call fails
 
         if (maxSelection === 1) {
-          const fullUrl = toFullUrl(mediaItem.fileUrl);
+          const publicUrl = toPublicMediaUrl(mediaItem.id);
 
-          onSelect(fullUrl, mediaItem);
+          onSelect(publicUrl, mediaItem);
 
           onClose();
         }
@@ -573,12 +578,12 @@ const MediaPicker = ({
   const handleConfirmSelection = useCallback(() => {
     if (selectedItems.length > 0) {
       if (maxSelection === 1) {
-        const fullUrl = toFullUrl(selectedItems[0].fileUrl);
+        const publicUrl = toPublicMediaUrl(selectedItems[0].id);
 
-        onSelect(fullUrl, selectedItems[0]);
+        onSelect(publicUrl, selectedItems[0]);
       } else {
         const selectedUrls = selectedItems.map((item) => ({
-          url: toFullUrl(item.fileUrl),
+          url: toPublicMediaUrl(item.id),
 
           item: item,
         }));
@@ -639,7 +644,8 @@ const MediaPicker = ({
   const renderMediaItem = (mediaItem) => {
     const isSelected = selectedItems.find((item) => item.id === mediaItem.id);
 
-    const fullUrl = toFullUrl(mediaItem.fileUrl);
+    // Use public Media API endpoint for displaying media
+    const fullUrl = toPublicMediaUrl(mediaItem.id);
 
     // Determine media type from contentType OR filename/URL
     const fileName = mediaItem.fileName || mediaItem.fileUrl || "";
