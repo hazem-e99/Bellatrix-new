@@ -230,7 +230,7 @@ export const supportComponentSchemas = {
                             image: {
                                 type: "string",
                                 label: "Card Image",
-                                placeholder: "/public/supoortWhatWeOffer.png",
+                                placeholder: "/supoortWhatWeOffer.png",
                                 formField: "media",
                                 mediaType: "image"
                             },
@@ -257,17 +257,17 @@ export const supportComponentSchemas = {
             subtitle: "Comprehensive support solutions designed to maximize your success",
             cards: [
                 {
-                    image: "/public/supoortWhatWeOffer.png",
+                    image: "/supoortWhatWeOffer.png",
                     title: "Dedicated Team",
                     description: "A dedicated team of Bellatrix experts that know your instance will be assigned to you."
                 },
                 {
-                    image: "/public/supoortWhatWeOffer2.png",
+                    image: "/supoortWhatWeOffer2.png",
                     title: "Stop Anytime",
                     description: "SherpaCare offers you the ability to stop your services when you feel confident."
                 },
                 {
-                    image: "/public/supoortWhatWeOffer3.png",
+                    image: "/supoortWhatWeOffer3.png",
                     title: "Certified Bellatrix Teams",
                     description: "Trust a team with certified Bellatrix expertise you can rely on."
                 }

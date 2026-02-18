@@ -19,19 +19,19 @@ const WhatWeOfferSection = ({
         title: "Dedicated Team",
         description:
           "A dedicated team of Bellatrix experts that know your instance will be assigned to you.",
-        image: "/public/supoortWhatWeOffer.png",
+        image: "/supoortWhatWeOffer.png",
       },
       {
         title: "Stop Anytime",
         description:
           "SherpaCare offers you the ability to stop your services when you feel confident.",
-        image: "/public/supoortWhatWeOffer2.png",
+        image: "/supoortWhatWeOffer2.png",
       },
       {
         title: "Certified Bellatrix Teams",
         description:
           "Trust a team with certified Bellatrix expertise you can rely on.",
-        image: "/public/supoortWhatWeOffer3.png",
+        image: "/supoortWhatWeOffer3.png",
       },
     ],
   };
@@ -56,7 +56,7 @@ const WhatWeOfferSection = ({
         keywords="dedicated ERP team, certified Bellatrix professionals, flexible support services, stop anytime, comprehensive ERP solutions, expert support"
         ogTitle="What We Offer | Bellatrix ERP Support Value Propositions"
         ogDescription="Get dedicated expert teams, flexible services, and certified Bellatrix professionals for comprehensive ERP support solutions."
-        ogImage="/public/supoortWhatWeOffer.png"
+        ogImage="/supoortWhatWeOffer.png"
       />
       <section className="w-full bg-gray-50 py-16 light-section">
         <div className="max-w-6xl mx-auto px-4">
@@ -89,7 +89,7 @@ const WhatWeOfferSection = ({
                   <img
                     src={
                       card.image ||
-                      `/public/supoortWhatWeOffer${index > 0 ? index + 1 : ""}.png`
+                      `/supoortWhatWeOffer${index > 0 ? index + 1 : ""}.png`
                     }
                     alt={card.title || `Card ${index + 1}`}
                     className="w-32 h-32 object-contain"

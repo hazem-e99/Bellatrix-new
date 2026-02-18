@@ -17,7 +17,7 @@ const DedicatedTeamSection = ({
       "Structured collaboration to avoid knowledge silos",
       "Access to the collective expertise of a broad team of Bellatrix specialists",
     ],
-    image: "/public/images/Support/team.jpeg",
+    image: "/images/Support/team.jpeg",
   };
 
   // PRIORITIZE direct props > data prop > default data
