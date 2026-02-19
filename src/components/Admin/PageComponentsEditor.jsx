@@ -32,6 +32,8 @@ import { LivePreview } from "../UI/LivePreview";
 
 import pagesAPI from "../../lib/pagesAPI";
 
+import { updateMediaVersion } from "../../utils/cacheBusting";
+
 import {
   DndContext,
   closestCenter,
@@ -756,6 +758,9 @@ const PageComponentsEditor = ({
       );
 
       setEditingComponent(null);
+
+      // Bust image cache after component update
+      updateMediaVersion();
 
       showToast("Component updated successfully", "success");
     } catch (error) {

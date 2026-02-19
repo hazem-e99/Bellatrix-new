@@ -59,6 +59,8 @@ import {} from "../../utils/dynamicSchemaGenerator";
 
 import pagesAPI from "../../lib/pagesAPI";
 
+import { updateMediaVersion } from "../../utils/cacheBusting";
+
 import {
   CategorySelector,
   PageDetailsStep,
@@ -5616,6 +5618,10 @@ const EnhancedPageBuilder = () => {
           );
         }
       }
+
+      // Bust image cache to ensure updated images display immediately
+      updateMediaVersion();
+      console.log(" [CACHE-BUST] Media version updated after page save");
 
       // Navigate to pages management after a brief delay
       setTimeout(() => {
