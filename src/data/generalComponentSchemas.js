@@ -8025,7 +8025,81 @@ generalComponentSchemas.AboutValues = {
   "AboutTeam",
 
   "AboutValues",
+
+  "SupportDedicatedTeamSection",
 ].forEach((name) => console.log(`Schema & live mapping updated for ${name} `));
+
+generalComponentSchemas.SupportDedicatedTeamSection = {
+  componentName: "SupportDedicatedTeamSection",
+
+  category: "support",
+
+  icon: "👥",
+
+  displayName: "Dedicated Team Section",
+
+  description: "Your Own Dedicated Team of Bellatrix — bullet points + image",
+
+  schema: {
+    type: "object",
+
+    properties: {
+      title: {
+        type: "string",
+
+        label: "Section Title",
+
+        formField: "text",
+
+        placeholder: "Your Own Dedicated Team of Bellatrix",
+      },
+
+      items: {
+        type: "array",
+
+        label: "Bullet Points",
+
+        formField: "array",
+
+        items: {
+          type: "string",
+
+          label: "Bullet Point",
+
+          formField: "text",
+
+          placeholder: "Enter bullet point text…",
+        },
+      },
+
+      image: {
+        type: "string",
+
+        label: "Section Image",
+
+        formField: "media",
+
+        mediaType: "image",
+
+        placeholder: "/images/Support/team.jpeg",
+      },
+    },
+  },
+
+  defaultData: {
+    title: "Your Own Dedicated Team of Bellatrix",
+
+    items: [
+      "A team will be assigned to you that is familiar with your organization, how you do things, and most importantly, your goals for your Bellatrix system",
+      "A committed team familiar with your Bellatrix environment",
+      "Experienced professionals, including a project lead and solution consultants",
+      "Structured collaboration to avoid knowledge silos",
+      "Access to the collective expertise of a broad team of Bellatrix specialists",
+    ],
+
+    image: "/images/Support/team.jpeg",
+  },
+};
 
 /**
 

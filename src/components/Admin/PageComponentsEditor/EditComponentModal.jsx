@@ -19,6 +19,7 @@ import {
   updateJsonFromFormFields,
 } from "../../../utils/jsonFormUtils";
 import { generalComponentSchemas } from "../../../data/generalComponentSchemas";
+import { normalizeProps } from "../../../utils/normalizeProps";
 
 const EditComponentModal = ({
   isOpen,
@@ -47,18 +48,52 @@ const EditComponentModal = ({
   useEffect(() => {
     if (component) {
       const parsedJson = parseJsonToFormFields(component.contentJson);
+      const componentType = component.componentType || "Generic";
+
+      // For components with a known schema, normalize the DB data so the form
+      // shows the correct fields (e.g. extracts members[0].image → image,
+      // maps bulletPoints/members → items, fills in missing defaults).
+      const schema = generalComponentSchemas[componentType];
+      let normalizedJson = parsedJson;
+      if (schema) {
+        try {
+          const normalized = normalizeProps(componentType, parsedJson);
+          // normalizeProps returns {title, items, image, ..., data: {...}}
+          // Strip the internal `data` wrapper to keep only display fields.
+          const { data: _internalData, ...displayFields } = normalized;
+          // Only use normalized output if it produced more/better fields
+          normalizedJson = Object.keys(displayFields).length > 0
+            ? displayFields
+            : parsedJson;
+        } catch (e) {
+          // fallback to raw parsed data
+        }
+      }
+
+      // If the normalizer returned empty items/image, seed from schema defaultData
+      if (schema?.defaultData) {
+        if (!normalizedJson.items || normalizedJson.items.length === 0) {
+          normalizedJson = { ...normalizedJson, items: schema.defaultData.items || [] };
+        }
+        if (!normalizedJson.image) {
+          normalizedJson = { ...normalizedJson, image: schema.defaultData.image || "" };
+        }
+        if (!normalizedJson.title) {
+          normalizedJson = { ...normalizedJson, title: schema.defaultData.title || "" };
+        }
+      }
+
       setFormData({
-        componentType: component.componentType || "Generic",
+        componentType,
         componentName: component.componentName || "",
-        contentJson: component.contentJson || JSON.stringify({}),
+        contentJson: JSON.stringify(normalizedJson, null, 2),
         isVisible: component.isVisible ?? 1,
         theme: component.theme ?? 1,
       });
-      setJsonData(parsedJson);
+      setJsonData(normalizedJson);
       setErrors({});
-      
+
       // Check if schema exists for this component type
-      const schema = generalComponentSchemas[component.componentType];
       setUseSchemaMode(!!schema);
     }
   }, [component]);
