@@ -98,22 +98,19 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
 
       console.log(" Fetching media from API...");
 
-      const response = await api.get("/Media?page=1&pageSize=20");
+      const response = await api.get("/Media?page=1&pageSize=100");
 
       console.log(" Media API response:", response);
 
-      // Handle different response structures
+      // The api interceptor already unwraps response.data.data → response.data
+      // So items live at response.data.items directly
 
       let mediaItems = [];
 
-      if (response.data?.data?.items) {
-        mediaItems = response.data.data.items;
-      } else if (response.data?.items) {
+      if (response.data?.items) {
         mediaItems = response.data.items;
       } else if (Array.isArray(response.data)) {
         mediaItems = response.data;
-      } else if (response.data) {
-        mediaItems = [response.data];
       }
 
       console.log(" Processed media items:", mediaItems);
