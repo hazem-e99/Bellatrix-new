@@ -7,6 +7,7 @@ const DedicatedTeamSection = ({
   title: propTitle,
   items: propItems,
   image: propImage,
+  members: propMembers,
   _updatedAt, // Timestamp from server for cache-busting
 }) => {
   // Default data
@@ -22,6 +23,17 @@ const DedicatedTeamSection = ({
     image: "/images/Support/team.jpeg",
   };
 
+  // Resolve members array from prop or data
+  const resolvedMembers = (propMembers && propMembers.length > 0)
+    ? propMembers
+    : data?.members || [];
+
+  // Extract image: direct prop > members[0].image > data.image > default
+  const resolvedImage = propImage
+    || (resolvedMembers.length > 0 && resolvedMembers[0]?.image ? resolvedMembers[0].image : null)
+    || data?.image
+    || defaultData.image;
+
   // PRIORITIZE direct props > data prop > default data
   const sectionData = {
     title: propTitle || data?.title || defaultData.title,
@@ -29,7 +41,7 @@ const DedicatedTeamSection = ({
       propItems && propItems.length > 0
         ? propItems
         : data?.items || defaultData.items,
-    image: propImage || data?.image || defaultData.image,
+    image: resolvedImage,
   };
 
   // Use server timestamp for cache-busting to ensure all browsers get fresh images

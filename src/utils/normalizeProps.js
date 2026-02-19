@@ -2019,15 +2019,19 @@ export const normalizeProps = (componentType, contentJson) => {
 
     // Support Components
     SupportHeroSection: (data) => {
+      // DB stores ctaButton as an object {text, link} or ctaButtonText as string
+      const ctaButtonText = typeof data.ctaButton === 'object'
+        ? data.ctaButton?.text || data.ctaButton?.label || ""
+        : data.ctaButtonText || data.ctaButton || "";
       return {
         title: data.title || "Bellatrix Support",
         description: data.description || "Get access to expert knowledge and ongoing NetSuite support after your initial go-live phase.",
-        ctaButtonText: data.ctaButtonText || "Talk to an Expert",
+        ctaButtonText: ctaButtonText,
         backgroundImage: data.backgroundImage || data.image || "/images/Support/HeroSection.png",
         data: {
           title: data.title || "Bellatrix Support",
           description: data.description || "Get access to expert knowledge and ongoing NetSuite support after your initial go-live phase.",
-          ctaButtonText: data.ctaButtonText || "Talk to an Expert",
+          ctaButtonText: ctaButtonText,
           backgroundImage: data.backgroundImage || data.image || "/images/Support/HeroSection.png",
         },
       };
@@ -2058,11 +2062,12 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
     SupportSecondSection: (data) => {
+      // DB stores description1, description2 as separate fields
       return {
         title: data.title || "",
-        subtitle: data.subtitle || "",
-        description: data.description || "",
-        image: data.image || "",
+        description1: data.description1 || data.description || "",
+        description2: data.description2 || "",
+        image: data.image || data.backgroundImage || "",
         items: data.items || [],
         data: { ...data },
       };
@@ -2079,23 +2084,38 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
     SupportWhatWeOfferSection: (data) => {
+      // DB stores cards array with {image, title, description} objects
+      const cards = data.cards || data.items || data.offerings || [];
+      // Fix wrong /public/ prefix in card image paths stored in DB
+      const fixedCards = cards.map(card => ({
+        ...card,
+        image: card.image ? card.image.replace(/^\/public\//, '/') : card.image,
+      }));
       return {
         title: data.title || "",
         subtitle: data.subtitle || "",
         description: data.description || "",
-        items: data.items || data.offerings || [],
-        data: { ...data, items: data.items || data.offerings || [] },
+        cards: fixedCards,
+        items: fixedCards,
+        data: { ...data, cards: fixedCards, items: fixedCards },
       };
     },
 
     SupportDedicatedTeamSection: (data) => {
+      // The DB stores the image inside members[0].image, not at top level
+      const sectionImage = data.image || data.members?.[0]?.image || data.backgroundImage || "";
+      // Items can come from items array or be derived from members
+      const sectionItems = data.items?.length
+        ? data.items
+        : data.members?.filter(m => m.bio || m.text || m.name).map(m => m.bio || m.text || m.name).filter(Boolean) || [];
       return {
         title: data.title || "",
         subtitle: data.subtitle || "",
         description: data.description || "",
-        image: data.image || "",
-        items: data.items || [],
-        data: { ...data },
+        image: sectionImage,
+        items: sectionItems,
+        members: data.members || [],
+        data: { ...data, image: sectionImage, items: sectionItems },
       };
     },
 
@@ -2120,12 +2140,17 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
     SupportPayPerUseSection: (data) => {
+      // DB stores benefits array (no top-level image)
+      const items = data.items || data.benefits || data.features || [];
       return {
         title: data.title || "",
         subtitle: data.subtitle || "",
         description: data.description || "",
-        items: data.items || data.features || [],
-        data: { ...data, items: data.items || data.features || [] },
+        image: data.image || data.backgroundImage || "",
+        items: items,
+        benefits: data.benefits || [],
+        pricing: data.pricing || {},
+        data: { ...data, items: items },
       };
     },
 
