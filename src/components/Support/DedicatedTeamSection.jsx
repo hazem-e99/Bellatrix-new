@@ -1,4 +1,5 @@
 import React from "react";
+import { addMediaVersionToBust } from "../../utils/cacheBusting";
 
 const DedicatedTeamSection = ({
   data,
@@ -180,7 +181,7 @@ const DedicatedTeamSection = ({
               }}
             >
               <img
-                src={sectionData.image}
+                src={addMediaVersionToBust(sectionData.image)}
                 alt="ERP Implementation Team"
                 style={{
                   width: "100%",

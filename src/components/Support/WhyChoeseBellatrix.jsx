@@ -1,4 +1,5 @@
 import React from "react";
+import { addMediaVersionToBust } from "../../utils/cacheBusting";
 
 const WhyChoeseBellatrix = ({
   data,
@@ -287,7 +288,7 @@ const WhyChoeseBellatrix = ({
                     }}
                   >
                     <img
-                      src={sectionData.image}
+                      src={addMediaVersionToBust(sectionData.image)}
                       alt="Industry Leaders - Strategic NetSuite Solutions"
                       style={{
                         width: "100%",

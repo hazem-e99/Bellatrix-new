@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../SEO";
+import { addMediaVersionToBust } from "../../utils/cacheBusting";
 
 const SupportSecondSec = ({
   data,
@@ -47,7 +48,7 @@ const SupportSecondSec = ({
           {/* Image Section */}
           <div className="order-2 md:order-1">
             <img
-              src={sectionData.image}
+              src={addMediaVersionToBust(sectionData.image)}
               alt="Bellatrix Support Services - Professional ERP implementation and customization expertise"
               className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
             />

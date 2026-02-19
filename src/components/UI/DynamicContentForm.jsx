@@ -21,6 +21,7 @@ import { getFieldConfigForComponent } from "../../data/componentSchemas";
 import { getAvailableVariants } from "../../utils/variantSystem";
 
 import { getApiBaseUrl } from "../../config/api.js";
+import { updateMediaVersion } from "../../utils/cacheBusting";
 
 // API Base URL with fallback
 const API_BASE_URL = getApiBaseUrl();
@@ -190,6 +191,9 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
       await fetchMedia();
 
       console.log(" Media list refreshed");
+
+      // Update media version to bust cache on all pages
+      updateMediaVersion();
 
       showToast("File uploaded successfully!", "success");
     } catch (err) {

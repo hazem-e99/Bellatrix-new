@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../SEO";
+import { addMediaVersionToBust } from "../../utils/cacheBusting";
 
 const WhatWeOfferSection = ({
   data,
@@ -87,10 +88,10 @@ const WhatWeOfferSection = ({
               >
                 <div className="flex items-center justify-center mb-6">
                   <img
-                    src={
+                    src={addMediaVersionToBust(
                       card.image ||
                       `/supoortWhatWeOffer${index > 0 ? index + 1 : ""}.png`
-                    }
+                    )}
                     alt={card.title || `Card ${index + 1}`}
                     className="w-32 h-32 object-contain"
                   />

@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../SEO";
+import { addMediaVersionToBust } from "../../utils/cacheBusting";
 
 const PayPerUseSection = ({
   data,
@@ -62,7 +63,7 @@ const PayPerUseSection = ({
             <div className="order-2 md:order-2">
               <img
                 alt="Bellatrix dashboard"
-                src={sectionData.image}
+                src={addMediaVersionToBust(sectionData.image)}
                 className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
               />
             </div>

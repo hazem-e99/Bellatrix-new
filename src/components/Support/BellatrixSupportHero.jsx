@@ -1,6 +1,7 @@
 import React from "react";
 import SEO from "../SEO";
 import CTAButton from "../CTAButton";
+import { addMediaVersionToBust } from "../../utils/cacheBusting";
 
 const BellatrixSupportHero = ({
   data,
@@ -41,7 +42,7 @@ const BellatrixSupportHero = ({
         keywords="Bellatrix support, ERP support services, NetSuite consultants, post-implementation support, Bellatrix experts, business system support"
         ogTitle="Bellatrix Support Hero | Bellatrix Expert Support Services"
         ogDescription="Professional Bellatrix support services with expert consultants for ongoing ERP system assistance and optimization."
-        ogImage={heroData.backgroundImage}
+        ogImage={addMediaVersionToBust(heroData.backgroundImage)}
       />
       <header
         className="py-12 relative overflow-hidden animate-background-glow theme-bg-animated text-white"
