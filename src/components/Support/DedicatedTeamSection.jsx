@@ -34,13 +34,22 @@ const DedicatedTeamSection = ({
     || data?.image
     || defaultData.image;
 
+  // Extract items: support items[] of strings OR bulletPoints[] of objects
+  const resolveItems = (raw) => {
+    if (!raw || raw.length === 0) return null;
+    return raw.map((item) =>
+      typeof item === "string" ? item : item.text || item.label || item.bio || ""
+    ).filter(Boolean);
+  };
+
   // PRIORITIZE direct props > data prop > default data
   const sectionData = {
     title: propTitle || data?.title || defaultData.title,
     items:
-      propItems && propItems.length > 0
-        ? propItems
-        : data?.items || defaultData.items,
+      resolveItems(propItems) ||
+      resolveItems(data?.items) ||
+      resolveItems(data?.bulletPoints) ||
+      defaultData.items,
     image: resolvedImage,
   };
 

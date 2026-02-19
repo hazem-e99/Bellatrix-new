@@ -294,33 +294,21 @@ export const supportComponentSchemas = {
                     required: true,
                     formField: "text"
                 },
-                bulletPoints: {
+                items: {
                     type: "array",
                     label: "Bullet Points",
                     formField: "array",
                     items: {
-                        type: "object",
-                        properties: {
-                            icon: {
-                                type: "string",
-                                label: "Icon (Emoji)",
-                                placeholder: "✓",
-                                formField: "text"
-                            },
-                            text: {
-                                type: "string",
-                                label: "Point Text",
-                                placeholder: "Dedicated support team",
-                                required: true,
-                                formField: "text"
-                            }
-                        }
+                        type: "string",
+                        label: "Point",
+                        placeholder: "Dedicated support team",
+                        formField: "text"
                     }
                 },
                 image: {
                     type: "string",
                     label: "Section Image",
-                    placeholder: "/images/Support/dedicated-team.png",
+                    placeholder: "/images/Support/team.jpeg",
                     formField: "media",
                     mediaType: "image"
                 }
@@ -328,13 +316,14 @@ export const supportComponentSchemas = {
         },
         defaultData: {
             title: "Your Own Dedicated Team of Bellatrix",
-            bulletPoints: [
-                { icon: "✓", text: "Dedicated Bellatrix experts" },
-                { icon: "✓", text: "Deep knowledge of your instance" },
-                { icon: "✓", text: "Proactive support and optimization" },
-                { icon: "✓", text: "Quick response times" }
+            items: [
+                "A team will be assigned to you that is familiar with your organization, how you do things, and most importantly, your goals for your Bellatrix system",
+                "A committed team familiar with your Bellatrix environment",
+                "Experienced professionals, including a project lead and solution consultants",
+                "Structured collaboration to avoid knowledge silos",
+                "Access to the collective expertise of a broad team of Bellatrix specialists"
             ],
-            image: "/images/Support/dedicated-team.png"
+            image: "/images/Support/team.jpeg"
         }
     },
 

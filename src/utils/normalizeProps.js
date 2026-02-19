@@ -2102,20 +2102,44 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
     SupportDedicatedTeamSection: (data) => {
-      // The DB stores the image inside members[0].image, not at top level
-      const sectionImage = data.image || data.members?.[0]?.image || data.backgroundImage || "";
-      // Items can come from items array or be derived from members
-      const sectionItems = data.items?.length
-        ? data.items
-        : data.members?.filter(m => m.bio || m.text || m.name).map(m => m.bio || m.text || m.name).filter(Boolean) || [];
+      const defaultTitle = "Your Own Dedicated Team of Bellatrix";
+      const defaultImage = "/images/Support/team.jpeg";
+      const defaultItems = [
+        "A team will be assigned to you that is familiar with your organization, how you do things, and most importantly, your goals for your Bellatrix system",
+        "A committed team familiar with your Bellatrix environment",
+        "Experienced professionals, including a project lead and solution consultants",
+        "Structured collaboration to avoid knowledge silos",
+        "Access to the collective expertise of a broad team of Bellatrix specialists",
+      ];
+
+      // Image: top-level > members[0].image > backgroundImage > default
+      const sectionImage =
+        data.image ||
+        data.members?.[0]?.image ||
+        data.backgroundImage ||
+        defaultImage;
+
+      // Items: from items[] > from bulletPoints[] > from members[].bio/text > defaults
+      let rawItems = [];
+      if (data.items?.length) {
+        rawItems = data.items;
+      } else if (data.bulletPoints?.length) {
+        rawItems = data.bulletPoints.map((b) =>
+          typeof b === "string" ? b : b.text || b.label || ""
+        ).filter(Boolean);
+      } else if (data.members?.length) {
+        rawItems = data.members
+          .map((m) => m.bio || m.text || m.description || "")
+          .filter(Boolean);
+      }
+      const sectionItems = rawItems.length ? rawItems : defaultItems;
+
       return {
-        title: data.title || "",
-        subtitle: data.subtitle || "",
-        description: data.description || "",
+        title: data.title || defaultTitle,
         image: sectionImage,
         items: sectionItems,
         members: data.members || [],
-        data: { ...data, image: sectionImage, items: sectionItems },
+        data: { ...data, title: data.title || defaultTitle, image: sectionImage, items: sectionItems },
       };
     },
 
