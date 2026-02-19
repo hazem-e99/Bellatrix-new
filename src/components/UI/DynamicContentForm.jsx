@@ -25,6 +25,45 @@ import { getApiBaseUrl } from "../../config/api.js";
 // API Base URL with fallback
 const API_BASE_URL = getApiBaseUrl();
 
+/**
+ * AuthImage — fetches an image with the auth Bearer token and renders via blob URL.
+ * Needed in production where the API requires authentication on /Media/* endpoints.
+ * Plain <img src> cannot send headers, so direct URLs fail outside the Vite proxy.
+ */
+const AuthImage = ({ item, className }) => {
+  const [blobUrl, setBlobUrl] = useState(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    if (!item?.id) return;
+    let revoke = null;
+    api
+      .get(`/Media/public/${item.id}`, { responseType: "blob" })
+      .then((res) => {
+        const url = URL.createObjectURL(res.data);
+        revoke = url;
+        setBlobUrl(url);
+      })
+      .catch(() => setFailed(true));
+    return () => {
+      if (revoke) URL.revokeObjectURL(revoke);
+    };
+  }, [item?.id]);
+
+  if (failed) {
+    return (
+      <div className="flex flex-col items-center text-gray-400">
+        <PhotoIcon className="h-8 w-8 mb-1" />
+        <span className="text-xs text-center px-1 truncate w-full text-center">{item?.fileName}</span>
+      </div>
+    );
+  }
+  if (!blobUrl) {
+    return <div className="w-8 h-8 rounded-full border-2 border-blue-400 border-t-transparent animate-spin" />;
+  }
+  return <img src={blobUrl} alt={item?.fileName || "Media"} className={className} />;
+};
+
 // Media Picker Modal Component
 
 const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
@@ -325,41 +364,9 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
 
                       if (isImage) {
                         return (
-                          <img
-                            src={(() => {
-                              const mediaUrl = item.fileUrl || item.filePath;
-
-                              const fullUrl = mediaUrl?.startsWith("http")
-                                ? mediaUrl
-                                : `${
-                                    API_BASE_URL
-                                  }${mediaUrl}`;
-
-                              console.log(
-                                " Loading image:",
-
-                                fullUrl,
-
-                                "from original:",
-
-                                mediaUrl,
-                              );
-
-                              return fullUrl;
-                            })()}
-                            alt={item.fileName || "Media"}
+                          <AuthImage
+                            item={item}
                             className="w-full h-full object-cover"
-                            onError={(e) => {
-                              console.error(
-                                " Image failed to load:",
-
-                                e.target.src,
-                              );
-
-                              e.target.style.display = "none";
-
-                              e.target.nextSibling.style.display = "flex";
-                            }}
                           />
                         );
                       } else if (isVideo) {
@@ -421,14 +428,6 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
                         );
                       }
                     })()}
-
-                    {/* Fallback for broken images */}
-
-                    <div className="hidden flex-col items-center text-gray-500">
-                      <PhotoIcon className="h-8 w-8 mb-2" />
-
-                      <span className="text-xs text-center">Broken Image</span>
-                    </div>
                   </div>
 
                   <div className="p-2">
