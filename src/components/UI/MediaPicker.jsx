@@ -629,20 +629,6 @@ const MediaPicker = ({
     }
   }, [isOpen, onClose]);
 
-  // Get media type icon
-
-  const getMediaIcon = (contentType) => {
-    const mediaType = getMediaType(contentType);
-
-    if (mediaType === "image") {
-      return <PhotoIcon className="h-5 w-5" />;
-    } else if (mediaType === "video") {
-      return <VideoCameraIcon className="h-5 w-5" />;
-    }
-
-    return <DocumentIcon className="h-5 w-5" />;
-  };
-
   // Render media item
 
   const renderMediaItem = (mediaItem) => {
