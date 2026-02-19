@@ -70,7 +70,7 @@ const EditComponentModal = ({
         }
       }
 
-      // If the normalizer returned empty items/image, seed from schema defaultData
+      // If the normalizer returned empty fields, seed from schema defaultData
       if (schema?.defaultData) {
         if (!normalizedJson.items || normalizedJson.items.length === 0) {
           normalizedJson = { ...normalizedJson, items: schema.defaultData.items || [] };
@@ -80,6 +80,12 @@ const EditComponentModal = ({
         }
         if (!normalizedJson.title) {
           normalizedJson = { ...normalizedJson, title: schema.defaultData.title || "" };
+        }
+        if (!normalizedJson.description1 && schema.defaultData.description1) {
+          normalizedJson = { ...normalizedJson, description1: schema.defaultData.description1 };
+        }
+        if (!normalizedJson.description2 && schema.defaultData.description2) {
+          normalizedJson = { ...normalizedJson, description2: schema.defaultData.description2 };
         }
       }
 

@@ -2164,13 +2164,19 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
     SupportPayPerUseSection: (data) => {
-      // DB stores benefits array (no top-level image)
+      const defaultTitle = "Only Pay for the Hours you Use";
+      const defaultImage = "/images/Support/pay2.jpeg";
+      const defaultDescription1 =
+        "Stop paying a lot of money for support that you may not use! How many real hours do you get to take advantage of in your support contract? If you don't use them, do you lose them?";
+      const defaultDescription2 =
+        "Our approach is different. Our monthly reviews focus on the realignment of time/hours not used and outlines new ways to leverage unused support hours in order to optimize your system.";
+
       const items = data.items || data.benefits || data.features || [];
       return {
-        title: data.title || "",
-        subtitle: data.subtitle || "",
-        description: data.description || "",
-        image: data.image || data.backgroundImage || "",
+        title: data.title || defaultTitle,
+        image: data.image || data.backgroundImage || defaultImage,
+        description1: data.description1 || defaultDescription1,
+        description2: data.description2 || defaultDescription2,
         items: items,
         benefits: data.benefits || [],
         pricing: data.pricing || {},

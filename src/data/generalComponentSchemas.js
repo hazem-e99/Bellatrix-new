@@ -8027,6 +8027,8 @@ generalComponentSchemas.AboutValues = {
   "AboutValues",
 
   "SupportDedicatedTeamSection",
+
+  "SupportPayPerUseSection",
 ].forEach((name) => console.log(`Schema & live mapping updated for ${name} `));
 
 generalComponentSchemas.SupportDedicatedTeamSection = {
@@ -8098,6 +8100,78 @@ generalComponentSchemas.SupportDedicatedTeamSection = {
     ],
 
     image: "/images/Support/team.jpeg",
+  },
+};
+
+generalComponentSchemas.SupportPayPerUseSection = {
+  componentName: "SupportPayPerUseSection",
+
+  category: "support",
+
+  icon: "💳",
+
+  displayName: "Pay Per Use Section",
+
+  description: "Only Pay for the Hours you Use — title, image and two description paragraphs",
+
+  schema: {
+    type: "object",
+
+    properties: {
+      title: {
+        type: "string",
+
+        label: "Section Title",
+
+        formField: "text",
+
+        placeholder: "Only Pay for the Hours you Use",
+      },
+
+      image: {
+        type: "string",
+
+        label: "Section Image",
+
+        formField: "media",
+
+        mediaType: "image",
+
+        placeholder: "/images/Support/pay2.jpeg",
+      },
+
+      description1: {
+        type: "string",
+
+        label: "First Paragraph",
+
+        formField: "textarea",
+
+        placeholder: "Stop paying a lot of money for support that you may not use!",
+      },
+
+      description2: {
+        type: "string",
+
+        label: "Second Paragraph",
+
+        formField: "textarea",
+
+        placeholder: "Our approach is different. Our monthly reviews focus on…",
+      },
+    },
+  },
+
+  defaultData: {
+    title: "Only Pay for the Hours you Use",
+
+    image: "/images/Support/pay2.jpeg",
+
+    description1:
+      "Stop paying a lot of money for support that you may not use! How many real hours do you get to take advantage of in your support contract? If you don't use them, do you lose them?",
+
+    description2:
+      "Our approach is different. Our monthly reviews focus on the realignment of time/hours not used and outlines new ways to leverage unused support hours in order to optimize your system.",
   },
 };
 

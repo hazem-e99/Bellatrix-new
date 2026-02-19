@@ -246,7 +246,7 @@ const DynamicFormGenerator = ({
         formDataKeys: Object.keys(formData),
       });
     }
-  }, [data, componentType, formData]);
+  }, [data, componentType]);
 
   const handleChange = (path, value) => {
     console.log(" [DynamicFormGenerator] handleChange:", {

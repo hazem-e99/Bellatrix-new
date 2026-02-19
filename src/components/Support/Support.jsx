@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import SEO from "../SEO";
 import SupportSecondSec from "./SupportSecondSec";
 import SherpaCareServices from "./SherpaCareServices";
@@ -10,8 +10,41 @@ import PayPerUseSection from "./PayPerUseSection";
 import CustomerSupport from "./CustomerSupport";
 import WhyChoeseBellatrix from "./WhyChoeseBellatrix";
 import BellatrixSupportHero from "./BellatrixSupportHero";
+import { usePageData } from "../../hooks/usePageData";
+
+/**
+ * Build a lookup map: componentType → { parsedJson, updatedAt }
+ * from the API page components array.
+ */
+const useComponentDataMap = (pageData) =>
+  useMemo(() => {
+    const components =
+      pageData?.components || pageData?.sections || [];
+    const map = {};
+    components.forEach((comp) => {
+      if (!comp.componentType) return;
+      try {
+        const json =
+          typeof comp.contentJson === "string"
+            ? JSON.parse(comp.contentJson)
+            : comp.contentJson || {};
+        map[comp.componentType] = {
+          data: json,
+          _updatedAt: comp.updatedAt || comp.updated_at,
+        };
+      } catch {
+        map[comp.componentType] = { data: {}, _updatedAt: null };
+      }
+    });
+    return map;
+  }, [pageData]);
 
 const Support = () => {
+  const { pageData } = usePageData("Support");
+  const dataMap = useComponentDataMap(pageData);
+
+  const props = (type) => dataMap[type] || {};
+
   return (
     <>
       <SEO
@@ -23,16 +56,16 @@ const Support = () => {
         ogImage="/images/Support/bellatrix-support-main.jpg"
       />
       <main>
-        <BellatrixSupportHero />
-        <SupportSecondSec />
-        <SherpaCareServices />
-        <WhatWeOfferSection />
-        <DedicatedTeamSection />
-        <PrePackagedSection />
-        <BellatrixSupportSection />
-        <PayPerUseSection />
-        <CustomerSupport />
-        <WhyChoeseBellatrix />
+        <BellatrixSupportHero    {...props("SupportHeroSection")}              />
+        <SupportSecondSec        {...props("SupportSecondSection")}             />
+        <SherpaCareServices      {...props("SupportSherpaCareSection")}         />
+        <WhatWeOfferSection      {...props("SupportWhatWeOfferSection")}        />
+        <DedicatedTeamSection    {...props("SupportDedicatedTeamSection")}      />
+        <PrePackagedSection      {...props("SupportPrePackagedSection")}        />
+        <BellatrixSupportSection {...props("SupportBellatrixSection")}          />
+        <PayPerUseSection        {...props("SupportPayPerUseSection")}          />
+        <CustomerSupport         {...props("SupportCustomerSection")}           />
+        <WhyChoeseBellatrix      {...props("SupportWhyChooseSection")}          />
       </main>
     </>
   );
