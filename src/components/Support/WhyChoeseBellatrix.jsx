@@ -8,6 +8,7 @@ const WhyChoeseBellatrix = ({
   description: propDescription,
   items: propItems,
   image: propImage,
+  _updatedAt,
 }) => {
   // Default data
   const defaultData = {
@@ -35,6 +36,8 @@ const WhyChoeseBellatrix = ({
         : data?.items || defaultData.items,
     image: propImage || data?.image || defaultData.image,
   };
+
+  const cacheVersion = _updatedAt || data?._updatedAt || Date.now();
 
   return (
     <div
@@ -288,7 +291,7 @@ const WhyChoeseBellatrix = ({
                     }}
                   >
                     <img
-                      src={addMediaVersionToBust(sectionData.image)}
+                      src={addMediaVersionToBust(sectionData.image, cacheVersion)}
                       alt="Industry Leaders - Strategic NetSuite Solutions"
                       style={{
                         width: "100%",

@@ -9,6 +9,7 @@ const PayPerUseSection = ({
   description1: propDescription1,
   description2: propDescription2,
   image: propImage,
+  _updatedAt,
 }) => {
   // Default data
   const defaultData = {
@@ -63,7 +64,7 @@ const PayPerUseSection = ({
             <div className="order-2 md:order-2">
               <img
                 alt="Bellatrix dashboard"
-                src={addMediaVersionToBust(sectionData.image)}
+                src={addMediaVersionToBust(sectionData.image, cacheVersion)}
                 className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
               />
             </div>

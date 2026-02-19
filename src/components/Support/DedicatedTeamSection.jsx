@@ -7,6 +7,7 @@ const DedicatedTeamSection = ({
   title: propTitle,
   items: propItems,
   image: propImage,
+  _updatedAt, // Timestamp from server for cache-busting
 }) => {
   // Default data
   const defaultData = {
@@ -30,6 +31,9 @@ const DedicatedTeamSection = ({
         : data?.items || defaultData.items,
     image: propImage || data?.image || defaultData.image,
   };
+
+  // Use server timestamp for cache-busting to ensure all browsers get fresh images
+  const cacheVersion = _updatedAt || data?._updatedAt || Date.now();
 
   return (
     <section
@@ -181,7 +185,7 @@ const DedicatedTeamSection = ({
               }}
             >
               <img
-                src={addMediaVersionToBust(sectionData.image)}
+                src={addMediaVersionToBust(sectionData.image, cacheVersion)}
                 alt="ERP Implementation Team"
                 style={{
                   width: "100%",

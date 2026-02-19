@@ -23,6 +23,7 @@ const PageSection = ({ section, index, componentData, isNewFormat = false }) => 
     const safeProps = buildSafeProps(normalizedProps);
     const propsToPass = {
       ...safeProps,
+      _updatedAt: section.updatedAt || section.updated_at || Date.now(), // Pass timestamp for cache-busting
       renderIcon: safeProps.renderIcon || (() => null),
       openProgramModal: safeProps.openProgramModal || (() => {}),
       openFeatureModal: safeProps.openFeatureModal || (() => {}),

@@ -53,8 +53,12 @@ export const updateMediaVersion = () => {
 /**
  * Add cache-busting using the global media version
  * All images will share the same version, updated when media changes
+ * @param {string} url - The image URL
+ * @param {string|number} customVersion - Optional: use component's updatedAt or custom version
  */
-export const addMediaVersionToBust = (url) => {
+export const addMediaVersionToBust = (url, customVersion = null) => {
   if (!url) return url;
-  return addCacheBuster(url, getMediaVersion());
+  // Use custom version (like component updatedAt) if provided, otherwise use global mediaVersion
+  const version = customVersion || getMediaVersion();
+  return addCacheBuster(url, version);
 };

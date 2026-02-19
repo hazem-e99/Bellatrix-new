@@ -12,6 +12,7 @@ const CustomerSupport = ({
   items: propItems,
   supportInfoTitle: propSupportInfoTitle,
   supportInfoDescription: propSupportInfoDescription,
+  _updatedAt,
 }) => {
   // Default data
   const defaultData = {
@@ -56,6 +57,8 @@ const CustomerSupport = ({
       data?.supportInfoDescription ||
       defaultData.supportInfoDescription,
   };
+
+  const cacheVersion = _updatedAt || data?._updatedAt || Date.now();
 
   return (
     <>
@@ -115,7 +118,7 @@ const CustomerSupport = ({
                 <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-4 backdrop-blur-sm border border-white/20 shadow-2xl">
                   <img
                     alt="Bellatrix Customer Support"
-                    src={addMediaVersionToBust(sectionData.image)}
+                    src={addMediaVersionToBust(sectionData.image, cacheVersion)}
                     className="w-full h-64 lg:h-80 object-cover rounded-xl shadow-lg brightness-110 contrast-110 saturate-110 group-hover:scale-105 transition-all duration-500"
                   />
                   <div className="absolute inset-4 rounded-xl bg-gradient-to-t from-transparent via-transparent to-white/10 pointer-events-none"></div>

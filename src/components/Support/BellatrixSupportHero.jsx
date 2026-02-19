@@ -10,6 +10,7 @@ const BellatrixSupportHero = ({
   description: propDescription,
   ctaButtonText: propCtaButtonText,
   backgroundImage: propBackgroundImage,
+  _updatedAt,
 }) => {
   // Default data
   const defaultData = {
@@ -34,6 +35,8 @@ const BellatrixSupportHero = ({
       defaultData.backgroundImage,
   };
 
+  const cacheVersion = _updatedAt || data?._updatedAt || Date.now();
+
   return (
     <>
       <SEO
@@ -42,7 +45,7 @@ const BellatrixSupportHero = ({
         keywords="Bellatrix support, ERP support services, NetSuite consultants, post-implementation support, Bellatrix experts, business system support"
         ogTitle="Bellatrix Support Hero | Bellatrix Expert Support Services"
         ogDescription="Professional Bellatrix support services with expert consultants for ongoing ERP system assistance and optimization."
-        ogImage={addMediaVersionToBust(heroData.backgroundImage)}
+        ogImage={addMediaVersionToBust(heroData.backgroundImage, cacheVersion)}
       />
       <header
         className="py-12 relative overflow-hidden animate-background-glow theme-bg-animated text-white"

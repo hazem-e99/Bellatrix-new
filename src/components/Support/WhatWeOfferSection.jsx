@@ -9,6 +9,7 @@ const WhatWeOfferSection = ({
   subtitle: propSubtitle,
   cards: propCards,
   items: propItems,
+  _updatedAt,
 }) => {
   // Default data
   const defaultData = {
@@ -48,6 +49,8 @@ const WhatWeOfferSection = ({
           ? propItems
           : data?.cards || data?.items || defaultData.cards,
   };
+
+  const cacheVersion = _updatedAt || data?._updatedAt || Date.now();
 
   return (
     <>
@@ -90,7 +93,8 @@ const WhatWeOfferSection = ({
                   <img
                     src={addMediaVersionToBust(
                       card.image ||
-                      `/supoortWhatWeOffer${index > 0 ? index + 1 : ""}.png`
+                      `/supoortWhatWeOffer${index > 0 ? index + 1 : ""}.png`,
+                      cacheVersion
                     )}
                     alt={card.title || `Card ${index + 1}`}
                     className="w-32 h-32 object-contain"

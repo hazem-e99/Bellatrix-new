@@ -9,6 +9,7 @@ const SupportSecondSec = ({
   description1: propDescription1,
   description2: propDescription2,
   image: propImage,
+  _updatedAt,
 }) => {
   // Default data
   const defaultData = {
@@ -33,6 +34,8 @@ const SupportSecondSec = ({
     image: propImage || data?.image || defaultData.image,
   };
 
+  const cacheVersion = _updatedAt || data?._updatedAt || Date.now();
+
   return (
     <>
       <SEO
@@ -48,7 +51,7 @@ const SupportSecondSec = ({
           {/* Image Section */}
           <div className="order-2 md:order-1">
             <img
-              src={addMediaVersionToBust(sectionData.image)}
+              src={addMediaVersionToBust(sectionData.image, cacheVersion)}
               alt="Bellatrix Support Services - Professional ERP implementation and customization expertise"
               className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
             />
