@@ -31,6 +31,8 @@ const PayPerUseSection = ({
     image: propImage || data?.image || defaultData.image,
   };
 
+  const cacheVersion = _updatedAt || data?._updatedAt || Date.now();
+
   return (
     <>
       <SEO
