@@ -22,6 +22,28 @@ const cleanCorruptedData = (data) => {
   return cleaned;
 };
 
+// Ensure upload URLs use the HTTPS public domain (avoid browser mixed-content blocks)
+const rewriteUploadsUrl = (url) => {
+  if (!url || typeof url !== "string") return url;
+  if (url.startsWith("http://68.178.169.236:5000/uploads/")) {
+    return url.replace(
+      "http://68.178.169.236:5000",
+      "https://www.bellatrixinc.com"
+    );
+  }
+  return url;
+};
+
+// Basic check to confirm a URL is an image (file extension or data URI)
+const isLikelyImageUrl = (url) => {
+  if (!url || typeof url !== "string") return false;
+  const lower = url.toLowerCase();
+  return (
+    lower.startsWith("data:image") ||
+    /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/.test(lower)
+  );
+};
+
 /**
 
  * Normalizes JSON data to match component prop expectations
@@ -2172,15 +2194,21 @@ export const normalizeProps = (componentType, contentJson) => {
         "Our approach is different. Our monthly reviews focus on the realignment of time/hours not used and outlines new ways to leverage unused support hours in order to optimize your system.";
 
       const items = data.items || data.benefits || data.features || [];
+      const rawImage = rewriteUploadsUrl(
+        data.image || data.backgroundImage || defaultImage
+      );
+      const resolvedImage = isLikelyImageUrl(rawImage)
+        ? rawImage
+        : defaultImage;
       return {
         title: data.title || defaultTitle,
-        image: data.image || data.backgroundImage || defaultImage,
+        image: resolvedImage,
         description1: data.description1 || defaultDescription1,
         description2: data.description2 || defaultDescription2,
         items: items,
         benefits: data.benefits || [],
         pricing: data.pricing || {},
-        data: { ...data, items: items },
+        data: { ...data, items: items, image: resolvedImage },
       };
     },
 
@@ -2220,9 +2248,10 @@ export const normalizeProps = (componentType, contentJson) => {
       if (data.stats) normalized.stats = data.stats;
       if (data.video) normalized.video = data.video;
       if (data.backgroundVideo) normalized.backgroundVideo = data.backgroundVideo;
-      if (data.backgroundImage) normalized.backgroundImage = data.backgroundImage;
-      if (data.image) normalized.image = data.image;
-      if (data.imageUrl) normalized.imageUrl = data.imageUrl;
+      if (data.backgroundImage)
+        normalized.backgroundImage = rewriteUploadsUrl(data.backgroundImage);
+      if (data.image) normalized.image = rewriteUploadsUrl(data.image);
+      if (data.imageUrl) normalized.imageUrl = rewriteUploadsUrl(data.imageUrl);
       // Also try to extract image from nested section objects
       if (!normalized.image && data.programsSection?.image) normalized.image = data.programsSection.image;
       if (!normalized.image && data.heroSection?.image) normalized.image = data.heroSection.image;

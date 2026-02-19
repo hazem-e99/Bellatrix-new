@@ -11,6 +11,7 @@ import CustomerSupport from "./CustomerSupport";
 import WhyChoeseBellatrix from "./WhyChoeseBellatrix";
 import BellatrixSupportHero from "./BellatrixSupportHero";
 import { usePageData } from "../../hooks/usePageData";
+import { normalizeProps } from "../../utils/normalizeProps";
 
 /**
  * Build a lookup map: componentType → { parsedJson, updatedAt }
@@ -28,7 +29,10 @@ const useComponentDataMap = (pageData) =>
           typeof comp.contentJson === "string"
             ? JSON.parse(comp.contentJson)
             : comp.contentJson || {};
+        const normalized = normalizeProps(comp.componentType, json);
+        // keep both normalized fields and original data for components that expect raw shape
         map[comp.componentType] = {
+          ...normalized,
           data: json,
           _updatedAt: comp.updatedAt || comp.updated_at,
         };
@@ -40,7 +44,8 @@ const useComponentDataMap = (pageData) =>
   }, [pageData]);
 
 const Support = () => {
-  const { pageData } = usePageData("Support");
+  // slug in DB is lower-case ("support") when fetched via DynamicPageRenderer
+  const { pageData } = usePageData("support");
   const dataMap = useComponentDataMap(pageData);
 
   const props = (type) => dataMap[type] || {};

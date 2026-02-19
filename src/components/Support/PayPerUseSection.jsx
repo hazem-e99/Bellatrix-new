@@ -2,6 +2,27 @@ import React from "react";
 import SEO from "../SEO";
 import { addMediaVersionToBust } from "../../utils/cacheBusting";
 
+// Normalize upload URLs to HTTPS domain to match DedicatedTeamSection behavior
+const rewriteUploadsUrl = (url) => {
+  if (!url || typeof url !== "string") return url;
+  if (url.startsWith("http://68.178.169.236:5000/uploads/")) {
+    return url.replace(
+      "http://68.178.169.236:5000",
+      "https://www.bellatrixinc.com"
+    );
+  }
+  return url;
+};
+
+const isLikelyImageUrl = (url) => {
+  if (!url || typeof url !== "string") return false;
+  const lower = url.toLowerCase();
+  return (
+    lower.startsWith("data:image") ||
+    /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/.test(lower)
+  );
+};
+
 const PayPerUseSection = ({
   data,
   // Direct props for Page Builder
@@ -28,7 +49,12 @@ const PayPerUseSection = ({
       propDescription1 || data?.description1 || defaultData.description1,
     description2:
       propDescription2 || data?.description2 || defaultData.description2,
-    image: propImage || data?.image || defaultData.image,
+    image:
+      (isLikelyImageUrl(
+        rewriteUploadsUrl(propImage || data?.image || data?.backgroundImage)
+      )
+        ? rewriteUploadsUrl(propImage || data?.image || data?.backgroundImage)
+        : defaultData.image) || defaultData.image,
   };
 
   const cacheVersion = _updatedAt || data?._updatedAt || Date.now();
