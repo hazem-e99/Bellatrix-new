@@ -2176,11 +2176,54 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
     SupportBellatrixSection: (data) => {
+      const defaultAdminSupport = [
+        "Ongoing Bellatrix administration",
+        "Maintain secure access",
+        "Data cleansing and upload",
+        "Data administration & maintenance",
+        "Help with optimizing the usage of Bellatrix",
+        "Monitor usage & transactions",
+        "Provide support for your IT team on technical issues",
+        "Create new users, roles",
+        "Create Saved searches",
+        "General support, analytics",
+        "Upgrades and testing",
+      ];
+      const defaultFunctionalSupport = [
+        "End User Support",
+        "Answer How To Questions",
+        "Provide solutions for business requirements",
+        "Train new users",
+        "Help in performing functional tasks and transactions",
+        "Help your IT team in resolving end user requests",
+        "Help in running reports/ dashboards",
+        "Help with using best practices of Bellatrix",
+        "Monitor functional usage and transactions",
+        "Year and month end processes",
+      ];
+      const defaultDevelopmentSupport = [
+        "Create New reports",
+        "Create New dashboards",
+        "Create or manage automated processes with Bellatrix SuiteFlows",
+        "Enhance Bellatrix functionality with scripting using Bellatrix SuiteScripts",
+        "Create Forms",
+        "Integrations",
+        "Installation of Suite Bundle as required",
+      ];
+
+      const resolveArray = (val, fallback) => {
+        if (Array.isArray(val) && val.length > 0)
+          return val.map((i) => (typeof i === "string" ? i : i.text || i.label || "")).filter(Boolean);
+        return fallback;
+      };
+
       return {
-        title: data.title || "",
-        subtitle: data.subtitle || "",
-        description: data.description || "",
-        items: data.items || [],
+        title: data.title || "Your One-Stop-Shop for Bellatrix Support",
+        description1: data.description1 || "Your business, and how you run it, is very unique. So is your Bellatrix instance and required support. Our consultants are well versed in a multitude of different areas to ensure that regardless of the level of support that you require, we can assist you.",
+        description2: data.description2 || "Whether you're in need of functional support, administrator support, development support, or all the above, SherpaCare is the answer.",
+        adminSupport: resolveArray(data.adminSupport, defaultAdminSupport),
+        functionalSupport: resolveArray(data.functionalSupport, defaultFunctionalSupport),
+        developmentSupport: resolveArray(data.developmentSupport, defaultDevelopmentSupport),
         data: { ...data },
       };
     },

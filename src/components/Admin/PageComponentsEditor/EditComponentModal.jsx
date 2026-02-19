@@ -87,6 +87,15 @@ const EditComponentModal = ({
         if (!normalizedJson.description2 && schema.defaultData.description2) {
           normalizedJson = { ...normalizedJson, description2: schema.defaultData.description2 };
         }
+        // Seed any other array fields defined in defaultData that are missing or empty
+        Object.entries(schema.defaultData).forEach(([key, val]) => {
+          if (
+            Array.isArray(val) &&
+            (!normalizedJson[key] || normalizedJson[key].length === 0)
+          ) {
+            normalizedJson = { ...normalizedJson, [key]: val };
+          }
+        });
       }
 
       setFormData({

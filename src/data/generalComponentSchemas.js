@@ -8029,6 +8029,8 @@ generalComponentSchemas.AboutValues = {
   "SupportDedicatedTeamSection",
 
   "SupportPayPerUseSection",
+
+  "SupportBellatrixSection",
 ].forEach((name) => console.log(`Schema & live mapping updated for ${name} `));
 
 generalComponentSchemas.SupportDedicatedTeamSection = {
@@ -8172,6 +8174,96 @@ generalComponentSchemas.SupportPayPerUseSection = {
 
     description2:
       "Our approach is different. Our monthly reviews focus on the realignment of time/hours not used and outlines new ways to leverage unused support hours in order to optimize your system.",
+  },
+};
+
+generalComponentSchemas.SupportBellatrixSection = {
+  componentName: "SupportBellatrixSection",
+  category: "support",
+  icon: "🛡️",
+  displayName: "Bellatrix Support Excellence",
+  description: "Your One-Stop-Shop for Bellatrix Support — title, two paragraphs, and three support card lists",
+  schema: {
+    type: "object",
+    properties: {
+      title: {
+        type: "string",
+        label: "Section Title",
+        formField: "text",
+        placeholder: "Your One-Stop-Shop for Bellatrix Support",
+      },
+      description1: {
+        type: "string",
+        label: "First Paragraph",
+        formField: "textarea",
+        placeholder: "Your business, and how you run it, is very unique…",
+      },
+      description2: {
+        type: "string",
+        label: "Second Paragraph",
+        formField: "textarea",
+        placeholder: "Whether you're in need of functional support…",
+      },
+      adminSupport: {
+        type: "array",
+        label: "Admin Support Items",
+        formField: "array",
+        items: { type: "string", label: "Item", formField: "text" },
+      },
+      functionalSupport: {
+        type: "array",
+        label: "Functional Support Items",
+        formField: "array",
+        items: { type: "string", label: "Item", formField: "text" },
+      },
+      developmentSupport: {
+        type: "array",
+        label: "Development Support Items",
+        formField: "array",
+        items: { type: "string", label: "Item", formField: "text" },
+      },
+    },
+  },
+  defaultData: {
+    title: "Your One-Stop-Shop for Bellatrix Support",
+    description1:
+      "Your business, and how you run it, is very unique. So is your Bellatrix instance and required support. Our consultants are well versed in a multitude of different areas to ensure that regardless of the level of support that you require, we can assist you.",
+    description2:
+      "Whether you're in need of functional support, administrator support, development support, or all the above, SherpaCare is the answer.",
+    adminSupport: [
+      "Ongoing Bellatrix administration",
+      "Maintain secure access",
+      "Data cleansing and upload",
+      "Data administration & maintenance",
+      "Help with optimizing the usage of Bellatrix",
+      "Monitor usage & transactions",
+      "Provide support for your IT team on technical issues",
+      "Create new users, roles",
+      "Create Saved searches",
+      "General support, analytics",
+      "Upgrades and testing",
+    ],
+    functionalSupport: [
+      "End User Support",
+      "Answer How To Questions",
+      "Provide solutions for business requirements",
+      "Train new users",
+      "Help in performing functional tasks and transactions",
+      "Help your IT team in resolving end user requests",
+      "Help in running reports/ dashboards",
+      "Help with using best practices of Bellatrix",
+      "Monitor functional usage and transactions",
+      "Year and month end processes",
+    ],
+    developmentSupport: [
+      "Create New reports",
+      "Create New dashboards",
+      "Create or manage automated processes with Bellatrix SuiteFlows",
+      "Enhance Bellatrix functionality with scripting using Bellatrix SuiteScripts",
+      "Create Forms",
+      "Integrations",
+      "Installation of Suite Bundle as required",
+    ],
   },
 };
 
