@@ -5,6 +5,20 @@
     "description": "Bellatrix APIs using ASP.NET Core 8 By Yousry Essam.",
     "version": "v1"
   },
+  "servers": [
+    {
+      "url": "https://www.bellatrixinc.com",
+      "description": "Production Server"
+    },
+    {
+      "url": "http://68.178.169.236:5000",
+      "description": "Development Server"
+    },
+    {
+      "url": "http://localhost:5173",
+      "description": "Local Development (Vite Proxy)"
+    }
+  ],
   "paths": {
     "/api/Authentication/Login": {
       "post": {
@@ -1261,7 +1275,8 @@
                     "format": "binary"
                   },
                   "Role": {
-                    "$ref": "#/components/schemas/MediaRole"
+                    "$ref": "#/components/schemas/MediaRole",
+                    "default": 12
                   },
                   "AlternateText": {
                     "type": "string"
@@ -1271,25 +1286,9 @@
                   },
                   "SortOrder": {
                     "type": "integer",
-                    "format": "int32"
+                    "format": "int32",
+                    "default": 1
                   }
-                }
-              },
-              "encoding": {
-                "File": {
-                  "style": "form"
-                },
-                "Role": {
-                  "style": "form"
-                },
-                "AlternateText": {
-                  "style": "form"
-                },
-                "Caption": {
-                  "style": "form"
-                },
-                "SortOrder": {
-                  "style": "form"
                 }
               }
             }
@@ -1343,23 +1342,14 @@
                     }
                   },
                   "Role": {
-                    "$ref": "#/components/schemas/MediaRole"
+                    "$ref": "#/components/schemas/MediaRole",
+                    "default": 12
                   },
                   "SortOrder": {
                     "type": "integer",
-                    "format": "int32"
+                    "format": "int32",
+                    "default": 1
                   }
-                }
-              },
-              "encoding": {
-                "Files": {
-                  "style": "form"
-                },
-                "Role": {
-                  "style": "form"
-                },
-                "SortOrder": {
-                  "style": "form"
                 }
               }
             }
@@ -5385,6 +5375,10 @@
             "nullable": true
           },
           "fileUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileLink": {
             "type": "string",
             "nullable": true
           },

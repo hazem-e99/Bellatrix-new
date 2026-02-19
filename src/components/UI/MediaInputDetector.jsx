@@ -6,10 +6,96 @@ import MediaPicker from "./MediaPicker";
  * MediaInputDetector - Automatically detects and enhances inputs for media selection
  * Usage: Wrap your form/component with this and it will auto-detect media inputs
  */
+const isImageUrl = (url) => {
+  if (!url) return false;
+  const cleanUrl = url.split("?")[0].split("#")[0];
+  return (
+    cleanUrl.match(/\.(jpg|jpeg|png|gif|webp|svg|bmp|ico)$/i) ||
+    url.includes("/image/")
+  );
+};
+
+const isVideoUrl = (url) => {
+  if (!url) return false;
+  const cleanUrl = url.split("?")[0].split("#")[0];
+  return (
+    cleanUrl.match(/\.(mp4|webm|ogg|mov|avi|mkv)$/i) || url.includes("/video/")
+  );
+};
+
+/**
+ * MediaInputDetector - Automatically detects and enhances inputs for media selection
+ * Usage: Wrap your form/component with this and it will auto-detect media inputs
+ */
 const MediaInputDetector = ({ children, containerRef }) => {
   const [isMediaPickerOpen, setIsMediaPickerOpen] = useState(false);
   const [activeInput, setActiveInput] = useState(null);
   const [mediaType, setMediaType] = useState("all");
+
+  // Function to update preview element
+  const updateMediaPreview = React.useCallback((input) => {
+    const url = input.value;
+    const parent = input.parentElement;
+    if (!parent) return; // Guard clause
+    let previewContainer = parent.querySelector(".media-preview-container");
+
+    if (!url) {
+      if (previewContainer) previewContainer.innerHTML = "";
+      return;
+    }
+
+    if (!previewContainer) {
+      previewContainer = document.createElement("div");
+      previewContainer.className = "media-preview-container mt-2 relative";
+      parent.appendChild(previewContainer);
+    }
+
+    if (isImageUrl(url)) {
+      previewContainer.innerHTML = `
+        <div class="relative group w-32 h-32 rounded-lg overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-md">
+          <img src="${url}" class="w-full h-full object-cover" alt="Preview" />
+          <button type="button" class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity clear-media">
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+      `;
+    } else if (isVideoUrl(url)) {
+      previewContainer.innerHTML = `
+        <div class="relative group w-48 h-32 rounded-lg overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-md">
+          <video src="${url}" class="w-full h-full object-cover" muted preload="metadata"></video>
+          <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
+            <svg class="w-8 h-8 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          </div>
+          <button type="button" class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity clear-media" style="z-index: 20">
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+      `;
+    } else {
+      previewContainer.innerHTML = `
+        <div class="flex items-center gap-2 p-2 bg-gray-50 rounded-lg border border-gray-200 text-xs text-gray-500 truncate w-full max-w-xs group">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z" /></svg>
+          <span class="truncate">${url}</span>
+          <button type="button" class="ml-auto p-1 text-gray-400 hover:text-red-500 clear-media">
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+      `;
+    }
+
+    // Add clear handler
+    const clearBtn = previewContainer.querySelector(".clear-media");
+    if (clearBtn) {
+      clearBtn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        input.value = "";
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+        updateMediaPreview(input);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const container = containerRef?.current || document;
@@ -60,11 +146,13 @@ const MediaInputDetector = ({ children, containerRef }) => {
       // Attach event listeners
       mediaButton.addEventListener("click", openMediaPicker);
       input.addEventListener("focus", openMediaPicker);
+      input.addEventListener("input", () => updateMediaPreview(input));
 
       // Store cleanup function
       input._mediaPickerCleanup = () => {
         mediaButton?.removeEventListener("click", openMediaPicker);
         input.removeEventListener("focus", openMediaPicker);
+        input.removeEventListener("input", () => updateMediaPreview(input));
         mediaButton?.remove();
         delete input.dataset.mediaPickerAttached;
         delete input._mediaPickerCleanup;
@@ -103,7 +191,10 @@ const MediaInputDetector = ({ children, containerRef }) => {
       ]);
 
       // Attach media picker to each input
-      allMediaInputs.forEach(attachMediaPicker);
+      allMediaInputs.forEach((input) => {
+        attachMediaPicker(input);
+        updateMediaPreview(input);
+      });
     };
 
     // Initial detection
@@ -141,7 +232,10 @@ const MediaInputDetector = ({ children, containerRef }) => {
               `);
 
               if (mediaInputs) {
-                mediaInputs.forEach(attachMediaPicker);
+                mediaInputs.forEach((input) => {
+                  attachMediaPicker(input);
+                  updateMediaPreview(input);
+                });
               }
             }
           });
@@ -168,13 +262,16 @@ const MediaInputDetector = ({ children, containerRef }) => {
         }
       });
     };
-  }, [containerRef]);
+  }, [containerRef, updateMediaPreview]);
 
   // Handle media selection
   const handleMediaSelect = (mediaUrl, mediaItem) => {
     if (activeInput) {
-      // Set the input value to the full URL
+      // Update the input value to the full URL
       activeInput.value = mediaUrl;
+
+      // Update preview
+      updateMediaPreview(activeInput);
 
       // Dispatch custom events
       activeInput.dispatchEvent(new Event("input", { bubbles: true }));
@@ -185,6 +282,7 @@ const MediaInputDetector = ({ children, containerRef }) => {
           detail: {
             id: mediaItem.id,
             fileUrl: mediaItem.fileUrl,
+            fileLink: mediaItem.fileLink,
             fullUrl: mediaUrl,
             mediaItem,
           },

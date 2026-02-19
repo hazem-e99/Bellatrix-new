@@ -20,6 +20,17 @@ export const getApiBaseUrl = () => {
 };
 
 /**
+ * Get the absolute base URL (always includes domain/IP)
+ * Useful for file links that need to be absolute
+ */
+export const getAbsoluteBaseUrl = () => {
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+  return "http://68.178.169.236:5000"; // Fallback to the target IP
+};
+
+/**
  * Get the base URL with /api suffix
  */
 export const getApiBaseUrlWithApi = () => {
@@ -41,6 +52,7 @@ export const API_BASE_URL_WITH_API = getApiBaseUrlWithApi();
 
 export default {
   getApiBaseUrl,
+  getAbsoluteBaseUrl,
   getApiBaseUrlWithApi,
   API_BASE_URL,
   API_BASE_URL_WITH_API,

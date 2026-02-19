@@ -23,18 +23,18 @@ import axios from "axios";
 
 import mediaAPI from "../../lib/mediaAPI";
 
-import { getApiBaseUrl, getApiBaseUrlWithApi } from "../../config/api.js";
+import { getApiBaseUrlWithApi, getAbsoluteBaseUrl } from "../../config/api.js";
 
 // API Constants
 
 const BASE_API = getApiBaseUrlWithApi();
 
-const BASE_HOST = getApiBaseUrl();
+const BASE_HOST_ABSOLUTE = getAbsoluteBaseUrl();
 
 // Helper function to build full URLs
 
 function toFullUrl(fileUrl) {
-  const host = BASE_HOST.replace(/\/$/, "");
+  const host = BASE_HOST_ABSOLUTE.replace(/\/$/, "");
 
   if (!fileUrl) return "";
 
@@ -45,7 +45,7 @@ function toFullUrl(fileUrl) {
 function toPublicMediaUrl(mediaId) {
   if (!mediaId) return "";
 
-  const host = BASE_HOST.replace(/\/$/, "");
+  const host = BASE_HOST_ABSOLUTE.replace(/\/$/, "");
 
   return `${host}/api/Media/public/${mediaId}`;
 }
@@ -303,7 +303,10 @@ const MediaPicker = ({
           token,
         });
 
-        const mediaItems = result.data || [];
+        const mediaItems = (result.data || []).map((item) => ({
+          ...item,
+          fileLink: toFullUrl(item.fileUrl),
+        }));
 
         if (append) {
           setMedia((prev) => [...prev, ...mediaItems]);
@@ -532,10 +535,15 @@ const MediaPicker = ({
 
         console.log(" Final public URL:", publicUrl);
 
-        if (maxSelection === 1) {
-          // Single selection - use public API URL and call onSelect
+        const processedDetails = {
+          ...mediaDetails,
+          fileLink: toFullUrl(mediaDetails.fileUrl || mediaItem.fileUrl),
+        };
 
-          onSelect(publicUrl, mediaDetails);
+        if (maxSelection === 1) {
+          // Single selection - use direct file link and call onSelect
+
+          onSelect(processedDetails.fileLink, processedDetails);
 
           onClose();
         } else {
@@ -561,9 +569,9 @@ const MediaPicker = ({
         // Fallback to public API URL if API call fails
 
         if (maxSelection === 1) {
-          const publicUrl = toPublicMediaUrl(mediaItem.id);
+          const directUrl = toFullUrl(mediaItem.fileUrl);
 
-          onSelect(publicUrl, mediaItem);
+          onSelect(directUrl, mediaItem);
 
           onClose();
         }
@@ -578,19 +586,15 @@ const MediaPicker = ({
   const handleConfirmSelection = useCallback(() => {
     if (selectedItems.length > 0) {
       if (maxSelection === 1) {
-        const publicUrl = toPublicMediaUrl(selectedItems[0].id);
-
-        onSelect(publicUrl, selectedItems[0]);
+        onSelect(selectedItems[0].fileLink || toFullUrl(selectedItems[0].fileUrl), selectedItems[0]);
       } else {
-        const selectedUrls = selectedItems.map((item) => ({
-          url: toPublicMediaUrl(item.id),
-
+        const selectedResults = selectedItems.map((item) => ({
+          url: item.fileLink || toFullUrl(item.fileUrl),
           item: item,
         }));
 
-        onSelect(selectedUrls);
+        onSelect(selectedResults);
       }
-
       onClose();
     }
   }, [selectedItems, maxSelection, onSelect, onClose]);
@@ -644,8 +648,8 @@ const MediaPicker = ({
   const renderMediaItem = (mediaItem) => {
     const isSelected = selectedItems.find((item) => item.id === mediaItem.id);
 
-    // Use public Media API endpoint for displaying media
-    const fullUrl = toPublicMediaUrl(mediaItem.id);
+    // Use direct file link for displaying media
+    const fullUrl = toFullUrl(mediaItem.fileUrl);
 
     // Determine media type from contentType OR filename/URL
     const fileName = mediaItem.fileName || mediaItem.fileUrl || "";

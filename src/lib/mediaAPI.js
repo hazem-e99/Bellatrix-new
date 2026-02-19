@@ -1,10 +1,17 @@
 import api from "./api.js";
 
-import { getApiBaseUrl, getApiBaseUrlWithApi } from "../config/api.js";
+import { getApiBaseUrl, getApiBaseUrlWithApi, getAbsoluteBaseUrl } from "../config/api.js";
 
 const BASE_HOST = getApiBaseUrl();
+const BASE_HOST_ABSOLUTE = getAbsoluteBaseUrl();
 
 const BASE_API = getApiBaseUrlWithApi();
+
+function toFullUrl(fileUrl) {
+  if (!fileUrl) return "";
+  const host = BASE_HOST_ABSOLUTE.replace(/\/$/, "");
+  return host + (fileUrl.startsWith("/") ? fileUrl : "/" + fileUrl);
+}
 
 /**
 
@@ -59,12 +66,18 @@ const mediaAPI = {
 
       // The api.js interceptor should handle the wrapped response
 
+      const items = Array.isArray(response.data) ? response.data : [];
+      const mappedItems = items.map(item => ({
+        ...item,
+        fileLink: toFullUrl(item.fileUrl)
+      }));
+
       return {
-        data: Array.isArray(response.data) ? response.data : [],
+        data: mappedItems,
 
-        hasMore: response.data?.length === pageSize,
+        hasMore: mappedItems.length === pageSize,
 
-        total: response.data?.length || 0,
+        total: mappedItems.length || 0,
       };
     } catch (error) {
       console.error("Error fetching media:", error);
@@ -87,7 +100,7 @@ const mediaAPI = {
 
    */
 
-  async uploadMedia(file, options = {}) {
+  async uploadMedia(file) {
     try {
       const formData = new FormData();
 
@@ -127,7 +140,12 @@ const mediaAPI = {
 
       console.log(" MediaAPI upload response:", result);
 
-      return result.data;
+      const processedData = {
+        ...result.data,
+        fileLink: toFullUrl(result.data.fileUrl)
+      };
+
+      return processedData;
     } catch (error) {
       console.error("Error uploading media:", error);
 
@@ -147,10 +165,10 @@ const mediaAPI = {
 
    */
 
-  async uploadMultipleMedia(files, options = {}) {
+  async uploadMultipleMedia(files) {
     try {
       const uploadPromises = Array.from(files).map((file) =>
-        this.uploadMedia(file, options),
+        this.uploadMedia(file),
       );
 
       return await Promise.all(uploadPromises);
@@ -221,7 +239,11 @@ const mediaAPI = {
     try {
       const response = await api.get(`/Media/${mediaId}`);
 
-      return response.data;
+      const processedData = {
+        ...response.data,
+        fileLink: toFullUrl(response.data.fileUrl)
+      };
+      return processedData;
     } catch (error) {
       console.error("Error fetching media by ID:", error);
 
@@ -243,7 +265,11 @@ const mediaAPI = {
     try {
       const response = await api.get(`/Media/public/${mediaId}`);
 
-      return response.data;
+      const processedData = {
+        ...response.data,
+        fileLink: toFullUrl(response.data.fileUrl)
+      };
+      return processedData;
     } catch (error) {
       console.error("Error fetching public media by ID:", error);
 
