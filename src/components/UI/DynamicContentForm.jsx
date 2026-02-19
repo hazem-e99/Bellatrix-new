@@ -36,20 +36,15 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
 
   const [uploading, setUploading] = useState(false);
 
+  const [toast, setToast] = useState(null);
+
   const fileInputRef = React.useRef();
 
-  // Show toast notification
+  // Show toast notification (no alert — works in all production browsers)
 
   const showToast = (message, type = "info") => {
-    // Simple alert for now - could be enhanced with a proper toast component
-
-    if (type === "error") {
-      alert(`Error: ${message}`);
-    } else if (type === "success") {
-      alert(`Success: ${message}`);
-    } else {
-      alert(message);
-    }
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3500);
   };
 
   useEffect(() => {
@@ -229,7 +224,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl h-[600px] flex flex-col">
+      <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl h-[600px] flex flex-col">
         <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
           <div className="flex justify-between items-center">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -257,15 +252,31 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
               </button>
             </div>
 
+            {/* Visually hidden — NOT display:none so browsers allow programmatic .click() in production */}
             <input
               type="file"
               ref={fileInputRef}
-              style={{ display: "none" }}
+              style={{ position: "absolute", width: 0, height: 0, opacity: 0, overflow: "hidden" }}
               accept="image/*,video/*"
               onChange={handleFileChange}
             />
           </div>
         </div>
+
+        {/* Inline toast — replaces alert() which is blocked in some production browsers */}
+        {toast && (
+          <div
+            className={`absolute top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-lg shadow-lg text-sm font-medium text-white transition-all ${
+              toast.type === "error"
+                ? "bg-red-500"
+                : toast.type === "success"
+                ? "bg-green-500"
+                : "bg-blue-500"
+            }`}
+          >
+            {toast.message}
+          </div>
+        )}
 
         <div className="flex-1 p-6 overflow-auto">
           {loading ? (
