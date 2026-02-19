@@ -25,6 +25,9 @@ const BellatrixSupportSection = ({
   adminSupport: propAdminSupport,
   functionalSupport: propFunctionalSupport,
   developmentSupport: propDevelopmentSupport,
+  adminSupportTitle: propAdminSupportTitle,
+  functionalSupportTitle: propFunctionalSupportTitle,
+  developmentSupportTitle: propDevelopmentSupportTitle,
 }) => {
   // Default data
   const defaultAdminSupport = [
@@ -70,30 +73,31 @@ const BellatrixSupportSection = ({
       "Your business, and how you run it, is very unique. So is your Bellatrix instance and required support. Our consultants are well versed in a multitude of different areas to ensure that regardless of the level of support that you require, we can assist you.",
     description2:
       "Whether you're in need of functional support, administrator support, development support, or all the above, SherpaCare is the answer.",
+    adminSupportTitle: "Admin Support",
+    functionalSupportTitle: "Functional Support",
+    developmentSupportTitle: "Development Support",
     adminSupport: defaultAdminSupport,
     functionalSupport: defaultFunctionalSupport,
     developmentSupport: defaultDevelopmentSupport,
   };
 
   // PRIORITIZE direct props > data prop > default data
+  const resolveArr = (prop, dataVal, def) =>
+    prop && prop.length > 0 ? prop : dataVal && dataVal.length > 0 ? dataVal : def;
+
   const sectionData = {
     title: propTitle || data?.title || defaultData.title,
-    description1:
-      propDescription1 || data?.description1 || defaultData.description1,
-    description2:
-      propDescription2 || data?.description2 || defaultData.description2,
-    adminSupport:
-      propAdminSupport && propAdminSupport.length > 0
-        ? propAdminSupport
-        : data?.adminSupport || defaultData.adminSupport,
-    functionalSupport:
-      propFunctionalSupport && propFunctionalSupport.length > 0
-        ? propFunctionalSupport
-        : data?.functionalSupport || defaultData.functionalSupport,
-    developmentSupport:
-      propDevelopmentSupport && propDevelopmentSupport.length > 0
-        ? propDevelopmentSupport
-        : data?.developmentSupport || defaultData.developmentSupport,
+    description1: propDescription1 || data?.description1 || defaultData.description1,
+    description2: propDescription2 || data?.description2 || defaultData.description2,
+    adminSupportTitle:
+      propAdminSupportTitle || data?.adminSupportTitle || defaultData.adminSupportTitle,
+    functionalSupportTitle:
+      propFunctionalSupportTitle || data?.functionalSupportTitle || defaultData.functionalSupportTitle,
+    developmentSupportTitle:
+      propDevelopmentSupportTitle || data?.developmentSupportTitle || defaultData.developmentSupportTitle,
+    adminSupport: resolveArr(propAdminSupport, data?.adminSupport, defaultData.adminSupport),
+    functionalSupport: resolveArr(propFunctionalSupport, data?.functionalSupport, defaultData.functionalSupport),
+    developmentSupport: resolveArr(propDevelopmentSupport, data?.developmentSupport, defaultData.developmentSupport),
   };
 
   return (
@@ -162,15 +166,15 @@ const BellatrixSupportSection = ({
 
           <div style={styles.cardsContainer}>
             <SupportCard
-              title="Admin Support"
+              title={sectionData.adminSupportTitle}
               items={sectionData.adminSupport}
             />
             <SupportCard
-              title="Functional Support"
+              title={sectionData.functionalSupportTitle}
               items={sectionData.functionalSupport}
             />
             <SupportCard
-              title="Development Support"
+              title={sectionData.developmentSupportTitle}
               items={sectionData.developmentSupport}
             />
           </div>

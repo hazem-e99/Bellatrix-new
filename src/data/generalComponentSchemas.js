@@ -8204,17 +8204,35 @@ generalComponentSchemas.SupportBellatrixSection = {
         formField: "textarea",
         placeholder: "Whether you're in need of functional support…",
       },
+      adminSupportTitle: {
+        type: "string",
+        label: "Admin Card Title",
+        formField: "text",
+        placeholder: "Admin Support",
+      },
       adminSupport: {
         type: "array",
         label: "Admin Support Items",
         formField: "array",
         items: { type: "string", label: "Item", formField: "text" },
       },
+      functionalSupportTitle: {
+        type: "string",
+        label: "Functional Card Title",
+        formField: "text",
+        placeholder: "Functional Support",
+      },
       functionalSupport: {
         type: "array",
         label: "Functional Support Items",
         formField: "array",
         items: { type: "string", label: "Item", formField: "text" },
+      },
+      developmentSupportTitle: {
+        type: "string",
+        label: "Development Card Title",
+        formField: "text",
+        placeholder: "Development Support",
       },
       developmentSupport: {
         type: "array",
@@ -8230,6 +8248,9 @@ generalComponentSchemas.SupportBellatrixSection = {
       "Your business, and how you run it, is very unique. So is your Bellatrix instance and required support. Our consultants are well versed in a multitude of different areas to ensure that regardless of the level of support that you require, we can assist you.",
     description2:
       "Whether you're in need of functional support, administrator support, development support, or all the above, SherpaCare is the answer.",
+    adminSupportTitle: "Admin Support",
+    functionalSupportTitle: "Functional Support",
+    developmentSupportTitle: "Development Support",
     adminSupport: [
       "Ongoing Bellatrix administration",
       "Maintain secure access",
