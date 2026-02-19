@@ -82,8 +82,14 @@ const BellatrixSupportSection = ({
   };
 
   // PRIORITIZE direct props > data prop > default data
-  const resolveArr = (prop, dataVal, def) =>
-    prop && prop.length > 0 ? prop : dataVal && dataVal.length > 0 ? dataVal : def;
+  const resolveArr = (prop, dataVal, def) => {
+    if (prop && prop.length > 0) return prop;
+    if (Array.isArray(dataVal) && dataVal.length > 0)
+      return dataVal.map((i) =>
+        typeof i === "string" ? i : i.text || i.label || ""
+      ).filter(Boolean);
+    return def;
+  };
 
   const sectionData = {
     title: propTitle || data?.title || defaultData.title,
@@ -92,12 +98,28 @@ const BellatrixSupportSection = ({
     adminSupportTitle:
       propAdminSupportTitle || data?.adminSupportTitle || defaultData.adminSupportTitle,
     functionalSupportTitle:
-      propFunctionalSupportTitle || data?.functionalSupportTitle || defaultData.functionalSupportTitle,
+      propFunctionalSupportTitle ||
+      data?.functionalSupportTitle ||
+      defaultData.functionalSupportTitle,
     developmentSupportTitle:
-      propDevelopmentSupportTitle || data?.developmentSupportTitle || defaultData.developmentSupportTitle,
-    adminSupport: resolveArr(propAdminSupport, data?.adminSupport, defaultData.adminSupport),
-    functionalSupport: resolveArr(propFunctionalSupport, data?.functionalSupport, defaultData.functionalSupport),
-    developmentSupport: resolveArr(propDevelopmentSupport, data?.developmentSupport, defaultData.developmentSupport),
+      propDevelopmentSupportTitle ||
+      data?.developmentSupportTitle ||
+      defaultData.developmentSupportTitle,
+    adminSupport: resolveArr(
+      propAdminSupport,
+      data?.adminSupport,
+      defaultData.adminSupport
+    ),
+    functionalSupport: resolveArr(
+      propFunctionalSupport,
+      data?.functionalSupport,
+      defaultData.functionalSupport
+    ),
+    developmentSupport: resolveArr(
+      propDevelopmentSupport,
+      data?.developmentSupport,
+      defaultData.developmentSupport
+    ),
   };
 
   return (

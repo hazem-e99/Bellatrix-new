@@ -437,6 +437,7 @@ const EditPageModal = ({ isOpen, onClose, page, onSave, showToast }) => {
             key={componentsKey}
             pageId={page.id}
             pageName={formData.name}
+            pageSlug={page.slug || formData.slug}
             onClose={handleBackToPage}
             onSave={handleComponentsSave}
             showToast={showToast}

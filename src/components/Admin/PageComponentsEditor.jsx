@@ -63,12 +63,21 @@ const PageComponentsEditor = ({
 
   pageName,
 
+  pageSlug,
+
   onClose,
 
   onSave,
 
   showToast,
 }) => {
+  // Helper: notify any usePageData hooks listening on the public site
+  const notifyPageUpdated = () => {
+    if (!pageSlug) return;
+    window.dispatchEvent(
+      new CustomEvent("pageDataUpdated", { detail: { slug: pageSlug } })
+    );
+  };
   const [components, setComponents] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -761,6 +770,8 @@ const PageComponentsEditor = ({
 
       // Bust image cache after component update
       updateMediaVersion();
+      // Notify public-site pages to refetch
+      notifyPageUpdated();
 
       showToast("Component updated successfully", "success");
     } catch (error) {
