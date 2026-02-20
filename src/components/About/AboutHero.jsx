@@ -71,16 +71,21 @@ const AboutHero = ({
 
   return (
     <section ref={sectionRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Background: solid gradient shown immediately, video fades in once loaded */}
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,#1a0a1e_0%,#0f172a_50%,#0c2340_100%)]" />
+      {/* Background: this image shows INSTANTLY while the video is still loading */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/about-hero-poster.jpg')" }}
+      />
 
-      {/* Video loads after first paint so content appears instantly */}
+      {/* Video loads after first paint — fades over the poster image once ready */}
       {videoReady && (
         <video
           autoPlay
           muted
           loop
           playsInline
+          preload="none"
+          poster="/images/about-hero-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
           onCanPlay={(e) => { e.currentTarget.style.opacity = "1"; }}
           style={{ willChange: "opacity" }}
