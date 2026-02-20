@@ -10,25 +10,38 @@ const PrePackagedSection = ({
   items: propItems,
   packages: propPackages,
 }) => {
-  // Default data
-  const defaultData = {
-    title: "Pre-Packaged, Yet Flexible",
-    description:
-      "By leveraging our 18 years of experience, we've come up with the perfect package that allows you to rely on our expertise to schedule the required resources while keeping you in control over how the resources are spent, and for what.",
-    packages: [],
+  // Default data from schema
+  const schemaDefault = {
+    title: "Pre-Packaged Support Solutions",
+    subtitle: "",
+    description: "Choose from our pre-packaged support options designed for businesses of all sizes",
+    packages: [
+      {
+        name: "Basic Support",
+        description: "Essential support for small businesses",
+        features: ["Email support", "Business hours coverage", "Monthly check-ins"],
+        price: "$999/month"
+      },
+      {
+        name: "Premium Support",
+        description: "Comprehensive support for growing businesses",
+        features: ["24/7 support", "Dedicated account manager", "Priority response", "Quarterly reviews"],
+        price: "$2,499/month"
+      }
+    ]
   };
 
-  // PRIORITIZE direct props > data prop > default data
+  // Use direct props > data > schema default
   const sectionData = {
-    title: propTitle || data?.title || defaultData.title,
-    subtitle: propSubtitle || data?.subtitle || "",
-    description: propDescription || data?.description || defaultData.description,
+    title: propTitle || data?.title || schemaDefault.title,
+    subtitle: propSubtitle || data?.subtitle || schemaDefault.subtitle,
+    description: propDescription || data?.description || schemaDefault.description,
     packages:
       propItems ||
       propPackages ||
       data?.items ||
       data?.packages ||
-      defaultData.packages,
+      schemaDefault.packages,
   };
 
   return (
