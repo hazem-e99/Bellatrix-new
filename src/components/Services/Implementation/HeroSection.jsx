@@ -1,6 +1,7 @@
 // components/Implementation/HeroSection.jsx
 
 import React, { useState, useEffect, useRef } from "react";
+import { loadImplementationData } from "../../../data/implementationDataLoader";
 
 import SEO from "../../SEO";
 
@@ -50,34 +51,19 @@ const HeroSection = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/data/Implementation.json");
-
-        const jsonData = await response.json();
-
+        const jsonData = await loadImplementationData();
         setDefaultData(jsonData.heroSection);
-      } catch (error) {
-        console.error("Failed to load Implementation data:", error);
-
-        // Fallback data
-
+      } catch {
         setDefaultData({
           backgroundVideo: "/Videos/HomeHeroSectionV.mp4",
-
           titleParts: ["Where", "Vision", "Meets", "Reality"],
-
-          description:
-            "We don't just implement solutions—we craft digital experiences that transform the way you do business",
-
-          ctaButton: {
-            text: "Start Implementation",
-
-            icon: "M13 7l5 5m0 0l-5 5m5-5H6",
-
-            variant: "primary",
-          },
+          description: "We don't just implement solutions—we transform the way you do business",
+          ctaButton: { text: "Start Implementation", icon: "M13 7l5 5m0 0l-5 5m5-5H6", variant: "primary" },
         });
       }
     };
+    fetchData();
+  }, []);
 
     fetchData();
   }, []);

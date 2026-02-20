@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import SEO from "../../SEO";
 import CTAButton from "../../CTAButton";
+import { loadImplementationData } from "../../../data/implementationDataLoader";
 
 const PricingSection = (props) => {
   const [defaultData, setDefaultData] = useState(null);
@@ -18,21 +19,16 @@ const PricingSection = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/data/Implementation.json");
-        const jsonData = await response.json();
+        const jsonData = await loadImplementationData();
         setDefaultData(jsonData.pricingSection);
-      } catch (error) {
-        console.error("Failed to load Implementation data:", error);
-        // Fallback data
+      } catch {
         setDefaultData({
           title: "Implementation Pricing",
-          subtitle:
-            "Choose the perfect implementation plan that fits your business needs and budget",
+          subtitle: "Choose the perfect implementation plan that fits your business needs and budget",
           plans: [],
           additionalInfo: {
             note: "All plans include free consultation and project scoping",
-            contactText:
-              "Need a custom solution? Contact our team for personalized pricing",
+            contactText: "Need a custom solution? Contact our team for personalized pricing",
           },
         });
       }

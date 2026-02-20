@@ -49,9 +49,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
         "Enhance productivity with our tailored implementation and consulting services.",
 
-      video:
-
-        "https://assets.mixkit.co/videos/preview/mixkit-team-meeting-in-a-modern-office-space-12346-large.mp4",
+      video: "/Videos/HomeHeroSectionV.mp4",
 
     },
 
@@ -63,9 +61,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
       description: "Leverage real-time analytics to transform your operations.",
 
-      video:
-
-        "https://assets.mixkit.co/videos/preview/mixkit-woman-analyzing-data-on-her-laptop-12347-large.mp4",
+      video: "/Videos/HomeHeroSectionV.mp4",
 
     },
 

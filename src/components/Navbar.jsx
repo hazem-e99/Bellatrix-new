@@ -23,6 +23,7 @@ import { useTheme } from "../context/ThemeContext";
 import { setupSectionThemeDetection } from "../utils/sectionThemeDetection";
 
 import { getApiBaseUrlWithApi } from "../config/api.js";
+import { cachedFetch } from "../lib/apiCache.js";
 
 const Navbar = () => {
   // Dynamic navbar categories
@@ -31,23 +32,23 @@ const Navbar = () => {
 
   const [loadingCategories, setLoadingCategories] = useState(true);
 
-  // Fetch navbar categories from API
-
+  // Fetch navbar categories from API — cached for 5 minutes so navigating
+  // between pages does not trigger a new network request every time.
   useEffect(() => {
     const fetchCategories = async () => {
       setLoadingCategories(true);
-
       try {
-        const res = await fetch(`${getApiBaseUrlWithApi()}/Categories/navbar`);
-
-        const data = await res.json();
-
-        console.log(data);
+        const data = await cachedFetch(
+          'navbar:categories',
+          async () => {
+            const res = await fetch(`${getApiBaseUrlWithApi()}/Categories/navbar`);
+            return res.json();
+          },
+          5 * 60 * 1000 // 5 minutes
+        );
 
         // Accepts: { data: [...] }, { result: [...] }, or array
-
         let cats = [];
-
         if (Array.isArray(data)) {
           cats = data;
         } else if (Array.isArray(data.data)) {

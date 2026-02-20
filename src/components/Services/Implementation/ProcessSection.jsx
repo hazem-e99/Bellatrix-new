@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import SEO from "../../SEO";
 import CTAButton from "../../CTAButton";
+import { loadImplementationData } from "../../../data/implementationDataLoader";
 
 const ProcessSection = (props) => {
   const [defaultData, setDefaultData] = useState(null);
@@ -19,12 +20,9 @@ const ProcessSection = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/data/Implementation.json");
-        const jsonData = await response.json();
+        const jsonData = await loadImplementationData();
         setDefaultData(jsonData.processSection);
-      } catch (error) {
-        console.error("Failed to load Implementation data:", error);
-        // Fallback data
+      } catch {
         setDefaultData({
           title: "Our Implementation Process",
           subtitle: "A proven methodology for seamless business transformation",

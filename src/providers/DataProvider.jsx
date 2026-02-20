@@ -13,11 +13,12 @@ const ReactQueryDevtools = React.lazy(() =>
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 0, // Make data stale immediately for testing (reduced from 5 minutes)
-      cacheTime: 10 * 60 * 1000, // 10 minutes
-      refetchOnWindowFocus: true,
-      retry: 2,
-      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+      staleTime: 5 * 60 * 1000,   // 5 minutes — don't refetch data that was just fetched
+      gcTime: 15 * 60 * 1000,      // 15 minutes in cache after unmount (was cacheTime)
+      refetchOnWindowFocus: false,  // don't refetch every time user clicks back to the tab
+      refetchOnReconnect: true,     // do refetch when internet reconnects
+      retry: 1,                     // one retry is enough; 2 doubles failure wait time
+      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 10000),
     },
   },
 });

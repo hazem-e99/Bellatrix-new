@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 
 import SEO from "../../SEO";
+import { loadImplementationData } from "../../../data/implementationDataLoader";
 
 const WhyChooseSection = (props) => {
   const [defaultData, setDefaultData] = useState(null);
@@ -19,29 +20,17 @@ const WhyChooseSection = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/data/Implementation.json");
-
-        const jsonData = await response.json();
-
+        const jsonData = await loadImplementationData();
         setDefaultData(jsonData.whyChooseSection);
-      } catch (error) {
-        console.error("Failed to load Implementation data:", error);
-
-        // Fallback data
-
+      } catch {
         setDefaultData({
           title: "Why Choose Bellatrix for Implementation?",
-
-          subtitle:
-            "We bring years of expertise, proven methodologies, and cutting-edge solutions to ensure your implementation success",
-
+          subtitle: "We bring years of expertise, proven methodologies, and cutting-edge solutions to ensure your implementation success",
           image: "/Videos/implementation/whyChoese.jpg",
-
           features: [],
         });
       }
     };
-
     fetchData();
   }, []);
 
