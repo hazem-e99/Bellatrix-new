@@ -38,10 +38,6 @@ export default defineConfig({
       },
       output: {
         manualChunks: (id) => {
-          // React core
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'react-core';
-          }
           // React Router
           if (id.includes('react-router') || id.includes('@remix-run')) {
             return 'router';
