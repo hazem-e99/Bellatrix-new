@@ -139,7 +139,7 @@ const HeroSection = (props) => {
         ogImage="/Videos/HomeHeroSectionV.mp4"
       />
 
-      <header className="min-h-screen relative overflow-hidden pt-20 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
+      <header className="min-h-screen relative overflow-hidden pt-20 bg-gradient-to-br from-[var(--color-brand-midnight)] via-black to-[var(--color-primary)]">
         {/* Background Video or Image */}
 
         {displayData.backgroundVideo &&

@@ -221,7 +221,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
   return (
 
-    <main className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
+    <main className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-br from-[var(--color-brand-midnight)] via-black to-[var(--color-primary)]">
 
       <SEO
 

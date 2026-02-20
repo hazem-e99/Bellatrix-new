@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const TrainingHeroSection = ({ heroContent, renderIcon }) => {
   const [videoReady, setVideoReady] = useState(false);
   return (
-    <div className="min-h-screen relative overflow-hidden pt-20 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
+    <div className="min-h-screen relative overflow-hidden pt-20 bg-gradient-to-br from-[var(--color-brand-midnight)] via-black to-[var(--color-primary)]">
       {/* Background Video with Enhanced Effects */}
       <div
         className="absolute inset-0 w-full h-full"

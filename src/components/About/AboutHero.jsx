@@ -63,7 +63,7 @@ const AboutHero = ({
 
 
   return (
-    <section ref={sectionRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-br from-[var(--color-primary-dark)] via-gray-900 to-[var(--color-primary)]">
+    <section ref={sectionRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-br from-[var(--color-brand-midnight)] via-black to-[var(--color-primary)]">
       {/* Background Video — fades in once ready so the gradient shows instantly */}
       <video
         autoPlay
