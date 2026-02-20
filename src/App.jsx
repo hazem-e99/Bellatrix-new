@@ -41,7 +41,7 @@ function App() {
             {/* Public Routes */}
             <Route path="/" element={<Layout />}>
               <Route index element={<Navigate to="/home" replace />} />
-              <Route path="Implementation" element={<MainServices />} />
+              <Route path="ImplementationStatic" element={<MainServices />} />
               <Route path="TrainingStatic" element={<MainServices />} />
               <Route path="netsuite-consulting" element={<MainServices />} />
               <Route path="customization" element={<MainServices />} />
@@ -53,7 +53,7 @@ function App() {
               {/* <Route path="Payroll" element={<SolutionMain />} /> */}
               <Route path="/PayrollStatic" element={<PayrollPage />} />
               <Route
-                path="/industries/manufacturing"
+                path="/industries/manufacturingStatic"
                 element={<Manufacturing />}
               />
               <Route path="/industries/retail" element={<Retail />} />
