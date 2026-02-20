@@ -6377,7 +6377,7 @@ export const generalComponentSchemas = {
           label: "Hero Description",
 
           placeholder:
-            "We don't just implement solutions—we craft digital experiences that transform the way you do business",
+            "We don't just implement solutions—we transform the way you do business",
 
           required: true,
 
@@ -6444,7 +6444,7 @@ export const generalComponentSchemas = {
       titleParts: ["Where", "Vision", "Meets", "Reality"],
 
       description:
-        "We don't just implement solutions—we craft digital experiences that transform the way you do business",
+        "We don't just implement solutions—we transform the way you do business",
 
       backgroundVideo: "/Videos/HomeHeroSectionV.mp4",
 

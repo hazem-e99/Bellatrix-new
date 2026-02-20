@@ -237,24 +237,7 @@ const HeroSection = (props) => {
 
             <div className="text-center mb-12">
               <p className="text-lg md:text-xl lg:text-2xl text-gray-200 leading-relaxed max-w-4xl mx-auto animate-fade-in">
-                {displayData.description &&
-                displayData.description.includes("digital experiences") ? (
-                  <>
-                    {displayData.description.split("digital experiences")[0]}
-
-                    <span className="relative inline-block">
-                      <span className="bg-gradient-to-r from-white to-white bg-clip-text text-transparent font-semibold">
-                        digital experiences
-                      </span>
-
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-white to-white animate-underline-expand"></span>
-                    </span>
-
-                    {displayData.description.split("digital experiences")[1]}
-                  </>
-                ) : (
-                  displayData.description
-                )}
+                {displayData.description}
               </p>
             </div>
 
