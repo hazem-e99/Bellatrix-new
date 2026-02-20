@@ -65,9 +65,6 @@ const HeroSection = (props) => {
     fetchData();
   }, []);
 
-    fetchData();
-  }, []);
-
   // PRIORITIZE direct props > data prop > defaultData
   const rawData = {
     backgroundVideo:
