@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 
 const AboutHero = ({ 
@@ -14,7 +14,6 @@ const AboutHero = ({
   stats: propStats,
 }) => {
   const sectionRef = useRef(null);
-  const [videoReady, setVideoReady] = useState(false);
 
   // Scroll to next section function
   const scrollToNextSection = () => {
@@ -63,16 +62,14 @@ const AboutHero = ({
 
 
   return (
-    <section ref={sectionRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-br from-[var(--color-brand-midnight)] via-black to-[var(--color-primary)]">
-      {/* Background Video — fades in once ready so the gradient shows instantly */}
+    <section ref={sectionRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20">
+      {/* Background Video */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        onCanPlay={() => setVideoReady(true)}
-        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-        style={{ opacity: videoReady ? 1 : 0 }}
+        className="absolute inset-0 w-full h-full object-cover"
       >
         <source
           src={heroData.backgroundVideo || "/Videos/about-hero.mp4"}
