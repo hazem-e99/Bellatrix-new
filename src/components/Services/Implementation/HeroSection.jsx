@@ -13,6 +13,7 @@ import CTAButton from "../../CTAButton";
 
 const HeroSection = (props) => {
   const [defaultData, setDefaultData] = useState(null);
+  const [videoReady, setVideoReady] = useState(false);
 
   // Extract direct props from Page Builder
   const {
@@ -138,7 +139,7 @@ const HeroSection = (props) => {
         ogImage="/Videos/HomeHeroSectionV.mp4"
       />
 
-      <header className="min-h-screen relative overflow-hidden pt-20">
+      <header className="min-h-screen relative overflow-hidden pt-20 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
         {/* Background Video or Image */}
 
         {displayData.backgroundVideo &&
@@ -149,7 +150,9 @@ const HeroSection = (props) => {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            onCanPlay={() => setVideoReady(true)}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            style={{ opacity: videoReady ? 1 : 0 }}
           >
             <source src={displayData.backgroundVideo} type="video/mp4" />
             Your browser does not support the video tag.

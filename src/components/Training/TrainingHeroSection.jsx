@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TrainingHeroSection = ({ heroContent, renderIcon }) => {
+  const [videoReady, setVideoReady] = useState(false);
   return (
-    <div className="min-h-screen relative overflow-hidden pt-20">
+    <div className="min-h-screen relative overflow-hidden pt-20 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
       {/* Background Video with Enhanced Effects */}
       <div
         className="absolute inset-0 w-full h-full"
@@ -22,8 +23,11 @@ const TrainingHeroSection = ({ heroContent, renderIcon }) => {
           onContextMenu={(e) => e.preventDefault()}
           onDragStart={(e) => e.preventDefault()}
           onDrop={(e) => e.preventDefault()}
+          onCanPlay={() => setVideoReady(true)}
           className="absolute inset-0 w-full h-full object-cover transform scale-105 hover:scale-110 transition-transform duration-[8s] ease-in-out pointer-events-none"
           style={{
+            opacity: videoReady ? 1 : 0,
+            transition: "opacity 1s ease",
             filter:
               "brightness(0.7) contrast(1.2) saturate(1.3) hue-rotate(10deg)",
             animation: "video-enhance 20s ease-in-out infinite",

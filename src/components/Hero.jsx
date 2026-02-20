@@ -15,6 +15,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [isPlaying, setIsPlaying] = useState(true);
+  const [videoReady, setVideoReady] = useState(false);
 
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
 
@@ -220,7 +221,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
   return (
 
-    <main className="min-h-[100dvh] relative overflow-hidden">
+    <main className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
 
       <SEO
 
@@ -258,7 +259,11 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
         preload="auto"
 
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+
+        style={{ opacity: videoReady ? 1 : 0 }}
+
+        onCanPlay={() => setVideoReady(true)}
 
         onLoadedData={() => {
 

@@ -75,17 +75,21 @@ const Implementation = ({ data: propsData = null }) => {
     },
   ];
 
+  const [videoReady, setVideoReady] = useState(false);
+
   return (
     <>
       {/* Hero Section */}
-      <div className="min-h-screen relative overflow-hidden pt-20">
+      <div className="min-h-screen relative overflow-hidden pt-20 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900">
         {/* Background Video */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          onCanPlay={() => setVideoReady(true)}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          style={{ opacity: videoReady ? 1 : 0 }}
         >
           <source src={data.heroSection.backgroundVideo} type="video/mp4" />
           Your browser does not support the video tag.
