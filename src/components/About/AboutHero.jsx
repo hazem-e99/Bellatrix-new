@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const AboutHero = ({ 
@@ -14,8 +14,29 @@ const AboutHero = ({
   stats: propStats,
 }) => {
   const sectionRef = useRef(null);
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  // Scroll to next section function
+  // Play/pause with autoplay-restriction handling (mirrors Home Hero pattern)
+  useEffect(() => {
+    const playVideo = async () => {
+      if (videoRef.current && isPlaying) {
+        try {
+          await videoRef.current.play();
+        } catch (error) {
+          if (error.name === "AbortError" || error.name === "NotAllowedError") {
+            setIsPlaying(false);
+          } else {
+            console.warn("About Hero video playback error:", error);
+          }
+        }
+      } else if (videoRef.current && !isPlaying) {
+        videoRef.current.pause();
+      }
+    };
+    playVideo();
+  }, [isPlaying]);
   const scrollToNextSection = () => {
     if (sectionRef.current) {
       // Find the next sibling element (next section)
@@ -62,14 +83,29 @@ const AboutHero = ({
 
 
   return (
-    <section ref={sectionRef} className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Video */}
+    <section
+      ref={sectionRef}
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-br from-[var(--color-brand-midnight,#0a0a2e)] via-black to-[var(--color-primary,#C41E3A)]"
+    >
+      {/* Background Video — fades in only after it's ready (mirrors Home Hero) */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+        style={{ opacity: videoReady ? 1 : 0 }}
+        onCanPlay={() => setVideoReady(true)}
+        onLoadedData={() => {
+          if (videoRef.current && isPlaying) {
+            videoRef.current.play().catch(() => {
+              console.log("About Hero video autoplay blocked (normal)");
+            });
+          }
+        }}
+        onError={(e) => console.log("About Hero video error:", e.target.error)}
       >
         <source
           src={heroData.backgroundVideo || "/Videos/about-hero.mp4"}

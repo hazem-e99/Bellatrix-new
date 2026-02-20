@@ -1,6 +1,6 @@
 // components/Implementation/HeroSection.jsx
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import SEO from "../../SEO";
 
@@ -13,6 +13,29 @@ import CTAButton from "../../CTAButton";
 
 const HeroSection = (props) => {
   const [defaultData, setDefaultData] = useState(null);
+  const videoRef = useRef(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  // Play/pause with autoplay-restriction handling (mirrors Home Hero pattern)
+  useEffect(() => {
+    const playVideo = async () => {
+      if (videoRef.current && isPlaying) {
+        try {
+          await videoRef.current.play();
+        } catch (error) {
+          if (error.name === "AbortError" || error.name === "NotAllowedError") {
+            setIsPlaying(false);
+          } else {
+            console.warn("Implementation Hero video playback error:", error);
+          }
+        }
+      } else if (videoRef.current && !isPlaying) {
+        videoRef.current.pause();
+      }
+    };
+    playVideo();
+  }, [isPlaying]);
 
   // Extract direct props from Page Builder
   const {
@@ -138,21 +161,31 @@ const HeroSection = (props) => {
         ogImage="/Videos/HomeHeroSectionV.mp4"
       />
 
-      <header className="min-h-screen relative overflow-hidden pt-20">
-        {/* Background Video or Image */}
-
+      <header className="min-h-screen relative overflow-hidden pt-20 bg-gradient-to-br from-[var(--color-brand-midnight,#0a0a2e)] via-black to-[var(--color-primary,#C41E3A)]">
+        {/* Background Video — fades in only after it's ready (mirrors Home Hero) */}
         {displayData.backgroundVideo &&
         (displayData.backgroundVideo.includes(".mp4") ||
           displayData.backgroundVideo.includes(".webm")) ? (
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            style={{ opacity: videoReady ? 1 : 0 }}
+            onCanPlay={() => setVideoReady(true)}
+            onLoadedData={() => {
+              if (videoRef.current && isPlaying) {
+                videoRef.current.play().catch(() => {
+                  console.log("Implementation Hero video autoplay blocked (normal)");
+                });
+              }
+            }}
+            onError={(e) => console.log("Implementation Hero video error:", e.target.error)}
           >
             <source src={displayData.backgroundVideo} type="video/mp4" />
-            Your browser does not support the video tag.
           </video>
         ) : (
           <div

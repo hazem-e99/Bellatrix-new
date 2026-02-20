@@ -221,7 +221,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
   return (
 
-    <main className="min-h-[100dvh] relative overflow-hidden bg-gradient-to-br from-[var(--color-brand-midnight)] via-black to-[var(--color-primary)]">
+    <main className="min-h-[100dvh] relative overflow-hidden">
 
       <SEO
 
@@ -259,9 +259,7 @@ const Hero = ({ slides: propsSlides = [], stats: propsStats = [], data }) => {
 
         preload="auto"
 
-        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-
-        style={{ opacity: videoReady ? 1 : 0 }}
+        className="absolute inset-0 w-full h-full object-cover"
 
         onCanPlay={() => setVideoReady(true)}
 
