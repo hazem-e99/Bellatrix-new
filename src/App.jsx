@@ -1,32 +1,45 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Layout from "./components/Layout";
-import MainServices from "./components/Services/MainServices";
-import Support from "./components/Support/Support";
-import SolutionMain from "./components/solution/SolutionMain";
-import Manufacturing from "./pages/Industries/Manufacturing";
-import Retail from "./pages/Industries/Retail";
-import PayrollPage from "./pages/Payroll";
-import AdminDashboard from "./components/Admin/AdminDashboard";
-import AdminLayout from "./components/Admin/AdminLayout";
-import ModernAdminLayout from "./components/Admin/ModernAdminLayout";
-import ModernDashboard from "./components/Admin/ModernDashboard";
-import PagesManagement from "./components/Admin/PagesManagement/index";
-import CategoriesManagement from "./components/Admin/CategoriesManagement";
-import EnhancedPageBuilder from "./components/Admin/EnhancedPageBuilder";
-import TemplatesManagement from "./components/Admin/TemplatesManagement";
-import SettingsManagement from "./components/Admin/SettingsManagement";
-import MessagesPage from "./pages/Admin/MessagesPage";
-import ComponentsShowcase from "./pages/Admin/ComponentsShowcase";
-import DynamicPageRenderer from "./components/DynamicPageRenderer/index";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./hooks/useAuth.jsx";
 import { CTAModalProvider } from "./contexts/CTAModalContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AuthRoutes from "./routes/AuthRoutes";
-import AuthDashboard from "./components/Admin/AuthDashboard";
-import ChangePassword from "./pages/auth/ChangePassword";
 import { toastConfig } from "./config/toast";
+
+// --- Lazy-loaded public pages ---
+const MainServices      = lazy(() => import("./components/Services/MainServices"));
+const Support           = lazy(() => import("./components/Support/Support"));
+const SolutionMain      = lazy(() => import("./components/solution/SolutionMain"));
+const Manufacturing     = lazy(() => import("./pages/Industries/Manufacturing"));
+const Retail            = lazy(() => import("./pages/Industries/Retail"));
+const PayrollPage       = lazy(() => import("./pages/Payroll"));
+const DynamicPageRenderer = lazy(() => import("./components/DynamicPageRenderer/index"));
+const AuthRoutes        = lazy(() => import("./routes/AuthRoutes"));
+
+// --- Lazy-loaded admin pages ---
+const ModernAdminLayout   = lazy(() => import("./components/Admin/ModernAdminLayout"));
+const AdminLayout         = lazy(() => import("./components/Admin/AdminLayout"));
+const ModernDashboard     = lazy(() => import("./components/Admin/ModernDashboard"));
+const AuthDashboard       = lazy(() => import("./components/Admin/AuthDashboard"));
+const AdminDashboard      = lazy(() => import("./components/Admin/AdminDashboard"));
+const PagesManagement     = lazy(() => import("./components/Admin/PagesManagement/index"));
+const CategoriesManagement = lazy(() => import("./components/Admin/CategoriesManagement"));
+const EnhancedPageBuilder  = lazy(() => import("./components/Admin/EnhancedPageBuilder"));
+const TemplatesManagement  = lazy(() => import("./components/Admin/TemplatesManagement"));
+const SettingsManagement   = lazy(() => import("./components/Admin/SettingsManagement"));
+const MessagesPage         = lazy(() => import("./pages/Admin/MessagesPage"));
+const ComponentsShowcase   = lazy(() => import("./pages/Admin/ComponentsShowcase"));
+const ChangePassword       = lazy(() => import("./pages/auth/ChangePassword"));
+
+// Full-page loading fallback
+const PageFallback = () => (
+  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
+    <div style={{ width: 40, height: 40, border: "4px solid #e5e7eb", borderTopColor: "#C41E3A", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+    <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+  </div>
+);
 
 function App() {
   return (
@@ -34,7 +47,8 @@ function App() {
       <AuthProvider>
         <CTAModalProvider>
           <Toaster {...toastConfig} />
-          <Routes>
+          <Suspense fallback={<PageFallback />}>
+            <Routes>
             {/* Authentication Routes */}
             <Route path="/auth/*" element={<AuthRoutes />} />
 
@@ -118,6 +132,7 @@ function App() {
               <Route path="settings" element={<AdminDashboard />} />
             </Route>
           </Routes>
+          </Suspense>
         </CTAModalProvider>
       </AuthProvider>
     </ThemeProvider>

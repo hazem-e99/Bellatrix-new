@@ -32,6 +32,8 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "framer-motion": "^12.18.1",
+    "imagemin": "^9.0.1",
+    "imagemin-webp": "^8.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.62.0",

@@ -208,6 +208,8 @@ const DedicatedTeamSection = ({
               <img
                 src={addMediaVersionToBust(sectionData.image, cacheVersion)}
                 alt="ERP Implementation Team"
+                loading="lazy"
+                decoding="async"
                 style={{
                   width: "100%",
                   height: "auto",

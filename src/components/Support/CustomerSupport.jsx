@@ -120,6 +120,8 @@ const CustomerSupport = ({
                     alt="Bellatrix Customer Support"
                     src={addMediaVersionToBust(sectionData.image, cacheVersion)}
                     className="w-full h-64 lg:h-80 object-cover rounded-xl shadow-lg brightness-110 contrast-110 saturate-110 group-hover:scale-105 transition-all duration-500"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-4 rounded-xl bg-gradient-to-t from-transparent via-transparent to-white/10 pointer-events-none"></div>
                 </div>

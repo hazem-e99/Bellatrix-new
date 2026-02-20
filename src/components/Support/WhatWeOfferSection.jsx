@@ -98,6 +98,8 @@ const WhatWeOfferSection = ({
                     )}
                     alt={card.title || `Card ${index + 1}`}
                     className="w-32 h-32 object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-4">

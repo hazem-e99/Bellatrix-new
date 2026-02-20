@@ -54,6 +54,8 @@ const SupportSecondSec = ({
               src={addMediaVersionToBust(sectionData.image, cacheVersion)}
               alt="Bellatrix Support Services - Professional ERP implementation and customization expertise"
               className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
