@@ -2166,12 +2166,17 @@ export const normalizeProps = (componentType, contentJson) => {
     },
 
     SupportPrePackagedSection: (data) => {
+      const packages = data.packages || data.items || [];
       return {
         title: data.title || "",
         subtitle: data.subtitle || "",
         description: data.description || "",
-        items: data.items || data.packages || [],
-        data: { ...data, items: data.items || data.packages || [] },
+        // Keep `packages` as the canonical key to match the schema field name
+        // so the admin form and the client component both use the same key.
+        packages,
+        // Also expose as `items` for components that reference it that way
+        items: packages,
+        data: { ...data, packages, items: packages },
       };
     },
 

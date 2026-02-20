@@ -19,7 +19,16 @@ import {
   updateJsonFromFormFields,
 } from "../../../utils/jsonFormUtils";
 import { generalComponentSchemas } from "../../../data/generalComponentSchemas";
+import { supportComponentSchemas } from "../../../data/supportComponentSchemas";
+import { aboutComponentSchemas } from "../../../data/aboutComponentSchemas";
 import { normalizeProps } from "../../../utils/normalizeProps";
+
+// Merge all schema registries into one lookup so every component type resolves correctly
+const allComponentSchemas = {
+  ...generalComponentSchemas,
+  ...supportComponentSchemas,
+  ...aboutComponentSchemas,
+};
 
 const EditComponentModal = ({
   isOpen,
@@ -42,7 +51,7 @@ const EditComponentModal = ({
   // Get schema for current component type
   const currentSchema = useMemo(() => {
     const componentType = formData.componentType;
-    return generalComponentSchemas[componentType] || null;
+    return allComponentSchemas[componentType] || null;
   }, [formData.componentType]);
 
   useEffect(() => {
@@ -53,7 +62,7 @@ const EditComponentModal = ({
       // For components with a known schema, normalize the DB data so the form
       // shows the correct fields (e.g. extracts members[0].image → image,
       // maps bulletPoints/members → items, fills in missing defaults).
-      const schema = generalComponentSchemas[componentType];
+      const schema = allComponentSchemas[componentType];
       let normalizedJson = parsedJson;
       if (schema) {
         try {

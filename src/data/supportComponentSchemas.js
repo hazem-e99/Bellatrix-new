@@ -346,6 +346,12 @@ export const supportComponentSchemas = {
                     required: true,
                     formField: "text"
                 },
+                subtitle: {
+                    type: "string",
+                    label: "Subtitle",
+                    placeholder: "An optional subtitle below the title",
+                    formField: "text"
+                },
                 description: {
                     type: "string",
                     label: "Description",
