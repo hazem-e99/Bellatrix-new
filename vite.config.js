@@ -79,10 +79,6 @@ export default defineConfig({
   resolve: {
     dedupe: ['react', 'react-dom', '@dnd-kit/core', '@dnd-kit/sortable', '@dnd-kit/utilities'],
   },
-  // Strip console.* and debugger from production builds only
-  esbuild: {
-    drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
-  },
   server: {
     proxy: {
       '/api': {
