@@ -1,29 +1,21 @@
+import { memo, useMemo } from "react";
 import ComponentNotFound from "./ComponentNotFound";
 import { extractComponentData, buildSafeProps } from "../../utils/componentDataExtractor";
 
-const PageSection = ({ section, index, componentData, isNewFormat = false, isLoading = false }) => {
+// React.memo: when useComponentLoader loads component-3, only component-3's
+// PageSection re-renders. All other sections bail out early (same props).
+const PageSection = memo(({ section, index, componentData, isNewFormat = false }) => {
   const sectionId = isNewFormat ? `component-${index}` : section.uid;
   const themeAttribute = section.theme === 1 ? "light" : "dark";
 
   if (!componentData || !componentData.Component) {
     // Still fetching the JS module — show a neutral skeleton instead of an error
-    if (isLoading) {
-      return (
-        <section
-          key={sectionId}
-          data-theme={themeAttribute}
-          style={{ minHeight: 120, background: "transparent" }}
-          aria-hidden="true"
-        />
-      );
-    }
     return (
-      <section key={sectionId} data-theme={themeAttribute}>
-        <ComponentNotFound
-          componentType={section.componentType}
-          componentId={section.componentId}
-        />
-      </section>
+      <section
+        data-theme={themeAttribute}
+        style={{ minHeight: 120, background: "transparent" }}
+        aria-hidden="true"
+      />
     );
   }
 
@@ -34,7 +26,8 @@ const PageSection = ({ section, index, componentData, isNewFormat = false, isLoa
     const safeProps = buildSafeProps(normalizedProps);
     const propsToPass = {
       ...safeProps,
-      _updatedAt: section.updatedAt || section.updated_at || Date.now(), // Pass timestamp for cache-busting
+      // Use section's own timestamp only — never Date.now() (would change every render)
+      _updatedAt: section.updatedAt || section.updated_at,
       renderIcon: safeProps.renderIcon || (() => null),
       openProgramModal: safeProps.openProgramModal || (() => {}),
       openFeatureModal: safeProps.openFeatureModal || (() => {}),
@@ -42,7 +35,7 @@ const PageSection = ({ section, index, componentData, isNewFormat = false, isLoa
     };
 
     return (
-      <section key={sectionId} data-theme={themeAttribute}>
+      <section data-theme={themeAttribute}>
         <Component {...propsToPass} />
       </section>
     );
@@ -54,11 +47,12 @@ const PageSection = ({ section, index, componentData, isNewFormat = false, isLoa
   };
 
   return (
-    <section key={sectionId} data-theme={themeAttribute}>
+    <section data-theme={themeAttribute}>
       <Component {...transformedProps} />
     </section>
   );
-};
+});
 
+PageSection.displayName = "PageSection";
 export default PageSection;
 

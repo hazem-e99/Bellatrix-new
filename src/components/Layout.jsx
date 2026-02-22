@@ -1,7 +1,10 @@
+import { lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
-import Footer from './Footer';
 import { NotificationContainer } from './NotificationToast';
+
+// Footer is below the fold — lazy load so it doesn't block first paint
+const Footer = lazy(() => import('./Footer'));
 
 const Layout = () => {
   return (
@@ -14,8 +17,10 @@ const Layout = () => {
         <Outlet />
       </main>
       
-      {/* Fixed Footer */}
-      <Footer />
+      {/* Footer — deferred so it doesn't block first paint */}
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       
       {/* Notification System */}
       <NotificationContainer />

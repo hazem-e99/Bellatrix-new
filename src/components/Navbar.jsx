@@ -1,20 +1,27 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 
 import SEO from "./SEO";
 
-import {
-  Bars3Icon,
-  XMarkIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@heroicons/react/24/outline";
+// Lazy-loaded — only needed on first Contact button click
+const LazyModal = lazy(() => import("./Modal"));
+const LazyContactForm = lazy(() => import("./ContactForm"));
 
-// eslint-disable-next-line no-unused-vars
-import { AnimatePresence, motion } from "framer-motion";
-
-import ContactForm from "./ContactForm";
-
-import Modal from "./Modal";
+// Inline SVGs replace @heroicons/react (removes 34 kB gzip from critical-path JS)
+const Bars3 = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="block h-6 w-6">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+  </svg>
+);
+const XMark = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="block h-6 w-6">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+  </svg>
+);
+const ChevronDown = ({ className = "ml-1 h-4 w-4 shrink-0" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+  </svg>
+);
 
 import { Link } from "react-router-dom";
 
@@ -74,6 +81,9 @@ const Navbar = () => {
   const [openSubDropdown, setOpenSubDropdown] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  // Track whether contact modal has been opened at least once so we can keep
+  // LazyModal/LazyContactForm mounted after first open (avoids re-loading chunk)
+  const [hasOpenedContact, setHasOpenedContact] = useState(false);
   const timeoutRef = useRef(null);
   useEffect(() => {
     const handleScroll = () => {
@@ -96,7 +106,7 @@ const Navbar = () => {
     return cleanup;
   }, []);
   // Contact form modal functions
-  const openContactModal = () => setIsContactModalOpen(true);
+  const openContactModal = () => { setHasOpenedContact(true); setIsContactModalOpen(true); };
   const closeContactModal = () => setIsContactModalOpen(false);
 
   // Contact form data
@@ -264,45 +274,23 @@ const Navbar = () => {
             <a href="/" className="flex items-center group">
               <div className="flex items-center justify-center h-20 w-20 md:h-56 md:w-56 mr-2 relative">
                 <div className="absolute top-0 left-0 h-full w-full">
-                  <AnimatePresence mode="wait">
-                    {navbarTheme === "light" ? (
-                      <motion.img
-                        key="logoThree"
-                        src="/images/logoThree.png"
-                        alt="Bellatrix Logo Three"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -16 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="absolute top-1/2 left-1/2 h-12 w-12 md:h-20 md:w-20 object-contain -translate-x-1/2 -translate-y-1/2"
-                        style={{ zIndex: 2 }}
-                      />
-                    ) : scrolled ? (
-                      <motion.img
-                        key="logoTwo"
-                        src="/images/logoTwo.png"
-                        alt="Bellatrix Logo Two"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -16 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="absolute top-1/2 left-1/2 h-20 w-20 md:h-56 md:w-56 object-contain -translate-x-1/2 -translate-y-1/2"
-                        style={{ zIndex: 2 }}
-                      />
-                    ) : (
-                      <motion.img
-                        key="logoOne"
-                        src="/images/logoOne.png"
-                        alt="Bellatrix Logo One"
-                        initial={{ opacity: 0, y: -16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 16 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="absolute top-1/2 left-1/2 h-14 w-14 md:h-36 md:w-36 object-contain -translate-x-1/2 -translate-y-1/2"
-                        style={{ zIndex: 2 }}
-                      />
-                    )}
-                  </AnimatePresence>
+                  <img
+                    src={
+                      navbarTheme === "light"
+                        ? "/images/logoThree.png"
+                        : scrolled
+                        ? "/images/logoTwo.png"
+                        : "/images/logoOne.png"
+                    }
+                    alt="Bellatrix Logo"
+                    className={`absolute top-1/2 left-1/2 object-contain -translate-x-1/2 -translate-y-1/2 transition-all duration-250 ${
+                      navbarTheme === "light"
+                        ? "h-12 w-12 md:h-20 md:w-20"
+                        : scrolled
+                        ? "h-20 w-20 md:h-56 md:w-56"
+                        : "h-14 w-14 md:h-36 md:w-36"
+                    }`}
+                  />
                 </div>
               </div>
             </a>
@@ -376,33 +364,28 @@ const Navbar = () => {
                           {cat.name}
                         </span>
                         {cat.pages && cat.pages.length > 0 && (
-                          <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
+                          <ChevronDown />
                         )}
                       </button>
-                      <AnimatePresence>
-                        {openDropdown === cat.id && cat.pages && cat.pages.length > 0 && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            className="absolute left-0 mt-2 w-56 bg-white/70 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg z-50 py-2"
-                            onMouseEnter={() => handleMenuEnter(cat.id)}
-                            onMouseLeave={handleMenuLeave}
-                          >
-                            {cat.pages
-                              ?.filter((page) => page.isPublished === true)
-                              .map((page) => (
-                                <Link
-                                  key={page.id}
-                                  to={page.slug ? `/${page.slug}` : `/${page.id}`}
-                                  className="block px-5 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-base font-medium"
-                                >
-                                  {page.title}
-                                </Link>
-                              ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                      {openDropdown === cat.id && cat.pages && cat.pages.length > 0 && (
+                        <div
+                          className="absolute left-0 mt-2 w-56 bg-white/70 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg z-50 py-2 animate-fade-slide"
+                          onMouseEnter={() => handleMenuEnter(cat.id)}
+                          onMouseLeave={handleMenuLeave}
+                        >
+                          {cat.pages
+                            ?.filter((page) => page.isPublished === true)
+                            .map((page) => (
+                              <Link
+                                key={page.id}
+                                to={page.slug ? `/${page.slug}` : `/${page.id}`}
+                                className="block px-5 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-base font-medium"
+                              >
+                                {page.title}
+                              </Link>
+                            ))}
+                        </div>
+                      )}
                     </div>
                   );
 
@@ -429,18 +412,14 @@ const Navbar = () => {
                             onClick={() => toggleDropdown("more")}
                           >
                             <span>More</span>
-                            <ChevronDownIcon className="ml-1 h-4 w-4 shrink-0" />
+                            <ChevronDown />
                           </button>
-                          <AnimatePresence>
-                            {openDropdown === "more" && (
-                              <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                className="absolute right-0 mt-2 w-72 bg-white/80 backdrop-blur-xl border border-gray-200 rounded-xl shadow-lg z-50 py-2 overflow-hidden"
-                                onMouseEnter={() => handleMenuEnter("more")}
-                                onMouseLeave={handleMenuLeave}
-                              >
+                          {openDropdown === "more" && (
+                            <div
+                              className="absolute right-0 mt-2 w-72 bg-white/80 backdrop-blur-xl border border-gray-200 rounded-xl shadow-lg z-50 py-2 overflow-hidden animate-fade-slide"
+                              onMouseEnter={() => handleMenuEnter("more")}
+                              onMouseLeave={handleMenuLeave}
+                            >
                                 <div className="max-h-[70vh] overflow-y-auto px-1 custom-scrollbar">
                                   {moreCategories.map((cat) => (
                                     <div key={cat.id} className="mb-2 last:mb-0">
@@ -467,9 +446,8 @@ const Navbar = () => {
                                     </div>
                                   ))}
                                 </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
+                            </div>
+                          )}
                         </div>
                       )}
 
@@ -512,11 +490,7 @@ const Navbar = () => {
                   : "text-[var(--color-text-light)]/90 hover:text-[var(--color-text-light)]"
                   }`}
               >
-                {mobileMenuOpen ? (
-                  <XMarkIcon className="block h-6 w-6" />
-                ) : (
-                  <Bars3Icon className="block h-6 w-6" />
-                )}
+                {mobileMenuOpen ? <XMark /> : <Bars3 />}
               </button>
             </div>
           </div>
@@ -524,12 +498,7 @@ const Navbar = () => {
 
         {/* Premium Mobile menu */}
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-gray-900/40 backdrop-blur-2xl border-t border-white/10"
-          >
+          <div className="lg:hidden bg-gray-900/40 backdrop-blur-2xl border-t border-white/10 animate-fade-slide">
             <div className="px-4 pt-4 pb-6 space-y-2">
               {/* Dynamic Mobile Categories Dropdowns */}
               {loadingCategories ? (
@@ -574,17 +543,13 @@ const Navbar = () => {
                       >
                         <span>{cat.name}</span>
                         {cat.pages && cat.pages.length > 0 && (
-                          <ChevronDownIcon className="h-4 w-4" />
+                          <ChevronDown className="h-4 w-4" />
                         )}
                       </button>
                       {openDropdown === cat.id &&
                         cat.pages &&
                         cat.pages.length > 0 && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            className="mt-2 ml-4 space-y-2"
-                          >
+                          <div className="mt-2 ml-4 space-y-2 animate-fade-slide">
                             {cat.pages.map((page) => (
                               <Link
                                 key={page.id}
@@ -598,7 +563,7 @@ const Navbar = () => {
                                 {page.title}
                               </Link>
                             ))}
-                          </motion.div>
+                          </div>
                         )}
                     </div>
                   );
@@ -637,22 +602,25 @@ const Navbar = () => {
                 Contact
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
       </nav>
 
-      {/* Contact Modal */}
-
-      <Modal
-        isOpen={isContactModalOpen}
-        onClose={closeContactModal}
-        title={modalContent.title}
-        subtitle={modalContent.subtitle}
-      >
-        <div className="p-2">
-          <ContactForm onSuccess={closeContactModal} />
-        </div>
-      </Modal>
+      {/* Contact Modal — lazy loaded; chunks only fetched on first Contact click */}
+      {hasOpenedContact && (
+        <Suspense fallback={null}>
+          <LazyModal
+            isOpen={isContactModalOpen}
+            onClose={closeContactModal}
+            title={modalContent.title}
+            subtitle={modalContent.subtitle}
+          >
+            <div className="p-2">
+              <LazyContactForm onSuccess={closeContactModal} />
+            </div>
+          </LazyModal>
+        </Suspense>
+      )}
 
       <style>{`
 
