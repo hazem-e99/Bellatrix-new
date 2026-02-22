@@ -8,30 +8,53 @@ import { CTAModalProvider } from "./contexts/CTAModalContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { toastConfig } from "./config/toast";
 
+/**
+ * Wraps React.lazy() with automatic reload on ChunkLoadError.
+ * After a new deployment, old chunk filenames no longer exist on the server.
+ * The browser receives the SPA's index.html instead → MIME type error.
+ * Forcing a reload fetches the fresh index.html with the correct chunk URLs.
+ */
+const lazyWithRetry = (factory) =>
+  lazy(() =>
+    factory().catch((err) => {
+      const isChunkError =
+        err?.name === "ChunkLoadError" ||
+        /Loading chunk|Failed to fetch dynamically imported module|Importing a module script failed/i.test(
+          err?.message || ""
+        );
+      if (isChunkError) {
+        window.location.reload();
+        // Return a never-resolving promise so React doesn't render anything mid-reload
+        return new Promise(() => {});
+      }
+      throw err;
+    })
+  );
+
 // --- Lazy-loaded public pages ---
-const MainServices      = lazy(() => import("./components/Services/MainServices"));
-const Support           = lazy(() => import("./components/Support/Support"));
-const SolutionMain      = lazy(() => import("./components/solution/SolutionMain"));
-const Manufacturing     = lazy(() => import("./pages/Industries/Manufacturing"));
-const Retail            = lazy(() => import("./pages/Industries/Retail"));
-const PayrollPage       = lazy(() => import("./pages/Payroll"));
-const DynamicPageRenderer = lazy(() => import("./components/DynamicPageRenderer/index"));
-const AuthRoutes        = lazy(() => import("./routes/AuthRoutes"));
+const MainServices      = lazyWithRetry(() => import("./components/Services/MainServices"));
+const Support           = lazyWithRetry(() => import("./components/Support/Support"));
+const SolutionMain      = lazyWithRetry(() => import("./components/solution/SolutionMain"));
+const Manufacturing     = lazyWithRetry(() => import("./pages/Industries/Manufacturing"));
+const Retail            = lazyWithRetry(() => import("./pages/Industries/Retail"));
+const PayrollPage       = lazyWithRetry(() => import("./pages/Payroll"));
+const DynamicPageRenderer = lazyWithRetry(() => import("./components/DynamicPageRenderer/index"));
+const AuthRoutes        = lazyWithRetry(() => import("./routes/AuthRoutes"));
 
 // --- Lazy-loaded admin pages ---
-const ModernAdminLayout   = lazy(() => import("./components/Admin/ModernAdminLayout"));
-const AdminLayout         = lazy(() => import("./components/Admin/AdminLayout"));
-const ModernDashboard     = lazy(() => import("./components/Admin/ModernDashboard"));
-const AuthDashboard       = lazy(() => import("./components/Admin/AuthDashboard"));
-const AdminDashboard      = lazy(() => import("./components/Admin/AdminDashboard"));
-const PagesManagement     = lazy(() => import("./components/Admin/PagesManagement/index"));
-const CategoriesManagement = lazy(() => import("./components/Admin/CategoriesManagement"));
-const EnhancedPageBuilder  = lazy(() => import("./components/Admin/EnhancedPageBuilder"));
-const TemplatesManagement  = lazy(() => import("./components/Admin/TemplatesManagement"));
-const SettingsManagement   = lazy(() => import("./components/Admin/SettingsManagement"));
-const MessagesPage         = lazy(() => import("./pages/Admin/MessagesPage"));
-const ComponentsShowcase   = lazy(() => import("./pages/Admin/ComponentsShowcase"));
-const ChangePassword       = lazy(() => import("./pages/auth/ChangePassword"));
+const ModernAdminLayout   = lazyWithRetry(() => import("./components/Admin/ModernAdminLayout"));
+const AdminLayout         = lazyWithRetry(() => import("./components/Admin/AdminLayout"));
+const ModernDashboard     = lazyWithRetry(() => import("./components/Admin/ModernDashboard"));
+const AuthDashboard       = lazyWithRetry(() => import("./components/Admin/AuthDashboard"));
+const AdminDashboard      = lazyWithRetry(() => import("./components/Admin/AdminDashboard"));
+const PagesManagement     = lazyWithRetry(() => import("./components/Admin/PagesManagement/index"));
+const CategoriesManagement = lazyWithRetry(() => import("./components/Admin/CategoriesManagement"));
+const EnhancedPageBuilder  = lazyWithRetry(() => import("./components/Admin/EnhancedPageBuilder"));
+const TemplatesManagement  = lazyWithRetry(() => import("./components/Admin/TemplatesManagement"));
+const SettingsManagement   = lazyWithRetry(() => import("./components/Admin/SettingsManagement"));
+const MessagesPage         = lazyWithRetry(() => import("./pages/Admin/MessagesPage"));
+const ComponentsShowcase   = lazyWithRetry(() => import("./pages/Admin/ComponentsShowcase"));
+const ChangePassword       = lazyWithRetry(() => import("./pages/auth/ChangePassword"));
 
 // Full-page loading fallback
 const PageFallback = () => (
