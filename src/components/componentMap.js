@@ -120,7 +120,16 @@ export const getComponentPathFromId = (componentId) =>
   idToPathMap[componentId] || null;
 
 // Dynamic component loader using the path map
+// Module-level cache: persists across renders and navigations.
+// Re-navigating to a page costs zero network/parse overhead for already-loaded chunks.
+const _moduleCache = new Map();
+
 export const loadComponent = async (componentPath) => {
+  // Return instantly from cache when available
+  if (_moduleCache.has(componentPath)) {
+    return _moduleCache.get(componentPath);
+  }
+
   try {
     const componentMap = {
       // ===========================================
@@ -284,7 +293,10 @@ export const loadComponent = async (componentPath) => {
       throw new Error(`Component not found: ${componentPath}`);
     }
     const module = await loader();
-    return module.default;
+    const component = module.default;
+    // Store in cache so future navigations are instant
+    _moduleCache.set(componentPath, component);
+    return component;
   } catch (error) {
     // Detect stale chunk after a new deployment and reload once to get fresh chunks
     const isChunkError =

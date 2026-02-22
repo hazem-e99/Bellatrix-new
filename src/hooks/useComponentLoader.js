@@ -1,12 +1,14 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { getComponentPathFromId, loadComponent } from "../components/componentMap";
 
 export const useComponentLoader = (components) => {
   const [loadedComponents, setLoadedComponents] = useState({});
-  const [loading, setLoading] = useState(true);
+  // Track how many components have settled (loaded or failed)
+  const settledRef = useRef(0);
+  const totalRef = useRef(0);
+  // Expose a "fully done" flag so callers can optionally wait
+  const [allSettled, setAllSettled] = useState(false);
 
-  // Memoize the components key to prevent infinite loops
-  // Only re-run when the actual component data changes (not just reference)
   const componentsKey = useMemo(() => {
     if (!components || components.length === 0) return '';
     return components
@@ -17,9 +19,11 @@ export const useComponentLoader = (components) => {
   useEffect(() => {
     // Reset immediately so old page's components don't flash as "Not Found"
     setLoadedComponents({});
+    setAllSettled(false);
+    settledRef.current = 0;
 
     if (!components || components.length === 0) {
-      setLoading(false);
+      setAllSettled(true);
       return;
     }
 
@@ -28,45 +32,44 @@ export const useComponentLoader = (components) => {
     );
 
     if (visibleComponents.length === 0) {
-      setLoading(false);
+      setAllSettled(true);
       return;
     }
 
+    totalRef.current = visibleComponents.length;
     let cancelled = false;
-    setLoading(true);
 
-    const loadComponents = async () => {
+    // Load each component independently so the page renders progressively:
+    // top sections appear immediately while lower ones are still fetching.
+    visibleComponents.forEach(async (section, index) => {
+      const sectionId = `component-${index}`;
+      const componentPath = getComponentPathFromId(section.componentType);
+
       try {
-        const componentPromises = visibleComponents.map(async (section, index) => {
-          const componentPath = getComponentPathFromId(section.componentType);
-          if (componentPath) {
-            const Component = await loadComponent(componentPath);
-            return { sectionId: `component-${index}`, Component, sectionData: section };
+        if (componentPath) {
+          const Component = await loadComponent(componentPath);
+          if (!cancelled && Component) {
+            setLoadedComponents((prev) => ({
+              ...prev,
+              [sectionId]: { Component, sectionData: section },
+            }));
           }
-          return { sectionId: `component-${index}`, Component: null, sectionData: section };
-        });
-
-        const loaded = await Promise.all(componentPromises);
-
-        if (cancelled) return; // Navigation happened — discard stale results
-
-        const componentMap = {};
-        loaded.forEach(({ sectionId, Component, sectionData }) => {
-          if (Component) {
-            componentMap[sectionId] = { Component, sectionData };
-          }
-        });
-        setLoadedComponents(componentMap);
+        }
+      } catch {
+        // loadComponent handles errors internally; nothing to do here
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          settledRef.current += 1;
+          if (settledRef.current >= totalRef.current) {
+            setAllSettled(true);
+          }
+        }
       }
-    };
-
-    loadComponents();
+    });
 
     return () => { cancelled = true; };
-  }, [componentsKey]); // Use memoized key instead of components array
+  }, [componentsKey]);
 
-  return { loadedComponents, loading };
+  return { loadedComponents, allSettled };
 };
 

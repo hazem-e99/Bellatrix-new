@@ -1,11 +1,22 @@
 import ComponentNotFound from "./ComponentNotFound";
 import { extractComponentData, buildSafeProps } from "../../utils/componentDataExtractor";
 
-const PageSection = ({ section, index, componentData, isNewFormat = false }) => {
+const PageSection = ({ section, index, componentData, isNewFormat = false, isLoading = false }) => {
   const sectionId = isNewFormat ? `component-${index}` : section.uid;
   const themeAttribute = section.theme === 1 ? "light" : "dark";
 
   if (!componentData || !componentData.Component) {
+    // Still fetching the JS module — show a neutral skeleton instead of an error
+    if (isLoading) {
+      return (
+        <section
+          key={sectionId}
+          data-theme={themeAttribute}
+          style={{ minHeight: 120, background: "transparent" }}
+          aria-hidden="true"
+        />
+      );
+    }
     return (
       <section key={sectionId} data-theme={themeAttribute}>
         <ComponentNotFound

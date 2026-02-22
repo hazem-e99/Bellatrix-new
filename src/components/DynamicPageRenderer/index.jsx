@@ -11,12 +11,13 @@ const DynamicPageRenderer = () => {
   const { slug } = useParams();
   const { pageData, loading, error } = usePageData(slug);
   const components = pageData?.components || pageData?.sections || [];
-  const { loadedComponents, loading: componentsLoading } = useComponentLoader(components);
+  const { loadedComponents } = useComponentLoader(components);
 
   // Determine page type for skeleton loading
   const pageType = slug === "home" || !slug ? "home" : "generic";
 
-  if (loading || componentsLoading) {
+  // Only block on the API fetch — component modules stream in progressively
+  if (loading) {
     return <LoadingState pageType={pageType} />;
   }
 
@@ -57,6 +58,7 @@ const DynamicPageRenderer = () => {
             index={index}
             componentData={componentData}
             isNewFormat={isNewFormat}
+            isLoading={!componentData}
           />
         );
       })}
