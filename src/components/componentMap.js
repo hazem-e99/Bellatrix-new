@@ -286,6 +286,25 @@ export const loadComponent = async (componentPath) => {
     const module = await loader();
     return module.default;
   } catch (error) {
+    // Detect stale chunk after a new deployment and reload once to get fresh chunks
+    const isChunkError =
+      error?.name === "ChunkLoadError" ||
+      /Loading chunk|Failed to fetch dynamically imported module|Importing a module script failed|Expected a JavaScript/i.test(
+        error?.message || ""
+      );
+
+    if (isChunkError) {
+      const RELOAD_KEY = "chunkReloadAt";
+      const lastReload = Number(sessionStorage.getItem(RELOAD_KEY) || 0);
+      const now = Date.now();
+      // Reload at most once every 30 seconds to prevent infinite loops
+      if (now - lastReload > 30_000) {
+        sessionStorage.setItem(RELOAD_KEY, String(now));
+        window.location.reload();
+        return null;
+      }
+    }
+
     console.error(`Failed to load component ${componentPath}:`, error);
     return null;
   }
