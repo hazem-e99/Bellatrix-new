@@ -474,7 +474,7 @@ const Navbar = () => {
               {/* Premium Contact button */}
               <button
                 onClick={openContactModal}
-                className="relative ml-2 px-6 py-3 flex items-center justify-center bg-gradient-to-r from-[var(--tw-blue-200)] to-[var(--tw-blue-900)] text-white text-sm font-medium rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/40 transition-all duration-300 transform hover:scale-105 border border-[var(--color-white)]/10 backdrop-blur-sm group overflow-hidden cursor-pointer"
+                className="relative ml-2 px-6 py-3 flex items-center justify-center bg-gradient-to-r from-[var(--tw-blue-200)] to-[var(--tw-blue-900)] text-white text-sm font-medium rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/40 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm group overflow-hidden cursor-pointer"
               >
                 <span className="relative z-10">Contact</span>
               </button>
@@ -596,7 +596,7 @@ const Navbar = () => {
 
               <button
                 onClick={openContactModal}
-                className="block w-full px-4 py-3 mt-4 text-center bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-primary-light)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-medium rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 border border-[var(--color-white)]/10 cursor-pointer"
+                className="block w-full px-4 py-3 mt-4 text-center bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-primary-light)] to-[var(--color-primary-dark)] text-[var(--color-white)] font-medium rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 cursor-pointer"
               >
                 Contact
               </button>
