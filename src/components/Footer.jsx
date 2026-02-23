@@ -487,56 +487,52 @@ const Footer = () => {
             </h4>
 
             <div
-              className="flex flex-col gap-2"
               style={{ color: "var(--color-text-inverse)", opacity: 0.8 }}
             >
-              <a
-                href="#"
-                className="footer-link transition-colors duration-300"
-                style={{ color: "inherit" }}
-              >
-                Software Implementation
-              </a>
+              {loading ? (
+                <span style={{ color: "var(--color-text-muted)" }}>Loading...</span>
+              ) : (
+                (() => {
+                  const servicePages = categories
+                    .filter(cat => !["home", "about"].includes(cat.name?.toLowerCase()))
+                    .flatMap(cat =>
+                      (cat.pages || [])
+                        .filter(page => page.isPublished === true)
+                        .map(page => ({
+                          id: page.id,
+                          title: page.title,
+                          href: page.slug ? `/${page.slug}` : `/${page.id}`,
+                        }))
+                    );
 
-              <a
-                href="#"
-                className="footer-link transition-colors duration-300"
-                style={{ color: "inherit" }}
-              >
-                Training Programs
-              </a>
+                  if (servicePages.length === 0) {
+                    return <span style={{ opacity: 0.6 }}>No services available</span>;
+                  }
 
-              <a
-                href="#"
-                className="footer-link transition-colors duration-300"
-                style={{ color: "inherit" }}
-              >
-                Technical Support
-              </a>
+                  const useGrid = servicePages.length > 6;
 
-              <a
-                href="#"
-                className="footer-link transition-colors duration-300"
-                style={{ color: "inherit" }}
-              >
-                Consulting Services
-              </a>
-
-              <a
-                href="#"
-                className="footer-link transition-colors duration-300"
-                style={{ color: "inherit" }}
-              >
-                Custom Solutions
-              </a>
-
-              <a
-                href="#"
-                className="footer-link transition-colors duration-300"
-                style={{ color: "inherit" }}
-              >
-                Maintenance & Updates
-              </a>
+                  return (
+                    <div
+                      className={
+                        useGrid
+                          ? "grid grid-cols-2 gap-x-6 gap-y-2"
+                          : "flex flex-col gap-2"
+                      }
+                    >
+                      {servicePages.map(page => (
+                        <a
+                          key={page.id}
+                          href={page.href}
+                          className="footer-link transition-colors duration-300"
+                          style={{ color: "inherit" }}
+                        >
+                          {page.title}
+                        </a>
+                      ))}
+                    </div>
+                  );
+                })()
+              )}
             </div>
           </div>
 

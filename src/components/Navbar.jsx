@@ -279,17 +279,16 @@ const Navbar = () => {
                       navbarTheme === "light"
                         ? "/images/logoThree.png"
                         : scrolled
-                        ? "/images/logoTwo.png"
-                        : "/images/logoOne.png"
+                          ? "/images/logoTwo.png"
+                          : "/images/logoOne.png"
                     }
                     alt="Bellatrix Logo"
-                    className={`absolute top-1/2 left-1/2 object-contain -translate-x-1/2 -translate-y-1/2 transition-all duration-250 ${
-                      navbarTheme === "light"
-                        ? "h-12 w-12 md:h-20 md:w-20"
-                        : scrolled
+                    className={`absolute top-1/2 left-1/2 object-contain -translate-x-1/2 -translate-y-1/2 transition-all duration-250 ${navbarTheme === "light"
+                      ? "h-12 w-12 md:h-20 md:w-20"
+                      : scrolled
                         ? "h-20 w-20 md:h-56 md:w-56"
                         : "h-14 w-14 md:h-36 md:w-36"
-                    }`}
+                      }`}
                   />
                 </div>
               </div>
@@ -420,32 +419,32 @@ const Navbar = () => {
                               onMouseEnter={() => handleMenuEnter("more")}
                               onMouseLeave={handleMenuLeave}
                             >
-                                <div className="max-h-[70vh] overflow-y-auto px-1 custom-scrollbar">
-                                  {moreCategories.map((cat) => (
-                                    <div key={cat.id} className="mb-2 last:mb-0">
-                                      <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
-                                        {cat.name}
-                                      </div>
-                                      {cat.pages && cat.pages.length > 0 ? (
-                                        cat.pages
-                                          .filter((page) => page.isPublished === true)
-                                          .map((page) => (
-                                            <Link
-                                              key={page.id}
-                                              to={page.slug ? `/${page.slug}` : `/${page.id}`}
-                                              className="block px-5 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-sm font-medium ml-2"
-                                            >
-                                              {page.title}
-                                            </Link>
-                                          ))
-                                      ) : (
-                                        <span className="block px-5 py-2 text-gray-400 text-sm italic ml-2">
-                                          No pages
-                                        </span>
-                                      )}
+                              <div className="max-h-[70vh] overflow-y-auto px-1 custom-scrollbar">
+                                {moreCategories.map((cat) => (
+                                  <div key={cat.id} className="mb-2 last:mb-0">
+                                    <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                                      {cat.name}
                                     </div>
-                                  ))}
-                                </div>
+                                    {cat.pages && cat.pages.length > 0 ? (
+                                      cat.pages
+                                        .filter((page) => page.isPublished === true)
+                                        .map((page) => (
+                                          <Link
+                                            key={page.id}
+                                            to={page.slug ? `/${page.slug}` : `/${page.id}`}
+                                            className="block px-5 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-all duration-150 text-sm font-medium ml-2"
+                                          >
+                                            {page.title}
+                                          </Link>
+                                        ))
+                                    ) : (
+                                      <span className="block px-5 py-2 text-gray-400 text-sm italic ml-2">
+                                        No pages
+                                      </span>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
                             </div>
                           )}
                         </div>
