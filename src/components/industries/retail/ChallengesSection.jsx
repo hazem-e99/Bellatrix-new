@@ -181,7 +181,7 @@ const ChallengesSection = ({
                 <div className="rounded-lg p-4 theme-impact-box bg-[var(--color-brand-deep)]/20 border border-[var(--color-brand-accent)]/30 transition-colors duration-600 ease-in-out">
                   <div className="flex items-center space-x-2">
                     <svg
-                      className="w-5 h-5 theme-icon-color text-[var(--color-brand-accent)] transition-colors duration-600 ease-in-out"
+                      className="w-5 h-5 theme-icon-color text-[var(--color-text-inverse)] transition-colors duration-600 ease-in-out"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -193,7 +193,7 @@ const ChallengesSection = ({
                         d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
                       />
                     </svg>
-                    <span className="font-semibold theme-impact-text text-[var(--color-brand-variant)] transition-colors duration-600 ease-in-out">
+                    <span className="font-semibold theme-impact-text text-[var(--color-text-inverse)] transition-colors duration-600 ease-in-out">
                       Impact:{" "}
                       {finalChallenges[safeActiveChallenge]?.impact || "High"}
                     </span>
