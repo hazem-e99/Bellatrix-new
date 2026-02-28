@@ -101,8 +101,15 @@ const HeroSection = ({
             {data.title}
           </h1>
 
+          {/* Subtitle */}
+          {data.subtitle && (
+            <p className="text-xl md:text-2xl text-center font-bold text-white animate-fade-in mb-4">
+              {data.subtitle}
+            </p>
+          )}
+
           {/* Description */}
-          <p className="text-lg md:text-xl text-center text-gray-300 animate-fade-in leading-relaxed max-w-3xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-center font-bold text-white animate-slide-up tracking-tight mb-4">
             {data.description}
           </p>
 
