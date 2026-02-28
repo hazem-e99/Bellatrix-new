@@ -84,7 +84,7 @@ const AboutValues = ({ values = [], data = {} }) => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {displayData.title}
           </h2>
-          <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-lg leading-relaxed max-w-3xl mx-auto about-values-description">
             {displayData.description}
           </p>
         </div>

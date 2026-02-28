@@ -284,9 +284,9 @@ const Navbar = () => {
                     }
                     alt="Bellatrix Logo"
                     className={`absolute top-1/2 left-1/2 object-contain -translate-x-1/2 -translate-y-1/2 transition-all duration-250 ${navbarTheme === "light"
-                      ? "h-14 w-14 md:h-36 md:w-36" // match default dark-mode size
+                      ? "h-10 w-10 md:h-24 md:w-24"
                       : scrolled
-                        ? "h-20 w-20 md:h-56 md:w-56"
+                        ? "h-10 w-10 md:h-24 md:w-24"
                         : "h-14 w-14 md:h-36 md:w-36"
                       }`}
                   />

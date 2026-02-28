@@ -3,6 +3,11 @@
 @import "./styles/animations.css";
 @import "./styles/skeleton.css";
 /* ss */
+
+/* About Values Section - Description Text */
+.about-values-description {
+  color: var(--color-white) !important;
+}
 /* ==================================================
    GLOBAL CTA BUTTON STYLES - Primary Theme
    ================================================== */
