@@ -9,6 +9,15 @@ const BASE_API = getApiBaseUrlWithApi();
 
 function toFullUrl(fileUrl) {
   if (!fileUrl) return "";
+
+  // If the URL is already absolute, ensure it uses HTTPS in production
+  if (fileUrl.startsWith("http://")) {
+    if (typeof window !== "undefined" && window.location?.protocol === "https:") {
+      fileUrl = fileUrl.replace(/^http:\/\/68\.178\.169\.236:5000/, window.location.origin);
+    }
+  }
+  if (fileUrl.startsWith("http")) return fileUrl;
+
   const host = BASE_HOST_ABSOLUTE.replace(/\/$/, "");
   return host + (fileUrl.startsWith("/") ? fileUrl : "/" + fileUrl);
 }

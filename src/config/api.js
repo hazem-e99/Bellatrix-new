@@ -27,7 +27,11 @@ export const getAbsoluteBaseUrl = () => {
   if (import.meta.env.VITE_API_BASE_URL) {
     return import.meta.env.VITE_API_BASE_URL;
   }
-  return "http://68.178.169.236:5000"; // Fallback to the target IP
+  // Use current page origin in production to avoid mixed-content (HTTP on HTTPS page)
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return window.location.origin;
+  }
+  return "https://www.bellatrixinc.com"; // Fallback to HTTPS production domain
 };
 
 /**
