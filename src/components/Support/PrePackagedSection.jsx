@@ -55,7 +55,7 @@ const PrePackagedSection = ({
         ogImage="/images/Support/prepackaged-support.jpg"
       />
       <section
-        className="light-section"
+          className="light-section prepackaged-support-section"
         style={{
           backgroundColor: "#f7f7f7",
           padding: "60px 25px 50px 25px",
@@ -130,6 +130,7 @@ const PrePackagedSection = ({
                   {/* Package Name */}
                   {pkg.name && (
                     <h3
+                      className="prepackaged-support-name"
                       style={{
                         fontSize: "20px",
                         fontWeight: "700",
@@ -146,6 +147,7 @@ const PrePackagedSection = ({
                   {/* Price */}
                   {pkg.price && (
                     <p
+                      className="prepackaged-support-price"
                       style={{
                         fontSize: "22px",
                         fontWeight: "700",
@@ -160,6 +162,7 @@ const PrePackagedSection = ({
                   {/* Package Description */}
                   {pkg.description && (
                     <p
+                      className="prepackaged-support-description"
                       style={{
                         fontSize: "15px",
                         color: "#555",

@@ -543,6 +543,21 @@
   color: var(--purple-theme-text-main) !important;
 }
 
+/* Override for Pre-Packaged Support section so its key texts
+   (title, price, description) keep their light-mode colors
+   even when the purple/dark theme is active */
+[data-theme="purple"] .prepackaged-support-section .prepackaged-support-name {
+  color: #1a1a1a !important;
+}
+
+[data-theme="purple"] .prepackaged-support-section .prepackaged-support-price {
+  color: #C41E3A !important;
+}
+
+[data-theme="purple"] .prepackaged-support-section .prepackaged-support-description {
+  color: #555555 !important;
+}
+
 
 
 
