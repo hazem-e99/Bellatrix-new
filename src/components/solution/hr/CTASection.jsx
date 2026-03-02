@@ -54,11 +54,11 @@ const CTASection = ({
       <section className="py-16 bg-[var(--color-bg-secondary)] text-center animate-fade-in-up light-section">
         <div className="max-w-2xl mx-auto px-4">
           <header className="mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--color-primary-dark)]">
+            <h2 className="text-3xl md:text-4xl font-bold mb-10 text-[var(--color-primary-dark)]">
               {finalData.title}
             </h2>
             {finalData.subtitle && (
-              <h3 className="text-lg md:text-xl text-[var(--color-primary)] mb-4 leading-relaxed">
+              <h3 className="text-lg md:text-xl text-[var(--color-primary-dark)] mb-6 leading-relaxed">
                 {finalData.subtitle}
               </h3>
             )}
