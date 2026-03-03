@@ -465,7 +465,7 @@ const Navbar = () => {
                   toggleTheme(theme === "default" ? "purple" : "default")
                 }
                 className="relative ml-2 px-3 py-3 bg-[var(--color-white)]/10 hover:bg-[var(--color-white)]/20 text-[var(--color-white)] text-sm font-medium rounded-xl transition-all duration-300 border border-[var(--color-white)]/10 backdrop-blur-sm cursor-pointer"
-                title={`Switch to ${theme === "default" ? "Gray" : "Blue"
+                title={`Switch to ${theme === "default" ? "Dark Mode" : "Light Mode"
                   } theme`}
               >
                 <span className="text-lg">{theme === "default" ? "" : ""}</span>
@@ -589,7 +589,7 @@ const Navbar = () => {
                 }
                 className="block w-full px-4 py-3 mt-4 text-center bg-[var(--color-white)]/10 hover:bg-[var(--color-white)]/20 text-[var(--color-white)] font-medium rounded-xl border border-[var(--color-white)]/10 transition-all duration-300"
               >
-                {theme === "default" ? " Switch to Gray" : " Switch to Blue"}
+                {theme === "default" ? " Switch to Dark Mode" : " Switch to Light Mode"}
               </button>
 
               {/* Mobile Contact button */}
