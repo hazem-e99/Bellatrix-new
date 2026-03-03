@@ -10,7 +10,6 @@ const Hero = memo(({ slides: propsSlides = [], stats: propsStats = [], data }) =
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [isPlaying, setIsPlaying] = useState(true);
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const [fadeClass, setFadeClass] = useState("hero-text-enter");
 
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
@@ -132,7 +131,6 @@ const Hero = memo(({ slides: propsSlides = [], stats: propsStats = [], data }) =
 
   // Prefetch next slide video after current one is playing
   useEffect(() => {
-    if (!videoLoaded) return;
     const nextIndex = (currentSlide + 1) % slides.length;
     const nextVideoUrl = slides[nextIndex]?.video;
     if (nextVideoUrl && nextVideoUrl !== slides[currentSlide]?.video) {
@@ -143,7 +141,7 @@ const Hero = memo(({ slides: propsSlides = [], stats: propsStats = [], data }) =
       document.head.appendChild(link);
       return () => { try { document.head.removeChild(link); } catch {} };
     }
-  }, [videoLoaded, currentSlide, slides]);
+  }, [currentSlide, slides]);
 
   // Handle user interaction to enable video playback
 
@@ -182,14 +180,7 @@ const Hero = memo(({ slides: propsSlides = [], stats: propsStats = [], data }) =
 
       />
 
-      {/* Dark gradient background visible instantly while video loads */}
-      <div
-        className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 transition-opacity duration-700"
-        style={{ opacity: videoLoaded ? 0 : 1, zIndex: 1 }}
-        aria-hidden="true"
-      />
-
-      {/* Background Video — preload=metadata to avoid downloading entire file */}
+      {/* Background Video */}
 
       <video
 
@@ -203,15 +194,12 @@ const Hero = memo(({ slides: propsSlides = [], stats: propsStats = [], data }) =
 
         playsInline
 
-        preload="metadata"
+        preload="auto"
         fetchpriority="high"
 
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
-
-        onCanPlayThrough={() => setVideoLoaded(true)}
+        className="absolute inset-0 w-full h-full object-cover"
 
         onLoadedData={() => {
-          setVideoLoaded(true);
           tryPlayVideo(videoRef.current);
         }}
 

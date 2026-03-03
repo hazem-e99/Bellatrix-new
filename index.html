@@ -20,23 +20,15 @@
   <!-- Preload hero video so it starts downloading immediately -->
   <link rel="preload" as="video" href="/Videos/implementation/homepage_hero.mp4" type="video/mp4" />
 
-  <!-- Inline critical CSS for instant dark hero background before JS loads -->
+  <!-- Inline critical CSS -->
   <style>
     #root { min-height: 100dvh; }
-    /* Instant dark hero placeholder — visible before React mounts */
-    .hero-instant-bg {
-      position: fixed; inset: 0; z-index: 0;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    }
   </style>
 
 </head>
 
 <body>
-  <div id="root">
-    <!-- Instant dark hero background — removed by React on mount -->
-    <div class="hero-instant-bg" aria-hidden="true"></div>
-  </div>
+  <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
