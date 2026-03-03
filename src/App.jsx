@@ -32,12 +32,6 @@ const lazyWithRetry = (factory) =>
   );
 
 // --- Lazy-loaded public pages ---
-const MainServices      = lazyWithRetry(() => import("./components/Services/MainServices"));
-const Support           = lazyWithRetry(() => import("./components/Support/Support"));
-const SolutionMain      = lazyWithRetry(() => import("./components/solution/SolutionMain"));
-const Manufacturing     = lazyWithRetry(() => import("./pages/Industries/Manufacturing"));
-const Retail            = lazyWithRetry(() => import("./pages/Industries/Retail"));
-const PayrollPage       = lazyWithRetry(() => import("./pages/Payroll"));
 const DynamicPageRenderer = lazyWithRetry(() => import("./components/DynamicPageRenderer/index"));
 const AuthRoutes        = lazyWithRetry(() => import("./routes/AuthRoutes"));
 
@@ -78,32 +72,8 @@ function App() {
             {/* Public Routes */}
             <Route path="/" element={<Layout />}>
               <Route index element={<Navigate to="/home" replace />} />
-              <Route path="ImplementationStatic" element={<MainServices />} />
-              <Route path="TrainingStatic" element={<MainServices />} />
-              <Route path="netsuite-consulting" element={<MainServices />} />
-              <Route path="customization" element={<MainServices />} />
-              <Route path="integration" element={<MainServices />} />
-              {/* Support static routes (both cases) */}
-              <Route path="SupportStatic" element={<Support />} />
-              <Route path="supportStatic" element={<Support />} />
-              <Route path="hrStatic" element={<SolutionMain />} />
-              {/* <Route path="Payroll" element={<SolutionMain />} /> */}
-              <Route path="/PayrollStatic" element={<PayrollPage />} />
-              <Route
-                path="/industries/manufacturingStatic"
-                element={<Manufacturing />}
-              />
-              <Route path="/industries/retail" element={<Retail />} />
-
-              {/* Dynamic Page Routes - This should be last to catch all dynamic pages */}
+              {/* All public pages are rendered dynamically */}
               <Route path="/:slug" element={<DynamicPageRenderer />} />
-
-              {/* 
-            <Route path="Support" element={<Support />} />
-            <Route path="industries/manufacturing" element={<IndustryMain />} />
-            <Route path="industries/retail" element={<IndustryMain />} />
-            Add more industry routes as needed, all handled by IndustryMain 
-            */}
             </Route>
 
             {/* Protected Admin Routes */}
