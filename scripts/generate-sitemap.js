@@ -56,7 +56,7 @@ const SERVICE_KEYWORDS = [
 ];
 
 // Slugs to exclude from sitemap
-const EXCLUDED_PATTERNS = [/^auth/, /^admin/, /^api/, /^integration$/, /^customization$/];
+const EXCLUDED_PATTERNS = [/^auth/, /^admin/, /^api/];
 
 // ─── Helpers ────────────────────────────────────────────────
 
@@ -206,6 +206,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error("❌  Sitemap generation failed:", err);
+  console.error("❌  Sitemap generation failed : ", err);
   process.exit(1);
 });
