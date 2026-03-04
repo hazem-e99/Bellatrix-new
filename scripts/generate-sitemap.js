@@ -37,11 +37,8 @@ const PAGE_META = {
   // ── Tier 2 ── Core services & solutions (0.9)
   about:                 { priority: "0.9", changefreq: "monthly" },
   implementation:        { priority: "0.9", changefreq: "monthly" },
-  "netsuite-consulting": { priority: "0.9", changefreq: "monthly" },
-  customization:         { priority: "0.9", changefreq: "monthly" },
   training:              { priority: "0.9", changefreq: "monthly" },
   support:               { priority: "0.9", changefreq: "monthly" },
-  integration:           { priority: "0.9", changefreq: "monthly" },
 
   // ── Tier 3 ── Industry verticals & solutions (0.8)
   hr:                    { priority: "0.8", changefreq: "monthly" },
@@ -56,13 +53,6 @@ const PAGE_META = {
 const SERVICE_KEYWORDS = [
   "implementation", "training", "consulting", "customization",
   "support", "integration", "netsuite", "erp", "solution",
-];
-
-// Guaranteed fallback slugs (always included even if API is down)
-const FALLBACK_SLUGS = [
-  "home", "about", "hr", "payroll", "implementation", "training",
-  "customization", "support", "manufacturing", "retail",
-  "netsuite-consulting", "integration", "e-invoice", "professional-services",
 ];
 
 // Slugs to exclude from sitemap
@@ -167,13 +157,12 @@ async function main() {
     slugs = await fetchSlugsFromAPI();
     console.log(`✅  Found ${slugs.length} pages from API`);
   } catch (err) {
-    console.warn(`⚠️  API unreachable (${err.message}). Using fallback slugs.`);
-    slugs = FALLBACK_SLUGS;
+    console.error(`❌  API unreachable (${err.message}). Cannot generate sitemap without API.`);
+    process.exit(1);
   }
 
-  // Merge with fallback so known pages are always present
-  const merged = [...new Set([...slugs, ...FALLBACK_SLUGS])];
-  merged.sort((a, b) => {
+  // Sort: home first, then by priority descending, then alphabetical
+  slugs.sort((a, b) => {
     if (a === "home") return -1;
     if (b === "home") return 1;
     // Sort by priority descending, then alphabetical
@@ -183,10 +172,10 @@ async function main() {
     return a.localeCompare(b);
   });
 
-  const validSlugs = merged.filter((s) => !isExcluded(s));
+  const validSlugs = slugs.filter((s) => !isExcluded(s));
 
   // Write sitemap.xml
-  const xml = buildSitemap(merged);
+  const xml = buildSitemap(slugs);
   writeFileSync(OUTPUT_SITEMAP, xml, "utf-8");
 
   // Write robots.txt
