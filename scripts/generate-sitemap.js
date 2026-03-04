@@ -51,8 +51,8 @@ const PAGE_META = {
 
 // Keywords that bump unknown slugs to 0.7 (service-related content)
 const SERVICE_KEYWORDS = [
-  "implementation", "training", "consulting", "customization",
-  "support", "integration", "netsuite", "erp", "solution",
+  "implementation", "training", "consulting",
+  "support", "netsuite", "erp", "solution",
 ];
 
 // Slugs to exclude from sitemap
